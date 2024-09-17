@@ -20,12 +20,14 @@
 
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
+            <header class="relative bg-white dark:bg-gray-800 shadow">
+                <div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('{{ asset('images/header_bg.webp') }}');"></div>
+                <div class="relative max-w-7xl mx-auto text-center text-4xl py-12 px-4 sm:px-6 lg:px-8">
+                    {{ $header }}
+                </div>
+            </header>
             @endif
+        
 
             <!-- Page Content -->
             <main>
