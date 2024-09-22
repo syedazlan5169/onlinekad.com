@@ -10,12 +10,12 @@ class KadController extends Controller
     {
         $data = [
             'title' => 'Walimatulurus',
-            'bride_nick_name' => 'Hawa',
-            'groom_nick_name' => 'Adam',
-            'bride_name' => 'Nurul Hawa Binti Ishak',
-            'groom_name' => 'Mohammad Adam Bin Mohammad Rahman',
-            'father_name' => 'Mohammad Rahman Bin Ayob',
-            'mother_name' => 'Sarimah Binti Isa', 
+            'bride_nick_name' => 'Najwa',
+            'groom_nick_name' => 'Azlan',
+            'bride_name' => 'Nurul Nazatul Najwa Binti Mior Rahim',
+            'groom_name' => 'Syed Azlan Izzuddin Shah Bin Syed Shaharom',
+            'father_name' => 'Syed Shaharom Bin Syed Bahari',
+            'mother_name' => 'Zubaidah Binti Hamdan', 
             'event_day' => 'Sabtu',
             'masa_mula' => '10:00 AM',
             'masa_tamat' => '5:00 PM',
@@ -31,6 +31,8 @@ class KadController extends Controller
             'font_name2' => 'Dancing Script',
         ];
 
-        return view('kad.base_template', compact('data'));
+        $imageUrls = json_decode('["images/slider.1.webp", "images/slider.2.webp", "images/slider.3.webp", "images/slider.4.webp"]');
+
+        return view('kad.base_template', compact('data', 'imageUrls'));
     }
 }
