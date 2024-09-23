@@ -56,10 +56,10 @@ return new class extends Migration
         // Guestbooks Table
         Schema::create('guestbooks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('kad_id')->constrained('kads')->onDelete('cascade');
+            $table->integer('kad_id');
             $table->string('author');
             $table->text('wish');
-            $table->date('created_at')->nullable();  // To store guestbook entry creation date
+            $table->timestamps();
         });
 
         // RSVP Table

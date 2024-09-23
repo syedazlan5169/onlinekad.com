@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guestbook;
 use Illuminate\Http\Request;
 
 class KadController extends Controller
@@ -10,8 +11,8 @@ class KadController extends Controller
     {
         $data = [
             'title' => 'Walimatulurus',
-            'bride_nick_name' => 'Najwa',
-            'groom_nick_name' => 'Azlan',
+            'bride_nickname' => 'Najwa',
+            'groom_nickname' => 'Azlan',
             'bride_name' => 'Nurul Nazatul Najwa Binti Mior Rahim',
             'groom_name' => 'Syed Azlan Izzuddin Shah Bin Syed Shaharom',
             'father_name' => 'Syed Shaharom Bin Syed Bahari',
@@ -31,8 +32,11 @@ class KadController extends Controller
             'font_name2' => 'Dancing Script',
         ];
 
-        $imageUrls = json_decode('["images/slider.1.webp", "images/slider.2.webp", "images/slider.3.webp", "images/slider.4.webp"]');
+        $guestbookController = new GuestbookController();
+        $wishes = $guestbookController->showWishes();
 
-        return view('kad.base_template', compact('data', 'imageUrls'));
+        $imageUrls = json_decode('["images/slide1.webp", "images/slide2.webp", "images/slide3.webp"]');
+
+        return view('kad.base_template', compact('data', 'imageUrls', 'wishes'));
     }
 }

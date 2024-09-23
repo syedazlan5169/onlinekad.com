@@ -15,18 +15,21 @@
 
         <!-- Styles -->
         @vite(['resources/css/app.css','resources/js/app.js'])
+
+        <!-- font-awesome icon here -->
+        <script src="https://kit.fontawesome.com/5a63289656.js" crossorigin="anonymous"></script>
     </head>
-    <body>
+    <body x-data="{ form_ucapan: false, form_rsvp: false }">
         <div class="h-full w-full bg-cover bg-center" style="background-image: url('{{ asset('images/N005.2.webp') }}'); background-attachment: fixed">
-            <!-- First Section -->
+            <!-- Kad Section -->
             <div class="h-screen w-full bg-cover bg-center" style="background-image: url('{{ asset('images/N005.1.webp') }}');">
                 <div class="absolute inset-0 bg-white bg-opacity-20">
                     <div class="flex flex-col justify-center gap-20 items-center h-full">
                         <h1 class="text-2xl font-bold text-center text-gray-600" style="font-family: 'Safadi One', cursive; margin-bottom: 0;">{{ $data['title'] }}</h1>
                         <div class="text-center">
-                            <p class="text-5xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: '{{ $data['font_name2'] }}', cursive; margin-bottom: 0;">{{ $data['groom_nick_name'] }}</p>
+                            <p class="text-5xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: '{{ $data['font_name2'] }}', cursive; margin-bottom: 0;">{{ $data['groom_nickname'] }}</p>
                             <p class="text-5xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: '{{ $data['font_name2'] }}', cursive; margin-bottom: 0;">&</p>
-                            <p class="text-5xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: '{{ $data['font_name2'] }}', cursive; margin-bottom: 0;">{{ $data['bride_nick_name'] }}</p>
+                            <p class="text-5xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: '{{ $data['font_name2'] }}', cursive; margin-bottom: 0;">{{ $data['bride_nickname'] }}</p>
                         </div>
                         <div class="text-center">
                             <p class="text-2xl font-bold text-gray-600 leading-tight" style="font-family: 'Safadi One', cursive; margin-bottom: 0;">{{ $data['event_day'] }}</p>
@@ -37,7 +40,7 @@
             </div>
             
         
-            <!-- Second Section -->
+            <!-- Details Section -->
             <div class="border-b border-gray-300 my-10 py-8">
                 <div class="relative top-0 bg-white bg-opacity-20">
                     <div class="flex flex-col justify-center gap-5 items-center h-full">
@@ -86,14 +89,14 @@
                 </div>
             </div>
 
-            <!-- Third Section -->
+            <!-- Fetures Section -->
             <div>
-                <div class="flex flex-col justify-center gap-5 items-center h-full">
-                    <div class="items-center w-80 h-36 rounded-xl" style="background-color: #DAA520">
+                <div class="flex flex-col justify-center gap-5 items-center h-full px-6">
+                    <div class="items-center w-full h-36 mb-6 rounded-xl" style="background-color: #DAA520">
                         <p class="text-2xl text-white flex justify-center">Menanti Hari</p>
                     </div>
                     
-                    <div class="main-slider size-80 max-w-[800px] max-h-[400px] mx-auto overflow-hidden rounded-xl">
+                    <div class="main-slider size-80 w-full max-h-[400px] mx-auto overflow-hidden rounded-xl">
                         @foreach($imageUrls as $url)
                             <div class="w-full h-full">
                                 <img src="{{ asset($url) }}" alt="Slide Image" class="w-full h-full object-cover rounded-xl border border-gray-800">
@@ -101,65 +104,150 @@
                         @endforeach
                     </div>
 
-                    <div class="items-center w-80 max-w-md p-6 rounded-xl bg-[#DAA520] mx-auto">
-                        <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-                            <h2 class="mt-6 text-center text-2xl font-semibold leading-9 tracking-tight text-white">RSVP</h2>
-                            <h2 class="mt-0 text-center text-2xl font-semibold leading-9 tracking-tight text-white">{{ $data['groom_nick_name'] }} & {{ $data['bride_nick_name'] }}</h2>
-                        </div>
-
-                        <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                            <form class="space-y-6" action="#" method="POST">
-                                <!-- Name Field -->
-                                <div class="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
-                                    <label for="name" class="block text-xs font-medium text-gray-900">Nama</label>
-                                    <input type="text" name="name" id="name" class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Jane Smith">
-                                </div>
-
-                                <!-- Phone Number Field -->
-                                <div class="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
-                                    <label for="telefon" class="block text-xs font-medium text-gray-900">Nombor Telefon</label>
-                                    <input type="text" name="telefon" id="telefon" class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Jane Smith">
-                                </div>
-
-                                <!-- Radio Buttons -->
-                                <fieldset aria-label="Plan">
-                                    <div class="space-y-5">
-                                        <div class="relative flex items-start">
-                                            <div class="flex h-6 items-center">
-                                                <input id="hadir" name="attendance" type="radio" checked class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
-                                            </div>
-                                            <div class="ml-3 text-sm leading-6">
-                                                <label for="hadir" class="font-medium text-gray-900">Hadir</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="relative flex items-start">
-                                            <div class="flex h-6 items-center">
-                                                <input id="tidak_hadir" name="attendance" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
-                                            </div>
-                                            <div class="ml-3 text-sm leading-6">
-                                                <label for="tidak_hadir" class="font-medium text-gray-900">Tidak Hadir</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </fieldset>
-
-                                <!-- Submit Button -->
+                    <div class="mt-7 w-full rounded-xl border-[#DAA520] border-[1px] py-6 px-3 mb-32">
+                        <div>
+                            <div class="flex justify-center items-center mb-5">
                                 <div>
-                                    <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                                        Submit
-                                    </button>
+                                    <!-- Open the modal using ID.showModal() method -->
+                                    <x-primary-button @click="form_ucapan = true">Tulis Ucapan</x-primary-button>
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                    </div>
+                        <ul>
+                            @foreach($wishes as $wish)
+                                <li>
+                                    <h1 class="text-center font-medium">{{ $wish['author'] }}</h1>
+                                    <h2 class="text-center italic">{{ $wish['wish'] }}</h2>
+                                    <hr class="border w-full my-4">
+                                </li>
+                            @endforeach
+                        </ul>
+                        {{ $wishes->links() }}
+                    </div>                   
+                </div>
+            </div>
+        </div>
 
+            <!-- Form Tulis Ucapan -->
+        <div x-cloak x-show="form_ucapan" 
+            x-transition:enter="ease-out duration-300" 
+            x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
+            x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" 
+            x-transition:leave="ease-in duration-200" 
+            x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" 
+            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
+            class="relative z-10" 
+            aria-labelledby="modal-title" 
+            role="dialog" 
+            aria-modal="true">
+            
+            <!-- Background backdrop -->
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
 
-                    <div class="items-center w-80 h-36 rounded-xl" style="background-color: #DAA520">
-                        <p class="text-2xl text-white flex justify-center">Menanti Hari</p>
+            <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+                <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+                    <!-- Modal panel -->
+                    <div x-data="{ kehadiran: 'hadir' }" class="items-center w-full max-w-md p-6 rounded-xl bg-[#DAA520] mx-auto">
+                        <div class="md:p-10 p-0 flex flex-col gap-4">
+                            <div class="text-[white] flex flex-col gap-2">
+                                <h3>Nama</h3>
+                                <input required type="text" class="py-2 px-3 text-black focus:to-blue-600 rounded-[4px]" name="nama" id="nama">
+                            </div>
+                            <div class="text-[white] flex flex-col gap-2">
+                                <h3>Ucapan</h3>
+                                <textarea required class="py-2 px-3 text-black focus:to-blue-600 rounded-[4px]" name="ucapan" id="ucapan"></textarea>
+                            </div>
+                            <div class="py-3 sm:flex-row-reverse sm:px-6">
+                                <x-primary-button form="delete-form">Submit</x-primary-button>
+                                <x-primary-button class="bg-red-500 hover:bg-red-300" @click="form_ucapan = false">Tutup</x-primary-button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- End Form Tulis Ucapan -->
+
+        <!-- Form Rsvp -->
+        <div x-cloak x-show="form_rsvp" 
+            x-transition:enter="ease-out duration-300" 
+            x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
+            x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" 
+            x-transition:leave="ease-in duration-200" 
+            x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" 
+            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
+            class="relative z-10" 
+            aria-labelledby="modal-title" 
+            role="dialog" 
+            aria-modal="true">
+            
+            <!-- Background backdrop -->
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+            <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+                <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+                    <!-- Modal panel -->
+                    <div x-data="{ kehadiran: 'hadir' }" class="items-center w-full max-w-md p-6 rounded-xl bg-[#DAA520] mx-auto">
+                        <h1 class="text-center font-bold text-xl text-[white] open-sans">RSVP</h1>
+                        <h1 class="text-center pb-4 font-bold text-xl text-[white] open-sans">{{ $data['groom_nickname'] }} & {{ $data['bride_nickname'] }}</h1>
+                        <div class="md:p-10 p-0 flex flex-col gap-4">
+                            <div class="text-[white] flex flex-col gap-2">
+                                <h3>Nama (Required)</h3>
+                                <input required type="text" class="py-2 px-3 text-black focus:to-blue-600 rounded-[4px]" name="nama" id="nama">
+                            </div>
+                            <div class="text-[white] flex flex-col gap-2">
+                                <h3>Telefon (Required)</h3>
+                                <input required type="text" class="py-2 px-3 text-black focus:to-blue-600 rounded-[4px]" name="telefon" id="telefon">
+                            </div class="text-[white] flex flex-col gap-2">
+                            <div class=" w-full text-[white] flex flex-col gap-2">
+                                <h3>Kehadiran (Required)</h3>
+                                <select x-model="kehadiran" class="w-full text-black py-2 px-3 focus:to-blue-600 rounded-[4px]" name="kehadiran" id="kehadian">
+                                    <option value="hadir">Hadir</option>
+                                    <option value="tidak_hadir">Tidak Hadir</option>
+                                </select>
+                            </div>
+                            <div x-show="kehadiran === 'hadir'" class="text-[white] flex flex-col gap-2">
+                                <h3>Jumlah Kehadiran</h3>
+                                <input type="number" class="py-2 px-3 text-black focus:to-blue-600 rounded-[4px]" name="kehadiran" id="kehadiran">
+                            </div>
+                            <div class="py-3 sm:flex-row-reverse sm:px-6">
+                                <x-primary-button form="delete-form">Submit</x-primary-button>
+                                <x-primary-button class="bg-red-500 hover:bg-red-300" @click="form_rsvp = false">Tutup</x-primary-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Form Rsvp -->
+
+        <!-- Footer Section -->
+        <footer class="lg:w-1/4 w-full mx-auto bg-[#ebbc47] flex justify-center items-center]">
+            <div class="fixed bottom-0 z-50 lg:w-1/4 w-full mx-auto h-16 bg-[#ebbc47] border-t">
+                <div class="grid mt-2 w-[97%]  gap-1 max-w-lg grid-cols-4 mx-auto font-medium">
+                    <button type="button" @click="form_rsvp = true" class="inline-flex flex-col items-center justify-center px-1 pb-1 rounded-md border border-white bg-[#DAA520] ">
+                        <h1 class="text-[20px] text-white"><i class="fa-solid fa-list"></i></h1>
+                        <span class="text-xs text-white">RSVP</span>
+                    </button>
+                    <button type="button" class="inline-flex flex-col items-center justify-center px-1 pb-1 rounded-md border border-white bg-[#DAA520]  ">
+                        <h1 class="text-[20px] text-white"><i class="fa-regular fa-calendar"></i></h1>
+                        <span class="text-xs text-white">REMINDER</span>
+                    </button>
+                    <button type="button" class="inline-flex flex-col items-center justify-center px-1 pb-1 rounded-md border border-white bg-[#DAA520] ">
+                        <h1 class="text-[20px] text-white"><i class="fa-solid fa-phone"></i></h1>
+                        <span class="text-xs text-white">TELEFON</span>
+                    </button>
+                    <button type="button" class="inline-flex flex-col items-center justify-center px-1 pb-1 rounded-md border border-white bg-[#DAA520]  ">
+                        <h1 class="text-[20px] text-white"><i class="fa-solid fa-location-dot"></i></h1>
+                        <span class="text-xs text-white dark:text-white-400">LOKASI</span>
+                    </button>
+                    <button type="button" class="inline-flex flex-col items-center justify-center px-1 pb-1 rounded-md border border-white bg-[#DAA520]  ">
+                        <h1 class="text-[20px] text-white"><i class="fa-solid fa-location-dot"></i></h1>
+                        <span class="text-xs text-white dark:text-white-400">LOCATION</span>
+                    </button>
+                </div>
+            </div>
+        </footer>
+    @livewireScripts
     </body>
 </html>
