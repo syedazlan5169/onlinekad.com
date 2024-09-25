@@ -11,16 +11,20 @@ class Kad extends Model
 
     protected $fillable = [
         'order_id',
+        'is_paid',
         'user_id',
         'design_id',
         'font_id',
+        'package_id',
         'tajuk_kad',
         'nama_penuh_lelaki',
         'nama_penuh_perempuan',
         'nama_panggilan_lelaki',
         'nama_panggilan_perempuan',
-        'nama_bapa_pengantin',
-        'nama_ibu_pengantin',
+        'nama_bapa_pengantin_lelaki',
+        'nama_ibu_pengantin_lelaki',
+        'nama_bapa_pengantin_perempuan',
+        'nama_ibu_pengantin_perempuan',
         'tarikh_majlis',
         'masa_mula_majlis',
         'masa_tamat_majlis',
@@ -35,8 +39,8 @@ class Kad extends Model
         'nombor_telefon' => 'array',
         'aturcara_majlis' => 'array',
         'tarikh_majlis' => 'date',
-        'masa_mula_majlis' => 'time',
-        'masa_tamat_majlis' => 'time',
+        'masa_mula_majlis' => 'string',
+        'masa_tamat_majlis' => 'string',
     ];
 
         // Modify the order relationship to reference 'order_id' instead of 'id'

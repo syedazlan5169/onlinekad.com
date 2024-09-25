@@ -29,19 +29,25 @@ return new class extends Migration
         // Kads Table
         Schema::create('kads', function (Blueprint $table) {
             $table->id();
-            
+            // Maklumat Kad
             $table->string('order_id');
-            $table->foreign('order_id')->references('order_id')->on('orders')->onDelete('cascade');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('design_id')->constrained('designs')->onDelete('cascade');
-            $table->foreignId('font_id')->constrained('fonts')->onDelete('cascade');
-            $table->string('tajuk_kad');
+            $table->string('is_paid');
+            $table->integer('user_id');
+            $table->integer('design_id');
+            $table->integer('font_id');
+            $table->integer('package_id');
+            // Maklumat Pengantin
             $table->string('nama_penuh_lelaki');
             $table->string('nama_penuh_perempuan');
             $table->string('nama_panggilan_lelaki');
             $table->string('nama_panggilan_perempuan');
-            $table->string('nama_bapa_pengantin');
-            $table->string('nama_ibu_pengantin');
+            $table->string('nama_bapa_pengantin_lelaki')->nullable();
+            $table->string('nama_ibu_pengantin_lelaki')->nullable();
+            $table->string('nama_bapa_pengantin_perempuan')->nullable();
+            $table->string('nama_ibu_pengantin_perempuan')->nullable();
+            // Maklumat Majlis
+            $table->string('tajuk_kad');
+            $table->string('ayat_jemputan');
             $table->date('tarikh_majlis');
             $table->time('masa_mula_majlis');
             $table->time('masa_tamat_majlis');
@@ -56,7 +62,7 @@ return new class extends Migration
         // Guestbooks Table
         Schema::create('guestbooks', function (Blueprint $table) {
             $table->id();
-            $table->integer('kad_id');
+            $table->foreignIdFor(\App\Models\Kad::class);
             $table->string('author');
             $table->text('wish');
             $table->timestamps();
@@ -65,7 +71,7 @@ return new class extends Migration
         // RSVP Table
         Schema::create('rsvp', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('kad_id')->constrained('kads')->onDelete('cascade');
+            $table->foreignIdFor(\App\Models\Kad::class);
             $table->string('nama');
             $table->string('nombor_telefon');
             $table->integer('jumlah_kehadiran');
