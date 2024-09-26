@@ -20,6 +20,45 @@
         <script src="https://kit.fontawesome.com/5a63289656.js" crossorigin="anonymous"></script>
     </head>
     <body x-data="{ form_ucapan: false, form_rsvp: false, location_modal: false, reminder_modal: false, contact_modal: false }">
+
+        <!-- Notification Panel -->
+        @if(session('success'))
+            <!-- Global notification live region -->
+            <div 
+                x-data="{ show: true }" 
+                x-init="setTimeout(() => show = false, 5000)" 
+                x-show="show" 
+                x-transition:enter="transform ease-out duration-300 transition"
+                x-transition:enter-start="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
+                x-transition:enter-end="translate-y-0 opacity-100 sm:translate-x-0"
+                x-transition:leave="transition ease-in duration-100"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                aria-live="assertive" 
+                class="pointer-events-none fixed inset-0 flex items-start px-4 py-6 sm:items-start sm:p-6"
+            >
+                <div class="flex w-full flex-col items-center space-y-4 sm:items-end">
+                    <div class="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+                        <div class="p-4">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                                <div class="ml-3 w-0 flex-1 pt-0.5">
+                                    <p class="text-sm font-medium text-gray-900">{{ session('success') }}</p>
+                                    <p class="mt-1 text-sm text-gray-500">Anyone with a link can now view your wish.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+        <!-- End of Notification Panel -->
+
+
         <div class="h-full w-full bg-cover bg-center" style="background-image: url('{{ asset('images/N005.2.webp') }}'); background-attachment: fixed">
             <!-- Kad Section -->
             <div class="h-screen w-full bg-cover bg-center" style="background-image: url('{{ asset('images/N005.1.webp') }}');">
@@ -261,65 +300,70 @@
         <!-- End Form Tulis Ucapan -->
 
         <!-- Form Rsvp -->
-        <div x-cloak x-show="form_rsvp"
-            @click.away="form_rsvp = false" 
-            x-transition:enter="ease-out duration-300" 
-            x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
-            x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" 
-            x-transition:leave="ease-in duration-200" 
-            x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" 
-            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
-            class="fixed inset-0 z-50 flex items-center justify-center p-4"
-            aria-labelledby="modal-title" 
-            role="dialog" 
-            aria-modal="true">
-            
-            <!-- Background backdrop -->
-            <div class="absolute inset-0 bg-gray-500 bg-opacity-75" @click="form_rsvp = false"></div>
-
-            <!-- Modal Content -->
-            <div class="relative z-10 w-full max-w-md p-6 rounded-xl bg-[#DAA520] mx-auto">
-                <h1 class="text-center font-bold text-xl text-[white] open-sans">RSVP</h1>
-                <h1 class="text-center pb-4 font-bold text-xl text-[white] open-sans">{{ $kadData['nama_panggilan_lelaki'] }} & {{ $kadData['nama_panggilan_perempuan'] }}</h1>
+        <form action="{{ route('create-rsvp') }}" method="POST">
+            @csrf
+            <input type="hidden" name="kad_id" value="{{ $kadData->id }}">
+            <div x-cloak x-show="form_rsvp"
+                @click.away="form_rsvp = false" 
+                x-transition:enter="ease-out duration-300" 
+                x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
+                x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" 
+                x-transition:leave="ease-in duration-200" 
+                x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" 
+                x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
+                class="fixed inset-0 z-50 flex items-center justify-center p-4"
+                aria-labelledby="modal-title" 
+                role="dialog" 
+                aria-modal="true">
                 
-                <!-- Form -->
-                <div x-data="{ kehadiran: 'hadir' }" class="md:p-10 p-0 flex flex-col gap-4">
+                <!-- Background backdrop -->
+                <div class="absolute inset-0 bg-gray-500 bg-opacity-75" @click="form_rsvp = false"></div>
+
+                <!-- Modal Content -->
+                <div class="relative z-10 w-full max-w-md p-6 rounded-xl bg-[#DAA520] mx-auto">
+                    <h1 class="text-center font-bold text-xl text-[white] open-sans">RSVP</h1>
+                    <h1 class="text-center pb-4 font-bold text-xl text-[white] open-sans">{{ $kadData['nama_panggilan_lelaki'] }} & {{ $kadData['nama_panggilan_perempuan'] }}</h1>
                     
-                    <!-- Name Field -->
-                    <div class="text-[white] flex flex-col gap-2">
-                        <h3>Nama (Required)</h3>
-                        <input required type="text" class="py-2 px-3 text-black focus:to-blue-600 rounded-[4px]" name="nama" id="nama">
-                    </div>
-                    
-                    <!-- Phone Number Field -->
-                    <div class="text-[white] flex flex-col gap-2">
-                        <h3>Telefon (Required)</h3>
-                        <input required type="text" class="py-2 px-3 text-black focus:to-blue-600 rounded-[4px]" name="telefon" id="telefon">
-                    </div>
+                    <!-- Form -->
+                    <div x-data="{ kehadiran: 'hadir' }" class="md:p-10 p-0 flex flex-col gap-4">
+                        
+                        <!-- Name Field -->
+                        <div class="text-[white] flex flex-col gap-2">
+                            <h3>Nama (Required)</h3>
+                            <input required type="text" class="py-2 px-3 text-black focus:to-blue-600 rounded-[4px]" name="nama" id="nama">
+                        </div>
+                        
+                        <!-- Phone Number Field -->
+                        <div class="text-[white] flex flex-col gap-2">
+                            <h3>Telefon (Required)</h3>
+                            <input required type="text" class="py-2 px-3 text-black focus:to-blue-600 rounded-[4px]" name="nombor_telefon" id="nombor_telefon">
+                        </div>
 
-                    <!-- Kehadiran Field -->
-                    <div class="text-[white] flex flex-col gap-2">
-                        <h3>Kehadiran (Required)</h3>
-                        <select x-model="kehadiran" class="w-full text-black py-2 px-3 focus:to-blue-600 rounded-[4px]" name="kehadiran" id="kehadiran">
-                            <option value="hadir">Hadir</option>
-                            <option value="tidak_hadir">Tidak Hadir</option>
-                        </select>
-                    </div>
+                        <!-- Kehadiran Field -->
+                        <div class="text-[white] flex flex-col gap-2">
+                            <h3>Kehadiran (Required)</h3>
+                            <select x-model="kehadiran" class="w-full text-black py-2 px-3 focus:to-blue-600 rounded-[4px]" name="kehadiran" id="kehadiran">
+                                <option value="Hadir">Hadir</option>
+                                <option value="Tidak Hadir">Tidak Hadir</option>
+                            </select>
+                        </div>
 
-                    <!-- Jumlah Kehadiran Field (Shown only if "Hadir" is selected) -->
-                    <div x-show="kehadiran === 'hadir'" class="text-[white] flex flex-col gap-2">
-                        <h3>Jumlah Kehadiran</h3>
-                        <input type="number" class="py-2 px-3 text-black focus:to-blue-600 rounded-[4px]" name="jumlah_kehadiran" id="jumlah_kehadiran">
-                    </div>
+                        <!-- Jumlah Kehadiran Field (Shown only if "Hadir" is selected) -->
+                        <div x-show="kehadiran === 'hadir'" class="text-[white] flex flex-col gap-2">
+                            <h3>Jumlah Kehadiran</h3>
+                            <input type="number" class="py-2 px-3 text-black focus:to-blue-600 rounded-[4px]" name="jumlah_kehadiran" id="jumlah_kehadiran">
+                        </div>
 
-                    <!-- Action Buttons -->
-                    <div class="py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                        <x-primary-button form="delete-form">Submit</x-primary-button>
-                        <x-primary-button class="bg-red-500 hover:bg-red-300" @click="form_rsvp = false">Tutup</x-primary-button>
+                        <!-- Action Buttons -->
+                        <div class="py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                            <x-primary-button type="submit">Submit</x-primary-button>
+                            <x-primary-button class="bg-red-500 hover:bg-red-300" @click="form_rsvp = false">Tutup</x-primary-button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
+
         <!-- End Form Rsvp -->
 
         <!-- Location Modal Popup -->

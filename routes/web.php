@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\GuestbookController;
 use App\Http\Controllers\KadController;
+use App\Http\Controllers\RsvpController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'home')->name('/');
@@ -9,6 +10,7 @@ Route::view('katalog', 'katalog')->name('katalog');
 Route::view('pakej', 'pakej')->name('pakej');
 Route::view('tutorial', 'tutorial')->name('tutorial');
 Route::post('/tulis-ucapan', [GuestbookController::class, 'create'])->name('tulis-ucapan');
+Route::post('/create-rsvp', [RsvpController::class, 'create'])->name('create-rsvp');
 
 Route::middleware(['auth'])->group(function () {
     Route::view('profile', 'profile')->name('profile');
