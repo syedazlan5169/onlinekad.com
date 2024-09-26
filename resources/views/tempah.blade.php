@@ -145,6 +145,20 @@
                                 </div>
 
                                 <div class="sm:col-span-3">
+                                    <label for="ayat_jemputan" class="block text-sm font-medium leading-6 text-gray-900">Ayat Jemputan</label>
+                                    <div class="mt-2">
+                                    <textarea name="ayat_jemputan" id="ayat_jemputan" rows="4" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="sm:col-span-3">
+                                    <label for="doa_pengantin" class="block text-sm font-medium leading-6 text-gray-900">Doa Pengantin</label>
+                                    <div class="mt-2">
+                                    <textarea name="doa_pengantin" id="doa_pengantin" rows="4" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="sm:col-span-3">
                                     <label for="tarikh_majlis" class="block text-sm font-medium leading-6 text-gray-900">Tarikh Majlis</label>
                                     <div class="mt-2">
                                     <input type="date" name="tarikh_majlis" id="tarikh_majlis" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">

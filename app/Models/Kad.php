@@ -31,8 +31,10 @@ class Kad extends Model
         'alamat_majlis',
         'google_url',
         'waze_url',
-        'nombor_telefon',
         'aturcara_majlis',
+        'nombor_telefon',
+        'ayat_jemputan',
+        'doa_pengantin',
     ];
 
     protected $casts = [
@@ -43,34 +45,34 @@ class Kad extends Model
         'masa_tamat_majlis' => 'string',
     ];
 
-        // Modify the order relationship to reference 'order_id' instead of 'id'
-        public function order()
-        {
-            return $this->belongsTo(Order::class, 'order_id', 'order_id');  // Custom foreign key and local key
-        }
-    
-        public function user()
-        {
-            return $this->belongsTo(User::class);
-        }
-    
-        public function design()
-        {
-            return $this->belongsTo(Design::class);
-        }
-    
-        public function font()
-        {
-            return $this->belongsTo(Font::class);
-        }
-    
-        public function guestbooks()
-        {
-            return $this->hasMany(Guestbook::class);
-        }
-    
-        public function rsvp()
-        {
-            return $this->hasMany(Rsvp::class);
-        }
+    // Modify the order relationship to reference 'order_id' instead of 'id'
+    public function order()
+    {
+        return $this->belongsTo(Order::class, 'order_id', 'order_id');  // Custom foreign key and local key
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function design()
+    {
+        return $this->belongsTo(Design::class);
+    }
+
+    public function font()
+    {
+        return $this->belongsTo(Font::class);
+    }
+
+    public function guestbooks()
+    {
+        return $this->hasMany(Guestbook::class);
+    }
+
+    public function rsvp()
+    {
+        return $this->hasMany(Rsvp::class);
+    }
 }

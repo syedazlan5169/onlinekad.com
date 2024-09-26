@@ -56,6 +56,8 @@ return new class extends Migration
             $table->string('waze_url')->nullable();
             $table->json('nombor_telefon')->nullable();
             $table->json('aturcara_majlis')->nullable();
+            $table->longText('doa_pengantin')->nullable();
+            $table->longText('ayat_jemputan')->nullable();
             $table->timestamps();
         });
 

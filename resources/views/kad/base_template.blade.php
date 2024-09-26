@@ -19,7 +19,7 @@
         <!-- font-awesome icon here -->
         <script src="https://kit.fontawesome.com/5a63289656.js" crossorigin="anonymous"></script>
     </head>
-    <body x-data="{ form_ucapan: false, form_rsvp: false }">
+    <body x-data="{ form_ucapan: false, form_rsvp: false, location_modal: false, reminder_modal: false, contact_modal: false }">
         <div class="h-full w-full bg-cover bg-center" style="background-image: url('{{ asset('images/N005.2.webp') }}'); background-attachment: fixed">
             <!-- Kad Section -->
             <div class="h-screen w-full bg-cover bg-center" style="background-image: url('{{ asset('images/N005.1.webp') }}');">
@@ -53,7 +53,7 @@
                         <div class="text-center">
                             <p class="text-sm text-center px-4 font-serif" style="color: #DAA520">{{ $kadData->ayat_jemputan }}</p>
                         </div>
-                        <div class="text-center">
+                        <div class="text-center px-2">
                             <p class="text-xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: '{{ $font['font_name2'] }}', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_lelaki }}</p>
                             <p class="text-xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: '{{ $font['font_name2'] }}', cursive; margin-bottom: 0;">&</p>
                             <p class="text-xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: '{{ $font['font_name2'] }}', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_perempuan }}</p>
@@ -76,6 +76,34 @@
                                 </div>
                                 <p class="text-l font-semibold text-center text-gray-600 font-serif">{{ $dateTime['masa_mula_majlis'] }} ~ {{ $dateTime['masa_tamat_majlis'] }}</p>
                             </div>
+                            <div>
+                                <!-- Centered Icon -->
+                                <div class="flex justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#DAA520" class="size-12">
+                                        <path fill-rule="evenodd" d="M2.625 6.75a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875 0A.75.75 0 0 1 8.25 6h12a.75.75 0 0 1 0 1.5h-12a.75.75 0 0 1-.75-.75ZM2.625 12a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0ZM7.5 12a.75.75 0 0 1 .75-.75h12a.75.75 0 0 1 0 1.5h-12A.75.75 0 0 1 7.5 12Zm-4.875 5.25a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875 0a.75.75 0 0 1 .75-.75h12a.75.75 0 0 1 0 1.5h-12a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            
+                                <!-- Aturcara Majlis List -->
+                                <ul class="space-y-2">
+                                    @foreach($kadData->aturcara_majlis as $entry)
+                                        <!-- Check if both 'masa_acara' and 'acara' are not null or empty -->
+                                        @if(!empty($entry['masa_acara']) || !empty($entry['acara']))
+                                            <li class="flex flex-col items-center">
+                                                <!-- Show 'masa_acara' if not empty -->
+                                                @if(!empty($entry['masa_acara']))
+                                                    <p class="text-l font-semibold text-center text-gray-600 font-serif">{{ \Carbon\Carbon::parse($entry['masa_acara'])->format('g:i A') }}</p>
+                                                @endif
+                                                <!-- Show 'acara' if not empty -->
+                                                @if(!empty($entry['acara']))
+                                                    <p class="text-l italic text-gray-600 font-serif">{{ $entry['acara'] }}</p>
+                                                @endif
+                                            </li>
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            </div>
+                            
                             <div>
                                 <div class="flex justify-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#DAA520" class="size-12">
@@ -160,6 +188,11 @@
                         @endforeach
                     </div>
 
+                    <!-- Doa Pengantin -->
+                    <div class="items-center w-full h-auto mb-6 rounded-xl bg-[#DAA520] p-4">
+                        <p class="text-center text-white">{{ $kadData->doa_pengantin }}</p>
+                    </div>
+
                     <!-- Guestbook -->
                     <div class="mt-7 w-full rounded-xl border-[#DAA520] border-[1px] py-6 px-3 mb-32">
                         <div>
@@ -184,11 +217,6 @@
 
                 </div>
             </div>
-        </div>
-
-        <!-- Doa -->
-        <div class="items-center w-full h-auto mb-6 rounded-xl bg-[#DAA520] p-4">
-
         </div>
 
         <!-- Form Tulis Ucapan -->
@@ -294,6 +322,135 @@
         </div>
         <!-- End Form Rsvp -->
 
+        <!-- Location Modal Popup -->
+        <div x-cloak x-show="location_modal"
+            @click.away="location_modal = false" 
+            x-transition:enter="ease-out duration-300" 
+            x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
+            x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" 
+            x-transition:leave="ease-in duration-200" 
+            x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" 
+            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
+            class="fixed inset-0 z-50 flex items-center justify-center p-4"
+            aria-labelledby="modal-title" 
+            role="dialog" 
+            aria-modal="true">
+            
+            <!-- Background backdrop -->
+            <div class="absolute inset-0 bg-gray-500 bg-opacity-75" @click="location_modal = false"></div>
+
+            <!-- Modal Content -->
+            <div class="relative z-10 w-full max-w-md p-6 rounded-xl bg-[#DAA520] mx-auto">
+                <div class="flex justify-center space-x-20 py-10">
+                    <!-- Google Maps Icon and Text -->
+                    <div class="flex flex-col items-center">
+                        <a href="{{ $kadData->google_url }}" target="_blank" class="transition-transform transform hover:scale-105">
+                            <img src="images/icons/google-maps-64.png" alt="Google Maps" class="h-16 w-16 rounded-lg border-2 border-white hover:border-gray-300 hover:bg-white p-2 shadow-md">
+                        </a>
+                        <p class="text-white mt-2">Google Maps</p>
+                    </div>
+            
+                    <!-- Waze Icon and Text -->
+                    <div class="flex flex-col items-center">
+                        <a href="{{ $kadData->waze_url }}" target="_blank" class="transition-transform transform hover:scale-105">
+                            <img src="images/icons/waze-100.png" alt="Waze" class="h-16 w-16 rounded-lg border-2 border-white hover:border-gray-300 hover:bg-white p-2 shadow-md">
+                        </a>
+                        <p class="text-white mt-2">Waze</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div> 
+        <!-- End of Location Modal Popup -->
+
+        <!-- Reminder Modal Popup -->
+        <div x-cloak x-show="reminder_modal"
+            @click.away="reminder_modal = false" 
+            x-transition:enter="ease-out duration-300" 
+            x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
+            x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" 
+            x-transition:leave="ease-in duration-200" 
+            x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" 
+            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
+            class="fixed inset-0 z-50 flex items-center justify-center p-4"
+            aria-labelledby="modal-title" 
+            role="dialog" 
+            aria-modal="true">
+            
+            <!-- Background backdrop -->
+            <div class="absolute inset-0 bg-gray-500 bg-opacity-75" @click="reminder_modal = false"></div>
+
+            <!-- Modal Content -->
+            <div class="relative z-10 w-full max-w-md p-6 rounded-xl bg-[#DAA520] mx-auto">
+                <div class="flex justify-center space-x-20 py-10">
+                    <!-- Google Calendar Icon and Text -->
+                    <div class="flex flex-col items-center">
+                        <a href="{{ $kadData->google_url }}" target="_blank" class="transition-transform transform hover:scale-105">
+                            <img src="images/icons/google-calendar-100.png" alt="Google Calendar" class="h-16 w-16 rounded-lg border-2 border-white hover:border-gray-300 hover:bg-white p-2 shadow-md">
+                        </a>
+                        <p class="text-white mt-2 text-center">Google Calendar</p>
+                    </div>
+            
+                    <!-- Apple Calendar Icon and Text -->
+                    <div class="flex flex-col items-center">
+                        <a href="{{ $kadData->waze_url }}" target="_blank" class="transition-transform transform hover:scale-105">
+                            <img src="images/icons/apple-calendar-100.png" alt="Apple Calendar" class="h-16 w-16 rounded-lg border-2 border-white hover:border-gray-300 hover:bg-white p-2 shadow-md">
+                        </a>
+                        <p class="text-white mt-2 text-center">Apple Calendar</p>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <!-- End of Reminder Modal Popup -->
+
+        <!-- Contacts Modal Popup -->
+        <div x-cloak x-show="contact_modal"
+            @click.away="contact_modal = false" 
+            x-transition:enter="ease-out duration-300" 
+            x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
+            x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" 
+            x-transition:leave="ease-in duration-200" 
+            x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" 
+            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
+            class="fixed inset-0 z-50 flex items-center justify-center p-4"
+            aria-labelledby="modal-title" 
+            role="dialog" 
+            aria-modal="true">
+            
+            <!-- Background backdrop -->
+            <div class="absolute inset-0 bg-gray-500 bg-opacity-75" @click="contact_modal = false"></div>
+
+            <!-- Modal Content -->
+            <div class="relative z-10 w-full max-w-md p-6 rounded-xl bg-[#DAA520] mx-auto">
+                <div class="flex flex-col space-y-6 py-10">
+                    @foreach($kadData->nombor_telefon as $entry)
+                        @if(!empty($entry['nama']) && !empty($entry['nombor_telefon']))
+                            <div class="flex justify-between items-center">
+                                <!-- Text on the left -->
+                                <div>
+                                    <p class="text-white font-bold">{{ $entry['nama'] }}</p>
+                                </div>
+                                
+                                <!-- Icons on the right -->
+                                <div class="flex space-x-4">
+                                    <a href="https://api.whatsapp.com/send?phone={{ $entry['nombor_telefon'] }}" target="_blank" class="transition-transform transform hover:scale-105">
+                                        <img src="images/icons/whatsapp-100.png" alt="Whatsapp" class="h-8 w-8 rounded-lg border-2 border-white hover:border-gray-300 hover:bg-white shadow-md">
+                                    </a>
+                                    <a href="tel:{{ $entry['nombor_telefon'] }}" target="_blank" class="transition-transform transform hover:scale-105">
+                                        <img src="images/icons/call-100.png" alt="Call" class="h-8 w-8 rounded-lg border-2 border-white hover:border-gray-300 hover:bg-white shadow-md">
+                                    </a>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+            
+            
+            
+        </div> 
+        <!-- End of Contacts Modal Popup -->
+
         <!-- Footer Section -->
         <footer class="lg:w-1/4 w-full mx-auto bg-[#ebbc47] flex justify-center items-center]">
             <div class="fixed bottom-0 z-50 lg:w-1/4 w-full mx-auto h-16 bg-[#ebbc47] border-t">
@@ -302,15 +459,15 @@
                         <h1 class="text-[20px] text-white"><i class="fa-solid fa-list"></i></h1>
                         <span class="text-xs text-white">RSVP</span>
                     </button>
-                    <button type="button" class="inline-flex flex-col items-center justify-center px-1 pb-1 rounded-md border border-white bg-[#DAA520]  ">
+                    <button type="button" @click="reminder_modal = true" class="inline-flex flex-col items-center justify-center px-1 pb-1 rounded-md border border-white bg-[#DAA520]  ">
                         <h1 class="text-[20px] text-white"><i class="fa-regular fa-calendar"></i></h1>
                         <span class="text-xs text-white">REMINDER</span>
                     </button>
-                    <button type="button" class="inline-flex flex-col items-center justify-center px-1 pb-1 rounded-md border border-white bg-[#DAA520] ">
+                    <button type="button" @click="contact_modal = true" class="inline-flex flex-col items-center justify-center px-1 pb-1 rounded-md border border-white bg-[#DAA520] ">
                         <h1 class="text-[20px] text-white"><i class="fa-solid fa-phone"></i></h1>
                         <span class="text-xs text-white">TELEFON</span>
                     </button>
-                    <button type="button" class="inline-flex flex-col items-center justify-center px-1 pb-1 rounded-md border border-white bg-[#DAA520]  ">
+                    <button type="button" @click="location_modal = true" class="inline-flex flex-col items-center justify-center px-1 pb-1 rounded-md border border-white bg-[#DAA520]  ">
                         <h1 class="text-[20px] text-white"><i class="fa-solid fa-location-dot"></i></h1>
                         <span class="text-xs text-white dark:text-white-400">LOKASI</span>
                     </button>

@@ -27,6 +27,8 @@ class KadController extends Controller
         
             // Maklumat Majlis
             'tajuk_kad' => ['required', 'max:20'],
+            'ayat_jemputan' => ['required'],
+            'doa_pengantin' => ['required'],
             'tarikh_majlis' => ['required', 'date'],
             'masa_mula_majlis' => ['required', 'date_format:H:i'],
             'masa_tamat_majlis' => ['required', 'date_format:H:i'],
@@ -37,7 +39,7 @@ class KadController extends Controller
 
         Kad::create([
             //Maklumat Kad
-            'order_id' => 'SY' . rand(10000, 99999) . strtoupper(Str::random(4)),
+            'order_id' => 'SY' . rand(100000, 999999) . strtoupper(Str::random(5)),
             'user_id' => 1,
             'design_id' => 1,
             'font_id' => request('font'),
@@ -56,6 +58,8 @@ class KadController extends Controller
 
             // Maklumat Majlis
             'tajuk_kad' => request('tajuk_kad'),
+            'ayat_jemputan' => request('ayat_jemputan'),
+            'doa_pengantin' => request('doa_pengantin'),
             'tarikh_majlis' => request('tarikh_majlis'),
             'masa_mula_majlis' => request('masa_mula_majlis'),
             'masa_tamat_majlis' => request('masa_tamat_majlis'),
@@ -86,7 +90,7 @@ class KadController extends Controller
                 ]
             ],
             
-            'atucara_majlis' => [
+            'aturcara_majlis' => [
                 [
                     'masa_acara' => request('masa_acara_1') ?: null,
                     'acara' => request('acara_1') ?: null
@@ -111,7 +115,7 @@ class KadController extends Controller
                     'masa_acara' => request('masa_acara_6') ?: null,
                     'acara' => request('acara_6') ?: null
                 ]
-            ]
+            ],
 
         ]);
 
