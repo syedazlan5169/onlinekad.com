@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Kad;
 use App\Models\Design;
+use App\Models\Font;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 
@@ -181,8 +182,9 @@ class KadController extends Controller
     public function show()
     {
 
-        $kadData = Kad::findOrFail(15);
+        $kadData = Kad::findOrFail(6);
         $design = Design::findOrFail($kadData->design_id);
+        $font = Font::findOrFail($kadData->font_id);
 
         $dateTime = [
             'hari_tarikh_majlis' => $this->translateToMalay($kadData->tarikh_majlis, 3),
@@ -192,7 +194,7 @@ class KadController extends Controller
             'masa_tamat_majlis' => Carbon::createFromFormat('H:i:s', $kadData->masa_tamat_majlis)->format('g:i A')
         ];
 
-        $font = [
+        $fonttt = [
             'font_url1' => 'https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Great+Vibes&display=swap',
             'font_name1' => 'Great Vibes',
             'font_url2' => 'https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap',

@@ -1,15 +1,15 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-gray-800 leading-tight">
             {{ __('Tempah') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
     
-                <div x-data="{ openSection: 'personal' }" class="max-w-7xl mx-auto p-8">
+                <div x-data="{ openSection: 'maklumat_pengantin', selectedFont: 'Great Vibes', namaLelaki: '', namaPerempuan: '' }" class="max-w-7xl mx-auto p-8">
                     <!-- Form starts -->
                     <form action="{{ route('tempah') }}" method="POST">
                         @csrf
@@ -24,13 +24,13 @@
                                     <div class="sm:col-span-3">
                                         <label for="nama_penuh_lelaki" class="block text-sm font-medium leading-6 text-gray-900">Nama Penuh Pengantin Lelaki</label>
                                         <div class="mt-2">
-                                        <input type="text" name="nama_penuh_lelaki" id="nama_penuh_lelaki" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                        <input type="text" name="nama_penuh_lelaki" id="nama_penuh_lelaki" spellcheck="false" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                         </div>
                                     </div>
                                     <div class="sm:col-span-3">
                                         <label for="nama_panggilan_lelaki" class="block text-sm font-medium leading-6 text-gray-900">Nama Panggilan Pengantin Lelaki</label>
                                         <div class="mt-2">
-                                        <input type="text" name="nama_panggilan_lelaki" id="nama_panggilan_lelaki" maxlength="12" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                        <input x-model="namaLelaki" type="text" name="nama_panggilan_lelaki" id="nama_panggilan_lelaki" maxlength="12" spellcheck="false" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                         </div>
                                     </div>
                                 </div>
@@ -39,44 +39,49 @@
                                     <div class="sm:col-span-3">
                                         <label for="nama_penuh_perempuan" class="block text-sm font-medium leading-6 text-gray-900">Nama Penuh Pengantin Perempuan</label>
                                         <div class="mt-2">
-                                        <input type="text" name="nama_penuh_perempuan" id="nama_penuh_perempuan" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                        <input type="text" name="nama_penuh_perempuan" id="nama_penuh_perempuan" spellcheck="false" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                         </div>
                                     </div>
                                     <div class="sm:col-span-3">
                                         <label for="nama_panggilan_perempuan" class="block text-sm font-medium leading-6 text-gray-900">Nama Panggilan Pengantin Perempuan</label>
                                         <div class="mt-2">
-                                        <input type="text" name="nama_panggilan_perempuan" id="nama_panggilan_perempuan" maxlength="12" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                        <input x-model="namaPerempuan" type="text" name="nama_panggilan_perempuan" id="nama_panggilan_perempuan" maxlength="12" spellcheck="false"class="block w-full rounded-md border-0 py-1.5 text-gray-900 text-l shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                         </div>
                                     </div>
                                 </div>
                             
                                 <div class="sm:col-span-4">
+                                    <!-- Preview Box for nama_panggilan_lelaki & nama_panggilan_perempuan -->
+                                    <div class="sm:col-span-6 mt-4">
+                                        <div class="text-center">
+                                            <p class="text-4xl" :style="{ fontFamily: selectedFont }">
+                                                <!-- Name of the groom (stacked) -->
+                                                <span x-text="namaLelaki"></span>
+                                            </p>
+                                            <p class="text-4xl" :style="{ fontFamily: selectedFont }">
+                                                <!-- Ampersand -->
+                                                &
+                                            </p>
+                                            <p class="text-4xl" :style="{ fontFamily: selectedFont }">
+                                                <!-- Name of the bride (stacked) -->
+                                                <span x-text="namaPerempuan"></span>
+                                            </p>
+                                        </div>
+                                    </div>
                                     <label for="font" class="block text-sm font-medium leading-6 text-gray-900">Font</label>
                                     <div class="mt-2">
-                                        <select id="font" name="font" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                                            <option value="1">
-                                                Cinzel Decorative
-                                            </option>
-                                            <option value="2">
+                                        <select id="font" name="font" x-model='selectedFont' class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                            <option value="Great Vibes">
                                                 Great Vibes
                                             </option>
-                                            <option value="3">
-                                                Marck Script
+                                            <option value="Dancing Script">
+                                                Dancing Script                                                
                                             </option>
-                                            <option value="4">
-                                                Libre Caslon Text
+                                            <option value="Alex Brush">
+                                                Alex Brush 
                                             </option>
-                                            <option value="5">
-                                                Kaushan Script
-                                            </option>
-                                            <option value="6">
-                                                La-Graziela
-                                            </option>
-                                            <option value="7">
-                                                Julietta Messie
-                                            </option>
-                                            <option value="8">
-                                                Hearthway
+                                            <option value="Parisienne">
+                                                Parisienne 
                                             </option>
                                         </select>
                                     </div>
@@ -98,14 +103,14 @@
                                     <div class="sm:col-span-3">
                                         <label for="nama_bapa_pengantin_lelaki" class="block text-sm font-medium leading-6 text-gray-900">Nama Bapa Pengantin Lelaki</label>
                                         <div class="mt-2">
-                                            <input type="text" name="nama_bapa_pengantin_lelaki" id="nama_bapa_pengantin_lelaki" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                            <input type="text" name="nama_bapa_pengantin_lelaki" spellcheck="false" id="nama_bapa_pengantin_lelaki" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                         </div>
                                     </div>
                             
                                     <div class="sm:col-span-3">
                                         <label for="nama_ibu_pengantin_lelaki" class="block text-sm font-medium leading-6 text-gray-900">Nama Ibu Pengantin Lelaki</label>
                                         <div class="mt-2">
-                                            <input type="text" name="nama_ibu_pengantin_lelaki" id="nama_ibu_pengantin_lelaki" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                            <input type="text" name="nama_ibu_pengantin_lelaki" id="nama_ibu_pengantin_lelaki" spellcheck="false" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                         </div>
                                     </div>
                                 </div>
@@ -115,14 +120,14 @@
                                     <div class="sm:col-span-3">
                                         <label for="nama_bapa_pengantin_perempuan" class="block text-sm font-medium leading-6 text-gray-900">Nama Bapa Pengantin Perempuan</label>
                                         <div class="mt-2">
-                                            <input type="text" name="nama_bapa_pengantin_perempuan" id="nama_bapa_pengantin_perempuan" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                            <input type="text" name="nama_bapa_pengantin_perempuan" id="nama_bapa_pengantin_perempuan" spellcheck="false" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                         </div>
                                     </div>
                             
                                     <div class="sm:col-span-3">
                                         <label for="nama_ibu_pengantin_perempuan" class="block text-sm font-medium leading-6 text-gray-900">Nama Ibu Pengantin Perempuan</label>
                                         <div class="mt-2">
-                                            <input type="text" name="nama_ibu_pengantin_perempuan" id="nama_ibu_pengantin_perempuan" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                            <input type="text" name="nama_ibu_pengantin_perempuan" id="nama_ibu_pengantin_perempuan" spellcheck="false" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                         </div>
                                     </div>
                                 </div>
@@ -140,21 +145,21 @@
                                 <div class="sm:col-span-3">
                                     <label for="tajuk_kad" class="block text-sm font-medium leading-6 text-gray-900">Tajuk Kad</label>
                                     <div class="mt-2">
-                                    <input type="text" name="tajuk_kad" id="tajuk_kad" placeholder="Walimatulurus" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                    <input type="text" name="tajuk_kad" id="tajuk_kad" spellcheck="false" placeholder="Walimatulurus" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     </div>
                                 </div>
 
                                 <div class="sm:col-span-3">
                                     <label for="ayat_jemputan" class="block text-sm font-medium leading-6 text-gray-900">Ayat Jemputan</label>
                                     <div class="mt-2">
-                                    <textarea name="ayat_jemputan" id="ayat_jemputan" rows="4" style="text-transform: uppercase;" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+                                    <textarea name="ayat_jemputan" id="ayat_jemputan" rows="4" spellcheck="false" style="text-transform: uppercase;" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">DENGAN SEGALA HORMATNYA MENJEMPUT DATO'/ DATIN/ TUAN/ PUAN/ ENCIK/ CIK DAN SEISI KELUARGA KE MAJLIS PERKAHWINAN PUTERA KAMI BERSAMA PASANGANNYA</textarea>
                                     </div>
                                 </div>
 
                                 <div class="sm:col-span-3">
                                     <label for="doa_pengantin" class="block text-sm font-medium leading-6 text-gray-900">Doa Pengantin</label>
                                     <div class="mt-2">
-                                    <textarea name="doa_pengantin" id="doa_pengantin" rows="4" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+                                    <textarea name="doa_pengantin" id="doa_pengantin" rows="4" spellcheck="false" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">“Ya Allah, berkatilah majlis perkahwinan ini, limpahkan baraqah dan rahmat kepada kedua mempelai ini, Kurniakanlah mereka zuriat yang soleh dan solehah. Kekalkan jodoh mereka di dunia dan di akhirat dan sempurnakanlah agama mereka dengan berkat ikatan ini.”</textarea>
                                     </div>
                                 </div>
 
@@ -182,7 +187,7 @@
                                 <div class="sm:col-span-3">
                                     <label for="alamat_majlis" class="block text-sm font-medium leading-6 text-gray-900">Alamat Majlis</label>
                                     <div class="mt-2">
-                                    <textarea name="alamat_majlis" id="alamat_majlis" rows="4" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+                                    <textarea name="alamat_majlis" id="alamat_majlis" rows="4" spellcheck="false" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
                                     </div>
                                 </div>
 
@@ -204,23 +209,23 @@
                                     <label class="block text-sm font-medium leading-6 text-gray-900">Nombor Telefon Waris</label>
                                     <div class="mt-2">
                                         <div class="flex space-x-4 mb-1">
-                                            <input type="text" name="nama_1" id="nama_1" placeholder="Nama" maxlength="20" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                            <input type="text" name="nama_1" id="nama_1" placeholder="Nama" maxlength="20" spellcheck="false" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                             <input type="text" name="nombor_telefon_1" id="nombor_telefon_1" placeholder="Nombor Telefon" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                         </div>
                                         <div class="flex space-x-4 mb-1">
-                                            <input type="text" name="nama_2" id="nama_2" placeholder="Nama" maxlength="20" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                            <input type="text" name="nama_2" id="nama_2" placeholder="Nama" maxlength="20" spellcheck="false" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                             <input type="text" name="nombor_telefon_2" id="nombor_telefon_2" placeholder="Nombor Telefon" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                         </div>
                                         <div class="flex space-x-4 mb-1">
-                                            <input type="text" name="nama_3" id="nama_3" placeholder="Nama" maxlength="20" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                            <input type="text" name="nama_3" id="nama_3" placeholder="Nama" maxlength="20" spellcheck="false" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                             <input type="text" name="nombor_telefon_3" id="nombor_telefon_3" placeholder="Nombor Telefon" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                         </div>
                                         <div class="flex space-x-4 mb-1">
-                                            <input type="text" name="nama_4" id="nama_4" placeholder="Nama" maxlength="20" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                            <input type="text" name="nama_4" id="nama_4" placeholder="Nama" maxlength="20" spellcheck="false" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                             <input type="text" name="nombor_telefon_4" id="nombor_telefon_4" placeholder="Nombor Telefon" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                         </div>
                                         <div class="flex space-x-4">
-                                            <input type="text" name="nama_5" id="nama_5" placeholder="Nama" maxlength="20" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                            <input type="text" name="nama_5" id="nama_5" placeholder="Nama" maxlength="20" spellcheck="false" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                             <input type="text" name="nombor_telefon_5" id="nombor_telefon_5" placeholder="Nombor Telefon" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                         </div>
                                     </div>
@@ -231,27 +236,27 @@
                                     <div class="mt-2">
                                         <div class="flex space-x-4 mb-1">
                                             <input type="time" name="masa_acara_1" id="masa_acara_1" value="10:00" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                            <input type="text" name="acara_1" id="acara_1" value="Majlis Bermula" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                            <input type="text" name="acara_1" id="acara_1" spellcheck="false" value="Majlis Bermula" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                         </div>
                                         <div class="flex space-x-4 mb-1">
                                             <input type="time" name="masa_acara_2" id="masa_acara_2" value="12:30" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                            <input type="text" name="acara_2" id="acara_2" value="Ketibaan Pengantin" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                            <input type="text" name="acara_2" id="acara_2" spellcheck="false" value="Ketibaan Pengantin" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                         </div>
                                         <div class="flex space-x-4 mb-1">
                                             <input type="time" name="masa_acara_3" id="masa_acara_3" value="17:00" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                            <input type="text" name="acara_3" id="acara_3" value="Majlis Bersurai" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                            <input type="text" name="acara_3" id="acara_3" spellcheck="false" value="Majlis Bersurai" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                         </div>
                                         <div class="flex space-x-4 mb-1">
                                             <input type="time" name="masa_acara_4" id="masa_acara_4" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                            <input type="text" name="acara_4" id="acara_4" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                            <input type="text" name="acara_4" id="acara_4" spellcheck="false" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                         </div>
                                         <div class="flex space-x-4 mb-1">
                                             <input type="time" name="masa_acara_5" id="masa_acara_5" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                            <input type="text" name="acara_5" id="acara_5" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                            <input type="text" name="acara_5" id="acara_5" spellcheck="false" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                         </div>
                                         <div class="flex space-x-4 mb-1">
                                             <input type="time" name="masa_acara_6" id="masa_acara_6" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                            <input type="text" name="acara_6" id="acara_6" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                            <input type="text" name="acara_6" id="acara_6" spellcheck="false" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                         </div>
 
                                     </div>

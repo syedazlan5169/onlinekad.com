@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('fonts', function (Blueprint $table) {
             $table->id();
             $table->string('font_url');
+            $table->string('font_name');
             $table->timestamps();
         });
 
@@ -25,6 +26,7 @@ return new class extends Migration
             $table->string('design_url_1');
             $table->string('design_url_2');
             $table->string('color_code');
+            $table->string('color_footer');
             $table->timestamps();
         });
 
@@ -59,7 +61,6 @@ return new class extends Migration
             $table->json('nombor_telefon')->nullable();
             $table->json('aturcara_majlis')->nullable();
             $table->longText('doa_pengantin')->nullable();
-            $table->longText('ayat_jemputan')->nullable();
             $table->timestamps();
         });
 
