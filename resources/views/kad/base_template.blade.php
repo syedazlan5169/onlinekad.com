@@ -19,7 +19,7 @@
         <!-- font-awesome icon here -->
         <script src="https://kit.fontawesome.com/5a63289656.js" crossorigin="anonymous"></script>
     </head>
-    <body x-data="{ form_ucapan: false, form_rsvp: false, location_modal: false, reminder_modal: false, contact_modal: false }">
+    <body x-data="{ form_ucapan: false, form_rsvp: false, location_modal: false, reminder_modal: false, contact_modal: false }" class="sm:w-[15%]">
 
         <!-- Notification Panel -->
         @if(session('success'))
@@ -59,9 +59,9 @@
         <!-- End of Notification Panel -->
 
 
-        <div class="h-full w-full bg-cover bg-center" style="background-image: url('{{ asset('images/N005.2.webp') }}'); background-attachment: fixed">
+        <div class="h-full w-full bg-cover bg-center" style="background-image: url('{{ asset($design->design_url_2) }}'); background-attachment: fixed">
             <!-- Kad Section -->
-            <div class="h-screen w-full bg-cover bg-center" style="background-image: url('{{ asset('images/N005.1.webp') }}');">
+            <div class="h-screen w-full bg-cover bg-center" style="background-image: url('{{ asset($design->design_url_1) }}');">
                 <div class="absolute inset-0 bg-white bg-opacity-20">
                     <div class="flex flex-col justify-center gap-20 items-center h-full">
                         <h1 class="text-2xl font-bold text-center text-gray-600" style="font-family: 'Safadi One', cursive; margin-bottom: 0;">{{ $kadData->tajuk_kad }}</h1>
@@ -83,24 +83,24 @@
             <div class="border-b border-gray-300 my-10 py-8">
                 <div class="relative top-0 bg-white bg-opacity-20">
                     <div class="flex flex-col justify-center gap-5 items-center h-full">
-                        <h1 class="text-2xl text-center font-serif" style="color: #DAA520">Assalamualaikum</h1>
+                        <img class="w-full px-3 h-28" src="/Images/assalamualaikum.png" alt="">
                         <div class="text-center">
                             <p class="text-xl text-center text-gray-600 font-serif">{{ $kadData->nama_bapa_pengantin_lelaki }}</p>
                             <p class="text-xl text-center text-gray-600 font-serif">&</p>
                             <p class="text-xl text-center text-gray-600 font-serif">{{ $kadData->nama_ibu_pengantin_lelaki }}</p>
                         </div>
                         <div class="text-center">
-                            <p class="text-sm text-center px-4 font-serif" style="color: #DAA520">{{ $kadData->ayat_jemputan }}</p>
+                            <p class="text-sm text-center px-4 font-serif" style="color: {{ $design->color_code }}">{{ $kadData->ayat_jemputan }}</p>
                         </div>
                         <div class="text-center px-2">
-                            <p class="text-xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: '{{ $font['font_name2'] }}', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_lelaki }}</p>
+                            <p class="text-2xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: '{{ $font['font_name2'] }}', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_lelaki }}</p>
                             <p class="text-xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: '{{ $font['font_name2'] }}', cursive; margin-bottom: 0;">&</p>
-                            <p class="text-xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: '{{ $font['font_name2'] }}', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_perempuan }}</p>
+                            <p class="text-2xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: '{{ $font['font_name2'] }}', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_perempuan }}</p>
                         </div>
                         <div class="flex flex-col justify-center gap-5">
                             <div>
                                 <div class="flex justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#DAA520" class="size-12">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="{{ $design->color_code }}" class="size-12">
                                     <path d="M12.75 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM7.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM8.25 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM9.75 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM10.5 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM12.75 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM14.25 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" />
                                     <path fill-rule="evenodd" d="M6.75 2.25A.75.75 0 0 1 7.5 3v1.5h9V3A.75.75 0 0 1 18 3v1.5h.75a3 3 0 0 1 3 3v11.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V7.5a3 3 0 0 1 3-3H6V3a.75.75 0 0 1 .75-.75Zm13.5 9a1.5 1.5 0 0 0-1.5-1.5H5.25a1.5 1.5 0 0 0-1.5 1.5v7.5a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5v-7.5Z" clip-rule="evenodd" />
                                 </svg>
@@ -109,7 +109,7 @@
                             </div>
                             <div>
                                 <div class="flex justify-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#DAA520" class="size-12">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="{{ $design->color_code }}" class="size-12">
                                         <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 6a.75.75 0 0 0-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 0 0 0-1.5h-3.75V6Z" clip-rule="evenodd" />
                                     </svg>
                                 </div>
@@ -118,7 +118,7 @@
                             <div>
                                 <!-- Centered Icon -->
                                 <div class="flex justify-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#DAA520" class="size-12">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="{{ $design->color_code }}" class="size-12">
                                         <path fill-rule="evenodd" d="M2.625 6.75a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875 0A.75.75 0 0 1 8.25 6h12a.75.75 0 0 1 0 1.5h-12a.75.75 0 0 1-.75-.75ZM2.625 12a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0ZM7.5 12a.75.75 0 0 1 .75-.75h12a.75.75 0 0 1 0 1.5h-12A.75.75 0 0 1 7.5 12Zm-4.875 5.25a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875 0a.75.75 0 0 1 .75-.75h12a.75.75 0 0 1 0 1.5h-12a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
                                     </svg>
                                 </div>
@@ -145,7 +145,7 @@
                             
                             <div>
                                 <div class="flex justify-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#DAA520" class="size-12">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="{{ $design->color_code }}" class="size-12">
                                         <path fill-rule="evenodd" d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd" />
                                     </svg>
                                 </div>
@@ -160,8 +160,9 @@
             <div>
                 <div class="flex flex-col justify-center gap-5 items-center h-full px-6">
 
+
                     <!-- Countdown Timer -->
-                    <div class="items-center w-full h-auto mb-6 rounded-xl bg-[#DAA520] p-4">
+                    <div class="items-center w-full h-auto mb-6 rounded-xl p-4" style="background-color: {{ $design->color_code }};">
                         <p class="text-2xl text-white text-center mb-2">Menanti Hari</p>
 
                         <!-- Countdown Container -->
@@ -228,12 +229,12 @@
                     </div>
 
                     <!-- Doa Pengantin -->
-                    <div class="items-center w-full h-auto mb-6 rounded-xl bg-[#DAA520] p-4">
+                    <div class="items-center w-full h-auto mb-6 rounded-xl p-4" style="background-color: {{ $design->color_code }};">
                         <p class="text-center text-white">{{ $kadData->doa_pengantin }}</p>
                     </div>
 
                     <!-- Guestbook -->
-                    <div class="mt-7 w-full rounded-xl border-[#DAA520] border-[1px] py-6 px-3 mb-32">
+                    <div class="mt-7 w-full rounded-xl border-[1px] py-6 px-3 mb-32 bg-white bg-opacity-30" style="border-color: {{ $design->color_code }};">
                         <div>
                             <div class="flex justify-center items-center mb-5">
                                 <div>
@@ -276,7 +277,7 @@
                 <div class="absolute inset-0 bg-gray-500 bg-opacity-75" @click="form_ucapan = false"></div>
             
                 <!-- Modal content -->
-                <div class="relative z-10 bg-[#DAA520] rounded-lg shadow-lg w-full max-w-md p-6">
+                <div class="relative z-10 rounded-lg shadow-lg w-full max-w-md p-6" style="background-color: {{ $design->color_code }};">
                     <div class="md:p-10 p-0 flex flex-col gap-4">
                         <!-- Form fields -->
                         <div class="text-[white] flex flex-col gap-2">
@@ -320,7 +321,7 @@
                 <div class="absolute inset-0 bg-gray-500 bg-opacity-75" @click="form_rsvp = false"></div>
 
                 <!-- Modal Content -->
-                <div class="relative z-10 w-full max-w-md p-6 rounded-xl bg-[#DAA520] mx-auto">
+                <div class="relative z-10 w-full max-w-md p-6 rounded-xl mx-auto" style="background-color: {{ $design->color_code }};">
                     <h1 class="text-center font-bold text-xl text-[white] open-sans">RSVP</h1>
                     <h1 class="text-center pb-4 font-bold text-xl text-[white] open-sans">{{ $kadData['nama_panggilan_lelaki'] }} & {{ $kadData['nama_panggilan_perempuan'] }}</h1>
                     
@@ -384,7 +385,7 @@
             <div class="absolute inset-0 bg-gray-500 bg-opacity-75" @click="location_modal = false"></div>
 
             <!-- Modal Content -->
-            <div class="relative z-10 w-full max-w-md p-6 rounded-xl bg-[#DAA520] mx-auto">
+            <div class="relative z-10 w-full max-w-md p-6 rounded-xl mx-auto" style="background-color: {{ $design->color_code }};">
                 <div class="flex justify-center space-x-20 py-10">
                     <!-- Google Maps Icon and Text -->
                     <div class="flex flex-col items-center">
@@ -425,7 +426,7 @@
             <div class="absolute inset-0 bg-gray-500 bg-opacity-75" @click="reminder_modal = false"></div>
 
             <!-- Modal Content -->
-            <div class="relative z-10 w-full max-w-md p-6 rounded-xl bg-[#DAA520] mx-auto">
+            <div class="relative z-10 w-full max-w-md p-6 rounded-xl mx-auto" style="background-color: {{ $design->color_code }};">
                 <div class="flex justify-center space-x-20 py-10">
                     <!-- Google Calendar Icon and Text -->
                     <div class="flex flex-col items-center">
@@ -465,7 +466,7 @@
             <div class="absolute inset-0 bg-gray-500 bg-opacity-75" @click="contact_modal = false"></div>
 
             <!-- Modal Content -->
-            <div class="relative z-10 w-full max-w-md p-6 rounded-xl bg-[#DAA520] mx-auto">
+            <div class="relative z-10 w-full max-w-md p-6 rounded-xl mx-auto" style="background-color: {{ $design->color_code }};">
                 <div class="flex flex-col space-y-6 py-10">
                     @foreach($kadData->nombor_telefon as $entry)
                         @if(!empty($entry['nama']) && !empty($entry['nombor_telefon']))
@@ -497,25 +498,25 @@
 
         <!-- Footer Section -->
         <footer class="lg:w-1/4 w-full mx-auto bg-[#ebbc47] flex justify-center items-center]">
-            <div class="fixed bottom-0 z-50 lg:w-1/4 w-full mx-auto h-16 bg-[#ebbc47] border-t">
+            <div class="fixed bottom-0 z-50 lg:w-1/4 w-full mx-auto h-16 border-t" style="background-color: {{ $design->color_footer }};">
                 <div class="grid mt-2 w-[97%]  gap-1 max-w-lg grid-cols-4 mx-auto font-medium">
-                    <button type="button" @click="form_rsvp = true" class="inline-flex flex-col items-center justify-center px-1 pb-1 rounded-md border border-white bg-[#DAA520] ">
+                    <button type="button" @click="form_rsvp = true" class="inline-flex flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $design->color_code }};">
                         <h1 class="text-[20px] text-white"><i class="fa-solid fa-list"></i></h1>
                         <span class="text-xs text-white">RSVP</span>
                     </button>
-                    <button type="button" @click="reminder_modal = true" class="inline-flex flex-col items-center justify-center px-1 pb-1 rounded-md border border-white bg-[#DAA520]  ">
+                    <button type="button" @click="reminder_modal = true" class="inline-flex flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $design->color_code }};">
                         <h1 class="text-[20px] text-white"><i class="fa-regular fa-calendar"></i></h1>
                         <span class="text-xs text-white">REMINDER</span>
                     </button>
-                    <button type="button" @click="contact_modal = true" class="inline-flex flex-col items-center justify-center px-1 pb-1 rounded-md border border-white bg-[#DAA520] ">
+                    <button type="button" @click="contact_modal = true" class="inline-flex flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $design->color_code }};">
                         <h1 class="text-[20px] text-white"><i class="fa-solid fa-phone"></i></h1>
                         <span class="text-xs text-white">TELEFON</span>
                     </button>
-                    <button type="button" @click="location_modal = true" class="inline-flex flex-col items-center justify-center px-1 pb-1 rounded-md border border-white bg-[#DAA520]  ">
+                    <button type="button" @click="location_modal = true" class="inline-flex flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $design->color_code }};">
                         <h1 class="text-[20px] text-white"><i class="fa-solid fa-location-dot"></i></h1>
                         <span class="text-xs text-white dark:text-white-400">LOKASI</span>
                     </button>
-                    <button type="button" class="inline-flex flex-col items-center justify-center px-1 pb-1 rounded-md border border-white bg-[#DAA520]  ">
+                    <button type="button" class="inline-flex flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $design->color_code }};">
                         <h1 class="text-[20px] text-white"><i class="fa-solid fa-location-dot"></i></h1>
                         <span class="text-xs text-white dark:text-white-400">LOCATION</span>
                     </button>

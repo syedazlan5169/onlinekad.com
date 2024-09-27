@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Kad;
+use App\Models\Design;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 
@@ -41,7 +42,7 @@ class KadController extends Controller
             //Maklumat Kad
             'order_id' => 'SY' . rand(100000, 999999) . strtoupper(Str::random(5)),
             'user_id' => 1,
-            'design_id' => 1,
+            'design_id' => 2, 
             'font_id' => request('font'),
             'package_id' => 1,
             'is_paid' => true,
@@ -180,7 +181,8 @@ class KadController extends Controller
     public function show()
     {
 
-        $kadData = Kad::findOrFail(1);
+        $kadData = Kad::findOrFail(15);
+        $design = Design::findOrFail($kadData->design_id);
 
         $dateTime = [
             'hari_tarikh_majlis' => $this->translateToMalay($kadData->tarikh_majlis, 3),
@@ -199,6 +201,6 @@ class KadController extends Controller
 
         $imageUrls = json_decode('["images/slide1.webp", "images/slide2.webp", "images/slide3.webp"]');
 
-        return view('kad.base_template', compact('kadData', 'dateTime', 'font', 'imageUrls'));
+        return view('kad.base_template', compact('kadData', 'dateTime', 'font', 'imageUrls', 'design'));
     }
 }

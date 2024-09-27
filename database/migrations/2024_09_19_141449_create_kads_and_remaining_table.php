@@ -22,7 +22,9 @@ return new class extends Migration
         Schema::create('designs', function (Blueprint $table) {
             $table->id();
             $table->string('design_code');
-            $table->string('design_url');
+            $table->string('design_url_1');
+            $table->string('design_url_2');
+            $table->string('color_code');
             $table->timestamps();
         });
 
@@ -31,7 +33,7 @@ return new class extends Migration
             $table->id();
             // Maklumat Kad
             $table->string('order_id');
-            $table->string('is_paid');
+            $table->boolean('is_paid')->default(false);
             $table->integer('user_id');
             $table->integer('design_id');
             $table->integer('font_id');

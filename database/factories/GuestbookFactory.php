@@ -17,7 +17,7 @@ class GuestbookFactory extends Factory
     public function definition(): array
     {
         return [
-            'kad_id' => 1, // Always set kad_id to 1
+            'kad_id' => rand(1,15),
             'author' => $this->faker->name(), // Generate a random author name
             'wish' => $this->faker->sentence(20), // Generate a random wish
             'created_at' => now(),
