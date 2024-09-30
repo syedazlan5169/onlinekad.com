@@ -182,7 +182,7 @@ class KadController extends Controller
     public function show()
     {
 
-        $kadData = Kad::findOrFail(6);
+        $kadData = Kad::findOrFail(2);
         $design = Design::findOrFail($kadData->design_id);
         $font = Font::findOrFail($kadData->font_id);
 

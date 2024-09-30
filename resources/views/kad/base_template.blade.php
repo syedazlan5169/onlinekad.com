@@ -15,6 +15,27 @@
 
         <!-- Styles -->
         @vite(['resources/css/app.css','resources/js/app.js'])
+        <style>
+            @keyframes slide-up {
+                0% {
+                    transform: translateY(100%);
+                    opacity: 0;
+                }
+                100% {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+        
+            .animate-slide-up {
+                animation: slide-up 0.8s ease-out forwards;
+            }
+        
+            .animate-slide-up-delay {
+                animation: slide-up 1.2s ease-out forwards;
+            }
+        </style>
+        
 
         <!-- font-awesome icon here -->
         <script src="https://kit.fontawesome.com/5a63289656.js" crossorigin="anonymous"></script>
@@ -64,24 +85,23 @@
             <div class="h-screen w-full bg-cover bg-center" style="background-image: url('{{ asset($design->design_url_1) }}');">
                 <div class="absolute inset-0 bg-white bg-opacity-20">
                     <div class="flex flex-col justify-center gap-20 items-center h-full">
-                        <h1 class="text-2xl font-bold text-center text-gray-600" style="font-family: 'Safadi One', cursive; margin-bottom: 0;">{{ $kadData->tajuk_kad }}</h1>
+                        <h1 class="text-2xl font-bold text-center text-gray-600 animate-slide-up" style="font-family: 'Safadi One', cursive; margin-bottom: 0;">{{ $kadData->tajuk_kad }}</h1>
                         <div class="text-center">
-                            <p class="text-5xl font-semibold text-gray-600 mb-0 leading-tight" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">{{ $kadData->nama_panggilan_lelaki }}</p>
-                            <p class="text-5xl font-semibold text-gray-600 mb-0 leading-tight" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">&</p>
-                            <p class="text-5xl font-semibold text-gray-600 mb-0 leading-tight" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">{{ $kadData->nama_panggilan_perempuan }}</p>
+                            <p class="text-5xl font-semibold text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">{{ $kadData->nama_panggilan_lelaki }}</p>
+                            <p class="text-5xl font-semibold text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">&</p>
+                            <p class="text-5xl font-semibold text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">{{ $kadData->nama_panggilan_perempuan }}</p>
                         </div>
                         <div class="text-center">
-                            <p class="text-2xl font-bold text-gray-600 leading-tight" style="font-family: 'Safadi One', cursive; margin-bottom: 0;">{{ $dateTime['hari_majlis'] }}</p>
-                            <p class="text-2xl font-bold text-gray-600 leading-tight" style="font-family: 'Safadi One', cursive;">{{ $dateTime['tarikh_majlis'] }}</p>
+                            <p class="text-2xl font-bold text-gray-600 leading-tight animate-slide-up-delay" style="font-family: 'Safadi One', cursive; margin-bottom: 0;">{{ $dateTime['hari_majlis'] }}</p>
+                            <p class="text-2xl font-bold text-gray-600 leading-tight animate-slide-up-delay" style="font-family: 'Safadi One', cursive;">{{ $dateTime['tarikh_majlis'] }}</p>
                         </div>
                     </div>
                 </div>
             </div>
             
-        
             <!-- Details Section -->
-            <div class="border-b border-gray-300 my-10 py-8">
-                <div class="relative top-0 bg-white bg-opacity-30">
+            <div class="my-12 py-8">
+                <div class="relative top-0 bg-white bg-opacity-40">
                     <div class="flex flex-col justify-center gap-5 items-center h-full">
                         <img class="w-full px-3 h-28" src="/Images/assalamualaikum.png" alt="">
                         <div class="text-center">
@@ -156,9 +176,10 @@
                 </div>
             </div>
 
+            <img class="w-full px-3 h-18 mt-6 pb-6" src="/Images/Curly-Border-Top.png" alt=""> 
             <!-- Fetures Section -->
             <div>
-                <div class="flex flex-col justify-center gap-5 items-center h-full px-6">
+                <div class="flex flex-col justify-center gap-5 items-center h-full px-6 pb-0 mb-0">
 
 
                     <!-- Countdown Timer -->
@@ -234,7 +255,7 @@
                     </div>
 
                     <!-- Guestbook -->
-                    <div class="mt-7 w-full rounded-xl border-[1px] py-6 px-3 mb-32 bg-white bg-opacity-30" style="border-color: {{ $design->color_code }};">
+                    <div class="mt-7 w-full rounded-xl border-[1px] py-6 px-3 mb-16 bg-white bg-opacity-30" style="border-color: {{ $design->color_code }};">
                         <div>
                             <div class="flex justify-center items-center mb-5">
                                 <div>
@@ -257,6 +278,7 @@
 
                 </div>
             </div>
+            <img class="w-full px-3 h-18 mb-16 pt-0 mt-0" src="/Images/Curly-Border-Bottom.png" alt=""> 
         </div>
 
         <!-- Form Tulis Ucapan -->

@@ -9,7 +9,15 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
     
-                <div x-data="{ openSection: 'maklumat_pengantin', selectedFont: 'Great Vibes', namaLelaki: '', namaPerempuan: '' }" class="max-w-7xl mx-auto p-8">
+                <div x-data="{
+                 selectedFont: '1', 
+                    fonts: {
+                        '1': 'Great Vibes',
+                        '2': 'Dancing Script',
+                        '3': 'Alex Brush',
+                        '4': 'Parisienne',
+                    },
+                 openSection: 'maklumat_pengantin', namaLelaki: '', namaPerempuan: '' }" class="max-w-7xl mx-auto p-8">
                     <!-- Form starts -->
                     <form action="{{ route('tempah') }}" method="POST">
                         @csrf
@@ -54,15 +62,15 @@
                                     <!-- Preview Box for nama_panggilan_lelaki & nama_panggilan_perempuan -->
                                     <div class="sm:col-span-6 mt-4">
                                         <div class="text-center">
-                                            <p class="text-4xl" :style="{ fontFamily: selectedFont }">
+                                            <p class="text-4xl" :style="{ fontFamily: fonts[selectedFont] }">
                                                 <!-- Name of the groom (stacked) -->
                                                 <span x-text="namaLelaki"></span>
                                             </p>
-                                            <p class="text-4xl" :style="{ fontFamily: selectedFont }">
+                                            <p class="text-4xl" :style="{ fontFamily: fonts[selectedFont] }">
                                                 <!-- Ampersand -->
                                                 &
                                             </p>
-                                            <p class="text-4xl" :style="{ fontFamily: selectedFont }">
+                                            <p class="text-4xl" :style="{ fontFamily: fonts[selectedFont] }">
                                                 <!-- Name of the bride (stacked) -->
                                                 <span x-text="namaPerempuan"></span>
                                             </p>
@@ -71,16 +79,16 @@
                                     <label for="font" class="block text-sm font-medium leading-6 text-gray-900">Font</label>
                                     <div class="mt-2">
                                         <select id="font" name="font" x-model='selectedFont' class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                                            <option value="Great Vibes">
+                                            <option value="1">
                                                 Great Vibes
                                             </option>
-                                            <option value="Dancing Script">
+                                            <option value="2">
                                                 Dancing Script                                                
                                             </option>
-                                            <option value="Alex Brush">
+                                            <option value="3">
                                                 Alex Brush 
                                             </option>
-                                            <option value="Parisienne">
+                                            <option value="4">
                                                 Parisienne 
                                             </option>
                                         </select>
