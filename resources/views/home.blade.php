@@ -72,7 +72,6 @@
                 </foreignObject>
                 </svg>
             </div>
-            </div>
         </div>
     
         <!-- Trending Section -->
@@ -80,7 +79,7 @@
             <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
                 <div class="md:flex md:items-center md:justify-between">
                 <h2 class="text-2xl font-bold tracking-tight text-gray-900">Trending Design</h2>
-                <a href="#" class="hidden text-sm font-medium text-indigo-600 hover:text-indigo-500 md:block">
+                <a href="/katalog" class="hidden text-sm font-medium text-indigo-600 hover:text-indigo-500 md:block">
                     Lihat Semua Design
                     <span aria-hidden="true"> &rarr;</span>
                 </a>
@@ -88,19 +87,38 @@
 
                 <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
                     @foreach($products as $product)
-                        <div class="group relative">
-                            <div class="h-56 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-72 xl:h-80">
-                                <img src="{{ asset($product->product_image_url) }}" class="h-full w-full object-cover object-center">
+                        <div class="group relative mb-8 bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105">
+                            <!-- Product Image -->
+                            <div class="h-56 w-full overflow-hidden bg-gray-100 lg:h-72 xl:h-80">
+                                <img src="{{ asset($product->product_image_url) }}" alt="{{ $product->design_code }}"
+                                    class="h-full w-full object-cover object-center group-hover:opacity-90 transition-opacity duration-300">
                             </div>
-                            <h3 class="my-2 text-xl text-center font-bold text-gray-700">{{ $product->design_code }}</h3>
-                            <x-primary-button href="{{ route('form-tempah', ['id' => $product->id]) }}" class="w-full">Tempah</x-primary-button>
-                            <x-primary-button href="/invitation/{{ $product->design_code }}" class="w-full mt-1 mb-5 sm:mb-14">Live Preview</x-primary-button>
+
+                            <!-- Product Title -->
+                            <h3 class="my-4 text-center font-bold text-gray-800 text-xl transition-colors duration-300 group-hover:text-indigo-600">
+                                {{ $product->design_code }}
+                            </h3>
+
+                            <!-- Call-to-Action Buttons -->
+                            <div class="flex flex-col items-center space-y-2 pb-4 px-4">
+                                <!-- Tempah Button -->
+                                <x-primary-button href="{{ route('form-tempah', ['id' => $product->id]) }}" 
+                                    class="w-full text-center py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg shadow-md">
+                                    Tempah
+                                </x-primary-button>
+                                
+                                <!-- Live Preview Button -->
+                                <x-primary-button href="/invitation/{{ $product->design_code }}" 
+                                    class="w-full text-center py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg shadow-md mt-2 sm:mt-0">
+                                    Live Preview
+                                </x-primary-button>
+                            </div>
                         </div>
                     @endforeach
                 </div>
 
                 <div class="mt-8 text-sm md:hidden">
-                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
+                <a href="/katalog" class="font-medium text-indigo-600 hover:text-indigo-500">
                     Lihat Semua Design
                     <span aria-hidden="true"> &rarr;</span>
                 </a>
