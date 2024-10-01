@@ -10,6 +10,7 @@ class Kad extends Model
     use HasFactory;
 
     protected $fillable = [
+        'slug',
         'order_id',
         'is_paid',
         'user_id',

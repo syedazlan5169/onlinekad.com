@@ -412,7 +412,7 @@
                     <!-- Google Maps Icon and Text -->
                     <div class="flex flex-col items-center">
                         <a href="{{ $kadData->google_url }}" target="_blank" class="transition-transform transform hover:scale-105">
-                            <img src="images/icons/google-maps-64.png" alt="Google Maps" class="h-16 w-16 rounded-lg border-2 border-white hover:border-gray-300 hover:bg-white p-2 shadow-md">
+                            <img src="{{ asset('images/icons/google-maps-64.png') }}" alt="Google Maps" class="h-16 w-16 rounded-lg border-2 border-white hover:border-gray-300 hover:bg-white p-2 shadow-md">
                         </a>
                         <p class="text-white mt-2">Google Maps</p>
                     </div>
@@ -420,7 +420,7 @@
                     <!-- Waze Icon and Text -->
                     <div class="flex flex-col items-center">
                         <a href="{{ $kadData->waze_url }}" target="_blank" class="transition-transform transform hover:scale-105">
-                            <img src="images/icons/waze-100.png" alt="Waze" class="h-16 w-16 rounded-lg border-2 border-white hover:border-gray-300 hover:bg-white p-2 shadow-md">
+                            <img src="{{ asset('images/icons/waze-100.png') }}" alt="Waze" class="h-16 w-16 rounded-lg border-2 border-white hover:border-gray-300 hover:bg-white p-2 shadow-md">
                         </a>
                         <p class="text-white mt-2">Waze</p>
                     </div>
@@ -453,7 +453,7 @@
                     <!-- Google Calendar Icon and Text -->
                     <div class="flex flex-col items-center">
                         <a href="{{ $kadData->google_url }}" target="_blank" class="transition-transform transform hover:scale-105">
-                            <img src="images/icons/google-calendar-100.png" alt="Google Calendar" class="h-16 w-16 rounded-lg border-2 border-white hover:border-gray-300 hover:bg-white p-2 shadow-md">
+                            <img src="{{ asset('images/icons/google-calendar-100.png') }}" alt="Google Calendar" class="h-16 w-16 rounded-lg border-2 border-white hover:border-gray-300 hover:bg-white p-2 shadow-md">
                         </a>
                         <p class="text-white mt-2 text-center">Google Calendar</p>
                     </div>
@@ -461,7 +461,7 @@
                     <!-- Apple Calendar Icon and Text -->
                     <div class="flex flex-col items-center">
                         <a href="{{ $kadData->waze_url }}" target="_blank" class="transition-transform transform hover:scale-105">
-                            <img src="images/icons/apple-calendar-100.png" alt="Apple Calendar" class="h-16 w-16 rounded-lg border-2 border-white hover:border-gray-300 hover:bg-white p-2 shadow-md">
+                            <img src="{{ asset('images/icons/apple-calendar-100.png') }}" alt="Apple Calendar" class="h-16 w-16 rounded-lg border-2 border-white hover:border-gray-300 hover:bg-white p-2 shadow-md">
                         </a>
                         <p class="text-white mt-2 text-center">Apple Calendar</p>
                     </div>
@@ -501,10 +501,10 @@
                                 <!-- Icons on the right -->
                                 <div class="flex space-x-4">
                                     <a href="https://api.whatsapp.com/send?phone={{ $entry['nombor_telefon'] }}" target="_blank" class="transition-transform transform hover:scale-105">
-                                        <img src="images/icons/whatsapp-100.png" alt="Whatsapp" class="h-8 w-8 rounded-lg border-2 border-white hover:border-gray-300 hover:bg-white shadow-md">
+                                        <img src="{{ asset('images/icons/whatsapp-100.png') }}" alt="Whatsapp" class="h-8 w-8 rounded-lg border-2 border-white hover:border-gray-300 hover:bg-white shadow-md">
                                     </a>
                                     <a href="tel:{{ $entry['nombor_telefon'] }}" target="_blank" class="transition-transform transform hover:scale-105">
-                                        <img src="images/icons/call-100.png" alt="Call" class="h-8 w-8 rounded-lg border-2 border-white hover:border-gray-300 hover:bg-white shadow-md">
+                                        <img src="{{ asset('images/icons/call-100.png') }}" alt="Call" class="h-8 w-8 rounded-lg border-2 border-white hover:border-gray-300 hover:bg-white shadow-md">
                                     </a>
                                 </div>
                             </div>

@@ -20,7 +20,7 @@ class FontSeeder extends Seeder
             ],
             [
                 'font_url' => 'https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap',
-                'font_name' => 'Dancing Scripts',
+                'font_name' => 'Dancing Script',
             ],
             [
                 'font_url' => 'https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap',

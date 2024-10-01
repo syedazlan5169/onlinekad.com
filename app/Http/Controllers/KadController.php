@@ -15,6 +15,7 @@ class KadController extends Controller
 
     public function tempahKad()
     {
+
         request()->validate([
             // Maklumat Pengantin
             'nama_penuh_lelaki' => ['required'],
@@ -41,6 +42,7 @@ class KadController extends Controller
 
         Kad::create([
             //Maklumat Kad
+            'slug' => Str::slug(request('nama_panggilan_lelaki')) . '-' . Str::slug(request('nama_panggilan_perempuan')) . '-' . Str::random(5),
             'order_id' => 'SY' . rand(100000, 999999) . strtoupper(Str::random(5)),
             'user_id' => 1,
             'design_id' => 2, 
@@ -121,8 +123,8 @@ class KadController extends Controller
 
         ]);
 
+
         return redirect('/senarai-kad');
-        
     }
 
     public function translateToMalay($date, $option = 3)
@@ -179,10 +181,10 @@ class KadController extends Controller
     }
     
 
-    public function show()
+    public function show($slug)
     {
 
-        $kadData = Kad::findOrFail(2);
+        $kadData = Kad::where('slug', $slug)->firstOrFail();
         $design = Design::findOrFail($kadData->design_id);
         $font = Font::findOrFail($kadData->font_id);
 
@@ -192,13 +194,6 @@ class KadController extends Controller
             'tarikh_majlis' => $this->translateToMalay($kadData->tarikh_majlis, 2),
             'masa_mula_majlis' => Carbon::createFromFormat('H:i:s', $kadData->masa_mula_majlis)->format('g:i A'),
             'masa_tamat_majlis' => Carbon::createFromFormat('H:i:s', $kadData->masa_tamat_majlis)->format('g:i A')
-        ];
-
-        $fonttt = [
-            'font_url1' => 'https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Great+Vibes&display=swap',
-            'font_name1' => 'Great Vibes',
-            'font_url2' => 'https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap',
-            'font_name2' => 'Dancing Script',
         ];
 
         $imageUrls = json_decode('["images/slide1.webp", "images/slide2.webp", "images/slide3.webp"]');

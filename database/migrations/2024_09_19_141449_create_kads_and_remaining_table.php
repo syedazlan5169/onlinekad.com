@@ -34,6 +34,7 @@ return new class extends Migration
         Schema::create('kads', function (Blueprint $table) {
             $table->id();
             // Maklumat Kad
+            $table->string('slug')->unique();
             $table->string('order_id');
             $table->boolean('is_paid')->default(false);
             $table->integer('user_id');

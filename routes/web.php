@@ -21,6 +21,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/tempah', [KadController::class, 'tempahKad'])->name('tempah');
 });
 
-Route::get('/n002', [KadController::class, 'show'])->name('n002');
+Route::get('/invitation/{slug}', [KadController::class, 'show'])->name('invitation.show');
 
 require __DIR__.'/auth.php';
