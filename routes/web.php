@@ -15,7 +15,7 @@ Route::post('/create-rsvp', [RsvpController::class, 'create'])->name('create-rsv
 
 Route::middleware(['auth'])->group(function () {
     Route::view('profile', 'profile')->name('profile');
-    Route::view('senarai-kad', 'senarai-kad')->name('senarai-kad');
+    Route::get('/senarai-kad', [KadController::class, 'index'])->name('senarai-kad');
 
     //Tempah Kad
     Route::get('/form-tempah/{id}', function ($id) {

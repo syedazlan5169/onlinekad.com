@@ -8,10 +8,18 @@ use App\Models\Design;
 use App\Models\Font;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
-
+use Illuminate\Support\Facades\Auth;
 
 class KadController extends Controller
 {
+    public function index()
+{
+    $currentUserId = Auth::id();
+    $kads = Kad::where('user_id', $currentUserId)->get();
+    
+    return view('senarai-kad', compact('kads'));
+}
+
 
     public function tempahKad()
     {
