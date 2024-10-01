@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('design_code');
             $table->string('design_url_1');
             $table->string('design_url_2');
+            $table->string('product_image_url');
             $table->string('color_code');
             $table->string('color_footer');
             $table->timestamps();

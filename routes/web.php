@@ -3,9 +3,10 @@
 use App\Http\Controllers\GuestbookController;
 use App\Http\Controllers\KadController;
 use App\Http\Controllers\RsvpController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'home')->name('/');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::view('katalog', 'katalog')->name('katalog');
 Route::view('pakej', 'pakej')->name('pakej');
 Route::view('tutorial', 'tutorial')->name('tutorial');
@@ -14,7 +15,6 @@ Route::post('/create-rsvp', [RsvpController::class, 'create'])->name('create-rsv
 
 Route::middleware(['auth'])->group(function () {
     Route::view('profile', 'profile')->name('profile');
-    Route::view('tempah', 'tempah')->name('tempah');
     Route::view('senarai-kad', 'senarai-kad')->name('senarai-kad');
 
     //Tempah Kad
