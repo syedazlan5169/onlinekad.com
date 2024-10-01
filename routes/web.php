@@ -18,7 +18,10 @@ Route::middleware(['auth'])->group(function () {
     Route::view('senarai-kad', 'senarai-kad')->name('senarai-kad');
 
     //Tempah Kad
-    Route::view('tempah', 'tempah')->name('tempah');
+    Route::get('/form-tempah/{id}', function ($id) {
+        return view('form-tempah', ['id' => $id]);
+    })->name('form-tempah');
+
     Route::post('/tempah', [KadController::class, 'tempahKad'])->name('tempah');
 });
 

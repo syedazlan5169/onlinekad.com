@@ -45,7 +45,7 @@ class KadController extends Controller
             'slug' => Str::slug(request('nama_panggilan_lelaki')) . '-' . Str::slug(request('nama_panggilan_perempuan')) . '-' . Str::random(5),
             'order_id' => 'SY' . rand(100000, 999999) . strtoupper(Str::random(5)),
             'user_id' => 1,
-            'design_id' => 2, 
+            'design_id' => request('design_id'), 
             'font_id' => request('font'),
             'package_id' => 1,
             'is_paid' => true,

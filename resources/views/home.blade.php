@@ -77,27 +77,37 @@
     
         <!-- Trending Section -->
         <div class="bg-white">
-            <div class="mt-8 grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
-                @foreach ($products as $product) <!-- Assuming you are passing a list of products from the database -->
-                <div>
-                    <div class="relative border border-gray-200 rounded-lg shadow">
-                        <div class="relative h-72 w-full overflow-hidden rounded-lg">
-                            <img src="{{ asset('images/products/' . $product->image) }}" class="h-full w-full object-cover object-center">
-                        </div>
-                        <div class="relative mt-4">
-                            <h2 class="text-xl text-center font-bold text-gray-900">{{ $product->name }}</h2>
-                        </div>
-                    </div>
-                    <div class="mt-6">
-                        <!-- Pass design_id in the URL -->
-                        <a href="{{ route('tempah', ['design_id' => $product->design_id]) }}" class="relative flex items-center justify-center rounded-md border border-transparent bg-gray-100 px-8 py-2 text-sm font-medium text-gray-900 hover:bg-gray-200 mb-3">Tempah</a>
-            
-                        <a href="#" class="relative flex items-center justify-center rounded-md border border-transparent bg-gray-100 px-8 py-2 text-sm font-medium text-gray-900 hover:bg-gray-200">Live Preview</a>
-                    </div>
+            <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+                <div class="md:flex md:items-center md:justify-between">
+                <h2 class="text-2xl font-bold tracking-tight text-gray-900">Trending Design</h2>
+                <a href="#" class="hidden text-sm font-medium text-indigo-600 hover:text-indigo-500 md:block">
+                    Lihat Semua Design
+                    <span aria-hidden="true"> &rarr;</span>
+                </a>
                 </div>
-                @endforeach
+
+                <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
+                    @foreach($products as $product)
+                        <div class="group relative">
+                            <div class="h-56 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-72 xl:h-80">
+                                <img src="{{ asset($product->product_image_url) }}" class="h-full w-full object-cover object-center">
+                            </div>
+                            <h3 class="my-2 text-xl text-center font-bold text-gray-700">{{ $product->design_code }}</h3>
+                            <x-primary-button href="{{ route('form-tempah', ['id' => $product->id]) }}" class="w-full">Tempah</x-primary-button>
+                            <x-primary-button href="/invitation/{{ $product->design_code }}" class="w-full mt-1 mb-5 sm:mb-14">Live Preview</x-primary-button>
+                        </div>
+                    @endforeach
+                </div>
+
+                <div class="mt-8 text-sm md:hidden">
+                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
+                    Lihat Semua Design
+                    <span aria-hidden="true"> &rarr;</span>
+                </a>
+                </div>
             </div>
-          </div>
+        </div>
+
           
     
         <!-- Feature section -->

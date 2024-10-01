@@ -36,7 +36,7 @@ return new class extends Migration
             $table->id();
             // Maklumat Kad
             $table->string('slug')->unique();
-            $table->string('order_id');
+            $table->string('order_id')->unique();
             $table->boolean('is_paid')->default(false);
             $table->integer('user_id');
             $table->integer('design_id');

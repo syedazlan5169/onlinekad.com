@@ -27,7 +27,7 @@
                                 Maklumat Pengantin
                             </h2>
                             <div x-show="openSection === 'maklumat_pengantin'" x-data="{ penjemput: '1' }" class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-
+                                <input type="hidden" name="design_id" id="design_id" value="{{ $id }}">
                                 <div>
                                     <div class="sm:col-span-3">
                                         <label for="nama_penuh_lelaki" class="block text-sm font-medium leading-6 text-gray-900">Nama Penuh Pengantin Lelaki</label>
@@ -153,7 +153,7 @@
                                 <div class="sm:col-span-3">
                                     <label for="tajuk_kad" class="block text-sm font-medium leading-6 text-gray-900">Tajuk Kad</label>
                                     <div class="mt-2">
-                                    <input type="text" name="tajuk_kad" id="tajuk_kad" spellcheck="false" placeholder="Walimatulurus" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                    <input type="text" name="tajuk_kad" id="tajuk_kad" spellcheck="false" value="Walimatulurus" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     </div>
                                 </div>
 
@@ -296,7 +296,7 @@
 
                         <!-- Submit Button -->
                         <div class="mt-6">
-                            <x-primary-button type="submit">Tempah</x-primary-button>
+                            <x-primary-button type="submit">Save</x-primary-button>
                         </div>
                     </form>
                     <!-- Form ends -->
