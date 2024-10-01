@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Rsvp;
+use App\Models\Kad;
 
 class RsvpController extends Controller
 {
     public function create()
     {
+        $kad = Kad::findOrFail(request('kad_id'));
         Rsvp::create([
             'kad_id' => request('kad_id'),
             'nama' => request('nama'),
@@ -17,7 +19,7 @@ class RsvpController extends Controller
             'jumlah_kehadiran' => request('jumlah_kehadiran')
         ]);
 
-        return redirect('/n002')->with([
+        return redirect("/invitation/{$kad->slug}")->with([
             'success' => 'RSVP submitted successfully',
             'message_detail' => 'Thanks for the RSVP'
         ]);

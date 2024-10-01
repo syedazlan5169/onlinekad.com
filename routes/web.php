@@ -6,7 +6,7 @@ use App\Http\Controllers\RsvpController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('/');
 Route::view('katalog', 'katalog')->name('katalog');
 Route::view('pakej', 'pakej')->name('pakej');
 Route::view('tutorial', 'tutorial')->name('tutorial');
@@ -18,6 +18,7 @@ Route::middleware(['auth'])->group(function () {
     Route::view('senarai-kad', 'senarai-kad')->name('senarai-kad');
 
     //Tempah Kad
+    Route::view('tempah', 'tempah')->name('tempah');
     Route::post('/tempah', [KadController::class, 'tempahKad'])->name('tempah');
 });
 
