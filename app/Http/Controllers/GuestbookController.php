@@ -19,6 +19,9 @@ class GuestbookController extends Controller
             'wish' => request('wish') 
         ]);
 
-        return redirect('/n002')->with('success', 'Wish post successfully');
+        return redirect('/n002')->with([
+            'success' => 'Wish posted successfully',
+            'message_detail' => 'Anyone with a link can now view your wish.'
+        ]);
     }
 }

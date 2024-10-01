@@ -17,6 +17,9 @@ class RsvpController extends Controller
             'jumlah_kehadiran' => request('jumlah_kehadiran')
         ]);
 
-        return redirect('/n002')->with('success', 'RSVP submitted successfully.');
+        return redirect('/n002')->with([
+            'success' => 'RSVP submitted successfully',
+            'message_detail' => 'Thanks for the RSVP'
+        ]);
     }
 }

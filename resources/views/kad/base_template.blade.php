@@ -69,7 +69,7 @@
                                 </div>
                                 <div class="ml-3 w-0 flex-1 pt-0.5">
                                     <p class="text-sm font-medium text-gray-900">{{ session('success') }}</p>
-                                    <p class="mt-1 text-sm text-gray-500">Anyone with a link can now view your wish.</p>
+                                    <p class="mt-1 text-sm text-gray-500">{{ session('message_detail') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -103,7 +103,7 @@
             <div class="my-12 py-8">
                 <div class="relative top-0 bg-white bg-opacity-40">
                     <div class="flex flex-col justify-center gap-5 items-center h-full">
-                        <img class="w-full px-3 h-28" src="/Images/assalamualaikum.png" alt="">
+                        <img class="w-full px-3 h-24" src="/Images/assalamualaikum.png" alt="">
                         <div class="text-center">
                             <p class="text-xl text-center text-gray-600 font-serif">{{ $kadData->nama_bapa_pengantin_lelaki }}</p>
                             <p class="text-xl text-center text-gray-600 font-serif">&</p>
