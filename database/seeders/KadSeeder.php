@@ -16,11 +16,11 @@ class KadSeeder extends Seeder
         $kads = [
             [
                 // Maklumat Kad
-                'slug' => 'N001',
-                'order_id' => 'N001',
+                'slug' => 'N002',
+                'order_id' => 'N002',
                 'is_paid' => true,
                 'user_id' => 1,
-                'design_id' => 1,
+                'design_id' => 2,
                 'font_id' => 1,
                 'package_id' => 3,
                 
