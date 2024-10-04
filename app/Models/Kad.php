@@ -62,6 +62,11 @@ class Kad extends Model
         return $this->belongsTo(Design::class);
     }
 
+    public function package()
+    {
+        return $this->belongsTo(Package::class);
+    }
+
     public function font()
     {
         return $this->belongsTo(Font::class);
