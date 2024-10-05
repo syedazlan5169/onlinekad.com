@@ -19,8 +19,9 @@
                     },
                  openSection: 'maklumat_pengantin', namaLelaki: '{{ $kadData->nama_panggilan_lelaki }}', namaPerempuan: '{{ $kadData->nama_panggilan_perempuan }}' }" class="max-w-7xl mx-auto p-8">
                     <!-- Form starts -->
-                    <form action="{{ route('tempah') }}" method="POST">
+                    <form action="/kad-update/{{ $kadData->id }}" method="POST">
                         @csrf
+                        @method('PATCH')
                         <!-- Accordion Section 1: Maklumat Pengantin -->
                         <div class="border rounded-md p-4 mb-4">
                             <h2 @click="openSection = openSection === 'maklumat_pengantin' ? '' : 'maklumat_pengantin'" class="text-lg underline font-bold cursor-pointer flex justify-between items-center">
@@ -29,7 +30,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                                 </svg>
                             </h2>
-                            <div x-show="openSection === 'maklumat_pengantin'" x-data="{ penjemput: '1' }" class="mt-8 grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                            <div x-show="openSection === 'maklumat_pengantin'" x-data="{ penjemput: '{{ $kadData->penjemput }}' }" class="mt-8 grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                                 <input type="hidden" name="design_id" id="design_id" value="{{ $kadData->design->id }}">
                                 <div>
                                     <div class="sm:col-span-3">

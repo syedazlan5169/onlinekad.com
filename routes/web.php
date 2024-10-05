@@ -20,6 +20,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/senarai-kad', [KadController::class, 'index'])->name('senarai-kad');
     Route::get('/kad-details/{id}', [KadController::class, 'showDetails'])->name('kad-details');
     Route::get('/kad-edit/{id}', [KadController::class, 'showEdit'])->name('kad-edit');
+    Route::patch('/kad-update/{id}', [KadController::class, 'patch'])->name('kad-update');
 
     //Tempah Kad
     Route::get('/form-tempah/{id}', function ($id) {

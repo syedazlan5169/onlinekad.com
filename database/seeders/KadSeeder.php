@@ -16,8 +16,8 @@ class KadSeeder extends Seeder
         $kads = [
             [
                 // Maklumat Kad
-                'slug' => 'N002',
-                'order_id' => 'N002',
+                'slug' => 'N001',
+                'order_id' => 'N001',
                 'is_paid' => true,
                 'user_id' => 1,
                 'design_id' => 2,
@@ -29,6 +29,7 @@ class KadSeeder extends Seeder
                 'nama_penuh_perempuan' => 'Nurul Nazatul Najwa Binti Mior Rahim',
                 'nama_panggilan_lelaki' => 'Azlan',
                 'nama_panggilan_perempuan' => 'Najwa',
+                'penjemput' => 1,
                 'nama_bapa_pengantin_lelaki' => 'Syed Shaharom Bin Syed Bahari',
                 'nama_ibu_pengantin_lelaki' => 'Zubaidah Binti Hamdan',
                 'nama_bapa_pengantin_perempuan' => 'Mior Rahim Bin Rahman',

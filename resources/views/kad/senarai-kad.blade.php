@@ -6,6 +6,42 @@
     </x-slot>
 
     <div class="py-12">
+        <!-- Notification Panel -->
+        @if(session('success'))
+            <!-- Global notification live region -->
+            <div 
+                x-data="{ show: true }" 
+                x-init="setTimeout(() => show = false, 5000)" 
+                x-show="show" 
+                x-transition:enter="transform ease-out duration-300 transition"
+                x-transition:enter-start="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
+                x-transition:enter-end="translate-y-0 opacity-100 sm:translate-x-0"
+                x-transition:leave="transition ease-in duration-100"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                aria-live="assertive" 
+                class="pointer-events-none fixed inset-0 flex items-start px-4 py-6 sm:items-start sm:p-6"
+            >
+                <div class="flex w-full flex-col items-center space-y-4 sm:items-end">
+                    <div class="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+                        <div class="p-4">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                                <div class="ml-3 w-0 flex-1 pt-0.5">
+                                    <p class="text-sm font-medium text-gray-900">{{ session('success') }}</p>
+                                    <p class="mt-1 text-sm text-gray-500">{{ session('message_detail') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+        <!-- End of Notification Panel -->
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
             <!-- List Section -->
@@ -14,10 +50,8 @@
                 <li class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow">
                     <div class="flex flex-1 flex-col p-8">
                     <img class="mx-auto h-32 w-32 flex-shrink-0 rounded-full" src="{{ asset($kad->design->product_image_url) }}" alt="">
-                    <h3 class="mt-6 text-sm font-medium text-gray-900">{{ $kad->order_id }}</h3>
+                    <h3 class="mt-6 text-sm font-medium text-gray-900">{{ $kad->nama_panggilan_lelaki }} & {{ $kad->nama_panggilan_perempuan }}</h3>
                     <dl class="mt-1 flex flex-grow flex-col justify-between">
-                        <dt class="sr-only">Design Code</dt>
-                        <dd class="text-sm text-gray-500">{{ $kad->nama_panggilan_lelaki }} & {{ $kad->nama_panggilan_perempuan }}</dd>
                         <dt class="sr-only">Nama Panggilan</dt>
                         <dd class="text-sm text-gray-500">{{ \Carbon\Carbon::parse($kad->tarikh_majlis)->format('d-F-Y') }}</dd>
                         <dt class="sr-only">Tarikh Majlis</dt>

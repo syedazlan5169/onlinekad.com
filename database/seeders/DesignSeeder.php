@@ -20,7 +20,7 @@ class DesignSeeder extends Seeder
             ],
             [
                 'design_code' => 'N002',
-                'product_image_url' => '/images/products/Product-N001.webp',
+                'product_image_url' => '/images/products/Product-N002.webp',
                 'design_url_1' => '/images/designs/N001-1.webp',
                 'design_url_2' => '/images/designs/N002-2.webp',
                 'color_code' => '#33C1FF',

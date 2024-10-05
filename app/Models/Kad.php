@@ -22,6 +22,7 @@ class Kad extends Model
         'nama_penuh_perempuan',
         'nama_panggilan_lelaki',
         'nama_panggilan_perempuan',
+        'penjemput',
         'nama_bapa_pengantin_lelaki',
         'nama_ibu_pengantin_lelaki',
         'nama_bapa_pengantin_perempuan',

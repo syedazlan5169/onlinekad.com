@@ -23,10 +23,13 @@
                         @csrf
                         <!-- Accordion Section 1: Maklumat Pengantin -->
                         <div class="border rounded-md p-4 mb-4">
-                            <h2 @click="openSection = openSection === 'maklumat_pengantin' ? '' : 'maklumat_pengantin'" class="text-lg font-bold cursor-pointer">
+                            <h2 @click="openSection = openSection === 'maklumat_pengantin' ? '' : 'maklumat_pengantin'" class="text-lg underline font-bold cursor-pointer flex justify-between items-center">
                                 Maklumat Pengantin
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" :class="openSection === 'maklumat_pengantin' ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                </svg>
                             </h2>
-                            <div x-show="openSection === 'maklumat_pengantin'" x-data="{ penjemput: '1' }" class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                            <div x-show="openSection === 'maklumat_pengantin'" x-data="{ penjemput: '1' }" class="mt-8 grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                                 <input type="hidden" name="design_id" id="design_id" value="{{ $id }}">
                                 <div>
                                     <div class="sm:col-span-3">
@@ -143,12 +146,15 @@
                             </div>
                         </div>
                 
-                        <!-- Accordion Section 2: Contact Information -->
+                        <!-- Accordion Section 2: Maklumat Majlis -->
                         <div class="border rounded-md p-4 mb-4">
-                            <h2 @click="openSection = openSection === 'maklumat_majlis' ? '' : 'maklumat_majlis'" class="text-lg font-bold cursor-pointer">
+                            <h2 @click="openSection = openSection === 'maklumat_majlis' ? '' : 'maklumat_majlis'" class="text-lg underline font-bold cursor-pointer flex justify-between items-center">
                                 Maklumat Majlis
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" :class="openSection === 'maklumat_majlis' ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                </svg>
                             </h2>
-                            <div x-show="openSection === 'maklumat_majlis'" class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                            <div x-show="openSection === 'maklumat_majlis'" class="mt-8 grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
                                 <div class="sm:col-span-3">
                                     <label for="tajuk_kad" class="block text-sm font-medium leading-6 text-gray-900">Tajuk Kad</label>
@@ -273,12 +279,15 @@
                             </div>
                         </div>
                 
-                        <!-- Accordion Section 3: Review Information -->
+                        <!-- Accordion Section 3: Others -->
                         <div class="border rounded-md p-4 mb-4">
-                            <h2 @click="openSection = openSection === 'review' ? '' : 'review'" class="text-lg font-bold cursor-pointer">
-                                Review Your Information
+                            <h2 @click="openSection = openSection === 'others' ? '' : 'others'" class="text-lg underline font-bold cursor-pointer flex justify-between items-center">
+                                Lain-lain
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" :class="openSection === 'others' ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                </svg>
                             </h2>
-                            <div x-show="openSection === 'review'" class="mt-4">
+                            <div x-show="openSection === 'review'" class="mt-8">
                                 <!-- Show a summary of all sections or additional form fields here -->
                             </div>
                         </div>
