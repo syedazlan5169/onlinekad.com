@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Kad;
 use App\Models\Design;
 use App\Models\Font;
+use App\Models\Guestbook;
+use App\Models\Rsvp;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +20,18 @@ class KadController extends Controller
 
         $kads = Kad::where('user_id', $currentUserId)->with('design')->with('package')->get();
 
-        return view('senarai-kad', compact('kads'));
+        return view('kad.senarai-kad', compact('kads'));
+    }
+
+    public function showEdit($id)
+    {
+        $currentUserId = Auth::id();
+        $kadData = Kad::where('user_id', $currentUserId)->where('id', $id)->with('design')->first();
+        if (!$kadData) {
+            return redirect()->back()->withErrors('Kad not found or you do not have permission to view it.');
+        }
+
+        return view('kad.kad-edit', compact('kadData'));
     }
 
 
@@ -209,4 +222,22 @@ class KadController extends Controller
 
         return view('kad.base_template', compact('kadData', 'dateTime', 'font', 'imageUrls', 'design'));
     }
+
+    public function showDetails($id)
+    {
+        // Retrieve the Kad by ID with related RSVP and Guestbook data
+        $currentUserId = Auth::id();
+
+        $kadData = Kad::where('user_id', $currentUserId)->where('id', $id)->first();
+        if (!$kadData) {
+            return redirect()->back()->withErrors('Kad not found or you do not have permission to view it.');
+        }
+
+        $rsvp = Rsvp::where('kad_id', $kadData->id)->get();
+        $wishes = Guestbook::where('kad_id', $kadData->id)->get();
+
+        // Return the view with the data
+        return view('kad.kad-details', compact('kadData', 'rsvp', 'wishes'));
+    }
+
 }

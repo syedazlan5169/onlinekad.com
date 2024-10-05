@@ -15,7 +15,11 @@ Route::post('/create-rsvp', [RsvpController::class, 'create'])->name('create-rsv
 
 Route::middleware(['auth'])->group(function () {
     Route::view('profile', 'profile')->name('profile');
+
+    //KadController
     Route::get('/senarai-kad', [KadController::class, 'index'])->name('senarai-kad');
+    Route::get('/kad-details/{id}', [KadController::class, 'showDetails'])->name('kad-details');
+    Route::get('/kad-edit/{id}', [KadController::class, 'showEdit'])->name('kad-edit');
 
     //Tempah Kad
     Route::get('/form-tempah/{id}', function ($id) {

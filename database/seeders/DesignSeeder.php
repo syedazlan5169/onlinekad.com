@@ -59,7 +59,7 @@ class DesignSeeder extends Seeder
                 'color_footer' => '#FFC133',
             ],
             [
-                'design_code' => 'N0077777777',
+                'design_code' => 'N007',
                 'product_image_url' => '/images/products/Product-N001.webp',
                 'design_url_1' => '/images/designs/N001-1.webp',
                 'design_url_2' => '/images/designs/N002-2.webp',

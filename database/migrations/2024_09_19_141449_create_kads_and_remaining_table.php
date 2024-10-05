@@ -51,6 +51,7 @@ return new class extends Migration
             $table->string('nama_ibu_pengantin_lelaki')->nullable();
             $table->string('nama_bapa_pengantin_perempuan')->nullable();
             $table->string('nama_ibu_pengantin_perempuan')->nullable();
+            $table->integer('penjemput');
             // Maklumat Majlis
             $table->string('tajuk_kad');
             $table->string('ayat_jemputan');
