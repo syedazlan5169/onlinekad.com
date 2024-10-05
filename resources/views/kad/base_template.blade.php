@@ -314,7 +314,7 @@
                         <!-- Buttons -->
                         <div class="py-3 sm:flex sm:flex-row-reverse sm:px-6">
                             <x-primary-button type="submit">Submit</x-primary-button>
-                            <x-primary-button class="bg-red-500 hover:bg-red-300" @click="form_ucapan = false">Tutup</x-primary-button>
+                            <x-primary-button type="button" class="bg-red-500 hover:bg-red-300" @click="form_ucapan = false">Tutup</x-primary-button>
                         </div>
                     </div>
                 </div>

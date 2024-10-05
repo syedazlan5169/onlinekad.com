@@ -26,4 +26,12 @@ class GuestbookController extends Controller
             'message_detail' => 'Anyone with a link can now view your wish.'
         ]);
     }
+
+    public function destroy($id)
+    {
+        $wish = Guestbook::findOrFail($id);
+        $wish->delete();
+
+        return redirect('/kad-details')->with('success', 'Wish deleted successfully');
+    }
 }

@@ -350,7 +350,7 @@ class KadController extends Controller
         }
 
         $rsvp = Rsvp::where('kad_id', $kadData->id)->get();
-        $wishes = Guestbook::where('kad_id', $kadData->id)->get();
+        $wishes = Guestbook::where('kad_id', $kadData->id)->paginate(5);
 
         // Return the view with the data
         return view('kad.kad-details', compact('kadData', 'rsvp', 'wishes'));
