@@ -339,7 +339,7 @@ class KadController extends Controller
         return view('kad.base_template', compact('kadData', 'dateTime', 'font', 'imageUrls', 'design'));
     }
 
-    public function showDetails($id)
+    public function showGuestbook($id)
     {
         // Retrieve the Kad by ID with related RSVP and Guestbook data
         $currentUserId = Auth::id();
@@ -350,10 +350,11 @@ class KadController extends Controller
         }
 
         $rsvp = Rsvp::where('kad_id', $kadData->id)->get();
+        $totalWishes = Guestbook::where('kad_id', $kadData->id)->count();
         $wishes = Guestbook::where('kad_id', $kadData->id)->paginate(5);
 
         // Return the view with the data
-        return view('kad.kad-details', compact('kadData', 'rsvp', 'wishes'));
+        return view('kad.kad-guestbook', compact('kadData', 'rsvp', 'wishes', 'totalWishes'));
     }
 
 }
