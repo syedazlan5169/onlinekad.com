@@ -5,6 +5,7 @@ use App\Http\Controllers\KadController;
 use App\Http\Controllers\RsvpController;
 use App\Http\Controllers\HomeController;
 use App\Models\Guestbook;
+use App\Models\Rsvp;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('/');
@@ -20,11 +21,15 @@ Route::middleware(['auth'])->group(function () {
     //KadController
     Route::get('/senarai-kad', [KadController::class, 'index'])->name('senarai-kad');
     Route::get('/kad-guestbook/{id}', [KadController::class, 'showGuestbook'])->name('kad-guestbook');
+    Route::get('/kad-rsvp/{id}', [KadController::class, 'showRsvp'])->name('kad-rsvp');
     Route::get('/kad-edit/{id}', [KadController::class, 'showEdit'])->name('kad-edit');
     Route::patch('/kad-update/{id}', [KadController::class, 'patch'])->name('kad-update');
 
     //GuestbookController
     Route::delete('/wish/{id}', [GuestbookController::class, 'destroy']);
+
+    //RsvpController
+    Route::delete('/rsvp/{id}', [RsvpController::class, 'destroy']);
 
     //Tempah Kad
     Route::get('/form-tempah/{id}', function ($id) {

@@ -349,12 +349,30 @@ class KadController extends Controller
             return redirect()->back()->withErrors('Kad not found or you do not have permission to view it.');
         }
 
-        $rsvp = Rsvp::where('kad_id', $kadData->id)->get();
         $totalWishes = Guestbook::where('kad_id', $kadData->id)->count();
-        $wishes = Guestbook::where('kad_id', $kadData->id)->paginate(5);
+        $wishes = Guestbook::where('kad_id', $kadData->id)->paginate(10);
 
         // Return the view with the data
-        return view('kad.kad-guestbook', compact('kadData', 'rsvp', 'wishes', 'totalWishes'));
+        return view('kad.kad-guestbook', compact('kadData', 'wishes', 'totalWishes'));
+    }
+
+    public function showRsvp($id)
+    {
+        $currentUserId = Auth::id();
+
+        $kadData = Kad::where('user_id', $currentUserId)->where('id', $id)->first();
+        if (!$kadData) {
+            return redirect()->back()->withErrors('Kad not found or you do not have permission to view it.');
+        }
+
+
+        $rsvp = Rsvp::where('kad_id', $kadData->id)->paginate(10);
+        $totalRsvp = Rsvp::where('kad_id', $kadData->id)->count();
+        $totalHadir = Rsvp::where('kad_id', $kadData->id)->where('kehadiran', 'Hadir')->count();
+        $totalTidakHadir = Rsvp::where('kad_id', $kadData->id)->where('kehadiran', 'Tidak Hadir')->count();
+        $totalKehadiran = Rsvp::where('kad_id', $kadData->id)->where('kehadiran', 'Hadir')->sum('jumlah_kehadiran');
+
+        return view('kad.kad-rsvp', compact('rsvp', 'totalRsvp', 'totalHadir', 'totalTidakHadir', 'totalKehadiran'));
     }
 
 }

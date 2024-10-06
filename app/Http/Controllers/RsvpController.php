@@ -24,4 +24,12 @@ class RsvpController extends Controller
             'message_detail' => 'Thanks for the RSVP'
         ]);
     }
+
+    public function destroy($id)
+    {
+        $rsvp = Rsvp::findOrFail($id);
+        $rsvp->delete();
+
+        return back()->with('success', 'Rsvp deleted successfully');
+    }
 }
