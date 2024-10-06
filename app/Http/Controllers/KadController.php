@@ -366,13 +366,12 @@ class KadController extends Controller
         }
 
 
-        $rsvp = Rsvp::where('kad_id', $kadData->id)->paginate(10);
         $totalRsvp = Rsvp::where('kad_id', $kadData->id)->count();
         $totalHadir = Rsvp::where('kad_id', $kadData->id)->where('kehadiran', 'Hadir')->count();
         $totalTidakHadir = Rsvp::where('kad_id', $kadData->id)->where('kehadiran', 'Tidak Hadir')->count();
         $totalKehadiran = Rsvp::where('kad_id', $kadData->id)->where('kehadiran', 'Hadir')->sum('jumlah_kehadiran');
 
-        return view('kad.kad-rsvp', compact('rsvp', 'totalRsvp', 'totalHadir', 'totalTidakHadir', 'totalKehadiran'));
+        return view('kad.kad-rsvp', compact('kadData', 'totalRsvp', 'totalHadir', 'totalTidakHadir', 'totalKehadiran'));
     }
 
 }

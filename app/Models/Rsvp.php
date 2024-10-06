@@ -17,6 +17,17 @@ class Rsvp extends Model
         'kehadiran',
     ];
 
+    public function scopeSearch($query, $term)
+    {
+        if ($term)
+        {
+            return $query->where('nama', 'LIKE', '%' . $term . '%');
+        }
+
+        return $query;
+    }
+
+
     public function kad()
     {
         return $this->belongsTo(Kad::class);
