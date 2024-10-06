@@ -32,6 +32,6 @@ class GuestbookController extends Controller
         $wish = Guestbook::findOrFail($id);
         $wish->delete();
 
-        return redirect('/kad-details')->with('success', 'Wish deleted successfully');
+        return back()->with('success', 'Wish deleted successfully');
     }
 }

@@ -24,7 +24,7 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/kad-update/{id}', [KadController::class, 'patch'])->name('kad-update');
 
     //GuestbookController
-    Route::delete('/wish/{id}', [Guestbook::class, 'destroy']);
+    Route::delete('/wish/{id}', [GuestbookController::class, 'destroy']);
 
     //Tempah Kad
     Route::get('/form-tempah/{id}', function ($id) {
