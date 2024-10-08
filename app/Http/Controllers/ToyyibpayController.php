@@ -122,7 +122,7 @@ class ToyyibpayController extends Controller
             'order_id' => $response['order_id'],  
             'refno' => $response['refno'],  
             'reason' => $response['reason'],   
-            'bill_code' => $response['billcode'],  
+            'billcode' => $response['billcode'],  
             'status' => $response['status'] === '1' ? 'success' : 'failed', 
             'amount' => $response['amount'],       
             'transaction_time' => $response['transaction_time'], 
