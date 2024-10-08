@@ -47,7 +47,11 @@ class Kad extends Model
         'masa_tamat_majlis' => 'string',
     ];
 
-    // Modify the order relationship to reference 'order_id' instead of 'id'
+    public function  kad()
+    {
+        return $this->hasMany(Payment::class, 'order_id', 'order_id');
+    }
+
     public function order()
     {
         return $this->belongsTo(Order::class, 'order_id', 'order_id');  // Custom foreign key and local key

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kad;
 use App\Models\Order;
+use App\Models\Payment;
 use App\Models\Package;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -113,12 +114,19 @@ class ToyyibpayController extends Controller
     {
         // Extract the necessary fields from the callback request
         $response = $request->only(['refno', 'status', 'reason', 'billcode', 'order_id', 'amount', 'transaction_time']);
-
-        // Find the correct order by order_id and billcode
         $order = Order::where('order_id', $response['order_id'])->firstOrFail();
+        $kad = $order->kad; 
 
-        // Use the relationship to retrieve the associated Kad model
-        $kad = $order->kad;  // This works because of the belongsTo relationship you defined
+        // Create a new PaymentAttempt entry
+        Payment::create([
+            'order_id' => $response['order_id'],  
+            'refno' => $response['refno'],  
+            'reason' => $response['reason'],   
+            'bill_code' => $response['billcode'],  
+            'status' => $response['status'] === '1' ? 'success' : 'failed', 
+            'amount' => $response['amount'],       
+            'transaction_time' => $response['transaction_time'], 
+        ]);
 
         Log::info('Response:', ['response' => $response]);
         Log::info('Order:', ['order' => $order]);
