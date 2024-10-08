@@ -25,8 +25,9 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function kads()
+    public function kad()
     {
-        return $this->hasMany(Kad::class);
+        return $this->hasOne(Kad::class, 'order_id', 'order_id'); // 'order_id' is foreign key
     }
+
 }

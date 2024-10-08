@@ -13,14 +13,21 @@ use Illuminate\Http\Request;
 
 class ToyyibpayController extends Controller
 {
-    public function createOrder($orderId, $packageId)
+    public function createOrder($kad)
     {
-        Order::create([
-            'user_id' => Auth::user()->id,
-            'package_id' => $packageId,
-            'order_id' => $orderId,
-        ]);
+        // Check if an order already exists with this order_id
+        $existingOrder = Order::where('order_id', $kad->order_id)->first();
+
+        if (!$existingOrder) {
+            // If no existing order, create a new one
+            Order::create([
+                'user_id' => Auth::user()->id,
+                'package_id' => $kad->package_id,
+                'order_id' => $kad->order_id,
+            ]);
+        }
     }
+
 
     public function createBill($kadId)
     {
@@ -39,6 +46,9 @@ class ToyyibpayController extends Controller
         $package = $kad->package;
         $price = 100 * $package->price;
         $orderId = $kad->order_id;
+
+        // Create the order
+        $this->createOrder($kad);
 
         // Build the bill data
         $bill = [
@@ -65,9 +75,6 @@ class ToyyibpayController extends Controller
 
         // Log the bill data for debugging purposes
         Log::info('Bill data being sent to ToyyibPay: ', $bill);
-
-        // Create the order
-        $this->createOrder($orderId, $package->id);
 
         // Send request to ToyyibPay API
         $url = 'https://dev.toyyibpay.com/index.php/api/createBill';
@@ -107,20 +114,24 @@ class ToyyibpayController extends Controller
         // Extract the necessary fields from the callback request
         $response = $request->only(['refno', 'status', 'reason', 'billcode', 'order_id', 'amount', 'transaction_time']);
 
-        // Find the order by order_id
+        // Find the correct order by order_id and billcode
         $order = Order::where('order_id', $response['order_id'])->firstOrFail();
 
-        // Retrieve the Kad model associated with the order using the relationship
-        $kad = $order->kad;  // This will use the `belongsTo` relationship defined in Kad
+        // Use the relationship to retrieve the associated Kad model
+        $kad = $order->kad;  // This works because of the belongsTo relationship you defined
 
-        Log::info($response);
-        Log::info($order);
-        Log::info($kad);
+        Log::info('Response:', ['response' => $response]);
+        Log::info('Order:', ['order' => $order]);
+        Log::info('Kad:', ['kad' => $kad]);
 
         // Check if the payment status is successful
         if ($response['status'] === '1') {
             // Update the is_paid field to true using the Kad model
-            $kad->update(['is_paid' => true]);
+            if ($kad) {
+                $kad->update(['is_paid' => true]);
+            } else {
+                Log::error('No associated Kad found for the order.');
+            }
         } else {
             // Log a warning if the payment was unsuccessful
             Log::warning('Payment was unsuccessful.', [
@@ -132,6 +143,5 @@ class ToyyibpayController extends Controller
         // Update the order with the response data
         $order->update($response);
     }
-
 
 }

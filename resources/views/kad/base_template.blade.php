@@ -85,6 +85,9 @@
             <div class="h-screen w-full bg-cover bg-center" style="background-image: url('{{ asset($design->design_url_1) }}');">
                 <div class="absolute inset-0 bg-white bg-opacity-20">
                     <div class="flex flex-col justify-center gap-20 items-center h-full">
+                        @if(!$kadData->is_paid)
+                            <h1 class="text-2xl font-bold italic text-center text-red-500 animate-slide-up" style="font-family: 'Safadi One', cursive; margin-bottom: 0;">Not Paid</h1>
+                        @endif
                         <h1 class="text-2xl font-bold text-center text-gray-600 animate-slide-up" style="font-family: 'Safadi One', cursive; margin-bottom: 0;">{{ $kadData->tajuk_kad }}</h1>
                         <div class="text-center">
                             <p class="text-5xl font-semibold text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">{{ $kadData->nama_panggilan_lelaki }}</p>
