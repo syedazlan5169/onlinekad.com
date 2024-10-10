@@ -34,6 +34,29 @@
             .animate-slide-up-delay {
                 animation: slide-up 1.2s ease-out forwards;
             }
+
+            /* Watermark Styles */
+        .watermark {
+            position: fixed; /* Use fixed instead of absolute */
+            top: 0;
+            left: 0;
+            width: 100vw; /* Full width */
+            height: 100vh; /* Full height */
+            background: transparent; /* Transparent background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* High z-index to sit on top */
+            pointer-events: none; /* Allow interaction with underlying content */
+        }
+
+        .watermark-text {
+            font-size: 5rem;
+            color: rgba(255, 0, 0, 0.3); /* Light red */
+            text-transform: uppercase;
+            transform: rotate(-45deg);
+            user-select: none; /* Disable text selection */
+        }
         </style>
 
         <!-- Variable -->
@@ -46,7 +69,16 @@
         <!-- font-awesome icon here -->
         <script src="https://kit.fontawesome.com/5a63289656.js" crossorigin="anonymous"></script>
     </head>
+
+    
+
     <body x-data="{ form_ucapan: false, form_rsvp: false, location_modal: false, reminder_modal: false, contact_modal: false }" class="sm:w-[15%]">
+
+        @if(!$kadData->is_paid)
+            <div class="watermark">
+                <div class="watermark-text">UNPAID</div>
+            </div>
+        @endif
 
         <!-- Notification Panel -->
         @if(session('success'))
@@ -91,9 +123,6 @@
             <div class="h-screen w-full bg-cover bg-center" style="background-image: url('{{ asset($design->design_url_1) }}');">
                 <div class="absolute inset-0 bg-white bg-opacity-20">
                     <div class="flex flex-col justify-center gap-20 items-center h-full">
-                        @if(!$kadData->is_paid)
-                            <h1 class="text-2xl font-bold italic text-center text-red-500 animate-slide-up" style="font-family: 'Safadi One', cursive; margin-bottom: 0;">Not Paid</h1>
-                        @endif
                         <h1 class="text-2xl font-bold text-center text-gray-600 animate-slide-up" style="font-family: 'Safadi One', cursive; margin-bottom: 0;">{{ $kadData->tajuk_kad }}</h1>
                         <div class="text-center">
                             <p class="text-5xl font-semibold text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">{{ $kadData->nama_panggilan_lelaki }}</p>
