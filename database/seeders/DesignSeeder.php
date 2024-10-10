@@ -36,11 +36,11 @@ class DesignSeeder extends Seeder
             ],
             [
                 'design_code' => 'N004',
-                'product_image_url' => '/images/products/Product-N001.webp',
-                'design_url_1' => '/images/designs/N001-1.webp',
-                'design_url_2' => '/images/designs/N002-2.webp',
-                'color_code' => '#33C1FF',
-                'color_footer' => '#FFC133',
+                'product_image_url' => '/images/products/Product-N004.webp',
+                'design_url_1' => '/images/designs/N004-1.webp',
+                'design_url_2' => '/images/designs/N004-2.webp',
+                'color_code' => '#CA2877',
+                'color_footer' => '#DB5E9B',
             ],
             [
                 'design_code' => 'N005',
