@@ -108,7 +108,7 @@
                                 </x-primary-button>
                                 
                                 <!-- Live Preview Button -->
-                                <x-primary-button href="/invitation/{{ $product->design_code }}" 
+                                <x-primary-button href="preview/{{ $product->design_code }}" 
                                     class="w-full text-center py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg shadow-md mt-2 sm:mt-0">
                                     Live Preview
                                 </x-primary-button>

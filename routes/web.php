@@ -15,7 +15,6 @@ Route::view('pakej', 'pakej')->name('pakej');
 Route::view('tutorial', 'tutorial')->name('tutorial');
 Route::post('/tulis-ucapan', [GuestbookController::class, 'create'])->name('tulis-ucapan');
 Route::post('/create-rsvp', [RsvpController::class, 'create'])->name('create-rsvp');
-Route::get('/invitation/{slug}', [KadController::class, 'show'])->name('invitation.show');
 Route::post('/toyyibpay-callback', [ToyyibpayController::class, 'handleToyyibpayCallback'])->name('toyyibpay-callback');
 
 Route::middleware(['auth'])->group(function () {
@@ -46,6 +45,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/tempah', [KadController::class, 'tempahKad'])->name('tempah');
 });
 
-
+//Show Kad
+Route::get('/invitation/{slug}', [KadController::class, 'show']);
+Route::get('/preview/{slug}', [KadController::class, 'showPreview']);
 
 require __DIR__.'/auth.php';

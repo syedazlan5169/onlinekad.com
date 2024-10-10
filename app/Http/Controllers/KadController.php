@@ -10,6 +10,7 @@ use App\Models\Guestbook;
 use App\Models\Rsvp;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
 class KadController extends Controller
@@ -325,6 +326,31 @@ class KadController extends Controller
         $kadData = Kad::where('slug', $slug)->firstOrFail();
         $design = Design::findOrFail($kadData->design_id);
         $font = Font::findOrFail($kadData->font_id);
+
+        $dateTime = [
+            'hari_tarikh_majlis' => $this->translateToMalay($kadData->tarikh_majlis, 3),
+            'hari_majlis' => $this->translateToMalay($kadData->tarikh_majlis, 1),
+            'tarikh_majlis' => $this->translateToMalay($kadData->tarikh_majlis, 2),
+            'masa_mula_majlis' => Carbon::createFromFormat('H:i:s', $kadData->masa_mula_majlis)->format('g:i A'),
+            'masa_tamat_majlis' => Carbon::createFromFormat('H:i:s', $kadData->masa_tamat_majlis)->format('g:i A')
+        ];
+
+        $imageUrls = json_decode('["images/slide1.webp", "images/slide2.webp", "images/slide3.webp"]');
+
+        return view('kad.base_template', compact('kadData', 'dateTime', 'font', 'imageUrls', 'design'));
+    }
+
+    public function showPreview($slug)
+    {
+
+        $kadData = Kad::findOrFail(1);
+        $design = Design::where('design_code', $slug)->firstOrFail();
+        $font = Font::findOrFail($kadData->font_id);
+
+        Log::info('kadData:', ['kadData' => $kadData]);
+        Log::info('design:', ['design' => $design]);
+        Log::info('font:', ['font' => $font]);
+
 
         $dateTime = [
             'hari_tarikh_majlis' => $this->translateToMalay($kadData->tarikh_majlis, 3),
