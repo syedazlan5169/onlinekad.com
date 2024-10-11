@@ -186,6 +186,7 @@ class KadController extends Controller
             'design_id' => request('design_id'), 
             'font_id' => request('font'),
             'package_id' => 3 ,
+            'bg_song_id' => request('bg_song_id'),
             'is_paid' => false,
 
             // Maklumat Pengantin

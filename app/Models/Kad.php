@@ -17,6 +17,7 @@ class Kad extends Model
         'design_id',
         'font_id',
         'package_id',
+        'bg_song_id',
         'tajuk_kad',
         'nama_penuh_lelaki',
         'nama_penuh_perempuan',

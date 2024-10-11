@@ -45,7 +45,7 @@
 									<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
 								</svg>
 							</h2>
-							<div x-show="openSection === 'maklumat_pengantin'" x-data="{ penjemput: '{{ $kadData->penjemput }}' }" class="mt-8 grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-6 sm:grid-cols-1">
+							<div x-show="openSection === 'maklumat_pengantin'" x-data="{ penjemput: '{{ $kadData->penjemput }}', bg_song_id: '{{ $kadData->bg_song_id }}' }" class="mt-8 grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-6 sm:grid-cols-1">
 								<input type="hidden" name="design_id" id="design_id" value="{{ $kadData->design->id }}">
 
 								<!-- Nama Penuh Pengantin Lelaki -->
@@ -274,7 +274,16 @@
 								</svg>
 							</h2>
 							<div x-show="openSection === 'others'" class="mt-8">
-								<!-- Show a summary of all sections or additional form fields here -->
+								<!-- Bg Song Selection -->
+                                <div class="sm:col-span-2">
+                                    <label for="bg_song_id" class="block text-sm font-medium text-gray-900">Lagu Latar Belakang</label>
+                                    <div class="mt-2">
+                                        <select x-model="bg_song_id" id="bg_song_id" name="bg_song_id" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:max-w-xs sm:text-sm">
+                                            <option value="1">Irama Klasik Melayu</option>
+                                            <option value="2">One Thousand Year</option>
+                                        </select>
+                                    </div>
+                                </div>
 							</div>
 						</div>
 

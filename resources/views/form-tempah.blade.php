@@ -257,7 +257,16 @@
 
                             <!-- Show a summary of all sections or additional form fields here -->
                             <div x-show="openSection === 'others'" class="mt-8">
-                                <!-- Any other fields to be added -->
+                                <!-- Bg Song Selection -->
+                                <div class="sm:col-span-2">
+                                    <label for="bg_song_id" class="block text-sm font-medium text-gray-900">Lagu Latar Belakang</label>
+                                    <div class="mt-2">
+                                        <select id="bg_song_id" name="bg_song_id" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:max-w-xs sm:text-sm">
+                                            <option value="1">Irama Klasik Melayu</option>
+                                            <option value="2">One Thousand Year</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
