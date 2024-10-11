@@ -13,9 +13,14 @@
         <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
         <link href="{{ $font->font_url }}" rel="stylesheet">
 
+        <script src="https://kit.fontawesome.com/5a63289656.js" crossorigin="anonymous"></script>
+
+
         <!-- Styles -->
         @vite(['resources/css/app.css','resources/js/app.js'])
         <style>
+
+            
             @keyframes slide-up {
                 0% {
                     transform: translateY(100%);
@@ -72,7 +77,7 @@
 
     
 
-    <body x-data="{ form_ucapan: false, form_rsvp: false, location_modal: false, reminder_modal: false, contact_modal: false }" class="sm:w-[15%]">
+    <body x-data="{ form_ucapan: false, form_rsvp: false, location_modal: false, reminder_modal: false, contact_modal: false }">
 
         @if(!$kadData->is_paid)
             <div class="watermark">
@@ -118,7 +123,7 @@
         <!-- End of Notification Panel -->
 
 
-        <div class="h-full w-full bg-cover bg-center" style="background-image: url('{{ asset($design->design_url_2) }}'); background-attachment: fixed">
+        <div class="h-full w-full bg-cover bg-center sm:w-[400px]" style="background-image: url('{{ asset($design->design_url_2) }}'); background-attachment: fixed">
             <!-- Kad Section -->
             <div class="h-screen w-full bg-cover bg-center" style="background-image: url('{{ asset($design->design_url_1) }}');">
                 <div class="absolute inset-0 bg-white bg-opacity-20">
@@ -174,15 +179,18 @@
                                 <p class="text-l font-bold text-center text-gray-600 font-sans">{{ $dateTime['masa_mula_majlis'] }} ~ {{ $dateTime['masa_tamat_majlis'] }}</p>
                             </div>
                             <div>
-                                <!-- Centered Icon -->
-                                <div class="flex justify-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="{{ $colorCode }}" class="size-12">
-                                        <path fill-rule="evenodd" d="M2.625 6.75a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875 0A.75.75 0 0 1 8.25 6h12a.75.75 0 0 1 0 1.5h-12a.75.75 0 0 1-.75-.75ZM2.625 12a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0ZM7.5 12a.75.75 0 0 1 .75-.75h12a.75.75 0 0 1 0 1.5h-12A.75.75 0 0 1 7.5 12Zm-4.875 5.25a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875 0a.75.75 0 0 1 .75-.75h12a.75.75 0 0 1 0 1.5h-12a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
-                                    </svg>
-                                </div>
+                                
                             
                                 <!-- Aturcara Majlis List -->
                                 <ul class="space-y-2">
+                                    @if(empty($kadData->aturcara_majlis))
+                                    <!-- Centered Icon -->
+                                    <div class="flex justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="{{ $colorCode }}" class="size-12">
+                                            <path fill-rule="evenodd" d="M2.625 6.75a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875 0A.75.75 0 0 1 8.25 6h12a.75.75 0 0 1 0 1.5h-12a.75.75 0 0 1-.75-.75ZM2.625 12a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0ZM7.5 12a.75.75 0 0 1 .75-.75h12a.75.75 0 0 1 0 1.5h-12A.75.75 0 0 1 7.5 12Zm-4.875 5.25a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875 0a.75.75 0 0 1 .75-.75h12a.75.75 0 0 1 0 1.5h-12a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    @endif
                                     @foreach($kadData->aturcara_majlis as $entry)
                                         <!-- Check if both 'masa_acara' and 'acara' are not null or empty -->
                                         @if(!empty($entry['masa_acara']) || !empty($entry['acara']))
@@ -316,6 +324,122 @@
 
                 </div>
             </div>
+
+
+            <!-- Custom Play/Pause Button with Randomized Music Bars -->
+            <div x-data="{ isPlaying: true, audio: null }" x-init="audio = $refs.audioElement" class="flex items-center justify-center mb-4">
+                    <button @click="isPlaying ? audio.pause() : audio.play(); isPlaying = !isPlaying" class="bg-gray-50 flex items-center space-x-2 py-1 px-2 rounded-full transition-colors duration-300 ease-in-out shadow-md">
+                        
+                        <!-- Music Bars Icon (Animate when playing) -->
+                        <svg class="w-6 h-6 text-gray-500" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <!-- First Bar -->
+                            <rect x="4" y="8" width="2" height="2" :class="isPlaying ? 'animate-bar1' : ''" class="transition-all duration-300 ease-in-out" style="transform-origin: bottom;"></rect>
+                            <!-- Second Bar -->
+                            <rect x="10" y="8" width="2" height="2" :class="isPlaying ? 'animate-bar2' : ''" class="transition-all duration-300 ease-in-out" style="transform-origin: bottom;"></rect>
+                            <!-- Third Bar -->
+                            <rect x="16" y="8" width="2" height="2" :class="isPlaying ? 'animate-bar3' : ''" class="transition-all duration-300 ease-in-out" style="transform-origin: bottom;"></rect>
+                        </svg>
+
+                        <p class="text-sm font-sans font-semibold">Irama Klasik Melayu</p>
+                    </button>
+
+                <!-- Hidden Audio Element -->
+                <audio x-ref="audioElement" autoplay loop>
+                    <source src="{{ asset('musics/Irama-klasik-melayu.mp3') }}" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <!-- Add the styles for the animation -->
+            <style>
+                /* Animation for the first bar */
+                @keyframes bar1 {
+                0% {
+                    height: 4px;
+                }
+                25% {
+                    height: 9px;
+                }
+                50% {
+                    height: 6px;
+                }
+                75% {
+                    height: 10px;
+                }
+                100% {
+                    height: 4px;
+                }
+                }
+
+                /* Animation for the second bar */
+                @keyframes bar2 {
+                0% {
+                    height: 2px;
+                }
+                20% {
+                    height: 6px;
+                }
+                40% {
+                    height: 9px;
+                }
+                60% {
+                    height: 7px;
+                }
+                80% {
+                    height: 12px;
+                }
+                100% {
+                    height: 2px;
+                }
+                }
+
+                /* Animation for the third bar */
+                @keyframes bar3 {
+                0% {
+                    height: 5px;
+                }
+                15% {
+                    height: 7px;
+                }
+                35% {
+                    height: 5px;
+                }
+                55% {
+                    height: 11px;
+                }
+                75% {
+                    height: 8px;
+                }
+                100% {
+                    height: 5px;
+                }
+                }
+
+                /* Apply animation to bars when playing */
+                .animate-bar1 {
+                animation: bar1 1s infinite ease-in-out;
+                }
+            
+                .animate-bar2 {
+                animation: bar2 1s infinite ease-in-out;
+                }
+            
+                .animate-bar3 {
+                animation: bar3 1s infinite ease-in-out;
+                }
+            </style>
+
+
+      
+
+
+       
+
+
+
+
+
+              
             <img class="w-full px-3 h-18 mb-16 pt-0 mt-0" src="/Images/Curly-Border-Bottom.png" alt=""> 
         </div>
 
