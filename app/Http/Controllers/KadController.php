@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BgSong;
 use Illuminate\Http\Request;
 use App\Models\Kad;
 use App\Models\Design;
@@ -326,6 +327,7 @@ class KadController extends Controller
         $kadData = Kad::where('slug', $slug)->firstOrFail();
         $design = Design::findOrFail($kadData->design_id);
         $font = Font::findOrFail($kadData->font_id);
+        $bgSong = BgSong::findOrFail($kadData->bg_song_id);
 
         $dateTime = [
             'hari_tarikh_majlis' => $this->translateToMalay($kadData->tarikh_majlis, 3),
@@ -337,7 +339,7 @@ class KadController extends Controller
 
         $imageUrls = json_decode('["images/slide1.webp", "images/slide2.webp", "images/slide3.webp"]');
 
-        return view('kad.base_template', compact('kadData', 'dateTime', 'font', 'imageUrls', 'design'));
+        return view('kad.base_template', compact('kadData', 'dateTime', 'font', 'imageUrls', 'design', 'bgSong'));
     }
 
     public function showPreview($slug)
@@ -346,6 +348,7 @@ class KadController extends Controller
         $kadData = Kad::findOrFail(1);
         $design = Design::where('design_code', $slug)->firstOrFail();
         $font = Font::findOrFail($kadData->font_id);
+        $bgSong = BgSong::findOrFail($kadData->bg_song_id);
 
         Log::info('kadData:', ['kadData' => $kadData]);
         Log::info('design:', ['design' => $design]);
@@ -362,7 +365,7 @@ class KadController extends Controller
 
         $imageUrls = json_decode('["images/slide1.webp", "images/slide2.webp", "images/slide3.webp"]');
 
-        return view('kad.base_template', compact('kadData', 'dateTime', 'font', 'imageUrls', 'design'));
+        return view('kad.base_template', compact('kadData', 'dateTime', 'font', 'imageUrls', 'design', 'bgSong'));
     }
 
     public function showGuestbook($id)

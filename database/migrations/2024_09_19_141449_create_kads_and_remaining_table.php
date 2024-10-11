@@ -41,6 +41,7 @@ return new class extends Migration
             $table->integer('user_id');
             $table->integer('design_id');
             $table->integer('font_id');
+            $table->integer('bg_song_id');
             $table->integer('package_id');
             // Maklumat Pengantin
             $table->string('nama_penuh_lelaki');

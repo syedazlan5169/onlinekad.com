@@ -77,6 +77,11 @@ class Kad extends Model
         return $this->belongsTo(Font::class);
     }
 
+    public function bgsong()
+    {
+        return $this->belongsTo(BgSong::class);
+    }
+
     public function guestbooks()
     {
         return $this->hasMany(Guestbook::class);
