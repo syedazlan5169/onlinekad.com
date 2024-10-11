@@ -14,14 +14,24 @@ class GuestbookFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
     public function definition(): array
     {
         return [
-            'kad_id' => rand(1,15),
+            'kad_id' => 1,
             'author' => $this->faker->name(), // Generate a random author name
             'wish' => $this->faker->sentence(20), // Generate a random wish
             'created_at' => now(),
             'updated_at' => now(),
         ];
+    }
+
+    public function withKadId($kadId)
+    {
+        return $this->state(function (array $attributes) use ($kadId) {
+            return [
+                'kad_id' => $kadId,
+            ];
+        });
     }
 }

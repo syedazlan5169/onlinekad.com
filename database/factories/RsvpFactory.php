@@ -17,11 +17,20 @@ class RsvpFactory extends Factory
     public function definition(): array
     {
         return [
-            'kad_id' => rand(1, 5), // Create or associate with an existing Kad entry
+            'kad_id' => 1,
             'nama' => $this->faker->name,
             'nombor_telefon' => $this->faker->phoneNumber,
             'jumlah_kehadiran' => $this->faker->numberBetween(1, 5),
             'kehadiran' => $this->faker->randomElement(['Hadir', 'Tidak Hadir']), // You can define your own statuses
         ];
+    }
+
+    public function withKadId($kadId)
+    {
+        return $this->state(function (array $attributes) use ($kadId) {
+            return [
+                'kad_id' => $kadId,
+            ];
+        });
     }
 }
