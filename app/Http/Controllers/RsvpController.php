@@ -19,9 +19,9 @@ class RsvpController extends Controller
             'jumlah_kehadiran' => request('jumlah_kehadiran')
         ]);
 
-        return redirect("/invitation/{$kad->slug}")->with([
-            'success' => 'RSVP submitted successfully',
-            'message_detail' => 'Thanks for the RSVP'
+        return redirect()->back()->with([
+            'success' => 'Wish posted successfully',
+            'message_detail' => 'Anyone with a link can now view your wish.'
         ]);
     }
 

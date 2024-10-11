@@ -185,7 +185,7 @@
             <div class="my-12 py-8">
                 <div class="relative top-0 bg-white bg-opacity-40">
                     <div class="flex flex-col justify-center gap-5 items-center h-full">
-                        <img class="w-full px-3 h-24" src="/Images/assalamualaikum.png" alt="">
+                        <img class="w-full px-3 h-24" src="/images/assalamualaikum.png" alt="">
                         <div class="text-center">
                             <p class="text-xl text-center text-gray-600 font-serif">{{ $kadData->nama_bapa_pengantin_lelaki }}</p>
                             <p class="text-xl text-center text-gray-600 font-serif">&</p>
