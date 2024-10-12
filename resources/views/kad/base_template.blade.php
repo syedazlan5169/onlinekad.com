@@ -169,7 +169,7 @@
         <div class="h-full w-full bg-cover bg-center sm:w-[400px] sm:mx-auto sm:max-w-lg sm:rounded-lg sm:shadow-xl" style="background-image: url('{{ asset($design->design_url_2) }}'); background-attachment: fixed; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);">
 
 
-        <canvas class="fixed opacity-30"></canvas>
+        <canvas class="fixed opacity-30" style="pointer-events: none"></canvas>
             <!-- Kad Section -->
             <div class="h-screen w-full bg-cover bg-center" style="background-image: url('{{ asset($design->design_url_1) }}');">
                 <div class="absolute inset-0 bg-white bg-opacity-20">
