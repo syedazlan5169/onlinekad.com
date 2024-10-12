@@ -10,7 +10,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Sofadi+One&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
         <link href="{{ $font->font_url }}" rel="stylesheet">
 
         <script src="https://kit.fontawesome.com/5a63289656.js" crossorigin="anonymous"></script>
@@ -262,7 +262,7 @@
                 </div>
             </div>
 
-            <img class="w-full px-3 h-18 mt-6 pb-6" src="/Images/Curly-Border-Top.png" alt=""> 
+            <img class="w-full px-3 h-18 mt-6 pb-6" src="/images/Curly-Border-Top.png" alt=""> 
             <!-- Fetures Section -->
             <div>
                 <div class="flex flex-col justify-center gap-5 items-center h-full px-6 pb-0 mb-0">
@@ -389,7 +389,7 @@
                 </audio>
             </div>
 
-            <img class="w-full px-3 h-18 mb-16 pt-0 mt-0" src="/Images/Curly-Border-Bottom.png" alt=""> 
+            <img class="w-full px-3 h-18 mb-16 pt-0 mt-0" src="/images/Curly-Border-Bottom.png" alt=""> 
         </div>
 
         <!-- Form Tulis Ucapan -->
