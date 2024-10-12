@@ -16,11 +16,14 @@
         <script src="https://kit.fontawesome.com/5a63289656.js" crossorigin="anonymous"></script>
 
 
+          
+
+
         <!-- Styles -->
         @vite(['resources/css/app.css','resources/js/app.js'])
         <style>
 
-            
+            /* Element Animation */
             @keyframes slide-up {
                 0% {
                     transform: translateY(100%);
@@ -63,6 +66,7 @@
                 user-select: none; /* Disable text selection */
             }
 
+            /* Audio Player Animation */
             /* Animation for the first bar */
             @keyframes bar1 {
             0% { height: 4px; }
@@ -104,6 +108,7 @@
             .animate-bar3 {
             animation: bar3 1s infinite ease-in-out;
             }
+           
         </style>
 
         <!-- Variable -->
@@ -114,9 +119,8 @@
         
     </head>
 
-    
-
     <body x-data="{ form_ucapan: false, form_rsvp: false, location_modal: false, reminder_modal: false, contact_modal: false }">
+
 
         @if(!$kadData->is_paid)
             <div class="watermark">
@@ -162,7 +166,10 @@
         <!-- End of Notification Panel -->
 
 
-        <div class="h-full w-full bg-cover bg-center sm:w-[400px]" style="background-image: url('{{ asset($design->design_url_2) }}'); background-attachment: fixed">
+        <div class="h-full w-full bg-cover bg-center sm:w-[400px] sm:mx-auto sm:max-w-lg sm:rounded-lg sm:shadow-xl" style="background-image: url('{{ asset($design->design_url_2) }}'); background-attachment: fixed; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);">
+
+
+        <canvas class="fixed opacity-30"></canvas>
             <!-- Kad Section -->
             <div class="h-screen w-full bg-cover bg-center" style="background-image: url('{{ asset($design->design_url_1) }}');">
                 <div class="absolute inset-0 bg-white bg-opacity-20">
@@ -366,29 +373,48 @@
             </div>
 
             <!-- Custom Play/Pause Button with Randomized Music Bars -->
-            <div x-data="{ isPlaying: false, audio: null }" x-init="audio = $refs.audioElement" class="flex items-center justify-center mb-4">
-                    <button @click="isPlaying ? audio.pause() : audio.play(); isPlaying = !isPlaying" class="bg-gray-50 flex items-center space-x-2 py-1 px-2 rounded-full transition-colors duration-300 ease-in-out shadow-md">
-                        
-                        <!-- Music Bars Icon (Animate when playing) -->
-                        <svg class="w-6 h-6 text-gray-500" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <!-- First Bar -->
-                            <rect x="4" y="8" width="2" height="2" :class="isPlaying ? 'animate-bar1' : ''" class="transition-all duration-300 ease-in-out" style="transform-origin: bottom;"></rect>
-                            <!-- Second Bar -->
-                            <rect x="10" y="8" width="2" height="2" :class="isPlaying ? 'animate-bar2' : ''" class="transition-all duration-300 ease-in-out" style="transform-origin: bottom;"></rect>
-                            <!-- Third Bar -->
-                            <rect x="16" y="8" width="2" height="2" :class="isPlaying ? 'animate-bar3' : ''" class="transition-all duration-300 ease-in-out" style="transform-origin: bottom;"></rect>
-                        </svg>
+            <div x-data="{ isPlaying: true, audio: null, showModal: true }" 
+                x-init="audio = $refs.audioElement" class="flex items-center justify-center mb-4">
 
-                        <p class="text-xs font-sans font-semibold">{{ $bgSong->song_name }}</p>
-                    </button>
+                <!-- Play/Pause Button -->
+                <button @click="isPlaying ? audio.pause() : audio.play(); isPlaying = !isPlaying" 
+                    class="bg-gray-50 flex items-center space-x-2 py-1 px-2 rounded-full transition-colors duration-300 ease-in-out shadow-md">
+                    
+                    <!-- Music Bars Icon (Animate when playing) -->
+                    <svg class="w-6 h-6 text-gray-500" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <!-- First Bar -->
+                        <rect x="4" y="8" width="2" height="2" :class="isPlaying ? 'animate-bar1' : ''" class="transition-all duration-300 ease-in-out" style="transform-origin: bottom;"></rect>
+                        <!-- Second Bar -->
+                        <rect x="10" y="8" width="2" height="2" :class="isPlaying ? 'animate-bar2' : ''" class="transition-all duration-300 ease-in-out" style="transform-origin: bottom;"></rect>
+                        <!-- Third Bar -->
+                        <rect x="16" y="8" width="2" height="2" :class="isPlaying ? 'animate-bar3' : ''" class="transition-all duration-300 ease-in-out" style="transform-origin: bottom;"></rect>
+                    </svg>
+
+                    <p class="text-xs font-sans font-semibold">{{ $bgSong->song_name }}</p>
+                </button>
 
                 <!-- Hidden Audio Element -->
                 <audio x-ref="audioElement" loop>
                     <source src="{{ asset($bgSong->song_url) }}" type="audio/mpeg">
                     Your browser does not support the audio element.
                 </audio>
-            </div>
 
+                <!-- Modal for User Interaction to Play Audio -->
+                <div x-show="showModal" x-cloak 
+                    class="fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-75">
+                    <!-- Modal Content -->
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <h2 class="text-2xl text-gray-700 text-center mb-4">Welcome!</h2>
+                        <p class="text-gray-600 text-center mb-4">Click the button below to start the music.</p>
+                        <div class="text-center">
+                            <button @click="audio.play(); showModal = false" 
+                                class="bg-blue-500 text-white py-2 px-4 rounded-lg shadow hover:bg-blue-600 transition">
+                                Buka
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <img class="w-full px-3 h-18 mb-16 pt-0 mt-0" src="/images/Curly-Border-Bottom.png" alt=""> 
         </div>
 
@@ -623,15 +649,12 @@
                     @endforeach
                 </div>
             </div>
-            
-            
-            
         </div> 
         <!-- End of Contacts Modal Popup -->
 
         <!-- Footer Section -->
-        <footer class="lg:w-1/4 w-full mx-auto bg-[#ebbc47] flex justify-center items-center]">
-            <div class="fixed bottom-0 z-50 lg:w-1/4 w-full mx-auto h-16 border-t" style="background-color: {{ $colorFooter }};">
+        <footer class="w-full mx-auto sm:w-[400px] flex justify-center items-center]">
+            <div class="fixed bottom-0 z-50 w-full sm:w-[400px] mx-auto h-16 border-t" style="background-color: {{ $colorFooter }};">
                 <div class="grid mt-2 w-[97%]  gap-1 max-w-lg grid-cols-4 mx-auto font-medium">
                     <button type="button" @click="form_rsvp = true" class="inline-flex flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $colorCode }};">
                         <h1 class="text-[20px] text-white"><i class="fa-solid fa-list"></i></h1>
@@ -657,5 +680,84 @@
             </div>
         </footer>
     @livewireScripts
+    <script>
+        const canvas = document.querySelector('canvas')
+        canvas.height = window.innerHeight
+        canvas.width = window.innerWidth
+        const ctx = canvas.getContext('2d')
+
+        const TOTAL = 35 
+        const petalArray = []
+
+        const petalImg = new Image()
+        petalImg.src = 'https://image.ibb.co/kyUHab/rose.png'
+        petalImg.addEventListener('load', () => {
+        for (let i = 0; i < TOTAL; i++) {
+            petalArray.push(new Petal())
+        }
+        render()
+        })
+
+        function render() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        petalArray.forEach(petal => petal.animate())
+        window.requestAnimationFrame(render)
+        }
+
+        window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth
+        canvas.height = window.innerHeight
+        })
+
+        let mouseX = 0
+        function touchHandler(e) {
+        mouseX = (e.clientX || e.touches[0].clientX) / window.innerWidth
+        }
+        window.addEventListener('mousemove', touchHandler)
+        window.addEventListener('touchmove', touchHandler)
+
+        // Petal class with CSS shape (ellipse)
+        class Petal {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = (Math.random() * canvas.height * 2) - canvas.height;
+                this.w = 25 + Math.random() * 15;
+                this.h = 20 + Math.random() * 10;
+                this.opacity = this.w / 40;
+                this.color = '#9CB59D';
+                this.flip = Math.random();
+
+                this.xSpeed = 1.5 + Math.random() * 0.4;
+                this.ySpeed = 1 + Math.random() * 0.2;
+                this.flipSpeed = Math.random() * 0.03;
+            }
+
+            draw() {
+                if (this.y > canvas.height || this.x > canvas.width) {
+                this.x = -this.w;
+                this.y = (Math.random() * canvas.height * 2) - canvas.height;
+                this.xSpeed = 1.5 + Math.random() * 0.4;
+                this.ySpeed = 1 + Math.random() * 0.2;
+                this.flip = Math.random();
+                }
+                ctx.globalAlpha = this.opacity;
+
+                // Drawing an ellipse (petal shape)
+                ctx.beginPath();
+                ctx.ellipse(this.x, this.y, this.w * 0.6, this.h * 0.8, this.flip, 0, 2 * Math.PI);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            animate() {
+                this.x += this.xSpeed;
+                this.y += this.ySpeed;
+                this.flip += this.flipSpeed;
+                this.draw();
+            }
+        }
+
+    </script>
     </body>
 </html>
