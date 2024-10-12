@@ -67,6 +67,15 @@ class KadController extends Controller
         // Retrieve the specific Kad by its ID
         $kad = Kad::findOrFail($Id);
 
+        //Generate Calendar Url
+        $title = request('nama_panggilan_lelaki') . '&' . request('nama_panggilan_perempuan');
+        $location = request('alamat_majlis');
+        $start = request('tarikh_majlis') . 'T' . request('masa_mula_majlis');
+        $end = request('tarikh_majlis') . 'T' . request('masa_tamat_majlis');
+        $startFormatted = str_replace(['-', ':'], '', $start); 
+        $endFormatted = str_replace(['-', ':'], '', $end);
+        $googleCalendarUrl = $this->generateReminderUrl($title, $title, $location, $startFormatted, $endFormatted);
+
         // Update the Kad with the validated data
         $kad->update([
             //Maklumat Kad
@@ -93,6 +102,7 @@ class KadController extends Controller
             'alamat_majlis' => $request->input('alamat_majlis'),
             'google_url' => $request->input('google_url'),
             'waze_url' => $request->input('waze_url'),
+            'google_calendar_url' => $googleCalendarUrl,
 
             // JSON fields
             'nombor_telefon' =>[
@@ -177,6 +187,14 @@ class KadController extends Controller
             'waze_url' => ['required'],
         ]);
 
+        //Generate Calendar Url
+        $title = request('nama_panggilan_lelaki') . '&' . request('nama_panggilan_perempuan');
+        $location = request('alamat_majlis');
+        $start = request('tarikh_majlis') . 'T' . request('masa_mula_majlis');
+        $end = request('tarikh_majlis') . 'T' . request('masa_tamat_majlis');
+        $googleCalendarUrl = $this->generateReminderUrl($title, $title, $location, $start, $end);
+        dd($googleCalendarUrl);
+
         // Create a new Kad entry
         Kad::create([
             // Maklumat Kad
@@ -210,6 +228,7 @@ class KadController extends Controller
             'alamat_majlis' => request('alamat_majlis'),
             'google_url' => request('google_url'),
             'waze_url' => request('waze_url'),
+            'google_calendar_url' => $googleCalendarUrl,
 
             // Maklumat Nombor Telefon (JSON)
             'nombor_telefon' => [
@@ -267,6 +286,19 @@ class KadController extends Controller
         return redirect('/senarai-kad');
     }
 
+    public function generateReminderUrl($title, $description, $location, $start, $end)
+    {
+        $eventTitle = urlencode($title);
+        $eventDescription = urlencode($description);
+        $eventLocation = urlencode($location);
+        $startDateTime = urlencode($start); // Use 'Y-m-d\TH:i:s' format
+        $endDateTime = urlencode($end);
+
+        $googleCalendarLink = "https://www.google.com/calendar/render?action=TEMPLATE&text={$eventTitle}&dates={$startDateTime}/{$endDateTime}&details={$eventDescription}&location={$eventLocation}&sf=true&output=xml";
+
+        return $googleCalendarLink;
+
+    }
 
     public function translateToMalay($date, $option = 3)
     {

@@ -17,10 +17,6 @@
 
         <script src="https://kit.fontawesome.com/5a63289656.js" crossorigin="anonymous"></script>
 
-
-          
-
-
         <!-- Styles -->
         @vite(['resources/css/app.css','resources/js/app.js'])
         <style>
@@ -589,7 +585,7 @@
                 <div class="flex justify-center space-x-20 py-10">
                     <!-- Google Calendar Icon and Text -->
                     <div class="flex flex-col items-center">
-                        <a href="{{ $kadData->google_url }}" target="_blank" class="transition-transform transform hover:scale-105">
+                        <a href="{{ $kadData->google_calendar_url }}" target="_blank" class="transition-transform transform hover:scale-105">
                             <img src="{{ asset('images/icons/google-calendar-100.png') }}" alt="Google Calendar" class="h-16 w-16 rounded-lg border-2 border-white hover:border-gray-300 hover:bg-white p-2 shadow-md">
                         </a>
                         <p class="text-white mt-2 text-center">Google Calendar</p>
@@ -597,7 +593,7 @@
             
                     <!-- Apple Calendar Icon and Text -->
                     <div class="flex flex-col items-center">
-                        <a href="{{ $kadData->waze_url }}" target="_blank" class="transition-transform transform hover:scale-105">
+                        <a href="{{ $kadData->apple_calendar_url }}" target="_blank" class="transition-transform transform hover:scale-105">
                             <img src="{{ asset('images/icons/apple-calendar-100.png') }}" alt="Apple Calendar" class="h-16 w-16 rounded-lg border-2 border-white hover:border-gray-300 hover:bg-white p-2 shadow-md">
                         </a>
                         <p class="text-white mt-2 text-center">Apple Calendar</p>

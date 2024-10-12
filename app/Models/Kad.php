@@ -34,6 +34,8 @@ class Kad extends Model
         'alamat_majlis',
         'google_url',
         'waze_url',
+        'google_calendar_url',
+        'apple_calendar_url',
         'aturcara_majlis',
         'nombor_telefon',
         'ayat_jemputan',
