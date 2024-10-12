@@ -23,6 +23,7 @@ class KadSeeder extends Seeder
                 'design_id' => 2,
                 'font_id' => 1,
                 'package_id' => 3,
+                'bg_song_id' => 1,
                 
                 // Maklumat Pengantin
                 'nama_penuh_lelaki' => 'Syed Azlan Izzuddin Shah Bin Syed Shaharom',

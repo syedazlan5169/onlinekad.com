@@ -11,6 +11,8 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Sofadi+One&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Noticia+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
         <link href="{{ $font->font_url }}" rel="stylesheet">
 
         <script src="https://kit.fontawesome.com/5a63289656.js" crossorigin="anonymous"></script>
@@ -144,7 +146,7 @@
                 aria-live="assertive" 
                 class="pointer-events-none fixed inset-0 flex items-start px-4 py-6 sm:items-start sm:p-6"
             >
-                <div class="flex w-full flex-col items-center space-y-4 sm:items-end">
+                <div class="flex w-full flex-col items-center space-y-4">
                     <div class="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
                         <div class="p-4">
                             <div class="flex items-start">
@@ -174,15 +176,15 @@
             <div class="h-screen w-full bg-cover bg-center" style="background-image: url('{{ asset($design->design_url_1) }}');">
                 <div class="absolute inset-0 bg-white bg-opacity-20">
                     <div class="flex flex-col justify-center gap-20 items-center h-full">
-                        <h1 class="text-2xl font-bold text-center text-gray-600 animate-slide-up" style="font-family: 'Signika', cursive; margin-bottom: 0;">{{ $kadData->tajuk_kad }}</h1>
+                        <h1 class="text-2xl text-center text-gray-600 animate-slide-up" style="font-family: 'Noticia Text', cursive; margin-bottom: 0;">{{ $kadData->tajuk_kad }}</h1>
                         <div class="text-center">
-                            <p class="text-5xl font-semibold text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">{{ $kadData->nama_panggilan_lelaki }}</p>
-                            <p class="text-5xl font-semibold text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">&</p>
-                            <p class="text-5xl font-semibold text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">{{ $kadData->nama_panggilan_perempuan }}</p>
+                            <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">{{ $kadData->nama_panggilan_lelaki }}</p>
+                            <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">&</p>
+                            <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">{{ $kadData->nama_panggilan_perempuan }}</p>
                         </div>
                         <div class="text-center">
-                            <p class="text-2xl font-bold text-gray-600 leading-tight animate-slide-up-delay" style="font-family: 'Signika', cursive; margin-bottom: 0;">{{ $dateTime['hari_majlis'] }}</p>
-                            <p class="text-2xl font-bold text-gray-600 leading-tight animate-slide-up-delay" style="font-family: 'Signika', cursive;">{{ $dateTime['tarikh_majlis'] }}</p>
+                            <p class="text-2xl text-gray-600 leading-tight animate-slide-up-delay" style="font-family: 'Noticia Text', cursive; margin-bottom: 0;">{{ $dateTime['hari_majlis'] }}</p>
+                            <p class="text-2xl text-gray-600 leading-tight animate-slide-up-delay" style="font-family: 'Noticia Text', cursive;">{{ $dateTime['tarikh_majlis'] }}</p>
                         </div>
                     </div>
                 </div>
@@ -373,7 +375,7 @@
             </div>
 
             <!-- Custom Play/Pause Button with Randomized Music Bars -->
-            <div x-data="{ isPlaying: true, audio: null, showModal: true }" 
+            <div x-data="{ isPlaying: true, audio: null, showModal: @if(!session('success')) true @else false @endif }" 
                 x-init="audio = $refs.audioElement" class="flex items-center justify-center mb-4">
 
                 <!-- Play/Pause Button -->
