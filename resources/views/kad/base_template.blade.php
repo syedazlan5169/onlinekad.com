@@ -406,8 +406,6 @@
                     class="fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-75">
                     <!-- Modal Content -->
                     <div class="bg-white p-6 rounded-lg shadow-lg">
-                        <h2 class="text-2xl text-gray-700 text-center mb-4">Welcome!</h2>
-                        <p class="text-gray-600 text-center mb-4">Click the button below to start the music.</p>
                         <div class="text-center">
                             <button @click="audio.play(); showModal = false" 
                                 class="bg-blue-500 text-white py-2 px-4 rounded-lg shadow hover:bg-blue-600 transition">
