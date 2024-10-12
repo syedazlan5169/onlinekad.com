@@ -20,8 +20,8 @@ class RsvpController extends Controller
         ]);
 
         return redirect()->back()->with([
-            'success' => 'Wish posted successfully',
-            'message_detail' => 'Anyone with a link can now view your wish.'
+            'success' => 'RSVP successfully submitted',
+            'message_detail' => 'Thanks you for the response'
         ]);
     }
 
