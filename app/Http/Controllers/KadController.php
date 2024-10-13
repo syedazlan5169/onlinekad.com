@@ -26,6 +26,14 @@ class KadController extends Controller
         return view('kad.senarai-kad', compact('kads'));
     }
 
+    public function destroy($id)
+    {
+        $kad = Kad::findOrFail($id);
+        $kad->delete();
+
+        return back()->with('success', 'Kad deleted successfully');
+    }
+
     public function showEdit($id)
     {
         $currentUserId = Auth::id();

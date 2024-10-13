@@ -26,6 +26,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/kad-rsvp/{id}', [KadController::class, 'showRsvp'])->name('kad-rsvp');
     Route::get('/kad-edit/{id}', [KadController::class, 'showEdit'])->name('kad-edit');
     Route::patch('/kad-update/{id}', [KadController::class, 'patch'])->name('kad-update');
+    Route::delete('/kad/{id}', [KadController::class, 'destroy']);
 
     //GuestbookController
     Route::delete('/wish/{id}', [GuestbookController::class, 'destroy']);
