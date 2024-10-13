@@ -192,7 +192,7 @@
                         '3': 'Alex Brush',
                         '4': 'Parisienne',
                     },
-                    openSection: 'maklumat_pengantin', 
+                    openSection: 'others', 
                     namaLelaki: '', 
                     namaPerempuan: '' 
                 }" class="max-w-7xl mx-auto p-8">
@@ -434,9 +434,110 @@
 
                             <!-- Show a summary of all sections or additional form fields here -->
                             <div x-show="openSection === 'others'" class="mt-8">
-                                <!-- Bg Song Selection -->
-                                <div class="sm:col-span-2">
+                                <div>
+                                    <label for="bg_song_id" class="block text-sm font-medium text-gray-900">Fungsi</label>
+                                    <div class="flex items-center justify-between mt-2 mb-4">
+                                        <div x-data="{ enabled: false }" class="flex items-center">
+                                            <!-- Button Element -->
+                                            <button 
+                                                @click="enabled = !enabled" 
+                                                :class="enabled ? 'bg-indigo-600' : 'bg-gray-200'" 
+                                                type="button" 
+                                                class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" 
+                                                role="switch" 
+                                                :aria-checked="enabled.toString()" 
+                                                aria-labelledby="annual-billing-label"
+                                            >
+                                                <!-- Toggle Circle -->
+                                                <span 
+                                                    :class="enabled ? 'translate-x-5' : 'translate-x-0'" 
+                                                    class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+                                                    aria-hidden="true"
+                                                ></span>
+                                            </button>
+                                            
+                                            <!-- Label Text -->
+                                            <span class="ml-3 text-sm" id="annual-billing-label">
+                                                <span class="font-medium text-gray-900">RSVP</span>
+                                            </span>
+                                        </div>
+                                        <div x-data="{ enabled: false }" class="flex items-center">
+                                            <!-- Button Element -->
+                                            <button 
+                                                @click="enabled = !enabled" 
+                                                :class="enabled ? 'bg-indigo-600' : 'bg-gray-200'" 
+                                                type="button" 
+                                                class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" 
+                                                role="switch" 
+                                                :aria-checked="enabled.toString()" 
+                                                aria-labelledby="annual-billing-label"
+                                            >
+                                                <!-- Toggle Circle -->
+                                                <span 
+                                                    :class="enabled ? 'translate-x-5' : 'translate-x-0'" 
+                                                    class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+                                                    aria-hidden="true"
+                                                ></span>
+                                            </button>
+                                            
+                                            <!-- Label Text -->
+                                            <span class="ml-3 text-sm" id="annual-billing-label">
+                                                <span class="font-medium text-gray-900">Guestbook</span>
+                                            </span>
+                                        </div>
+                                        <div x-data="{ enabled: false }" class="flex items-center">
+                                            <!-- Button Element -->
+                                            <button 
+                                                @click="enabled = !enabled" 
+                                                :class="enabled ? 'bg-indigo-600' : 'bg-gray-200'" 
+                                                type="button" 
+                                                class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" 
+                                                role="switch" 
+                                                :aria-checked="enabled.toString()" 
+                                                aria-labelledby="annual-billing-label"
+                                            >
+                                                <!-- Toggle Circle -->
+                                                <span 
+                                                    :class="enabled ? 'translate-x-5' : 'translate-x-0'" 
+                                                    class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+                                                    aria-hidden="true"
+                                                ></span>
+                                            </button>
+                                            
+                                            <!-- Label Text -->
+                                            <span class="ml-3 text-sm" id="annual-billing-label">
+                                                <span class="font-medium text-gray-900">Slideshow</span>
+                                            </span>
+                                        </div>
+                                        <div x-data="{ enabled: false }" class="flex items-center">
+                                            <!-- Button Element -->
+                                            <button 
+                                                @click="enabled = !enabled" 
+                                                :class="enabled ? 'bg-indigo-600' : 'bg-gray-200'" 
+                                                type="button" 
+                                                class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" 
+                                                role="switch" 
+                                                :aria-checked="enabled.toString()" 
+                                                aria-labelledby="annual-billing-label"
+                                            >
+                                                <!-- Toggle Circle -->
+                                                <span 
+                                                    :class="enabled ? 'translate-x-5' : 'translate-x-0'" 
+                                                    class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+                                                    aria-hidden="true"
+                                                ></span>
+                                            </button>
+                                            
+                                            <!-- Label Text -->
+                                            <span class="ml-3 text-sm" id="annual-billing-label">
+                                                <span class="font-medium text-gray-900">Muzik Latar</span>
+                                            </span>
+                                        </div>
+                                        
+                                    </div>
+
                                     <label for="bg_song_id" class="block text-sm font-medium text-gray-900">Lagu Latar Belakang</label>
+                                    <!-- Bg Song Selection -->
                                     <div class="mt-2">
                                         <select id="bg_song_id" name="bg_song_id" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:max-w-xs sm:text-sm">
                                             <option value="1">Irama Klasik Melayu</option>
