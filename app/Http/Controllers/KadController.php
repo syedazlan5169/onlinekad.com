@@ -8,6 +8,7 @@ use App\Models\Kad;
 use App\Models\Design;
 use App\Models\Font;
 use App\Models\Guestbook;
+use App\Models\Package;
 use App\Models\Rsvp;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
@@ -209,6 +210,15 @@ class KadController extends Controller
         $endFormatted = str_replace(['-', ':'], '', $end);  
         $reminderUrl = $this->generateReminderUrl($title, $title, $location, $startFormatted, $endFormatted, $orderId);
 
+        if(request('package_id') == 1)
+        {
+            $isPaid = true;
+        }
+        else
+        {
+            $isPaid = false;
+        }
+
         // Create a new Kad entry
         Kad::create([
             // Maklumat Kad
@@ -217,9 +227,9 @@ class KadController extends Controller
             'user_id' => Auth::id(),
             'design_id' => request('design_id'), 
             'font_id' => request('font'),
-            'package_id' => 3 ,
+            'package_id' => request('package_id'),
             'bg_song_id' => request('bg_song_id'),
-            'is_paid' => false,
+            'is_paid' => $isPaid,
 
             // Maklumat Pengantin
             'nama_penuh_lelaki' => request('nama_penuh_lelaki'),
@@ -482,6 +492,19 @@ class KadController extends Controller
         $totalKehadiran = Rsvp::where('kad_id', $kadData->id)->where('kehadiran', 'Hadir')->sum('jumlah_kehadiran');
 
         return view('kad.kad-rsvp', compact('kadData', 'totalRsvp', 'totalHadir', 'totalTidakHadir', 'totalKehadiran'));
+    }
+
+    public function showFormTempah($id)
+    {
+        $design = Design::findOrFail($id);
+        $packages = Package::all();
+
+        // Assign individual packages to variables
+        $package1 = $packages[0] ?? null;  // Example for Package 1
+        $package2 = $packages[1] ?? null;  // Example for Package 2
+        $package3 = $packages[2] ?? null;  // Example for Package 3
+
+        return view('form-tempah', compact('design', 'package1', 'package2', 'package3'));
     }
 
 }

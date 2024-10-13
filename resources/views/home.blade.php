@@ -102,7 +102,7 @@
                             <!-- Call-to-Action Buttons -->
                             <div class="flex flex-col items-center space-y-2 pb-4 px-4">
                                 <!-- Tempah Button -->
-                                <x-primary-button href="{{ route('form-tempah', ['id' => $product->id]) }}" 
+                                <x-primary-button href="{{ route('form-tempah.show', ['id' => $product->id]) }}" 
                                     class="w-full text-center py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg shadow-md">
                                     Tempah
                                 </x-primary-button>

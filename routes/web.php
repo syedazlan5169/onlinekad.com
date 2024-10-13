@@ -10,9 +10,9 @@ use App\Models\Rsvp;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('/');
-Route::view('katalog', 'katalog')->name('katalog');
-Route::view('pakej', 'pakej')->name('pakej');
-Route::view('tutorial', 'tutorial')->name('tutorial');
+Route::view('katalog', 'katalog')->name('katalog.show');
+Route::view('pakej', 'pakej')->name('pakej.show');
+Route::view('tutorial', 'tutorial')->name('tutorial.show');
 Route::post('/tulis-ucapan', [GuestbookController::class, 'create'])->name('tulis-ucapan');
 Route::post('/create-rsvp', [RsvpController::class, 'create'])->name('create-rsvp');
 Route::post('/toyyibpay-callback', [ToyyibpayController::class, 'handleToyyibpayCallback'])->name('toyyibpay-callback');
@@ -21,11 +21,11 @@ Route::middleware(['auth'])->group(function () {
     Route::view('profile', 'profile')->name('profile');
 
     //KadController
-    Route::get('/senarai-kad', [KadController::class, 'index'])->name('senarai-kad');
-    Route::get('/kad-guestbook/{id}', [KadController::class, 'showGuestbook'])->name('kad-guestbook');
-    Route::get('/kad-rsvp/{id}', [KadController::class, 'showRsvp'])->name('kad-rsvp');
-    Route::get('/kad-edit/{id}', [KadController::class, 'showEdit'])->name('kad-edit');
-    Route::patch('/kad-update/{id}', [KadController::class, 'patch'])->name('kad-update');
+    Route::get('/senarai-kad', [KadController::class, 'index'])->name('senarai-kad.show');
+    Route::get('/kad-guestbook/{id}', [KadController::class, 'showGuestbook'])->name('kad-guestbook.show');
+    Route::get('/kad-rsvp/{id}', [KadController::class, 'showRsvp'])->name('kad-rsvp.show');
+    Route::get('/kad-edit/{id}', [KadController::class, 'showEdit'])->name('kad-edit.show');
+    Route::patch('/kad-update/{id}', [KadController::class, 'patch'])->name('kad.update');
     Route::delete('/kad/{id}', [KadController::class, 'destroy']);
 
     //GuestbookController
@@ -39,10 +39,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/payment-status', [ToyyibpayController::class, 'handleToyyibpayRedirect'])->name('payment-status');
 
     //Tempah Kad
-    Route::get('/form-tempah/{id}', function ($id) {
-        return view('form-tempah', ['id' => $id]);
-    })->name('form-tempah');
-
+    Route::get('/form-tempah/{id}', [KadController::class, 'showFormTempah'])->name('form-tempah.show');
     Route::post('/tempah', [KadController::class, 'tempahKad'])->name('tempah');
 });
 

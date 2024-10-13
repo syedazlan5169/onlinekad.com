@@ -17,7 +17,7 @@ class PackageSeeder extends Seeder
             [
                 'name' => 'Ratna',
                 'description' => 'Package 1',
-                'price' => 39,
+                'price' => 00,
             ],
             [
                 'name' => 'Kirana',

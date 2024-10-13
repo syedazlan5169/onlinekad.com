@@ -14,37 +14,176 @@
         </div> -->
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:flex sm:justify-center gap-3 sm:px-6 lg:px-8">
-            <div class="bg-green-100 h-full w-[40%] p-4  shadow-lg sm:rounded-lg">
-                <div class="group relative mb-8 bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105">
-                    <!-- Product Image -->
-                    <div class="h-56 w-full overflow-hidden bg-gray-100 lg:h-72 xl:h-80">
-                        <img src="{{ asset($product->product_image_url) }}" alt="{{ $product->design_code }}"
-                            class="h-full w-full object-cover object-center group-hover:opacity-90 transition-opacity duration-300">
+        <div x-data="{ selectedPackage: '2' }" class="max-w-7xl mx-auto sm:flex sm:justify-center gap-3 sm:px-6">
+            <div class="h-full sm:w-[30%] sm:pr-4">
+                <!-- Design Section -->
+                <div class="mb-4 p-8 bg-white shadow-lg rounded-lg overflow-hidden">
+                    <div class="rounded-xl p-8 ring-1 ring-gray-200">
+                        <!-- Product Image -->
+                        <div class="h-full w-full overflow-hidden sm:h-40">
+                            <img src="{{ asset($design->product_image_url) }}" alt="{{ $design->design_code }}"
+                                class="h-full w-full object-cover object-center group-hover:opacity-90 transition-opacity duration-300">
+                        </div>
+
+                        <!-- Product Title -->
+                        <h3 class="my-4 text-center font-bold text-gray-800 text-2xl">
+                            {{ $design->design_code }}
+                        </h3>
+
+                        <div class="flex flex-col items-center space-y-2 pb-4 px-4">
+                            <!-- Tukar Design -->
+                            <x-primary-button href="{{ route('katalog.show') }}" 
+                                class="w-full text-center py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg shadow-md">
+                                Tukar Design 
+                            </x-primary-button>
+                        </div>
                     </div>
+                </div>
 
-                    <!-- Product Title -->
-                    <h3 class="my-4 text-center font-bold text-gray-800 text-xl transition-colors duration-300 group-hover:text-indigo-600">
-                        {{ $product->design_code }}
-                    </h3>
-
-                    <!-- Call-to-Action Buttons -->
-                    <div class="flex flex-col items-center space-y-2 pb-4 px-4">
-                        <!-- Tempah Button -->
-                        <x-primary-button href="{{ route('form-tempah', ['id' => $product->id]) }}" 
-                            class="w-full text-center py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg shadow-md">
-                            Tempah
-                        </x-primary-button>
+                <!-- Package Section -->
+                <div class="mb-4 p-8 bg-white shadow-lg rounded-lg overflow-hidden">
+                    <div class="rounded-xl px-6 py-3 ring-1 ring-gray-200 xl:px-8 xl:py-4">
+                        <fieldset x-model="selectedPackage">
+                            <div class="mt-3 flex items-center justify-center space-x-3">
+                                <!-- Active and Checked: "ring ring-offset-1" -->
+                                <label 
+                                    aria-label="{{ $package1->name }}" 
+                                    class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 text-pink-500 ring-current focus:outline-none"
+                                    :class="{ 'ring ring-offset-1': selectedPackage == 1}"
+                                    @click="selectedPackage = '1'">
+                                    <input type="radio" name="color-choice" value="1" class="sr-only">
+                                    <span aria-hidden="true" class="h-8 w-14 rounded-full border border-black border-opacity-10 bg-current flex items-center justify-center">
+                                        <span class="text-sm text-white font-bold">{{ $package1->name }}</span>
+                                    </span>
+                                </label>
+                                <!-- Active and Checked: "ring ring-offset-1" -->
+                                <label 
+                                    aria-label="{{ $package2->name }}" 
+                                    class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 text-purple-500 ring-current focus:outline-none"
+                                    :class="{ 'ring ring-offset-1': selectedPackage == 2}"
+                                    @click="selectedPackage = '2'">
+                                    <input type="radio" name="color-choice" value="2" class="sr-only">
+                                    <span aria-hidden="true" class="h-8 w-14 rounded-full border border-black border-opacity-10 bg-current flex items-center justify-center">
+                                        <span class="text-sm text-white font-bold">{{ $package2->name }}</span>
+                                    </span>
+                                </label>
+                                <!-- Active and Checked: "ring ring-offset-1" -->
+                                <label 
+                                    aria-label="{{ $package3->name }}" 
+                                    class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 text-green-500 ring-current focus:outline-none"
+                                    :class="{ 'ring ring-offset-1': selectedPackage == 3}"
+                                    @click="selectedPackage = '3'">
+                                    <input type="radio" name="color-choice" value="3" class="sr-only">
+                                    <span aria-hidden="true" class="h-8 w-14 rounded-full border border-black border-opacity-10 bg-current flex items-center justify-center">
+                                        <span class="text-sm text-white font-bold">{{ $package3->name }}</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </fieldset>
                         
-                        <!-- Live Preview Button -->
-                        <x-primary-button href="preview/{{ $product->design_code }}" 
-                            class="w-full text-center py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg shadow-md mt-2 sm:mt-0">
-                            Live Preview
-                        </x-primary-button>
+                        <div x-show="selectedPackage === '1'">
+                            <p class="mt-8 text-lg line-through text-center leading-6 text-gray-600">RM29</p>
+                            <p class="mt-0 flex items-center justify-center gap-x-1">
+                            <span class="text-xl font-semibold leading-6 text-gray-600">RM</span>
+                            <span class="text-5xl font-bold tracking-tight text-pink-500">{{ $package1->price }}</span>
+                            </p>
+                            <ul role="list" class="mt-8 space-y-3 text-sm leading-6 text-gray-600 xl:mt-5">
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-pink-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                </svg>
+                                Kad jemputan digital
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-pink-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                </svg>
+                                Fungsi Guestbook
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-pink-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                </svg>
+                                Fungsi Whatsapp & Panggilan 
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-pink-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                </svg>
+                                Fungsi Google Calendar & Apple Calendar
+                            </li>
+                            </ul>
+                        </div>
+                         <div x-show="selectedPackage === '2'">
+                            <p class="mt-8 text-lg line-through text-center leading-6 text-gray-600">RM69</p>
+                            <p class="mt-0 flex items-center justify-center gap-x-1">
+                            <span class="text-xl font-semibold leading-6 text-gray-600">RM</span>
+                            <span class="text-5xl font-bold tracking-tight text-purple-500">{{ $package2->price }}</span>
+                            </p>
+                            <ul role="list" class="mt-8 space-y-3 text-sm leading-6 text-gray-600 xl:mt-5">
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-purple-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                </svg>
+                                Semua fungsi pakej Ratna 
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-purple-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                </svg>
+                                Fungsi Google Map & Waze
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-purple-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                </svg>
+                                Fungsi RSVP
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-purple-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                </svg>
+                                Gambar Slideshow
+                            </li>
+                            </ul>
+                        </div>
+                        <div x-show="selectedPackage === '3'">
+                            <p class="mt-8 text-lg line-through text-center leading-6 text-gray-600">RM89</p>
+                            <p class="flex items-center justify-center gap-x-1">
+                            <span class="text-xl font-semibold leading-6 text-gray-600">RM</span>
+                            <span class="text-5xl font-bold tracking-tight text-green-500">{{ $package3->price }}</span>
+                            </p>
+                            <ul role="list" class="mt-8 space-y-3 text-sm leading-6 text-gray-600 xl:mt-5">
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-green-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                </svg>
+                                Semua fungsi pakej Kirana
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-green-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                </svg>
+                                Fungsi Muzik Latar Belakang
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-green-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                </svg>
+                                Option untuk 2 pasangan dalam 1 kad
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-green-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                </svg>
+                                Fungsi Money Gift
+                            </li>
+                            </ul>
+                        </div>
                     </div>
-                <div id="subchild2" class="bg-yellow-500 w-full h-24 rounded-lg"></div>
+                </div>
             </div>
-            <div class="bg-red-100 h-full w-[60%] overflow-hidden shadow-lg sm:rounded-lg">
+            <div class="bg-white h-full overflow-hidden shadow-lg sm:rounded-lg sm:w-[70%]">
                 <div x-data="{
                     selectedFont: '1', 
                     fonts: {
@@ -62,7 +201,8 @@
                     <form action="{{ route('tempah') }}" method="POST">
                         @csrf
 
-                        <input class="hidden" name="design_id" id="design_id" value="{{ $id }}">
+                        <input class="hidden" name="design_id" id="design_id" value="{{ $design->id }}">
+                        <input class="hidden" name="package_id" id="package_id" :value="selectedPackage">
                         <!-- Accordion Section 1: Maklumat Pengantin -->
                         <div class="border rounded-md p-4 mb-4">
                             <h2 @click="openSection = openSection === 'maklumat_pengantin' ? '' : 'maklumat_pengantin'" class="text-lg underline font-bold cursor-pointer flex justify-between items-center">
@@ -194,22 +334,6 @@
                                     </div>
                                 </div>
 
-                                <!-- Ayat Jemputan -->
-                                <div class="sm:col-span-1">
-                                    <label for="ayat_jemputan" class="block text-sm font-medium text-gray-900">Ayat Jemputan</label>
-                                    <div class="mt-2">
-                                        <textarea name="ayat_jemputan" id="ayat_jemputan" rows="4" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">DENGAN SEGALA HORMATNYA MENJEMPUT DATO'/ DATIN/ TUAN/ PUAN/ ENCIK/ CIK DAN SEISI KELUARGA KE MAJLIS PERKAHWINAN PUTERA KAMI BERSAMA PASANGANNYA</textarea>
-                                    </div>
-                                </div>
-
-                                <!-- Doa Pengantin -->
-                                <div class="sm:col-span-1">
-                                    <label for="doa_pengantin" class="block text-sm font-medium text-gray-900">Doa Pengantin</label>
-                                    <div class="mt-2">
-                                        <textarea name="doa_pengantin" id="doa_pengantin" rows="4" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">“Ya Allah, berkatilah majlis perkahwinan ini, limpahkan baraqah dan rahmat kepada kedua mempelai ini, Kurniakanlah mereka zuriat yang soleh dan solehah. Kekalkan jodoh mereka di dunia dan di akhirat dan sempurnakanlah agama mereka dengan berkat ikatan ini.”</textarea>
-                                    </div>
-                                </div>
-
                                 <!-- Tarikh, Masa -->
                                 <div class="sm:col-span-1">
                                     <label for="tarikh_majlis" class="block text-sm font-medium text-gray-900">Tarikh Majlis</label>
@@ -232,6 +356,22 @@
                                     </div>
                                 </div>
 
+                                <!-- Ayat Jemputan -->
+                                <div class="sm:col-span-1">
+                                    <label for="ayat_jemputan" class="block text-sm font-medium text-gray-900">Ayat Jemputan</label>
+                                    <div class="mt-2">
+                                        <textarea name="ayat_jemputan" id="ayat_jemputan" rows="4" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">DENGAN SEGALA HORMATNYA MENJEMPUT DATO'/ DATIN/ TUAN/ PUAN/ ENCIK/ CIK DAN SEISI KELUARGA KE MAJLIS PERKAHWINAN PUTERA KAMI BERSAMA PASANGANNYA</textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Doa Pengantin -->
+                                <div class="sm:col-span-1">
+                                    <label for="doa_pengantin" class="block text-sm font-medium text-gray-900">Doa Pengantin</label>
+                                    <div class="mt-2">
+                                        <textarea name="doa_pengantin" id="doa_pengantin" rows="4" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">“Ya Allah, berkatilah majlis perkahwinan ini, limpahkan baraqah dan rahmat kepada kedua mempelai ini, Kurniakanlah mereka zuriat yang soleh dan solehah. Kekalkan jodoh mereka di dunia dan di akhirat dan sempurnakanlah agama mereka dengan berkat ikatan ini.”</textarea>
+                                    </div>
+                                </div>
+                                
                                 <!-- Alamat, Google Maps, Waze -->
                                 <div class="sm:col-span-2">
                                     <label for="alamat_majlis" class="block text-sm font-medium text-gray-900">Alamat Majlis</label>
