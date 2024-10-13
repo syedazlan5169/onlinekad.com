@@ -13,6 +13,7 @@ use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class KadController extends Controller
 {
@@ -74,7 +75,7 @@ class KadController extends Controller
         $end = request('tarikh_majlis') . 'T' . request('masa_tamat_majlis');
         $startFormatted = str_replace(['-', ':'], '', $start); 
         $endFormatted = str_replace(['-', ':'], '', $end);
-        $googleCalendarUrl = $this->generateReminderUrl($title, $title, $location, $startFormatted, $endFormatted);
+        $reminderUrl = $this->generateReminderUrl($title, $title, $location, $startFormatted, $endFormatted, $kad->order_id);
 
         // Update the Kad with the validated data
         $kad->update([
@@ -102,7 +103,8 @@ class KadController extends Controller
             'alamat_majlis' => $request->input('alamat_majlis'),
             'google_url' => $request->input('google_url'),
             'waze_url' => $request->input('waze_url'),
-            'google_calendar_url' => $googleCalendarUrl,
+            'google_calendar_url' => $reminderUrl['googleCalendarLink'],
+            'apple_calendar_url' => $reminderUrl['icalendarFilePath'],
 
             // JSON fields
             'nombor_telefon' =>[
@@ -187,19 +189,23 @@ class KadController extends Controller
             'waze_url' => ['required'],
         ]);
 
+        //Generate orderId
+        $orderId = 'SY' . rand(100000, 999999) . strtoupper(Str::random(5));
+
         //Generate Calendar Url
         $title = request('nama_panggilan_lelaki') . '&' . request('nama_panggilan_perempuan');
         $location = request('alamat_majlis');
         $start = request('tarikh_majlis') . 'T' . request('masa_mula_majlis');
         $end = request('tarikh_majlis') . 'T' . request('masa_tamat_majlis');
-        $googleCalendarUrl = $this->generateReminderUrl($title, $title, $location, $start, $end);
-        dd($googleCalendarUrl);
+        $startFormatted = str_replace(['-', ':'], '', $start);
+        $endFormatted = str_replace(['-', ':'], '', $end);  
+        $reminderUrl = $this->generateReminderUrl($title, $title, $location, $startFormatted, $endFormatted, $orderId);
 
         // Create a new Kad entry
         Kad::create([
             // Maklumat Kad
             'slug' => Str::slug(request('nama_panggilan_lelaki')) . '-' . Str::slug(request('nama_panggilan_perempuan')) . '-' . Str::random(5),
-            'order_id' => 'SY' . rand(100000, 999999) . strtoupper(Str::random(5)),
+            'order_id' => $orderId,
             'user_id' => Auth::id(),
             'design_id' => request('design_id'), 
             'font_id' => request('font'),
@@ -228,7 +234,8 @@ class KadController extends Controller
             'alamat_majlis' => request('alamat_majlis'),
             'google_url' => request('google_url'),
             'waze_url' => request('waze_url'),
-            'google_calendar_url' => $googleCalendarUrl,
+            'google_calendar_url' => $reminderUrl['googleCalendarLink'],
+            'apple_calendar_url' => $reminderUrl['icalendarFilePath'],
 
             // Maklumat Nombor Telefon (JSON)
             'nombor_telefon' => [
@@ -286,7 +293,8 @@ class KadController extends Controller
         return redirect('/senarai-kad');
     }
 
-    public function generateReminderUrl($title, $description, $location, $start, $end)
+
+    public function generateReminderUrl($title, $description, $location, $start, $end, $orderId)
     {
         $eventTitle = urlencode($title);
         $eventDescription = urlencode($description);
@@ -296,9 +304,41 @@ class KadController extends Controller
 
         $googleCalendarLink = "https://www.google.com/calendar/render?action=TEMPLATE&text={$eventTitle}&dates={$startDateTime}/{$endDateTime}&details={$eventDescription}&location={$eventLocation}&sf=true&output=xml";
 
-        return $googleCalendarLink;
+        $icalContent = "BEGIN:VCALENDAR
+        VERSION:2.0
+        PRODID:-//Your Company//Your Product//EN
+        BEGIN:VEVENT
+        UID:" . uniqid() . "
+        DTSTAMP:" . gmdate('Ymd\THis\Z') . "
+        DTSTART:{$startDateTime}
+        DTEND:{$endDateTime}
+        SUMMARY:{$eventTitle}
+        DESCRIPTION:{$eventDescription}
+        LOCATION:{$eventLocation}
+        END:VEVENT
+        END:VCALENDAR";
 
+        // Define a unique file name
+        $fileName = $orderId . '.ics';
+
+        // Use the 'public' disk, which corresponds to 'storage/app/public'
+        $directory = 'icalendar';
+
+        // Check if the directory exists, if not, create it
+        if (!Storage::disk('public')->exists($directory)) {
+            Storage::disk('public')->makeDirectory($directory);
+        }
+
+        // Save the iCalendar content to the file in the 'public' disk
+        Storage::disk('public')->put("{$directory}/{$fileName}", $icalContent);
+
+        // Return Google Calendar link and the public URL to the iCalendar file
+        return [
+            'googleCalendarLink' => $googleCalendarLink,
+            'icalendarFilePath' => Storage::url("{$directory}/{$fileName}")
+        ];
     }
+
 
     public function translateToMalay($date, $option = 3)
     {

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('kads', function (Blueprint $table) {
             $table->longText('google_calendar_url')->nullable();
-            $table->string('apple_calender_url')->nullable();
+            $table->string('apple_calendar_url')->nullable();
         });
     }
 
@@ -24,7 +24,7 @@ return new class extends Migration
     {
         Schema::table('kads', function (Blueprint $table) {
             $table->dropColumn('google_calendar_url');
-            $table->dropColumn('apple_calender_url');
+            $table->dropColumn('apple_calendar_url');
         });
     }
 };
