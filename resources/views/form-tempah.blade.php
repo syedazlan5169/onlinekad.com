@@ -5,9 +5,46 @@
         </h2>
     </x-slot>
 
+    <!-- <div id="parent" class="flex gap-4 justify-center items-center h-screen px-28">
+            <div id="child1" class="h-full w-[20%] rounded-lg bg-green-300 p-4">
+                <div id="subchild1" class="bg-yellow-500 w-full h-24 rounded-lg mb-4"></div>
+                <div id="subchild2" class="bg-yellow-500 w-full h-24 rounded-lg"></div>
+            </div>
+            <div id="child2" class="h-full w-[80%] rounded-lg bg-red-300"></div>
+        </div> -->
+
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="max-w-7xl mx-auto sm:flex sm:justify-center gap-3 sm:px-6 lg:px-8">
+            <div class="bg-green-100 h-full w-[40%] p-4  shadow-lg sm:rounded-lg">
+                <div class="group relative mb-8 bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105">
+                    <!-- Product Image -->
+                    <div class="h-56 w-full overflow-hidden bg-gray-100 lg:h-72 xl:h-80">
+                        <img src="{{ asset($product->product_image_url) }}" alt="{{ $product->design_code }}"
+                            class="h-full w-full object-cover object-center group-hover:opacity-90 transition-opacity duration-300">
+                    </div>
+
+                    <!-- Product Title -->
+                    <h3 class="my-4 text-center font-bold text-gray-800 text-xl transition-colors duration-300 group-hover:text-indigo-600">
+                        {{ $product->design_code }}
+                    </h3>
+
+                    <!-- Call-to-Action Buttons -->
+                    <div class="flex flex-col items-center space-y-2 pb-4 px-4">
+                        <!-- Tempah Button -->
+                        <x-primary-button href="{{ route('form-tempah', ['id' => $product->id]) }}" 
+                            class="w-full text-center py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg shadow-md">
+                            Tempah
+                        </x-primary-button>
+                        
+                        <!-- Live Preview Button -->
+                        <x-primary-button href="preview/{{ $product->design_code }}" 
+                            class="w-full text-center py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg shadow-md mt-2 sm:mt-0">
+                            Live Preview
+                        </x-primary-button>
+                    </div>
+                <div id="subchild2" class="bg-yellow-500 w-full h-24 rounded-lg"></div>
+            </div>
+            <div class="bg-red-100 h-full w-[60%] overflow-hidden shadow-lg sm:rounded-lg">
                 <div x-data="{
                     selectedFont: '1', 
                     fonts: {
@@ -42,7 +79,7 @@
                                 <div class="sm:col-span-1">
                                     <label for="nama_penuh_lelaki" class="block text-sm font-medium text-gray-900">Nama Penuh Pengantin Lelaki</label>
                                     <div class="mt-2">
-                                        <input type="text" name="nama_penuh_lelaki" id="nama_penuh_lelaki" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        <input type="text" name="nama_penuh_lelaki" id="nama_penuh_lelaki" placeholder="Abdul Rahman Bin Abdul Rahim" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
                                     </div>
                                 </div>
 
@@ -50,7 +87,7 @@
                                 <div class="sm:col-span-1">
                                     <label for="nama_panggilan_lelaki" class="block text-sm font-medium text-gray-900">Nama Panggilan Pengantin Lelaki</label>
                                     <div class="mt-2">
-                                        <input x-model="namaLelaki" type="text" name="nama_panggilan_lelaki" id="nama_panggilan_lelaki" maxlength="12" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        <input x-model="namaLelaki" type="text" name="nama_panggilan_lelaki" id="nama_panggilan_lelaki" placeholder="Rahman" maxlength="12" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
                                     </div>
                                 </div>
 
@@ -58,7 +95,7 @@
                                 <div class="sm:col-span-1">
                                     <label for="nama_penuh_perempuan" class="block text-sm font-medium text-gray-900">Nama Penuh Pengantin Perempuan</label>
                                     <div class="mt-2">
-                                        <input type="text" name="nama_penuh_perempuan" id="nama_penuh_perempuan" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        <input type="text" name="nama_penuh_perempuan" id="nama_penuh_perempuan" placeholder="Nurul Hawa Binti Mior Rahim" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
                                     </div>
                                 </div>
 
@@ -66,7 +103,7 @@
                                 <div class="sm:col-span-1">
                                     <label for="nama_panggilan_perempuan" class="block text-sm font-medium text-gray-900">Nama Panggilan Pengantin Perempuan</label>
                                     <div class="mt-2">
-                                        <input x-model="namaPerempuan" type="text" name="nama_panggilan_perempuan" id="nama_panggilan_perempuan" maxlength="12" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        <input x-model="namaPerempuan" type="text" name="nama_panggilan_perempuan" id="nama_panggilan_perempuan" placeholder="Hawa" maxlength="12" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
                                     </div>
                                 </div>
 
