@@ -22,6 +22,7 @@
 			<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 				<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 					<div x-data="{
+						bgSongId: '{{ $kadData->bg_song_id }}', 
 						selectedFont: '{{ $kadData->font_id }}', 
 						fonts: {
 						'1': 'Great Vibes',
@@ -29,7 +30,7 @@
 						'3': 'Alex Brush',
 						'4': 'Parisienne',
 						},
-						openSection: 'maklumat_pengantin', namaLelaki: '{{ $kadData->nama_panggilan_lelaki }}', namaPerempuan: '{{ $kadData->nama_panggilan_perempuan }}'
+						openSection: 'maklumatPengantin', namaLelaki: '{{ $kadData->nama_panggilan_lelaki }}', namaPerempuan: '{{ $kadData->nama_panggilan_perempuan }}'
 					}" class="max-w-7xl mx-auto p-8">
 					
 					<!-- Form starts -->
@@ -39,44 +40,44 @@
 
 						<!-- Accordion Section 1: Maklumat Pengantin -->
 						<div class="border rounded-md p-4 mb-4">
-							<h2 @click="openSection = openSection === 'maklumat_pengantin' ? '' : 'maklumat_pengantin'" class="text-lg underline font-bold cursor-pointer flex justify-between items-center">
+							<h2 @click="openSection = openSection === 'maklumatPengantin' ? '' : 'maklumatPengantin'" class="text-lg underline font-bold cursor-pointer flex justify-between items-center">
 								Maklumat Pengantin
-								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" :class="openSection === 'maklumat_pengantin' ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" :class="openSection === 'maklumatPengantin' ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 									<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
 								</svg>
 							</h2>
-							<div x-show="openSection === 'maklumat_pengantin'" x-data="{ penjemput: '{{ $kadData->penjemput }}', bg_song_id: '{{ $kadData->bg_song_id }}' }" class="mt-8 grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-6 sm:grid-cols-1">
-								<input type="hidden" name="design_id" id="design_id" value="{{ $kadData->design->id }}">
+							<div x-show="openSection === 'maklumatPengantin'" x-data="{ penjemput: '{{ $kadData->penjemput }}' }" class="mt-8 grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-6 sm:grid-cols-1">
+								<input type="hidden" name="design-id" id="design-id" value="{{ $kadData->design->id }}">
 
 								<!-- Nama Penuh Pengantin Lelaki -->
 								<div class="lg:col-span-3 sm:col-span-1">
-									<label for="nama_penuh_lelaki" class="block text-sm font-medium text-gray-900">Nama Penuh Pengantin Lelaki</label>
+									<label for="nama-penuh-lelaki" class="block text-sm font-medium text-gray-900">Nama Penuh Pengantin Lelaki</label>
 									<div class="mt-2">
-										<input type="text" name="nama_penuh_lelaki" id="nama_penuh_lelaki" value="{{ $kadData->nama_penuh_lelaki }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+										<input type="text" name="nama-penuh-lelaki" id="nama-penuh-lelaki" value="{{ $kadData->nama_penuh_lelaki }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
 									</div>
 								</div>
 
 								<!-- Nama Panggilan Pengantin Lelaki -->
 								<div class="lg:col-span-3 sm:col-span-1">
-									<label for="nama_panggilan_lelaki" class="block text-sm font-medium text-gray-900">Nama Panggilan Pengantin Lelaki</label>
+									<label for="nama-panggilan-lelaki" class="block text-sm font-medium text-gray-900">Nama Panggilan Pengantin Lelaki</label>
 									<div class="mt-2">
-										<input x-model="namaLelaki" type="text" name="nama_panggilan_lelaki" id="nama_panggilan_lelaki" maxlength="12" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+										<input x-model="namaLelaki" type="text" name="nama-panggilan-lelaki" id="nama-panggilan-lelaki" maxlength="12" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
 									</div>
 								</div>
 
 								<!-- Nama Penuh Pengantin Perempuan -->
 								<div class="lg:col-span-3 sm:col-span-1">
-									<label for="nama_penuh_perempuan" class="block text-sm font-medium text-gray-900">Nama Penuh Pengantin Perempuan</label>
+									<label for="nama-penuh-perempuan" class="block text-sm font-medium text-gray-900">Nama Penuh Pengantin Perempuan</label>
 									<div class="mt-2">
-										<input type="text" name="nama_penuh_perempuan" id="nama_penuh_perempuan" value="{{ $kadData->nama_penuh_perempuan }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+										<input type="text" name="nama-penuh-perempuan" id="nama-penuh-perempuan" value="{{ $kadData->nama_penuh_perempuan }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
 									</div>
 								</div>
 
 								<!-- Nama Panggilan Pengantin Perempuan -->
 								<div class="lg:col-span-3 sm:col-span-1">
-									<label for="nama_panggilan_perempuan" class="block text-sm font-medium text-gray-900">Nama Panggilan Pengantin Perempuan</label>
+									<label for="nama-panggilan-perempuan" class="block text-sm font-medium text-gray-900">Nama Panggilan Pengantin Perempuan</label>
 									<div class="mt-2">
-										<input x-model="namaPerempuan" type="text" name="nama_panggilan_perempuan" id="nama_panggilan_perempuan" maxlength="12" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+										<input x-model="namaPerempuan" type="text" name="nama-panggilan-perempuan" id="nama-panggilan-perempuan" maxlength="12" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
 									</div>
 								</div>
 
@@ -122,15 +123,15 @@
 								<!-- Show fields when penjemput is 1 or 3 -->
 								<div x-show="penjemput === '3' || penjemput === '1'" class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-8">
 									<div class="sm:col-span-1">
-										<label for="nama_bapa_pengantin_lelaki" class="block text-sm font-medium text-gray-900">Nama Bapa Pengantin Lelaki</label>
+										<label for="nama-bapa-pengantin-lelaki" class="block text-sm font-medium text-gray-900">Nama Bapa Pengantin Lelaki</label>
 										<div class="mt-2">
-											<input type="text" name="nama_bapa_pengantin_lelaki" id="nama_bapa_pengantin_lelaki" value="{{ $kadData->nama_bapa_pengantin_lelaki }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+											<input type="text" name="nama-bapa-pengantin-lelaki" id="nama-bapa-pengantin-lelaki" value="{{ $kadData->nama_bapa_pengantin_lelaki }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
 										</div>
 									</div>
 									<div class="sm:col-span-1">
-										<label for="nama_ibu_pengantin_lelaki" class="block text-sm font-medium text-gray-900">Nama Ibu Pengantin Lelaki</label>
+										<label for="nama-ibu-pengantin-lelaki" class="block text-sm font-medium text-gray-900">Nama Ibu Pengantin Lelaki</label>
 										<div class="mt-2">
-											<input type="text" name="nama_ibu_pengantin_lelaki" id="nama_ibu_pengantin_lelaki" value="{{ $kadData->nama_ibu_pengantin_lelaki }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+											<input type="text" name="nama-ibu-pengantin-lelaki" id="nama-ibu-pengantin-lelaki" value="{{ $kadData->nama_ibu_pengantin_lelaki }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
 										</div>
 									</div>
 								</div>
@@ -138,15 +139,15 @@
 								<!-- Show fields when penjemput is 2 or 3 -->
 								<div x-show="penjemput === '3' || penjemput === '2'" class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-8">
 									<div class="sm:col-span-1">
-										<label for="nama_bapa_pengantin_perempuan" class="block text-sm font-medium text-gray-900">Nama Bapa Pengantin Perempuan</label>
+										<label for="nama-bapa-pengantin-perempuan" class="block text-sm font-medium text-gray-900">Nama Bapa Pengantin Perempuan</label>
 										<div class="mt-2">
-											<input type="text" name="nama_bapa_pengantin_perempuan" id="nama_bapa_pengantin_perempuan" value="{{ $kadData->nama_bapa_pengantin_perempuan }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+											<input type="text" name="nama-bapa-pengantin-perempuan" id="nama-bapa-pengantin-perempuan" value="{{ $kadData->nama_bapa_pengantin_perempuan }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
 										</div>
 									</div>
 									<div class="sm:col-span-1">
-										<label for="nama_ibu_pengantin_perempuan" class="block text-sm font-medium text-gray-900">Nama Ibu Pengantin Perempuan</label>
+										<label for="nama-ibu-pengantin-perempuan" class="block text-sm font-medium text-gray-900">Nama Ibu Pengantin Perempuan</label>
 										<div class="mt-2">
-											<input type="text" name="nama_ibu_pengantin_perempuan" id="nama_ibu_pengantin_perempuan" value="{{ $kadData->nama_ibu_pengantin_perempuan }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+											<input type="text" name="nama-ibu-pengantin-perempuan" id="nama-ibu-pengantin-perempuan" value="{{ $kadData->nama_ibu_pengantin_perempuan }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
 										</div>
 									</div>
 								</div>
@@ -155,9 +156,9 @@
 
 						<!-- Accordion Section 2: Maklumat Majlis -->
 						<div class="border rounded-md p-4 mb-4">
-							<h2 @click="openSection = openSection === 'maklumat_majlis' ? '' : 'maklumat_majlis'" class="text-lg underline font-bold cursor-pointer flex justify-between items-center">
+							<h2 @click="openSection = openSection === 'maklumatMajlis' ? '' : 'maklumatMajlis'" class="text-lg underline font-bold cursor-pointer flex justify-between items-center">
 								Maklumat Majlis
-								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" :class="openSection === 'maklumat_majlis' ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" :class="openSection === 'maklumatMajlis' ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 									<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
 								</svg>
 							</h2>
@@ -165,74 +166,74 @@
 
 								<!-- Tajuk Kad -->
 								<div class="sm:col-span-full">
-									<label for="tajuk_kad" class="block text-sm font-medium text-gray-900">Tajuk Kad</label>
+									<label for="tajuk-kad" class="block text-sm font-medium text-gray-900">Tajuk Kad</label>
 									<div class="mt-2">
-										<input type="text" name="tajuk_kad" id="tajuk_kad" value="{{ $kadData->tajuk_kad }}" spellcheck="false" maxlength="20" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+										<input type="text" name="tajuk-kad" id="tajuk-kad" value="{{ $kadData->tajuk_kad }}" spellcheck="false" maxlength="20" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
 									</div>
 								</div>
 
 								<!-- Ayat Jemputan -->
 								<div class="sm:col-span-3">
-									<label for="ayat_jemputan" class="block text-sm font-medium text-gray-900">Ayat Jemputan</label>
+									<label for="ayat-jemputan" class="block text-sm font-medium text-gray-900">Ayat Jemputan</label>
 									<div class="mt-2">
-										<textarea name="ayat_jemputan" id="ayat_jemputan" rows="4" style="text-transform: uppercase;" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">{{ $kadData->ayat_jemputan }}</textarea>
+										<textarea name="ayat-jemputan" id="ayat-jemputan" rows="4" style="text-transform: uppercase;" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">{{ $kadData->ayat_jemputan }}</textarea>
 									</div>
 								</div>
 
 								<!-- Doa Pengantin -->
 								<div class="sm:col-span-3">
-									<label for="doa_pengantin" class="block text-sm font-medium text-gray-900">Doa Pengantin</label>
+									<label for="doa-pengantin" class="block text-sm font-medium text-gray-900">Doa Pengantin</label>
 									<div class="mt-2">
-										<textarea name="doa_pengantin" id="doa_pengantin" rows="4" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">{{ $kadData->doa_pengantin }}</textarea>
+										<textarea name="doa-pengantin" id="doa-pengantin" rows="4" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">{{ $kadData->doa_pengantin }}</textarea>
 									</div>
 								</div>
 
 								<!-- Tarikh Majlis -->
 								<div class="sm:col-span-2">
-									<label for="tarikh_majlis" class="block text-sm font-medium text-gray-900">Tarikh Majlis</label>
+									<label for="tarikh-majlis" class="block text-sm font-medium text-gray-900">Tarikh Majlis</label>
 									<div class="mt-2">
-										<input type="date" name="tarikh_majlis" id="tarikh_majlis" value="{{ \Carbon\Carbon::parse($kadData->tarikh_majlis)->format('Y-m-d') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+										<input type="date" name="tarikh-majlis" id="tarikh-majlis" value="{{ \Carbon\Carbon::parse($kadData->tarikh_majlis)->format('Y-m-d') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
 									</div>
 								</div>
 
 								<!-- Masa Mula -->
 								<div class="sm:col-span-2">
-									<label for="masa_mula_majlis" class="block text-sm font-medium text-gray-900">Masa Mula</label>
+									<label for="masa-mula-majlis" class="block text-sm font-medium text-gray-900">Masa Mula</label>
 									<div class="mt-2">
-										<input type="time" name="masa_mula_majlis" id="masa_mula_majlis" value="{{ $kadData->masa_mula_majlis }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+										<input type="time" name="masa-mula-majlis" id="masa-mula-majlis" value="{{ $kadData->masa_mula_majlis }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
 									</div>
 								</div>
 
 								<!-- Masa Tamat -->
 								<div class="sm:col-span-2">
-									<label for="masa_tamat_majlis" class="block text-sm font-medium text-gray-900">Masa Tamat</label>
+									<label for="masa-tamat-majlis" class="block text-sm font-medium text-gray-900">Masa Tamat</label>
 									<div class="mt-2">
-										<input type="time" name="masa_tamat_majlis" id="masa_tamat_majlis" value="{{ $kadData->masa_tamat_majlis }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+										<input type="time" name="masa-tamat-majlis" id="masa-tamat-majlis" value="{{ $kadData->masa_tamat_majlis }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
 									</div>
 								</div>
 
 								<!-- Alamat Majlis -->
 								<div class="sm:col-span-3">
-									<label for="alamat_majlis" class="block text-sm font-medium text-gray-900">Alamat Majlis</label>
+									<label for="alamat-majlis" class="block text-sm font-medium text-gray-900">Alamat Majlis</label>
 									<div class="mt-2">
-										<textarea name="alamat_majlis" id="alamat_majlis" rows="4" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">{{ $kadData->alamat_majlis }}</textarea>
+										<textarea name="alamat-majlis" id="alamat-majlis" rows="4" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">{{ $kadData->alamat_majlis }}</textarea>
 									</div>
 								</div>
 
 								<!-- Google Maps URL -->
 								<div class="sm:grid-cols-1 sm:col-span-3">
 									<div>
-										<label for="google_url" class="block text-sm font-medium text-gray-900">URL Google Maps</label>
+										<label for="google-url" class="block text-sm font-medium text-gray-900">URL Google Maps</label>
 										<div class="mt-2">
-											<input type="text" name="google_url" id="google_url" value="{{ $kadData->google_url }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+											<input type="text" name="google-url" id="google-url" value="{{ $kadData->google_url }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
 										</div>
 									</div>
 
 									<!-- Waze URL -->
 									<div>
-										<label for="waze_url" class="mt-2 block text-sm font-medium text-gray-900">URL Waze</label>
+										<label for="waze-url" class="mt-2 block text-sm font-medium text-gray-900">URL Waze</label>
 										<div class="mt-1">
-											<input type="text" name="waze_url" id="waze_url" value="{{ $kadData->waze_url }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+											<input type="text" name="waze-url" id="waze-url" value="{{ $kadData->waze_url }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
 										</div>
 									</div>
 								</div>
@@ -243,8 +244,8 @@
 									<div class="mt-2 space-y-4">
 										@for ($i = 0; $i < 5; $i++)
 										<div class="flex space-x-4">
-											<input type="text" name="nama_{{ $i + 1 }}" id="nama_{{ $i + 1 }}" value="{{ $kadData->nombor_telefon[$i]['nama'] ?? '' }}" placeholder="Nama" maxlength="20" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
-											<input type="text" name="nombor_telefon_{{ $i + 1 }}" id="nombor_telefon_{{ $i + 1 }}" value="{{ $kadData->nombor_telefon[$i]['nombor_telefon'] ?? '' }}" placeholder="Nombor Telefon" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+											<input type="text" name="nama-{{ $i + 1 }}" id="nama-{{ $i + 1 }}" value="{{ $kadData->nombor_telefon[$i]['nama'] ?? '' }}" placeholder="Nama" maxlength="20" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+											<input type="text" name="nombor-telefon-{{ $i + 1 }}" id="nombor-telefon-{{ $i + 1 }}" value="{{ $kadData->nombor_telefon[$i]['nombor_telefon'] ?? '' }}" placeholder="Nombor Telefon" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
 										</div>
 										@endfor
 									</div>
@@ -256,8 +257,8 @@
 									<div class="mt-2 space-y-4">
 										@for ($i = 0; $i < 6; $i++)
 										<div class="flex space-x-4">
-											<input type="time" name="masa_acara_{{ $i + 1 }}" id="masa_acara_{{ $i + 1 }}" value="{{ $kadData->aturcara_majlis[$i]['masa_acara'] ?? '' }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
-											<input type="text" name="acara_{{ $i + 1 }}" id="acara_{{ $i + 1 }}" spellcheck="false" value="{{ $kadData->aturcara_majlis[$i]['acara'] ?? '' }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+											<input type="time" name="masa-acara-{{ $i + 1 }}" id="masa-acara-{{ $i + 1 }}" value="{{ $kadData->aturcara_majlis[$i]['masa_acara'] ?? '' }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+											<input type="text" name="acara-{{ $i + 1 }}" id="acara-{{ $i + 1 }}" spellcheck="false" value="{{ $kadData->aturcara_majlis[$i]['acara'] ?? '' }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
 										</div>
 										@endfor
 									</div>
@@ -274,17 +275,97 @@
 								</svg>
 							</h2>
 							<div x-show="openSection === 'others'" class="mt-8">
-								<!-- Bg Song Selection -->
-                                <div class="sm:col-span-2">
-                                    <label for="bg_song_id" class="block text-sm font-medium text-gray-900">Lagu Latar Belakang</label>
+                                <div>
+                                    <label for="toggle-fungsi" class="block text-sm font-medium text-gray-900">Fungsi</label>
+                                    <div class="flex items-center justify-between mt-2 mb-4">
+                                        <!-- RSVP Toggle -->
+                                        <div x-data="{ enabled: {{ $kadData->rsvp_is_on }} }" class="flex items-center">
+                                            <!-- Button Element -->
+                                            <button 
+                                                @click="enabled = !enabled" 
+                                                :class="enabled ? 'bg-indigo-600' : 'bg-gray-200'" 
+                                                type="button" 
+                                                class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" 
+                                                role="switch" 
+                                                :aria-checked="enabled.toString()" 
+                                            >
+                                                <!-- Toggle Circle -->
+                                                <span 
+                                                    :class="enabled ? 'translate-x-5' : 'translate-x-0'" 
+                                                    class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+                                                    aria-hidden="true"
+                                                ></span>
+                                            </button>
+                                            
+                                            <!-- Label Text -->
+                                            <span class="ml-3 text-sm" id="rsvp-is-on">
+                                                <span class="font-medium text-gray-900">RSVP</span>
+                                            </span>
+                                            <input type="hidden" name="rsvp-is-on" :value="enabled ? 1 : 0">
+                                        </div>
+                                        <!-- Guestbook Toggle -->
+                                        <div x-data="{ enabled: {{ $kadData->guestbook_is_on }} }" class="flex items-center">
+                                            <!-- Button Element -->
+                                            <button 
+                                                @click="enabled = !enabled" 
+                                                :class="enabled ? 'bg-indigo-600' : 'bg-gray-200'" 
+                                                type="button" 
+                                                class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" 
+                                                role="switch" 
+                                                :aria-checked="enabled.toString()" 
+                                            >
+                                                <!-- Toggle Circle -->
+                                                <span 
+                                                    :class="enabled ? 'translate-x-5' : 'translate-x-0'" 
+                                                    class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+                                                    aria-hidden="true"
+                                                ></span>
+                                            </button>
+                                            
+                                            <!-- Label Text -->
+                                            <span class="ml-3 text-sm" id="guestbook-is-on">
+                                                <span class="font-medium text-gray-900">Guestbook</span>
+                                            </span>
+                                            <input type="hidden" name="guestbook-is-on" :value="enabled ? 1 : 0">
+                                        </div>
+                                        <!-- Slideshow Toggle -->
+                                        <div x-data="{ enabled: {{ $kadData->slideshow_is_on }} }" class="flex items-center">
+                                            <!-- Button Element -->
+                                            <button 
+                                                @click="enabled = !enabled" 
+                                                :class="enabled ? 'bg-indigo-600' : 'bg-gray-200'" 
+                                                type="button" 
+                                                class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" 
+                                                role="switch" 
+                                                :aria-checked="enabled.toString()" 
+                                                aria-labelledby="slideshow-is-on"
+                                            >
+                                                <!-- Toggle Circle -->
+                                                <span 
+                                                    :class="enabled ? 'translate-x-5' : 'translate-x-0'" 
+                                                    class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+                                                    aria-hidden="true"
+                                                ></span>
+                                            </button>
+                                            
+                                            <!-- Label Text -->
+                                            <span class="ml-3 text-sm" id="slideshow-is-on">
+                                                <span class="font-medium text-gray-900">Slideshow</span>
+                                            </span>
+                                            <input type="hidden" name="slideshow-is-on" :value="enabled ? 1 : 0">
+                                        </div>
+                                    </div>
+
+                                    <label for="bg-song-id" class="block text-sm font-medium text-gray-900">Lagu Latar Belakang</label>
+                                    <!-- Bg Song Selection -->
                                     <div class="mt-2">
-                                        <select x-model="bg_song_id" id="bg_song_id" name="bg_song_id" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:max-w-xs sm:text-sm">
+                                        <select id="bg-song-id" name="bg-song-id" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:max-w-xs sm:text-sm">
                                             <option value="1">Irama Klasik Melayu</option>
                                             <option value="2">One Thousand Year</option>
                                         </select>
                                     </div>
                                 </div>
-							</div>
+                            </div>
 						</div>
 
 						<!-- Displaying all error -->

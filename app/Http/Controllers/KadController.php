@@ -52,117 +52,122 @@ class KadController extends Controller
         // Validate the request data
         $request->validate([
             // Maklumat Pengantin
-            'nama_penuh_lelaki' => ['required'],
-            'nama_panggilan_lelaki' => ['required', 'max:12'],
-            'nama_penuh_perempuan' => ['required'],
-            'nama_panggilan_perempuan' => ['required', 'max:12'],
+            'nama-penuh-lelaki' => ['required'],
+            'nama-panggilan-lelaki' => ['required', 'max:12'],
+            'nama-penuh-perempuan' => ['required'],
+            'nama-panggilan-perempuan' => ['required', 'max:12'],
             'penjemput' => ['required', 'numeric'],
-            'nama_bapa_pengantin_lelaki' => ['required_if:penjemput,1,3'],
-            'nama_ibu_pengantin_lelaki' => ['required_if:penjemput,1,3'],
-            'nama_bapa_pengantin_perempuan' => ['required_if:penjemput,2,3'],
-            'nama_ibu_pengantin_perempuan' => ['required_if:penjemput,2,3'],
+            'nama-bapa-pengantin-lelaki' => ['required_if:penjemput,1,3'],
+            'nama-ibu-pengantin-lelaki' => ['required_if:penjemput,1,3'],
+            'nama-bapa-pengantin-perempuan' => ['required_if:penjemput,2,3'],
+            'nama-ibu-pengantin-perempuan' => ['required_if:penjemput,2,3'],
 
             // Maklumat Majlis
-            'tajuk_kad' => ['required', 'max:20'],
-            'ayat_jemputan' => ['required'],
-            'doa_pengantin' => ['required'],
-            'tarikh_majlis' => ['required', 'date'],
-            'masa_mula_majlis' => ['required'],
-            'masa_tamat_majlis' => ['required'],
-            'alamat_majlis' => ['required'],
-            'google_url' => ['required'],
-            'waze_url' => ['required'],
+            'tajuk-kad' => ['required', 'max:20'],
+            'ayat-jemputan' => ['required'],
+            'doa-pengantin' => ['required'],
+            'tarikh-majlis' => ['required', 'date'],
+            'masa-mula-majlis' => ['required'],
+            'masa-tamat-majlis' => ['required'],
+            'alamat-majlis' => ['required'],
+            'google-url' => ['required'],
+            'waze-url' => ['required'],
         ]);
 
         // Retrieve the specific Kad by its ID
         $kad = Kad::findOrFail($Id);
 
         //Generate Calendar Url
-        $title = request('nama_panggilan_lelaki') . '&' . request('nama_panggilan_perempuan');
-        $location = request('alamat_majlis');
-        $start = request('tarikh_majlis') . 'T' . request('masa_mula_majlis');
-        $end = request('tarikh_majlis') . 'T' . request('masa_tamat_majlis');
+        $title = request('nama-panggilan-lelaki') . '&' . request('nama-panggilan-perempuan');
+        $location = request('alamat-majlis');
+        $start = request('tarikh-majlis') . 'T' . request('masa-mula-majlis');
+        $end = request('tarikh-majlis') . 'T' . request('masa-tamat-majlis');
         $startFormatted = str_replace(['-', ':'], '', $start); 
         $endFormatted = str_replace(['-', ':'], '', $end);
         $reminderUrl = $this->generateReminderUrl($title, $title, $location, $startFormatted, $endFormatted, $kad->order_id);
+
 
         // Update the Kad with the validated data
         $kad->update([
             //Maklumat Kad
             'font_id' => $request->input('font'),
+            'bg_song_id' => $request->input('bg-song-id'),
+            'rsvp_is_on' =>$request->input('rsvp-is-on'),
+            'guestbook_is_on' =>$request->input('guestbook-is-on'),
+            'slideshow_is_on' =>$request->input('slideshow-is-on'),
 
             // Maklumat Pengantin
-            'nama_penuh_lelaki' => $request->input('nama_penuh_lelaki'),
-            'nama_panggilan_lelaki' => $request->input('nama_panggilan_lelaki'),
-            'nama_penuh_perempuan' => $request->input('nama_penuh_perempuan'),
-            'nama_panggilan_perempuan' => $request->input('nama_panggilan_perempuan'),
+            'nama_penuh_lelaki' => $request->input('nama-penuh-lelaki'),
+            'nama_panggilan_lelaki' => $request->input('nama-panggilan-lelaki'),
+            'nama_penuh_perempuan' => $request->input('nama-penuh-perempuan'),
+            'nama_panggilan_perempuan' => $request->input('nama-panggilan-perempuan'),
             'penjemput' => $request->input('penjemput'),
-            'nama_bapa_pengantin_lelaki' => $request->input('nama_bapa_pengantin_lelaki'),
-            'nama_ibu_pengantin_lelaki' => $request->input('nama_ibu_pengantin_lelaki'),
-            'nama_bapa_pengantin_perempuan' => $request->input('nama_bapa_pengantin_perempuan'),
-            'nama_ibu_pengantin_perempuan' => $request->input('nama_ibu_pengantin_perempuan'),
+            'nama_bapa_pengantin_lelaki' => $request->input('nama-bapa-pengantin-lelaki'),
+            'nama_ibu_pengantin_lelaki' => $request->input('nama-ibu-pengantin-lelaki'),
+            'nama_bapa_pengantin_perempuan' => $request->input('nama-bapa-pengantin-perempuan'),
+            'nama_ibu_pengantin_perempuan' => $request->input('nama-ibu-pengantin-perempuan'),
 
             // Maklumat Majlis
-            'tajuk_kad' => $request->input('tajuk_kad'),
-            'ayat_jemputan' => $request->input('ayat_jemputan'),
-            'doa_pengantin' => $request->input('doa_pengantin'),
-            'tarikh_majlis' => $request->input('tarikh_majlis'),
-            'masa_mula_majlis' => $request->input('masa_mula_majlis'),
-            'masa_tamat_majlis' => $request->input('masa_tamat_majlis'),
-            'alamat_majlis' => $request->input('alamat_majlis'),
-            'google_url' => $request->input('google_url'),
-            'waze_url' => $request->input('waze_url'),
+            'tajuk_kad' => $request->input('tajuk-kad'),
+            'ayat_jemputan' => $request->input('ayat-jemputan'),
+            'doa_pengantin' => $request->input('doa-pengantin'),
+            'tarikh_majlis' => $request->input('tarikh-majlis'),
+            'masa_mula_majlis' => $request->input('masa-mula-majlis'),
+            'masa_tamat_majlis' => $request->input('masa-tamat-majlis'),
+            'alamat_majlis' => $request->input('alamat-majlis'),
+            'google_url' => $request->input('google-url'),
+            'waze_url' => $request->input('waze-url'),
             'google_calendar_url' => $reminderUrl['googleCalendarLink'],
             'apple_calendar_url' => $reminderUrl['icalendarFilePath'],
 
             // JSON fields
             'nombor_telefon' =>[
                 [
-                    'nama' => $request->input('nama_1'),
-                    'nombor_telefon' => $request->input('nombor_telefon_1')
+                    'nama' => $request->input('nama-1'),
+                    'nombor_telefon' => $request->input('nombor-telefon-1')
                 ],
                 [
-                    'nama' => $request->input('nama_2'),
-                    'nombor_telefon' => $request->input('nombor_telefon_2')
+                    'nama' => $request->input('nama-2'),
+                    'nombor_telefon' => $request->input('nombor-telefon-2')
                 ],
                 [
-                    'nama' => $request->input('nama_3'),
-                    'nombor_telefon' => $request->input('nombor_telefon_3')
+                    'nama' => $request->input('nama-3'),
+                    'nombor_telefon' => $request->input('nombor-telefon-3')
                 ],
                 [
-                    'nama' => $request->input('nama_4'),
-                    'nombor_telefon' => $request->input('nombor_telefon_4')
+                    'nama' => $request->input('nama-4'),
+                    'nombor_telefon' => $request->input('nombor-telefon-4')
                 ],
                 [
-                    'nama' => $request->input('nama_5'),
-                    'nombor_telefon' => $request->input('nombor_telefon_5')
+                    'nama' => $request->input('nama-5'),
+                    'nombor_telefon' => $request->input('nombor-telefon-5')
                 ]
             ],
 
             'aturcara_majlis' =>[
                 [
-                    'masa_acara' => $request->input('masa_acara_1'),
-                    'acara' => $request->input('acara_1')
+                    'masa_acara' => $request->input('masa-acara-1'),
+                    'acara' => $request->input('acara-1')
                 ],
                 [
-                    'masa_acara' => $request->input('masa_acara_2'),
-                    'acara' => $request->input('acara_2')
+                    'masa_acara' => $request->input('masa-acara-2'),
+                    'acara' => $request->input('acara-2')
                 ],
                 [
-                    'masa_acara' => $request->input('masa_acara_3'),
-                    'acara' => $request->input('acara_3')
+                    'masa_acara' => $request->input('masa-acara-3'),
+                    'acara' => $request->input('acara-3')
                 ],
                 [
-                    'masa_acara' => $request->input('masa_acara_4'),
-                    'acara' => $request->input('acara_4')
+                    'masa_acara' => $request->input('masa-acara-4'),
+                    'acara' => $request->input('acara-4')
                 ],
                 [
-                    'masa_acara' => $request->input('masa_acara_5'),
-                    'acara' => $request->input('acara_5')
+                    'masa_acara' => $request->input('masa-acara-5'),
+                    'acara' => $request->input('acara-5')
                 ],
                 [
-                    'masa_acara' => $request->input('masa_acara_6'),
-                    'acara' => $request->input('acara_6')
+                    'masa_acara' => $request->input('masa-acara-6'),
+                    'acara' => $request->input('acara-6')
                 ]
             ]
         ]);
@@ -176,41 +181,41 @@ class KadController extends Controller
     {
         request()->validate([
             // Maklumat Pengantin
-            'nama_penuh_lelaki' => ['required'],
-            'nama_panggilan_lelaki' => ['required', 'max:12'],
-            'nama_penuh_perempuan' => ['required'],
-            'nama_panggilan_perempuan' => ['required', 'max:12'],
+            'nama-penuh-lelaki' => ['required'],
+            'nama-panggilan-lelaki' => ['required', 'max:12'],
+            'nama-penuh-perempuan' => ['required'],
+            'nama-panggilan-perempuan' => ['required', 'max:12'],
             'penjemput' => ['required', 'numeric'],
-            'nama_bapa_pengantin_lelaki' => ['required_if:penjemput,1,3'],
-            'nama_ibu_pengantin_lelaki' => ['required_if:penjemput,1,3'],
-            'nama_bapa_pengantin_perempuan' => ['required_if:penjemput,2,3'],
-            'nama_ibu_pengantin_perempuan' => ['required_if:penjemput,2,3'],
+            'nama-bapa-pengantin-lelaki' => ['required_if:penjemput,1,3'],
+            'nama-ibu-pengantin-lelaki' => ['required_if:penjemput,1,3'],
+            'nama-bapa-pengantin-perempuan' => ['required_if:penjemput,2,3'],
+            'nama-ibu-pengantin-perempuan' => ['required_if:penjemput,2,3'],
 
             // Maklumat Majlis
-            'tajuk_kad' => ['required', 'max:20'],
-            'ayat_jemputan' => ['required'],
-            'doa_pengantin' => ['required'],
-            'tarikh_majlis' => ['required', 'date'],
-            'masa_mula_majlis' => ['required', 'date_format:H:i'],
-            'masa_tamat_majlis' => ['required', 'date_format:H:i'],
-            'alamat_majlis' => ['required'],
-            'google_url' => ['required'],
-            'waze_url' => ['required'],
+            'tajuk-kad' => ['required', 'max:20'],
+            'ayat-jemputan' => ['required'],
+            'doa-pengantin' => ['required'],
+            'tarikh-majlis' => ['required', 'date'],
+            'masa-mula-majlis' => ['required', 'date_format:H:i'],
+            'masa-tamat-majlis' => ['required', 'date_format:H:i'],
+            'alamat-majlis' => ['required'],
+            'google-url' => ['required'],
+            'waze-url' => ['required'],
         ]);
 
         //Generate orderId
         $orderId = 'SY' . rand(100000, 999999) . strtoupper(Str::random(5));
 
         //Generate Calendar Url
-        $title = request('nama_panggilan_lelaki') . '&' . request('nama_panggilan_perempuan');
+        $title = request('nama-panggilan-lelaki') . '&' . request('nama-panggilan-perempuan');
         $location = request('alamat_majlis');
-        $start = request('tarikh_majlis') . 'T' . request('masa_mula_majlis');
-        $end = request('tarikh_majlis') . 'T' . request('masa_tamat_majlis');
+        $start = request('tarikh-majlis') . 'T' . request('masa-mula-majlis');
+        $end = request('tarikh-majlis') . 'T' . request('masa-tamat-majlis');
         $startFormatted = str_replace(['-', ':'], '', $start);
         $endFormatted = str_replace(['-', ':'], '', $end);  
         $reminderUrl = $this->generateReminderUrl($title, $title, $location, $startFormatted, $endFormatted, $orderId);
 
-        if(request('package_id') == 1)
+        if(request('package-id') == 1)
         {
             $isPaid = true;
         }
@@ -222,88 +227,91 @@ class KadController extends Controller
         // Create a new Kad entry
         Kad::create([
             // Maklumat Kad
-            'slug' => Str::slug(request('nama_panggilan_lelaki')) . '-' . Str::slug(request('nama_panggilan_perempuan')) . '-' . Str::random(5),
+            'slug' => Str::slug(request('nama-panggilan-lelaki')) . '-' . Str::slug(request('nama-panggilan-perempuan')) . '-' . Str::random(5),
             'order_id' => $orderId,
             'user_id' => Auth::id(),
-            'design_id' => request('design_id'), 
+            'design_id' => request('design-id'), 
             'font_id' => request('font'),
-            'package_id' => request('package_id'),
-            'bg_song_id' => request('bg_song_id'),
+            'package_id' => request('package-id'),
+            'bg_song_id' => request('bg-song-id'),
+            'rsvp_is_on' =>request('rsvp-is-on'),
+            'guestbook_is_on' =>request('guestbook-is-on'),
+            'slideshow_is_on' =>request('slideshow-is-on'),
             'is_paid' => $isPaid,
 
             // Maklumat Pengantin
-            'nama_penuh_lelaki' => request('nama_penuh_lelaki'),
-            'nama_panggilan_lelaki' => request('nama_panggilan_lelaki'),
-            'nama_penuh_perempuan' => request('nama_penuh_perempuan'),
-            'nama_panggilan_perempuan' => request('nama_panggilan_perempuan'),
+            'nama_penuh_lelaki' => request('nama-penuh-lelaki'),
+            'nama_panggilan_lelaki' => request('nama-panggilan-lelaki'),
+            'nama_penuh_perempuan' => request('nama-penuh-perempuan'),
+            'nama_panggilan_perempuan' => request('nama-panggilan-perempuan'),
             'penjemput' => request('penjemput'),
-            'nama_bapa_pengantin_lelaki' => request('nama_bapa_pengantin_lelaki'),
-            'nama_ibu_pengantin_lelaki' => request('nama_ibu_pengantin_lelaki'),
-            'nama_bapa_pengantin_perempuan' => request('nama_bapa_pengantin_perempuan'),
-            'nama_ibu_pengantin_perempuan' => request('nama_ibu_pengantin_perempuan'),
+            'nama_bapa_pengantin_lelaki' => request('nama-bapa-pengantin-lelaki'),
+            'nama_ibu_pengantin_lelaki' => request('nama-ibu-pengantin-lelaki'),
+            'nama_bapa_pengantin_perempuan' => request('nama-bapa-pengantin-perempuan'),
+            'nama_ibu_pengantin_perempuan' => request('nama-ibu-pengantin-perempuan'),
 
             // Maklumat Majlis
-            'tajuk_kad' => request('tajuk_kad'),
-            'ayat_jemputan' => request('ayat_jemputan'),
-            'doa_pengantin' => request('doa_pengantin'),
-            'tarikh_majlis' => request('tarikh_majlis'),
-            'masa_mula_majlis' => request('masa_mula_majlis'),
-            'masa_tamat_majlis' => request('masa_tamat_majlis'),
-            'alamat_majlis' => request('alamat_majlis'),
-            'google_url' => request('google_url'),
-            'waze_url' => request('waze_url'),
+            'tajuk_kad' => request('tajuk-kad'),
+            'ayat_jemputan' => request('ayat-jemputan'),
+            'doa_pengantin' => request('doa-pengantin'),
+            'tarikh_majlis' => request('tarikh-majlis'),
+            'masa_mula_majlis' => request('masa-mula-majlis'),
+            'masa_tamat_majlis' => request('masa-tamat-majlis'),
+            'alamat_majlis' => request('alamat-majlis'),
+            'google_url' => request('google-url'),
+            'waze_url' => request('waze-url'),
             'google_calendar_url' => $reminderUrl['googleCalendarLink'],
             'apple_calendar_url' => $reminderUrl['icalendarFilePath'],
 
             // Maklumat Nombor Telefon (JSON)
             'nombor_telefon' => [
                 [
-                    'nama' => request('nama_1') ?: null,
-                    'nombor_telefon' => request('nombor_telefon_1') ?: null
+                    'nama' => request('nama-1') ?: null,
+                    'nombor_telefon' => request('nombor-telefon-1') ?: null
                 ],
                 [
-                    'nama' => request('nama_2') ?: null,
-                    'nombor_telefon' => request('nombor_telefon_2') ?: null
+                    'nama' => request('nama-2') ?: null,
+                    'nombor_telefon' => request('nombor-telefon-2') ?: null
                 ],
                 [
-                    'nama' => request('nama_3') ?: null,
-                    'nombor_telefon' => request('nombor_telefon_3') ?: null
+                    'nama' => request('nama-3') ?: null,
+                    'nombor_telefon' => request('nombor-telefon-3') ?: null
                 ],
                 [
-                    'nama' => request('nama_4') ?: null,
-                    'nombor_telefon' => request('nombor_telefon_4') ?: null
+                    'nama' => request('nama-4') ?: null,
+                    'nombor_telefon' => request('nombor-telefon-4') ?: null
                 ],
                 [
-                    'nama' => request('nama_5') ?: null,
-                    'nombor_telefon' => request('nombor_telefon_5') ?: null
+                    'nama' => request('nama-5') ?: null,
+                    'nombor_telefon' => request('nombor-telefon-5') ?: null
                 ]
             ],
 
             // Maklumat Aturcara Majlis (JSON)
             'aturcara_majlis' => [
                 [
-                    'masa_acara' => request('masa_acara_1') ?: null,
-                    'acara' => request('acara_1') ?: null
+                    'masa_acara' => request('masa-acara-1') ?: null,
+                    'acara' => request('acara-1') ?: null
                 ],
                 [
-                    'masa_acara' => request('masa_acara_2') ?: null,
-                    'acara' => request('acara_2') ?: null
+                    'masa_acara' => request('masa-acara-2') ?: null,
+                    'acara' => request('acara-2') ?: null
                 ],
                 [
-                    'masa_acara' => request('masa_acara_3') ?: null,
-                    'acara' => request('acara_3') ?: null
+                    'masa_acara' => request('masa-acara-3') ?: null,
+                    'acara' => request('acara-3') ?: null
                 ],
                 [
-                    'masa_acara' => request('masa_acara_4') ?: null,
-                    'acara' => request('acara_4') ?: null
+                    'masa_acara' => request('masa-acara-4') ?: null,
+                    'acara' => request('acara-4') ?: null
                 ],
                 [
-                    'masa_acara' => request('masa_acara_5') ?: null,
-                    'acara' => request('acara_5') ?: null
+                    'masa_acara' => request('masa-acara-5') ?: null,
+                    'acara' => request('acara-5') ?: null
                 ],
                 [
-                    'masa_acara' => request('masa_acara_6') ?: null,
-                    'acara' => request('acara_6') ?: null
+                    'masa_acara' => request('masa-acara-6') ?: null,
+                    'acara' => request('acara-6') ?: null
                 ]
             ],
         ]);
