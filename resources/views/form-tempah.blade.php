@@ -510,10 +510,7 @@
                                     <label for="bg-song-id" class="block text-sm font-medium text-gray-900">Lagu Latar Belakang</label>
                                     <!-- Bg Song Selection -->
                                     <div class="mt-2">
-                                        <select id="bg-song-id" name="bg-song-id" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:max-w-xs sm:text-sm">
-                                            <option value="1">Irama Klasik Melayu</option>
-                                            <option value="2">One Thousand Year</option>
-                                        </select>
+                                        @livewire('bg-song-dropdown')
                                     </div>
                                 </div>
                             </div>

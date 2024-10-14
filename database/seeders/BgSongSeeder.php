@@ -15,12 +15,16 @@ class BgSongSeeder extends Seeder
     {
         $songs = [
             [
+                'song_url' => '#',
+                'song_name' => 'Tiada Lagu',
+            ],
+            [
                 'song_url' => '/musics/Irama-klasik-melayu.mp3',
                 'song_name' => 'Irama Klasik Melayu',
             ],
             [
-                'song_url' => '/musics/Irama-klasik-melayu.mp3',
-                'song_name' => 'One Thousand Dream',
+                'song_url' => '/musics/a-thousand-years.mp3',
+                'song_name' => 'A Thousand Years ( Instrumental )',
             ],
         ];
 
