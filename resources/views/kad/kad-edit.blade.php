@@ -155,7 +155,7 @@
 									<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
 								</svg>
 							</h2>
-							<div x-show="openSection === 'maklumat_majlis'" class="mt-8 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+							<div x-show="openSection === 'maklumatMajlis'" class="mt-8 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
 								<!-- Tajuk Kad -->
 								<div class="sm:col-span-full">

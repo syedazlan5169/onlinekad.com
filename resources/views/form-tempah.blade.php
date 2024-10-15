@@ -384,29 +384,44 @@
                                 <!-- Nombor Telefon -->
                                 <div class="sm:col-span-2">
                                     <label class="block text-sm font-medium text-gray-900">Nombor Telefon Waris</label>
-                                    <div class="mt-2 space-y-2">
-                                        @for ($i = 1; $i <= 5; $i++)
-                                        <div class="flex space-x-4">
-                                            <input type="text" name="nama-{{ $i }}" id="nama-{{ $i }}" placeholder="Nama" maxlength="20" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
-                                            <input type="text" name="nombor-telefon-{{ $i }}" id="nombor-telefon-{{ $i }}" placeholder="Nombor Telefon" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
-                                        </div>
-                                        @endfor
+                                    <div x-data="{ warisCount: 2 }" class="mt-2 space-y-2">
+                                        <!-- Initial input fields (2 fields) -->
+                                        <template x-for="i in warisCount" :key="i">
+                                            <div class="flex space-x-4">
+                                                <input type="text" :name="'nama-' + i" :id="'nama-' + i" placeholder="Nama" maxlength="20" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                                <input type="text" :name="'nombor-telefon-' + i" :id="'nombor-telefon-' + i" placeholder="Nombor Telefon" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                            </div>
+                                        </template>
+                                        <!-- Tambah button -->
+                                        <button type="button" @click="if (warisCount < 5) warisCount++" x-show="warisCount < 5" class="mt-2 flex items-center text-indigo-600 hover:text-indigo-800 focus:outline-none">
+                                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                            </svg>
+                                            <span class="ml-1">Tambah</span>
+                                        </button>
                                     </div>
                                 </div>
 
                                 <!-- Aturcara Majlis -->
                                 <div class="sm:col-span-2">
                                     <label class="block text-sm font-medium text-gray-900">Aturcara Majlis</label>
-                                    <div class="mt-2 space-y-2">
-                                        @for ($i = 1; $i <= 6; $i++)
-                                        <div class="flex space-x-4">
-                                            <input type="time" name="masa-acara-{{ $i }}" id="masa-acara-{{ $i }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
-                                            <input type="text" name="acara-{{ $i }}" id="acara-{{ $i }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
-                                        </div>
-                                        @endfor
+                                    <div x-data="{ acaraCount: 3 }" class="mt-2 space-y-2">
+                                        <!-- Initial input fields (2 fields) -->
+                                        <template x-for="i in acaraCount" :key="i">
+                                            <div class="flex space-x-4">
+                                                <input type="time" :name="'masa-acara-' + i" :id="'masa-acara-' + i" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                                <input type="text" :name="'acara-' + i" :id="'acara-' + i" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                            </div>
+                                        </template>
+                                        <!-- Tambah button -->
+                                        <button type="button" @click="if (acaraCount < 6) acaraCount++" x-show="acaraCount < 6" class="mt-2 flex items-center text-indigo-600 hover:text-indigo-800 focus:outline-none">
+                                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                            </svg>
+                                            <span class="ml-1">Tambah</span>
+                                        </button>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
 
