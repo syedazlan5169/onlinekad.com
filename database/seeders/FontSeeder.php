@@ -30,6 +30,18 @@ class FontSeeder extends Seeder
                 'font_url' => 'https://fonts.googleapis.com/css2?family=Parisienne&display=swap',
                 'font_name' => 'Parisienne',
             ],
+            [
+                'font_url' => 'https://fonts.googleapis.com/css2?family=Qwitcher+Grypen:wght@400;700&display=swap',
+                'font_name' => 'Qwitcher Grypen',
+            ],
+            [
+                'font_url' => 'https://fonts.googleapis.com/css2?family=Montez&display=swap',
+                'font_name' => 'Montez',
+            ],
+            [
+                'font_url' => 'https://fonts.googleapis.com/css2?family=Updock&display=swap',
+                'font_name' => 'Updock',
+            ],
         ];
 
         foreach ($fonts as $font)

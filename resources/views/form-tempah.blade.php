@@ -7,6 +7,7 @@
 
     <div class="py-12">
         <div x-data="{ selectedPackage: '2' }" class="max-w-7xl mx-auto sm:flex sm:justify-center gap-3 sm:px-6">
+            <!-- Column 1 -->
             <div class="h-full sm:w-[30%] sm:pr-4">
                 <!-- Design Section -->
                 <div class="mb-4 p-8 bg-white shadow-lg rounded-lg overflow-hidden">
@@ -175,19 +176,18 @@
                     </div>
                 </div>
             </div>
+            <!-- Column 2 -->
             <div class="bg-white h-full overflow-hidden shadow-lg sm:rounded-lg sm:w-[70%]">
                 <div x-data="{
                     selectedFont: '1', 
                     fonts: {
-                        '1': 'Great Vibes',
-                        '2': 'Dancing Script',
-                        '3': 'Alex Brush',
-                        '4': 'Parisienne',
+                        @foreach($fonts as $font)
+                            '{{ $font->id }}': '{{ $font->font_name }}',
+                        @endforeach
                     },
                     openSection: 'others', 
                     namaLelaki: '', 
-                    namaPerempuan: '' 
-                }" class="max-w-7xl mx-auto p-8">
+                    namaPerempuan: ''}" class="max-w-7xl mx-auto p-8">
                     
                     <!-- Form starts -->
                     <form action="{{ route('tempah') }}" method="POST">
@@ -253,12 +253,7 @@
 
                                     <label for="font" class="block text-sm font-medium text-gray-900 mt-4">Font</label>
                                     <div class="mt-2">
-                                        <select id="font" name="font" x-model='selectedFont' class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:max-w-xs sm:text-sm">
-                                            <option value="1">Great Vibes</option>
-                                            <option value="2">Dancing Script</option>
-                                            <option value="3">Alex Brush</option>
-                                            <option value="4">Parisienne</option>
-                                        </select>
+                                        @livewire('font-dropdown')
                                     </div>
                                 </div>
 
@@ -427,8 +422,8 @@
                             <!-- Show a summary of all sections or additional form fields here -->
                             <div x-show="openSection === 'others'" class="mt-8">
                                 <div>
-                                    <label for="toggle-fungsi" class="block text-sm font-medium text-gray-900">Fungsi</label>
-                                    <div class="flex items-center justify-between mt-2 mb-4">
+                                    <label class="block text-sm font-medium text-gray-900">Fungsi</label>
+                                    <div class="mt-2 mb-4 sm:flex sm:items-center sm:justify-between">
                                         <!-- RSVP Toggle -->
                                         <div x-data="{ enabled: true }" class="flex items-center">
                                             <!-- Button Element -->
@@ -436,7 +431,7 @@
                                                 @click="enabled = !enabled" 
                                                 :class="enabled ? 'bg-indigo-600' : 'bg-gray-200'" 
                                                 type="button" 
-                                                class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" 
+                                                class="mb-2 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" 
                                                 role="switch" 
                                                 :aria-checked="enabled.toString()" 
                                             >
@@ -461,7 +456,7 @@
                                                 @click="enabled = !enabled" 
                                                 :class="enabled ? 'bg-indigo-600' : 'bg-gray-200'" 
                                                 type="button" 
-                                                class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" 
+                                                class="mb-2 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" 
                                                 role="switch" 
                                                 :aria-checked="enabled.toString()" 
                                             >
@@ -486,7 +481,7 @@
                                                 @click="enabled = !enabled" 
                                                 :class="enabled ? 'bg-indigo-600' : 'bg-gray-200'" 
                                                 type="button" 
-                                                class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" 
+                                                class="mb-2 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" 
                                                 role="switch" 
                                                 :aria-checked="enabled.toString()" 
                                                 aria-labelledby="slideshow-is-on"

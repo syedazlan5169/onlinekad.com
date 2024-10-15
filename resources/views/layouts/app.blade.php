@@ -10,8 +10,11 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Dancing+Script:wght@400..700&family=Great+Vibes&family=Parisienne&display=swap" rel="stylesheet">
-        
+        <!-- Load all font url -->
+        @foreach ($fonts as $font)
+            <link href="{{ $font->font_url }}" rel="stylesheet">
+        @endforeach
+
         <!-- Scripts -->
         @vite('resources/css/app.css')
         @livewireStyles

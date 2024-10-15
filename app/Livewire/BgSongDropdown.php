@@ -10,7 +10,7 @@ class BgSongDropdown extends Component
     public $bgSongs; // Property to hold the list of songs
     public $selectedSong; // Property for selected song
 
-    public function mount($selectedSong = null)
+    public function mount($selectedSong = 1)
     {
         // Fetch the background songs from the database
         $this->bgSongs = BgSong::all(); // Get all records from BgSong model

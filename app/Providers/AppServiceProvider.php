@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Font;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +22,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        View::composer('layouts.app', function ($view) {
+            $view->with('fonts', Font::all());
+        });
     }
 }

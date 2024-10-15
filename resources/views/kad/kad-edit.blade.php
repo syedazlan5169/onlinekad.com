@@ -22,14 +22,12 @@
 			<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 				<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 					<div x-data="{
-						bgSongId: '{{ $kadData->bg_song_id }}', 
 						selectedFont: '{{ $kadData->font_id }}', 
 						fonts: {
-						'1': 'Great Vibes',
-						'2': 'Dancing Script',
-						'3': 'Alex Brush',
-						'4': 'Parisienne',
-						},
+                        @foreach($fonts as $font)
+                            '{{ $font->id }}': '{{ $font->font_name }}',
+                        @endforeach
+                    	},
 						openSection: 'maklumatPengantin', namaLelaki: '{{ $kadData->nama_panggilan_lelaki }}', namaPerempuan: '{{ $kadData->nama_panggilan_perempuan }}'
 					}" class="max-w-7xl mx-auto p-8">
 					
@@ -98,12 +96,7 @@
 								<div class="lg:col-span-4 sm:col-span-1">
 									<label for="font" class="block text-sm font-medium text-gray-900">Font</label>
 									<div class="mt-2">
-										<select id="font" name="font" x-model="selectedFont" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:max-w-xs sm:text-sm">
-											<option value="1">Great Vibes</option>
-											<option value="2">Dancing Script</option>
-											<option value="3">Alex Brush</option>
-											<option value="4">Parisienne</option>
-										</select>
+										@livewire('font-dropdown', ['selectedFont' => $kadData->font_id])
 									</div>
 								</div>
 
@@ -277,7 +270,7 @@
 							<div x-show="openSection === 'others'" class="mt-8">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-900">Fungsi</label>
-                                    <div class="flex items-center justify-between mt-2 mb-4">
+                                    <div class="mt-2 mb-4 sm:flex sm:items-center sm:justify-between sm:px-20">
                                         <!-- RSVP Toggle -->
                                         <div x-data="{ enabled: {{ $kadData->rsvp_is_on }} }" class="flex items-center">
                                             <!-- Button Element -->
@@ -285,7 +278,7 @@
                                                 @click="enabled = !enabled" 
                                                 :class="enabled ? 'bg-indigo-600' : 'bg-gray-200'" 
                                                 type="button" 
-                                                class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" 
+                                                class="mb-2 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" 
                                                 role="switch" 
                                                 :aria-checked="enabled.toString()" 
                                             >
@@ -310,7 +303,7 @@
                                                 @click="enabled = !enabled" 
                                                 :class="enabled ? 'bg-indigo-600' : 'bg-gray-200'" 
                                                 type="button" 
-                                                class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" 
+                                                class="mb-2 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" 
                                                 role="switch" 
                                                 :aria-checked="enabled.toString()" 
                                             >
@@ -335,7 +328,7 @@
                                                 @click="enabled = !enabled" 
                                                 :class="enabled ? 'bg-indigo-600' : 'bg-gray-200'" 
                                                 type="button" 
-                                                class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" 
+                                                class="mb-2 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" 
                                                 role="switch" 
                                                 :aria-checked="enabled.toString()" 
                                                 aria-labelledby="slideshow-is-on"

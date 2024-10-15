@@ -39,13 +39,28 @@ class KadController extends Controller
     {
         $currentUserId = Auth::id();
         $kadData = Kad::where('user_id', $currentUserId)->where('id', $id)->with('design')->first();
+        $fonts = Font::all();
+
         if (!$kadData) {
             return redirect()->back()->withErrors('Kad not found or you do not have permission to view it.');
         }
 
-        return view('kad.kad-edit', compact('kadData'));
+        return view('kad.kad-edit', compact('kadData', 'fonts'));
     }
 
+    public function showFormTempah($id)
+    {
+        $design = Design::findOrFail($id);
+        $packages = Package::all();
+        $fonts = Font::all();
+
+        // Assign individual packages to variables
+        $package1 = $packages[0] ?? null;  // Example for Package 1
+        $package2 = $packages[1] ?? null;  // Example for Package 2
+        $package3 = $packages[2] ?? null;  // Example for Package 3
+
+        return view('form-tempah', compact('design', 'package1', 'package2', 'package3', 'fonts'));
+    }
 
     public function patch(Request $request, $Id)
     {
@@ -500,19 +515,6 @@ class KadController extends Controller
         $totalKehadiran = Rsvp::where('kad_id', $kadData->id)->where('kehadiran', 'Hadir')->sum('jumlah_kehadiran');
 
         return view('kad.kad-rsvp', compact('kadData', 'totalRsvp', 'totalHadir', 'totalTidakHadir', 'totalKehadiran'));
-    }
-
-    public function showFormTempah($id)
-    {
-        $design = Design::findOrFail($id);
-        $packages = Package::all();
-
-        // Assign individual packages to variables
-        $package1 = $packages[0] ?? null;  // Example for Package 1
-        $package2 = $packages[1] ?? null;  // Example for Package 2
-        $package3 = $packages[2] ?? null;  // Example for Package 3
-
-        return view('form-tempah', compact('design', 'package1', 'package2', 'package3'));
     }
 
 }
