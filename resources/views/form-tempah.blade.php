@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="py-12">
-        <div x-data="{ selectedPackage: '2' }" class="max-w-7xl mx-auto sm:flex sm:justify-center gap-3 sm:px-6">
+        <div x-data="{ selectedPackage: '{{ old('package-id', 2) }}' }" class="max-w-7xl mx-auto sm:flex sm:justify-center gap-3 sm:px-6">
             <!-- Column 1 -->
             <div class="h-full sm:w-[30%] sm:pr-4">
                 <!-- Design Section -->
@@ -211,7 +211,7 @@
                                 <div class="sm:col-span-1">
                                     <label for="nama-penuh-lelaki" class="block text-sm font-medium text-gray-900">Nama Penuh Pengantin Lelaki</label>
                                     <div class="mt-2">
-                                        <input type="text" name="nama-penuh-lelaki" id="nama-penuh-lelaki" placeholder="Abdul Rahman Bin Abdul Rahim" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        <input type="text" name="nama-penuh-lelaki" id="nama-penuh-lelaki" placeholder="Abdul Rahman Bin Abdul Rahim" value="{{ old('nama-penuh-lelaki') }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
                                     </div>
                                 </div>
 
@@ -219,7 +219,16 @@
                                 <div class="sm:col-span-1">
                                     <label for="nama-panggilan-lelaki" class="block text-sm font-medium text-gray-900">Nama Panggilan Pengantin Lelaki</label>
                                     <div class="mt-2">
-                                        <input x-model="namaLelaki" type="text" name="nama-panggilan-lelaki" id="nama-panggilan-lelaki" placeholder="Rahman" maxlength="12" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        <input 
+                                            x-model="namaLelaki" 
+                                            x-init="namaLelaki = '{{ old('nama-panggilan-lelaki') }}'" 
+                                            type="text" 
+                                            name="nama-panggilan-lelaki" 
+                                            id="nama-panggilan-lelaki" 
+                                            maxlength="12" 
+                                            spellcheck="false" 
+                                            placeholder="Adam" 
+                                            class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
                                     </div>
                                 </div>
 
@@ -227,7 +236,7 @@
                                 <div class="sm:col-span-1">
                                     <label for="nama-penuh-perempuan" class="block text-sm font-medium text-gray-900">Nama Penuh Pengantin Perempuan</label>
                                     <div class="mt-2">
-                                        <input type="text" name="nama-penuh-perempuan" id="nama-penuh-perempuan" placeholder="Nurul Hawa Binti Mior Rahim" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        <input type="text" name="nama-penuh-perempuan" id="nama-penuh-perempuan" placeholder="Nurul Hawa Binti Mior Rahim" value="{{ old('nama-penuh-perempuan') }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
                                     </div>
                                 </div>
 
@@ -235,9 +244,19 @@
                                 <div class="sm:col-span-1">
                                     <label for="nama-panggilan-perempuan" class="block text-sm font-medium text-gray-900">Nama Panggilan Pengantin Perempuan</label>
                                     <div class="mt-2">
-                                        <input x-model="namaPerempuan" type="text" name="nama-panggilan-perempuan" id="nama-panggilan-perempuan" placeholder="Hawa" maxlength="12" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        <input 
+                                            x-model="namaPerempuan" 
+                                            x-init="namaPerempuan = '{{ old('nama-panggilan-perempuan') }}'" 
+                                            type="text" 
+                                            name="nama-panggilan-perempuan" 
+                                            id="nama-panggilan-perempuan" 
+                                            maxlength="12" 
+                                            spellcheck="false" 
+                                            placeholder="Hawa" 
+                                            class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
                                     </div>
                                 </div>
+                                
 
                                 <!-- Font Selection and Preview -->
                                 <div class="sm:col-span-2">
@@ -257,30 +276,34 @@
                                     </div>
                                 </div>
 
-                                <!-- Penjemput Selection -->
                                 <div class="sm:col-span-2">
                                     <label for="penjemput" class="block text-sm font-medium text-gray-900">Penjemput</label>
                                     <div class="mt-2">
-                                        <select x-model="penjemput" id="penjemput" name="penjemput" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:max-w-xs sm:text-sm">
+                                        <select 
+                                            x-model="penjemput" 
+                                            x-init="penjemput = '{{ old('penjemput', 1) }}'" 
+                                            id="penjemput" 
+                                            name="penjemput" 
+                                            class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:max-w-xs sm:text-sm">
                                             <option value="1">Pihak Lelaki</option>
                                             <option value="2">Pihak Perempuan</option>
                                             <option value="3">Dua Belah Pihak</option>
                                         </select>
                                     </div>
                                 </div>
-
+                                
                                 <!-- Nama Bapa/Ibu (Lelaki) -->
                                 <div x-show="penjemput === '3' || penjemput === '1'" class="sm:col-span-1">
                                     <label for="nama-bapa-pengantin-lelaki" class="block text-sm font-medium text-gray-900">Nama Bapa Pengantin Lelaki</label>
                                     <div class="mt-2">
-                                        <input type="text" name="nama-bapa-pengantin-lelaki" id="nama-bapa-pengantin-lelaki" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        <input type="text" name="nama-bapa-pengantin-lelaki" id="nama-bapa-pengantin-lelaki" value="{{ old('nama-bapa-pengantin-lelaki') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
                                     </div>
                                 </div>
 
                                 <div x-show="penjemput === '3' || penjemput === '1'" class="sm:col-span-1">
                                     <label for="nama-ibu-pengantin-lelaki" class="block text-sm font-medium text-gray-900">Nama Ibu Pengantin Lelaki</label>
                                     <div class="mt-2">
-                                        <input type="text" name="nama-ibu-pengantin-lelaki" id="nama-ibu-pengantin-lelaki" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        <input type="text" name="nama-ibu-pengantin-lelaki" id="nama-ibu-pengantin-lelaki" value="{{ old('nama-ibu-pengantin-lelaki') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
                                     </div>
                                 </div>
 
@@ -288,14 +311,14 @@
                                 <div x-show="penjemput === '3' || penjemput === '2'" class="sm:col-span-1">
                                     <label for="nama-bapa-pengantin-perempuan" class="block text-sm font-medium text-gray-900">Nama Bapa Pengantin Perempuan</label>
                                     <div class="mt-2">
-                                        <input type="text" name="nama-bapa-pengantin-perempuan" id="nama-bapa-pengantin-perempuan" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        <input type="text" name="nama-bapa-pengantin-perempuan" id="nama-bapa-pengantin-perempuan" value="{{ old('nama-bapa-pengantin-perempuan') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
                                     </div>
                                 </div>
 
                                 <div x-show="penjemput === '3' || penjemput === '2'" class="sm:col-span-1">
                                     <label for="nama-ibu-pengantin-perempuan" class="block text-sm font-medium text-gray-900">Nama Ibu Pengantin Perempuan</label>
                                     <div class="mt-2">
-                                        <input type="text" name="nama-ibu-pengantin-perempuan" id="nama-ibu-pengantin-perempuan" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        <input type="text" name="nama-ibu-pengantin-perempuan" id="nama-ibu-pengantin-perempuan" value="{{ old('nama-ibu-pengantin-perempuan') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
                                     </div>
                                 </div>
                             </div>
@@ -317,7 +340,7 @@
                                 <div class="sm:col-span-1">
                                     <label for="tajuk-kad" class="block text-sm font-medium text-gray-900">Tajuk Kad</label>
                                     <div class="mt-2">
-                                        <input type="text" name="tajuk-kad" id="tajuk-kad" spellcheck="false" value="Walimatulurus" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        <input type="text" name="tajuk-kad" id="tajuk-kad" spellcheck="false" value="{{ old('tajuk-kad', 'Walimatulurus') }}" maxlength="20" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
                                     </div>
                                 </div>
 
@@ -325,21 +348,21 @@
                                 <div class="sm:col-span-1">
                                     <label for="tarikh-majlis" class="block text-sm font-medium text-gray-900">Tarikh Majlis</label>
                                     <div class="mt-2">
-                                        <input type="date" name="tarikh-majlis" id="tarikh-majlis" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        <input type="date" name="tarikh-majlis" id="tarikh-majlis" value="{{ old('tarikh-majlis') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
                                     </div>
                                 </div>
 
                                 <div class="sm:col-span-1">
                                     <label for="masa-mula-majlis" class="block text-sm font-medium text-gray-900">Masa Mula</label>
                                     <div class="mt-2">
-                                        <input type="time" name="masa-mula-majlis" id="masa-mula-majlis" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        <input type="time" name="masa-mula-majlis" id="masa-mula-majlis" value="{{ old('masa-mula-majlis', isset($kadData->masa_mula_majelis) ? \Carbon\Carbon::parse($kadData->masa_mula_majelis)->format('H:i') : '') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
                                     </div>
                                 </div>
-
+                                
                                 <div class="sm:col-span-1">
                                     <label for="masa-tamat-majlis" class="block text-sm font-medium text-gray-900">Masa Tamat</label>
                                     <div class="mt-2">
-                                        <input type="time" name="masa-tamat-majlis" id="masa-tamat-majlis" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        <input type="time" name="masa-tamat-majlis" id="masa-tamat-majlis" value="{{ old('masa-tamat-majlis', isset($kadData->masa_tamat_majelis) ? \Carbon\Carbon::parse($kadData->masa_tamat_majelis)->format('H:i') : '') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
                                     </div>
                                 </div>
 
@@ -347,7 +370,7 @@
                                 <div class="sm:col-span-1">
                                     <label for="ayat-jemputan" class="block text-sm font-medium text-gray-900">Ayat Jemputan</label>
                                     <div class="mt-2">
-                                        <textarea name="ayat-jemputan" id="ayat-jemputan" rows="4" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">DENGAN SEGALA HORMATNYA MENJEMPUT DATO'/ DATIN/ TUAN/ PUAN/ ENCIK/ CIK DAN SEISI KELUARGA KE MAJLIS PERKAHWINAN PUTERA KAMI BERSAMA PASANGANNYA</textarea>
+                                        <textarea name="ayat-jemputan" id="ayat-jemputan" rows="4" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">{{ old('ayat-jemputan', 'DENGAN SEGALA HORMATNYA MENJEMPUT DATO\'/ DATIN/ TUAN/ PUAN/ ENCIK/ CIK DAN SEISI KELUARGA KE MAJLIS PERKAHWINAN PUTERA KAMI BERSAMA PASANGANNYA') }}</textarea>
                                     </div>
                                 </div>
 
@@ -355,7 +378,7 @@
                                 <div class="sm:col-span-1">
                                     <label for="doa-pengantin" class="block text-sm font-medium text-gray-900">Doa Pengantin</label>
                                     <div class="mt-2">
-                                        <textarea name="doa-pengantin" id="doa-pengantin" rows="4" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">“Ya Allah, berkatilah majlis perkahwinan ini, limpahkan baraqah dan rahmat kepada kedua mempelai ini, Kurniakanlah mereka zuriat yang soleh dan solehah. Kekalkan jodoh mereka di dunia dan di akhirat dan sempurnakanlah agama mereka dengan berkat ikatan ini.”</textarea>
+                                        <textarea name="doa-pengantin" id="doa-pengantin" rows="4" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">{{ old('doa-pengantin', '“Ya Allah, berkatilah majlis perkahwinan ini, limpahkan baraqah dan rahmat kepada kedua mempelai ini, Kurniakanlah mereka zuriat yang soleh dan solehah. Kekalkan jodoh mereka di dunia dan di akhirat dan sempurnakanlah agama mereka dengan berkat ikatan ini.”') }}</textarea>
                                     </div>
                                 </div>
                                 
@@ -363,21 +386,21 @@
                                 <div class="sm:col-span-2">
                                     <label for="alamat-majlis" class="block text-sm font-medium text-gray-900">Alamat Majlis</label>
                                     <div class="mt-2">
-                                        <textarea name="alamat-majlis" id="alamat-majlis" rows="4" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm"></textarea>
+                                        <textarea name="alamat-majlis" id="alamat-majlis" rows="4" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">{{ old('alamat-majlis') }}</textarea>
                                     </div>
                                 </div>
 
                                 <div class="sm:col-span-1">
                                     <label for="google-url" class="block text-sm font-medium text-gray-900">URL Google Maps</label>
                                     <div class="mt-2">
-                                        <input type="text" name="google-url" id="google-url" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        <input type="text" name="google-url" id="google-url" value="{{ old('google-url') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
                                     </div>
                                 </div>
 
                                 <div class="sm:col-span-1">
                                     <label for="waze-url" class="block text-sm font-medium text-gray-900">URL Waze</label>
                                     <div class="mt-2">
-                                        <input type="text" name="waze-url" id="waze-url" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        <input type="text" name="waze-url" id="waze-url" value="{{ old('waze-url') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
                                     </div>
                                 </div>
 
