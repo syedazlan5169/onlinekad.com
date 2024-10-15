@@ -9,8 +9,20 @@
         <div x-data="{ selectedPackage: '{{ old('package-id', 2) }}' }" class="max-w-7xl mx-auto sm:flex sm:justify-center gap-3 sm:px-6">
             <!-- Column 1 -->
             <div class="h-full sm:w-[30%] sm:pr-4">
+
+
                 <!-- Design Section -->
                 <div class="mb-4 p-8 bg-white shadow-lg rounded-lg overflow-hidden">
+                                    <!-- Displaying all error Mobile -->
+                <div class="mb-4 sm:hidden">
+                    @if($errors->any)
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li class="text-red-500 italic">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </div>
                     <div class="rounded-xl p-8 ring-1 ring-gray-200">
                         <!-- Product Image -->
                         <div class="h-full w-full overflow-hidden sm:h-40">
@@ -549,8 +561,8 @@
                             </div>
                         </div>
 
-                        <!-- Displaying all error -->
-                        <div class="mt-10">
+                        <!-- Displaying all error desktop -->
+                        <div class="mt-10 hidden sm:block">
                             @if($errors->any)
                                 <ul>
                                     @foreach($errors->all() as $error)
