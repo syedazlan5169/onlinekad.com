@@ -5,6 +5,7 @@ use App\Http\Controllers\KadController;
 use App\Http\Controllers\RsvpController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ToyyibpayController;
+use App\Http\Controllers\Auth\GoogleController;
 use App\Models\Guestbook;
 use App\Models\Rsvp;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +43,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/form-tempah/{id}', [KadController::class, 'showFormTempah'])->name('form-tempah.show');
     Route::post('/tempah', [KadController::class, 'tempahKad'])->name('tempah');
 });
+
+//GoogleController
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 //Show Kad
 Route::get('/invitation/{slug}', [KadController::class, 'show']);
