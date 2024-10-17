@@ -552,11 +552,88 @@
                                         </div>
                                     </div>
 
-                                    <label for="bg-song-id" class="block text-sm font-medium text-gray-900">Lagu Latar Belakang</label>
+                                    <label for="bg-song-id" class="block text-sm font-medium text-gray-900">Muzik Latar</label>
                                     <!-- Bg Song Selection -->
                                     <div class="mt-2">
                                         @livewire('bg-song-dropdown')
                                     </div>
+
+
+                                    <!-- Gallery upload -->
+                                    <div>
+                                        <label class="mb-2 mt-4 block text-sm font-medium text-gray-900">Galeri <span class="text-xs">(Optional)</span></label> 
+                                        
+                                        <!-- Upload Input 1 -->
+                                        <div class="mb-2">
+                                            <div class="flex items-center space-x-3">
+                                                <img class="hidden" src="" id="picture_1_img" alt="Photo" class="w-40 h-40 object-cover"/> 
+                                                <div class="flex-1 relative">
+                                                    <input 
+                                                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none" 
+                                                        type="file"
+                                                        name="picture_1" 
+                                                        id="picture_1" 
+                                                        accept="image/png, image/jpeg"
+                                                    >
+                                                    <button 
+                                                        type="button" 
+                                                        class="absolute top-0 left-0 p-1 bg-red-500 text-white rounded-md hidden" 
+                                                        id="picture_1_delete">
+                                                        <i class="fas fa-trash"></i> Padam
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <label class="text-sm text-gray-500" for="picture_1">Upload Gambar 1</label>
+                                        </div>
+
+                                        <!-- Upload Input 2 -->
+                                        <div class="mb-2">
+                                            <div class="flex items-center space-x-3">
+                                                <img class="hidden" src="" id="picture_2_img" alt="Photo" class="w-40 h-40 object-cover"/> 
+                                                <div class="flex-1 relative">
+                                                    <input 
+                                                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none" 
+                                                        type="file"
+                                                        name="picture_2" 
+                                                        id="picture_2" 
+                                                        accept="image/png, image/jpeg"
+                                                    >
+                                                    <button 
+                                                        type="button" 
+                                                        class="absolute top-0 left-0 p-1 bg-red-500 text-white rounded-md hidden" 
+                                                        id="picture_2_delete">
+                                                        <i class="fas fa-trash"></i> Padam
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <label class="text-sm text-gray-500" for="picture_2">Upload Gambar 2</label>
+                                        </div>
+
+                                        <!-- Upload Input 3 -->
+                                        <div class="mb-2">
+                                            <div class="flex items-center space-x-3">
+                                                <img class="hidden" src="" id="picture_3_img" alt="Photo" class="w-40 h-40 object-cover"/> 
+                                                <div class="flex-1 relative">
+                                                    <input 
+                                                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none" 
+                                                        type="file"
+                                                        name="picture_3" 
+                                                        id="picture_3" 
+                                                        accept="image/png, image/jpeg"
+                                                    >
+                                                    <button 
+                                                        type="button" 
+                                                        class="absolute top-0 left-0 p-1 bg-red-500 text-white rounded-md hidden" 
+                                                        id="picture_3_delete">
+                                                        <i class="fas fa-trash"></i> Padam
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <label class="text-sm text-gray-500" for="picture_3">Upload Gambar 3</label>
+                                        </div>
+                                    </div>
+                                    <!-- End Gallery Upload -->
+
                                 </div>
                             </div>
                         </div>

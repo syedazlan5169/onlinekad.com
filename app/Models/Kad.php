@@ -93,6 +93,11 @@ class Kad extends Model
         return $this->hasMany(Guestbook::class);
     }
 
+    public function sliders()
+    {
+        return $this->hasMany(Slider::class);
+    }
+
     public function rsvp()
     {
         return $this->hasMany(Rsvp::class);
