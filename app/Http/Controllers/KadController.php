@@ -501,8 +501,6 @@ class KadController extends Controller
                 $slider->image_url_1,
                 $slider->image_url_2,
                 $slider->image_url_3,
-                $slider->image_url_2,
-                $slider->image_url_3,
             ];
         }
 

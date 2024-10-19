@@ -106,6 +106,28 @@
             .animate-bar3 {
             animation: bar3 1s infinite ease-in-out;
             }
+
+             /* Ensure the slider and slides are square */
+            .main-slider {
+                width: 100%; /* Adjust width as needed */
+                max-width: 400px; /* The square size, you can adjust this */
+                aspect-ratio: 1 / 1; /* Ensures it's a square */
+            }
+
+            .main-slider .slide {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+            }
+
+            /* Ensure images fit within the square and are cropped as needed */
+            .slide-image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover; /* Crops the image to fill the square container */
+                border-radius: 1rem;
+            }
            
         </style>
 
@@ -331,14 +353,17 @@
                         </script>
                     </div>
                     
-                    <!-- Slider -->
+                   <!-- Slider -->
                     <div class="main-slider size-80 w-full max-h-[400px] mx-auto overflow-hidden rounded-xl">
                         @foreach($imageUrls as $url)
-                            <div class="w-full h-full">
-                                <img src="{{ asset($url) }}" alt="Slide Image" class="w-full h-full object-cover rounded-xl border border-gray-800">
-                            </div>
+                            @if (!empty($url))  <!-- Check if $url is not null or empty -->
+                                <div class="slide">
+                                    <img src="{{ asset($url) }}" alt="Slide Image" class="slide-image">
+                                </div>
+                            @endif
                         @endforeach
                     </div>
+
 
                     <!-- Doa Pengantin -->
                     <div class="items-center w-full h-auto mb-6 rounded-xl p-4" style="background-color: {{ $colorCode }};">
