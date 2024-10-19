@@ -202,7 +202,7 @@
                     namaPerempuan: ''}" class="max-w-7xl mx-auto p-8">
                     
                     <!-- Form starts -->
-                    <form action="{{ route('tempah') }}" method="POST">
+                    <form action="{{ route('tempah') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <input class="hidden" name="design-id" id="design-id" value="{{ $design->id }}">

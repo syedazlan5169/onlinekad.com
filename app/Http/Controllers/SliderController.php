@@ -2,43 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Providers\GoogleDriveService;
-use App\Models\Slider;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use App\Models\Slider;
+use App\Models\Kad; 
 
 class SliderController extends Controller
 {
-    protected $googleDrive;
-
-    public function __construct(GoogleDriveService $googleDrive)
+    /**
+     * Handle the file upload and return the file path.
+     */
+    public function uploadImage($file)
     {
-        $this->googleDrive = $googleDrive;
-    }
+        // Define the directory for storing images
+        $directory = 'slider';
 
-    public function store(Request $request, $kadId)
-    {
-        $slider = new Slider();
-        $slider->kad_id = $kadId;
+        // Create a unique file name
+        $filename = uniqid() . '.' . $file->getClientOriginalExtension();
 
-        // Process each image and upload to Google Drive
-        for ($i = 1; $i <= 5; $i++) {
-            $imageField = 'picture_' . $i;
-            if ($request->hasFile($imageField)) {
-                $file = $request->file($imageField);
-                $fileName = $file->getClientOriginalName();
-                $filePath = $file->getPathname();
+        // Store the file in the 'storage/app/public/slider' directory
+        $file->storeAs("public/$directory", $filename);
 
-                // Upload file to Google Drive
-                $fileId = $this->googleDrive->uploadFile($filePath, $fileName);
-
-                // Store the Google Drive file URL in the database
-                $slider->{'image_url_' . $i} = $this->googleDrive->getFileUrl($fileId);
-            }
-        }
-
-        $slider->save();
-
-        return redirect()->back()->with('success', 'Images uploaded successfully!');
+        // Return the file path to store in the database
+        return "$directory/$filename";
     }
 }
-

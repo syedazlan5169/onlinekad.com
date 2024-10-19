@@ -10,6 +10,7 @@ use App\Models\Font;
 use App\Models\Guestbook;
 use App\Models\Package;
 use App\Models\Rsvp;
+use App\Models\Slider;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
@@ -240,7 +241,7 @@ class KadController extends Controller
         }
 
         // Create a new Kad entry
-        Kad::create([
+        $kad = Kad::create([
             // Maklumat Kad
             'slug' => Str::slug(request('nama-panggilan-lelaki')) . '-' . Str::slug(request('nama-panggilan-perempuan')) . '-' . Str::random(5),
             'order_id' => $orderId,
@@ -331,8 +332,46 @@ class KadController extends Controller
             ],
         ]);
 
+        // Handle the gallery images (Slider)
+        $slider = new Slider();
+        $slider->kad_id = $kad->id;
+
+        // Handle file uploads and store paths
+        if (request()->hasFile('picture_1')) {
+            $slider->image_url_1 = $this->uploadImage(request()->file('picture_1'));
+        }
+        if (request()->hasFile('picture_2')) {
+            $slider->image_url_2 = $this->uploadImage(request()->file('picture_2'));
+        }
+        if (request()->hasFile('picture_3')) {
+            $slider->image_url_3 = $this->uploadImage(request()->file('picture_3'));
+        }
+
+        $slider->save();
+
         return redirect('/senarai-kad');
     }
+
+    private function uploadImage($file)
+    {
+        // Define the directory for storing images
+        $directory = 'slider';
+
+        // Check if the directory exists, if not, create it
+        if (!Storage::disk('public')->exists($directory)) {
+            Storage::disk('public')->makeDirectory($directory);
+        }
+
+        // Create a unique file name
+        $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+        
+        // Store the file in the 'storage/app/public/slider' directory
+        $file->storeAs($directory, $filename, 'public');
+        
+        // Return the file path
+        return Storage::url("{$directory}/{$filename}");
+    }
+
 
 
     public function generateReminderUrl($title, $description, $location, $start, $end, $orderId)
@@ -442,6 +481,7 @@ class KadController extends Controller
         $design = Design::findOrFail($kadData->design_id);
         $font = Font::findOrFail($kadData->font_id);
         $bgSong = BgSong::findOrFail($kadData->bg_song_id);
+        $slider = Slider::where('kad_id', $kadData->id)->firstOrFail();
 
         $dateTime = [
             'hari_tarikh_majlis' => $this->translateToMalay($kadData->tarikh_majlis, 3),
@@ -451,7 +491,21 @@ class KadController extends Controller
             'masa_tamat_majlis' => Carbon::createFromFormat('H:i:s', $kadData->masa_tamat_majlis)->format('g:i A')
         ];
 
-        $imageUrls = json_decode('["images/slide1.webp", "images/slide2.webp", "images/slide3.webp"]');
+        if ($slider->image_url_1 == null)
+        {
+            $imageUrls = json_decode('["images/slide1.webp", "images/slide2.webp", "images/slide3.webp"]');
+        }
+        else
+        {
+            $imageUrls = [
+                $slider->image_url_1,
+                $slider->image_url_2,
+                $slider->image_url_3,
+                $slider->image_url_2,
+                $slider->image_url_3,
+            ];
+        }
+
 
         return view('kad.base_template', compact('kadData', 'dateTime', 'font', 'imageUrls', 'design', 'bgSong'));
     }

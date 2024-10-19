@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('sliders', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(\App\Models\Kad::class);
-            $table->string('image_url_1');
-            $table->string('image_url_2');
-            $table->string('image_url_3');
-            $table->string('image_url_4');
-            $table->string('image_url_5');
+            $table->string('image_url_1')->nullable();
+            $table->string('image_url_2')->nullable();
+            $table->string('image_url_3')->nullable();
+            $table->string('image_url_4')->nullable();
+            $table->string('image_url_5')->nullable();
             $table->timestamps();
         });
     }
