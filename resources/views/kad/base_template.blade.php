@@ -320,7 +320,7 @@
                                         @foreach($kadData->aturcara_majlis as $entry)
                                             <!-- Check if both 'masa_acara' and 'acara' are not null or empty -->
                                             @if(!empty($entry['masa_acara']) || !empty($entry['acara']))
-                                                <li class="grid grid-cols-3 gap-8 items-center px-12">
+                                                <li class="grid grid-cols-3 gap-8 items-center px-6">
                                                     <!-- Show 'masa_acara' if not empty -->
                                                     @if(!empty($entry['masa_acara']))
                                                         <p class="col-span-1 text-l font-bold text-end text-gray-600 font-sans">{{ \Carbon\Carbon::parse($entry['masa_acara'])->format('g:i A') }}</p>
