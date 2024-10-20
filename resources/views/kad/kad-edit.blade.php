@@ -32,7 +32,7 @@
 					}" class="max-w-7xl mx-auto p-8">
 					
 					<!-- Form starts -->
-					<form action="/kad-update/{{ $kadData->id }}" method="POST">
+					<form action="/kad-update/{{ $kadData->id }}" method="POST" enctype="multipart/form-data">
 						@csrf
 						@method('PATCH')
 
@@ -267,9 +267,12 @@
 									<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
 								</svg>
 							</h2>
+
 							<div x-show="openSection === 'others'" class="mt-8">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-900">Fungsi</label>
+
+									<!-- Fungsi Active -->
                                     <div class="mt-2 mb-4 sm:flex sm:items-center sm:justify-between sm:px-20">
                                         <!-- RSVP Toggle -->
                                         <div x-data="{ enabled: {{ $kadData->rsvp_is_on }} }" class="flex items-center">
@@ -348,12 +351,145 @@
                                             <input type="hidden" name="slideshow-is-on" :value="enabled ? 1 : 0">
                                         </div>
                                     </div>
+									<!-- End of Fungsi Active -->
 
-                                    <label for="bg-song-id" class="block text-sm font-medium text-gray-900">Lagu Latar Belakang</label>
+
                                     <!-- Bg Song Selection -->
+                                    <label for="bg-song-id" class="block text-sm font-medium text-gray-900">Lagu Latar Belakang</label>
                                     <div class="mt-2">
 										@livewire('bg-song-dropdown', ['selectedSong' => $kadData->bg_song_id])
                                     </div>
+
+									<!-- Gallery Upload -->
+									<div>
+										<label class="mb-2 mt-4 block text-sm font-medium text-gray-900">Galeri <span class="text-xs">(Optional)</span></label> 
+										
+										<!-- Upload Input 1 -->
+										<div class="mb-2">
+											<div class="flex items-center space-x-3">
+                									<img src="{{ asset($slider->image_url_1) }}" id="picture_1_img" alt="Photo" class="w-14 h-14 object-cover border border-gray-300 rounded-md" /> 
+												<div class="flex-1 relative">
+													<input 
+														class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none" 
+														type="file"
+														name="picture_1" 
+														id="picture_1" 
+														accept="image/png, image/jpeg"
+													>
+													<input type="hidden" name="picture_1_delete_flag" id="picture_1_delete_flag" value="0"> <!-- Flag to track deletion -->
+													<button 
+														type="button" 
+														class="p-1 mt-1 bg-red-500 text-white rounded-md {{ $slider->image_url_1 ? '' : 'hidden' }}" 
+														id="picture_1_delete">
+														<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+															<path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z" clip-rule="evenodd" />
+														</svg>
+													</button>
+												</div>
+											</div>
+											<label class="text-sm text-gray-500" for="picture_1">Upload Gambar 1</label>
+										</div>
+									
+										<!-- Upload Input 2 -->
+										<div class="mb-2">
+											<div class="flex items-center space-x-3">
+													<img src="{{ asset($slider->image_url_2) }}" id="picture_2_img" alt="Photo" class="w-14 h-14 object-cover border border-gray-300 rounded-md" /> 
+												<div class="flex-1 relative">
+													<input 
+														class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none" 
+														type="file"
+														name="picture_2" 
+														id="picture_2" 
+														accept="image/png, image/jpeg"
+													>
+													<input type="hidden" name="picture_2_delete_flag" id="picture_2_delete_flag" value="0">
+													<button 
+														type="button" 
+														class="p-1 mt-1 bg-red-500 text-white rounded-md {{ $slider->image_url_2 ? '' : 'hidden' }}" 
+														id="picture_2_delete">
+														<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+															<path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z" clip-rule="evenodd" />
+														</svg>
+													</button>
+												</div>
+											</div>
+											<label class="text-sm text-gray-500" for="picture_2">Upload Gambar 2</label>
+										</div>
+									
+										<!-- Upload Input 3 -->
+										<div class="mb-2">
+											<div class="flex items-center space-x-3">
+													<img src="{{ asset($slider->image_url_3) }}" id="picture_3_img" alt="Photo" class="w-14 h-14 object-cover border border-gray-300 rounded-md" /> 
+												<div class="flex-1 relative">
+													<input 
+														class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none" 
+														type="file"
+														name="picture_3" 
+														id="picture_3" 
+														accept="image/png, image/jpeg"
+													>
+													<input type="hidden" name="picture_3_delete_flag" id="picture_3_delete_flag" value="0">
+													<button 
+														type="button" 
+														class="p-1 mt-1 bg-red-500 text-white rounded-md {{ $slider->image_url_3 ? '' : 'hidden' }}" 
+														id="picture_3_delete">
+														<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+															<path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z" clip-rule="evenodd" />
+														</svg>
+													</button>
+												</div>
+											</div>
+											<label class="text-sm text-gray-500" for="picture_3">Upload Gambar 3</label>
+										</div>
+									</div>
+									<!-- Gallery upload script -->
+									<script>
+										function setupImageUpload(inputId, imgId, deleteBtnId, deleteFlagId, existingImg) {
+											const inputFile = document.getElementById(inputId);
+											const imgElement = document.getElementById(imgId);
+											const deleteButton = document.getElementById(deleteBtnId);
+											const deleteFlag = document.getElementById(deleteFlagId);
+											
+											// If there is an existing image, show the delete button and image
+											if (existingImg) {
+												imgElement.src = existingImg;
+												imgElement.classList.remove('hidden');
+												deleteButton.classList.remove('hidden');
+											}
+									
+											// Show image preview and delete button when a file is selected
+											inputFile.addEventListener('change', function(event) {
+												const file = event.target.files[0];
+												if (file) {
+													const reader = new FileReader();
+													reader.onload = function(e) {
+														imgElement.src = e.target.result;
+														imgElement.classList.remove('hidden'); // Show the image
+														deleteButton.classList.remove('hidden'); // Show the delete button
+														deleteFlag.value = "0"; // Reset delete flag
+													};
+													reader.readAsDataURL(file);
+												}
+											});
+									
+											// Handle deletion
+											deleteButton.addEventListener('click', function() {
+												imgElement.src = ''; // Clear image preview
+												imgElement.classList.add('hidden'); // Hide the image
+												deleteButton.classList.add('hidden'); // Hide the delete button
+												inputFile.value = ''; // Reset file input
+												deleteFlag.value = "1"; // Mark the image for deletion
+											});
+										}
+									
+										// Setup for each input with existing images
+										setupImageUpload('picture_1', 'picture_1_img', 'picture_1_delete', 'picture_1_delete_flag', '{{ asset($slider->image_url_1) }}');
+										setupImageUpload('picture_2', 'picture_2_img', 'picture_2_delete', 'picture_2_delete_flag', '{{ asset($slider->image_url_2) }}');
+										setupImageUpload('picture_3', 'picture_3_img', 'picture_3_delete', 'picture_3_delete_flag', '{{ asset($slider->image_url_3) }}');
+									</script>
+									<!-- End Gallery Upload -->
+									
+									
                                 </div>
                             </div>
 						</div>

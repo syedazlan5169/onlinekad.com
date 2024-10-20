@@ -472,6 +472,8 @@
                             <!-- Show a summary of all sections or additional form fields here -->
                             <div x-show="openSection === 'others'" class="mt-8">
                                 <div>
+
+                                    <!-- Fungsi Active -->
                                     <label class="block text-sm font-medium text-gray-900">Fungsi</label>
                                     <div class="mt-2 mb-4 sm:flex sm:items-center sm:justify-between">
                                         <!-- RSVP Toggle -->
@@ -551,12 +553,14 @@
                                             <input type="hidden" name="slideshow-is-on" :value="enabled ? 1 : 0">
                                         </div>
                                     </div>
+                                    <!-- End of Fungsi Active -->
 
-                                    <label for="bg-song-id" class="block text-sm font-medium text-gray-900">Muzik Latar</label>
                                     <!-- Bg Song Selection -->
+                                    <label for="bg-song-id" class="block text-sm font-medium text-gray-900">Muzik Latar</label>
                                     <div class="mt-2">
                                         @livewire('bg-song-dropdown')
                                     </div>
+                                    <!-- End of Bg Song Selection -->
 
 
                                     <!-- Gallery upload -->
@@ -566,7 +570,7 @@
                                         <!-- Upload Input 1 -->
                                         <div class="mb-2">
                                             <div class="flex items-center space-x-3">
-                                                <img class="hidden" src="" id="picture_1_img" alt="Photo" class="w-40 h-40 object-cover"/> 
+                                                <img src="" id="picture_1_img" alt="Photo" class="hidden w-14 h-14 object-cover border border-gray-300 rounded-md" /> 
                                                 <div class="flex-1 relative">
                                                     <input 
                                                         class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none" 
@@ -577,19 +581,22 @@
                                                     >
                                                     <button 
                                                         type="button" 
-                                                        class="absolute top-0 left-0 p-1 bg-red-500 text-white rounded-md hidden" 
+                                                        class="p-1 mt-1 bg-red-500 text-white rounded-md hidden" 
                                                         id="picture_1_delete">
-                                                        <i class="fas fa-trash"></i> Padam
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+                                                            <path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z" clip-rule="evenodd" />
+                                                        </svg>
                                                     </button>
                                                 </div>
                                             </div>
+                                            
                                             <label class="text-sm text-gray-500" for="picture_1">Upload Gambar 1</label>
                                         </div>
-
+                                    
                                         <!-- Upload Input 2 -->
                                         <div class="mb-2">
                                             <div class="flex items-center space-x-3">
-                                                <img class="hidden" src="" id="picture_2_img" alt="Photo" class="w-40 h-40 object-cover"/> 
+                                                <img src="" id="picture_2_img" alt="Photo" class="hidden w-14 h-14 object-cover border border-gray-300 rounded-md" /> 
                                                 <div class="flex-1 relative">
                                                     <input 
                                                         class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none" 
@@ -600,19 +607,21 @@
                                                     >
                                                     <button 
                                                         type="button" 
-                                                        class="absolute top-0 left-0 p-1 bg-red-500 text-white rounded-md hidden" 
+                                                        class="p-1 mt-1 bg-red-500 text-white rounded-md hidden" 
                                                         id="picture_2_delete">
-                                                        <i class="fas fa-trash"></i> Padam
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+                                                            <path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z" clip-rule="evenodd" />
+                                                        </svg>
                                                     </button>
                                                 </div>
                                             </div>
                                             <label class="text-sm text-gray-500" for="picture_2">Upload Gambar 2</label>
                                         </div>
-
+                                    
                                         <!-- Upload Input 3 -->
                                         <div class="mb-2">
                                             <div class="flex items-center space-x-3">
-                                                <img class="hidden" src="" id="picture_3_img" alt="Photo" class="w-40 h-40 object-cover"/> 
+                                                <img src="" id="picture_3_img" alt="Photo" class="hidden w-14 h-14 object-cover border border-gray-300 rounded-md" /> 
                                                 <div class="flex-1 relative">
                                                     <input 
                                                         class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none" 
@@ -623,15 +632,52 @@
                                                     >
                                                     <button 
                                                         type="button" 
-                                                        class="absolute top-0 left-0 p-1 bg-red-500 text-white rounded-md hidden" 
+                                                        class="p-1 mt-1 bg-red-500 text-white rounded-md hidden" 
                                                         id="picture_3_delete">
-                                                        <i class="fas fa-trash"></i> Padam
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+                                                            <path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z" clip-rule="evenodd" />
+                                                        </svg>
                                                     </button>
                                                 </div>
                                             </div>
                                             <label class="text-sm text-gray-500" for="picture_3">Upload Gambar 3</label>
                                         </div>
                                     </div>
+                                    <!-- Gallery upload script -->
+                                    <script>
+                                        function setupImageUpload(inputId, imgId, deleteBtnId) {
+                                            const inputFile = document.getElementById(inputId);
+                                            const imgElement = document.getElementById(imgId);
+                                            const deleteButton = document.getElementById(deleteBtnId);
+                                    
+                                            // Show image preview and delete button when a file is selected
+                                            inputFile.addEventListener('change', function(event) {
+                                                const file = event.target.files[0];
+                                                if (file) {
+                                                    const reader = new FileReader();
+                                                    reader.onload = function(e) {
+                                                        imgElement.src = e.target.result;
+                                                        imgElement.classList.remove('hidden'); // Show the image
+                                                        deleteButton.classList.remove('hidden'); // Show the delete button
+                                                    };
+                                                    reader.readAsDataURL(file);
+                                                }
+                                            });
+                                    
+                                            // Delete the selected image
+                                            deleteButton.addEventListener('click', function() {
+                                                imgElement.src = ''; // Clear image preview
+                                                imgElement.classList.add('hidden'); // Hide the image
+                                                deleteButton.classList.add('hidden'); // Hide the delete button
+                                                inputFile.value = ''; // Reset file input
+                                            });
+                                        }
+                                    
+                                        // Setup for each input
+                                        setupImageUpload('picture_1', 'picture_1_img', 'picture_1_delete');
+                                        setupImageUpload('picture_2', 'picture_2_img', 'picture_2_delete');
+                                        setupImageUpload('picture_3', 'picture_3_img', 'picture_3_delete');
+                                    </script>
                                     <!-- End Gallery Upload -->
 
                                 </div>

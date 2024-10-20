@@ -41,12 +41,13 @@ class KadController extends Controller
         $currentUserId = Auth::id();
         $kadData = Kad::where('user_id', $currentUserId)->where('id', $id)->with('design')->first();
         $fonts = Font::all();
+        $slider = Slider::where('kad_id', $kadData->id)->first();
 
         if (!$kadData) {
             return redirect()->back()->withErrors('Kad not found or you do not have permission to view it.');
         }
 
-        return view('kad.kad-edit', compact('kadData', 'fonts'));
+        return view('kad.kad-edit', compact('kadData', 'fonts', 'slider'));
     }
 
     public function showFormTempah($id)
@@ -187,6 +188,46 @@ class KadController extends Controller
                 ]
             ]
         ]);
+
+        // Handle the gallery images (Slider)
+        $slider = Slider::where('kad_id', $kad->id)->first();
+
+        // If there's no existing slider, create a new one
+        if (!$slider) {
+            $slider = new Slider();
+            $slider->kad_id = $kad->id;
+        }
+
+        // Handle file uploads and store paths
+        if ($request->hasFile('picture_1')) {
+            // If a new file is uploaded, delete the old one
+            $this->deleteOldImage($slider->image_url_1);
+            $slider->image_url_1 = $this->uploadImage($request->file('picture_1'));
+        } elseif ($request->input('picture_1_delete_flag') == '1') {
+            // If the image was marked for deletion
+            $this->deleteOldImage($slider->image_url_1);
+            $slider->image_url_1 = null; // Remove the image reference
+        }
+
+        if ($request->hasFile('picture_2')) {
+            $this->deleteOldImage($slider->image_url_2);
+            $slider->image_url_2 = $this->uploadImage($request->file('picture_2'));
+        } elseif ($request->input('picture_2_delete_flag') == '1') {
+            $this->deleteOldImage($slider->image_url_2);
+            $slider->image_url_2 = null;
+        }
+
+        if ($request->hasFile('picture_3')) {
+            $this->deleteOldImage($slider->image_url_3);
+            $slider->image_url_3 = $this->uploadImage($request->file('picture_3'));
+        } elseif ($request->input('picture_3_delete_flag') == '1') {
+            $this->deleteOldImage($slider->image_url_3);
+            $slider->image_url_3 = null;
+        }
+
+        // Save the updated or new slider
+        $slider->save();
+
 
         // Redirect with success message
         return redirect('/senarai-kad')->with('success', 'Kad updated successfully');
@@ -371,6 +412,30 @@ class KadController extends Controller
         // Return the file path
         return Storage::url("{$directory}/{$filename}");
     }
+
+    public function deleteOldImage($imagePath)
+{
+    // Remove '/storage/' from the path to make it relative to the storage folder
+    $relativePath = str_replace('/storage/', 'public/', $imagePath);
+
+    // Log the relative path to check if it is correct
+    Log::info('Deleting file: ' . $relativePath);
+
+    // Use the public disk explicitly
+    if (Storage::disk('public')->exists(str_replace('public/', '', $relativePath))) {
+        Log::info('File exists, attempting to delete: ' . $relativePath);
+        
+        // Delete the file
+        Storage::disk('public')->delete(str_replace('public/', '', $relativePath));
+        
+        Log::info('File deleted successfully: ' . $relativePath);
+    } else {
+        Log::warning('File does not exist: ' . $relativePath);
+    }
+}
+
+
+
 
 
 
