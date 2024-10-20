@@ -411,11 +411,15 @@ class KadController extends Controller
 
         // Save the iCalendar content to the file in the 'public' disk
         Storage::disk('public')->put("{$directory}/{$fileName}", $icalContent);
+            
+        $domain = config('app.url'); 
+        $icalendarFilePath = Storage::url("{$directory}/{$fileName}");
+        $webcalUrl = str_replace(['https://', 'http://'], 'webcal://', $domain . $icalendarFilePath);
 
         // Return Google Calendar link and the public URL to the iCalendar file
         return [
             'googleCalendarLink' => $googleCalendarLink,
-            'icalendarFilePath' => Storage::url("{$directory}/{$fileName}")
+            'icalendarFilePath' => $webcalUrl
         ];
     }
 

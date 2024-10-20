@@ -186,7 +186,7 @@
         <!-- End of Notification Panel -->
 
 
-        <div class="h-full w-full bg-cover bg-center sm:w-[400px] sm:mx-auto sm:max-w-lg sm:rounded-lg sm:shadow-xl" style="background-image: url('{{ asset($design->design_url_2) }}'); background-attachment: fixed; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);">
+        <div class="h-full w-full bg-cover bg-center sm:w-[400px] sm:bg-contain sm:mx-auto sm:max-w-lg sm:rounded-lg sm:shadow-xl" style="background-image: url('{{ asset($design->design_url_2) }}'); background-attachment: fixed; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);">
 
 
         <canvas class="fixed opacity-30" style="pointer-events: none"></canvas>
