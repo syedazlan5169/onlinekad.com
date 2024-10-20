@@ -142,7 +142,7 @@
     <body x-data="{ form_ucapan: false, form_rsvp: false, location_modal: false, reminder_modal: false, contact_modal: false }">
 
 
-        @if(!$kadData->is_paid)
+        @if(!$kadData->is_paid && in_array($kadData->package_id, [2, 3]))
             <div class="watermark">
                 <div class="watermark-text">UNPAID</div>
             </div>
@@ -208,11 +208,59 @@
                 </div>
             </div>
             
+            
             <!-- Details Section -->
-            <div class="my-12 py-8">
+            <div class="mb-12 pb-8">
                 <div class="relative top-0 bg-white bg-opacity-40">
+                    <!-- Custom Audio Player -->
+                    @if (($kadData->package_id == 2 || $kadData->package_id == 3) && $bgSong->id !== 1)
+                        <div x-data="{ isPlaying: true, audio: null, showModal: @if(!session('success')) true @else false @endif }" 
+                            x-init="audio = $refs.audioElement" class="flex items-center justify-center mb-4">
+
+                            <!-- Play/Pause Button -->
+                            <button @click="isPlaying ? audio.pause() : audio.play(); isPlaying = !isPlaying" 
+                                class="bg-gray-50 flex items-center space-x-2 py-1 px-2 mt-4 rounded-full transition-colors duration-300 ease-in-out shadow-md">
+                                
+                                <!-- Music Bars Icon (Animate when playing) -->
+                                <svg class="w-6 h-6 text-gray-500" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- First Bar -->
+                                    <rect x="4" y="8" width="2" height="2" :class="isPlaying ? 'animate-bar1' : ''" class="transition-all duration-300 ease-in-out" style="transform-origin: bottom;"></rect>
+                                    <!-- Second Bar -->
+                                    <rect x="10" y="8" width="2" height="2" :class="isPlaying ? 'animate-bar2' : ''" class="transition-all duration-300 ease-in-out" style="transform-origin: bottom;"></rect>
+                                    <!-- Third Bar -->
+                                    <rect x="16" y="8" width="2" height="2" :class="isPlaying ? 'animate-bar3' : ''" class="transition-all duration-300 ease-in-out" style="transform-origin: bottom;"></rect>
+                                </svg>
+
+                                <p class="text-xs font-sans font-semibold">{{ $bgSong->song_name }}</p>
+                            </button>
+
+                            <!-- Hidden Audio Element -->
+                            <audio x-ref="audioElement" loop>
+                                <source src="{{ asset($bgSong->song_url) }}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+
+                            <!-- Modal for User Interaction to Play Audio -->
+                            <div x-show="showModal" x-cloak 
+                                class="fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-75">
+                                <!-- Modal Content -->
+                                <div class="bg-white p-6 rounded-lg shadow-lg">
+                                    <div class="text-center">
+                                        <button @click="audio.play(); showModal = false" 
+                                            class="bg-blue-500 text-white py-2 px-4 rounded-lg shadow hover:bg-blue-600 transition">
+                                            Buka
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                    <!-- End of Custom Audio Player-->
                     <div class="flex flex-col justify-center gap-5 items-center h-full">
-                        <img class="w-full px-3 h-24" src="/images/assalamualaikum.png" alt="">
+                        <img class="w-full px-3 py-6 h-18" src="/images/bismillah.webp" alt="">
+                        <div class="text-center">
+                            <p class="text-sm text-center px-4 font-serif" style="color: {{ $colorCode }}">ASSALAMUALAIKUM W.B.T</p>
+                        </div>
                         <div class="text-center">
                             <p class="text-xl text-center text-gray-600 font-serif">{{ $kadData->nama_bapa_pengantin_lelaki }}</p>
                             <p class="text-xl text-center text-gray-600 font-serif">&</p>
@@ -244,38 +292,7 @@
                                 </div>
                                 <p class="text-l font-bold text-center text-gray-600 font-sans">{{ $dateTime['masa_mula_majlis'] }} ~ {{ $dateTime['masa_tamat_majlis'] }}</p>
                             </div>
-                            <div>
-                                <!-- Aturcara Majlis List -->
-                                <ul class="space-y-2">
-                                    @php
-                                        $firstEntry = collect($kadData->aturcara_majlis)->first();
-                                    @endphp
-                                    @if(!empty($firstEntry['masa_acara']) || !empty($firstEntry['acara']))
-                                    <!-- Centered Icon -->
-                                    <div class="flex justify-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="{{ $colorCode }}" class="size-12">
-                                            <path fill-rule="evenodd" d="M2.625 6.75a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875 0A.75.75 0 0 1 8.25 6h12a.75.75 0 0 1 0 1.5h-12a.75.75 0 0 1-.75-.75ZM2.625 12a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0ZM7.5 12a.75.75 0 0 1 .75-.75h12a.75.75 0 0 1 0 1.5h-12A.75.75 0 0 1 7.5 12Zm-4.875 5.25a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875 0a.75.75 0 0 1 .75-.75h12a.75.75 0 0 1 0 1.5h-12a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
-                                        </svg>
-                                    </div>
-                                    @endif
-                                    @foreach($kadData->aturcara_majlis as $entry)
-                                        <!-- Check if both 'masa_acara' and 'acara' are not null or empty -->
-                                        @if(!empty($entry['masa_acara']) || !empty($entry['acara']))
-                                            <li class="flex flex-col items-center px-14">
-                                                <!-- Show 'masa_acara' if not empty -->
-                                                @if(!empty($entry['masa_acara']))
-                                                    <p class="text-l font-bold text-center text-gray-600 font-sans">{{ \Carbon\Carbon::parse($entry['masa_acara'])->format('g:i A') }}</p>
-                                                @endif
-                                                <!-- Show 'acara' if not empty -->
-                                                @if(!empty($entry['acara']))
-                                                    <p class="text-sm italic text-center text-gray-600 font-sans">{{ $entry['acara'] }}</p>
-                                                @endif
-                                            </li>
-                                        @endif
-                                    @endforeach
-                                </ul>
-                            </div>
-                            
+
                             <div>
                                 <div class="flex justify-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="{{ $colorCode }}" class="size-12">
@@ -284,6 +301,41 @@
                                 </div>
                                 <p class="text-l font-bold text-center text-gray-600 font-sans px-14">{{ $kadData->alamat_majlis }}</p>
                             </div>
+
+                            @if ($kadData->package_id == 2 || $kadData->package_id ==3)
+                                <div>
+                                    <!-- Aturcara Majlis List -->
+                                    <ul class="space-y-2">
+                                        @php
+                                            $firstEntry = collect($kadData->aturcara_majlis)->first();
+                                        @endphp
+                                        @if(!empty($firstEntry['masa_acara']) || !empty($firstEntry['acara']))
+                                        <!-- Centered Icon -->
+                                        <div class="flex justify-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="{{ $colorCode }}" class="size-12">
+                                                <path fill-rule="evenodd" d="M2.625 6.75a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875 0A.75.75 0 0 1 8.25 6h12a.75.75 0 0 1 0 1.5h-12a.75.75 0 0 1-.75-.75ZM2.625 12a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0ZM7.5 12a.75.75 0 0 1 .75-.75h12a.75.75 0 0 1 0 1.5h-12A.75.75 0 0 1 7.5 12Zm-4.875 5.25a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875 0a.75.75 0 0 1 .75-.75h12a.75.75 0 0 1 0 1.5h-12a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+                                        @endif
+                                        @foreach($kadData->aturcara_majlis as $entry)
+                                            <!-- Check if both 'masa_acara' and 'acara' are not null or empty -->
+                                            @if(!empty($entry['masa_acara']) || !empty($entry['acara']))
+                                                <li class="grid grid-cols-3 gap-8 items-center px-12">
+                                                    <!-- Show 'masa_acara' if not empty -->
+                                                    @if(!empty($entry['masa_acara']))
+                                                        <p class="col-span-1 text-l font-bold text-end text-gray-600 font-sans">{{ \Carbon\Carbon::parse($entry['masa_acara'])->format('g:i A') }}</p>
+                                                    @endif
+                                                    <!-- Show 'acara' if not empty -->
+                                                    @if(!empty($entry['acara']))
+                                                        <p class="col-span-2 text-sm italic text-start text-gray-600 font-sans">{{ $entry['acara'] }}</p>
+                                                    @endif
+                                                </li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            
                         </div>
                     </div>
                 </div>
@@ -354,7 +406,7 @@
                     </div>
                     
                    <!-- Slider -->
-                   @if ($kadData->slider_is_on)
+                   @if (($kadData->package_id == 2 || $kadData->package_id == 3) && $kadData->slideshow_is_on)
                         <div class="main-slider size-80 w-full max-h-[400px] mx-auto overflow-hidden rounded-xl">
                             @foreach($imageUrls as $url)
                                 @if (!empty($url))  <!-- Check if $url is not null or empty -->
@@ -373,7 +425,7 @@
                     </div>
 
                     <!-- Guestbook -->
-                    @if ($kadData->guestbook_is_on)
+                    @if (($kadData->package_id == 2 || $kadData->package_id == 3) && $kadData->guestbook_is_on)
                         <div class="mt-7 w-full rounded-xl border-[1px] py-6 px-3 mb-16 bg-white bg-opacity-30" style="border-color: {{ $colorCode }};">
                             <div>
                                 <div class="flex justify-center items-center mb-5">
@@ -400,48 +452,7 @@
                 </div>
             </div>
 
-            <!-- Custom Audio Player -->
-            <div x-data="{ isPlaying: true, audio: null, showModal: @if(!session('success')) true @else false @endif }" 
-                x-init="audio = $refs.audioElement" class="flex items-center justify-center mb-4">
 
-                <!-- Play/Pause Button -->
-                <button @click="isPlaying ? audio.pause() : audio.play(); isPlaying = !isPlaying" 
-                    class="bg-gray-50 flex items-center space-x-2 py-1 px-2 rounded-full transition-colors duration-300 ease-in-out shadow-md">
-                    
-                    <!-- Music Bars Icon (Animate when playing) -->
-                    <svg class="w-6 h-6 text-gray-500" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <!-- First Bar -->
-                        <rect x="4" y="8" width="2" height="2" :class="isPlaying ? 'animate-bar1' : ''" class="transition-all duration-300 ease-in-out" style="transform-origin: bottom;"></rect>
-                        <!-- Second Bar -->
-                        <rect x="10" y="8" width="2" height="2" :class="isPlaying ? 'animate-bar2' : ''" class="transition-all duration-300 ease-in-out" style="transform-origin: bottom;"></rect>
-                        <!-- Third Bar -->
-                        <rect x="16" y="8" width="2" height="2" :class="isPlaying ? 'animate-bar3' : ''" class="transition-all duration-300 ease-in-out" style="transform-origin: bottom;"></rect>
-                    </svg>
-
-                    <p class="text-xs font-sans font-semibold">{{ $bgSong->song_name }}</p>
-                </button>
-
-                <!-- Hidden Audio Element -->
-                <audio x-ref="audioElement" loop>
-                    <source src="{{ asset($bgSong->song_url) }}" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-
-                <!-- Modal for User Interaction to Play Audio -->
-                <div x-show="showModal" x-cloak 
-                    class="fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-75">
-                    <!-- Modal Content -->
-                    <div class="bg-white p-6 rounded-lg shadow-lg">
-                        <div class="text-center">
-                            <button @click="audio.play(); showModal = false" 
-                                class="bg-blue-500 text-white py-2 px-4 rounded-lg shadow hover:bg-blue-600 transition">
-                                Buka
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End of Custom Audio Player-->
             <img class="w-full px-3 h-18 mb-16 pt-0 mt-0" src="/images/Curly-Border-Bottom.png" alt=""> 
         </div>
 
@@ -681,28 +692,28 @@
 
         <!-- Footer Section -->
         <footer class="w-full mx-auto sm:w-[400px] flex justify-center items-center]">
-            <div class="fixed bottom-0 z-50 w-full sm:w-[400px] mx-auto h-16 border-t" style="background-color: {{ $colorFooter }};">
-                <div class="grid mt-2 w-[97%]  gap-1 max-w-lg grid-cols-4 mx-auto font-medium">
-                    <button type="button" @click="form_rsvp = true" class="inline-flex flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $colorCode }};">
-                        <h1 class="text-[20px] text-white"><i class="fa-solid fa-list"></i></h1>
-                        <span class="text-xs text-white">RSVP</span>
-                    </button>
-                    <button type="button" @click="reminder_modal = true" class="inline-flex flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $colorCode }};">
-                        <h1 class="text-[20px] text-white"><i class="fa-regular fa-calendar"></i></h1>
+            <div class="fixed bottom-0 z-50 w-full sm:w-[400px] mx-auto h-18 border-t" style="background-color: {{ $colorFooter }};">
+                <div class="flex justify-center items-center my-1 w-[97%] gap-2 max-w-lg mx-auto font-medium">
+                    @if (($kadData->package_id == 2 || $kadData->package_id == 3) && $kadData->rsvp_is_on)
+                        <button type="button" @click="form_rsvp = true" class="flex-1 flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $colorCode }};">
+                            <h1 class="text-lg text-white"><i class="fa-solid fa-list"></i></h1>
+                            <span class="text-xs text-white">RSVP</span>
+                        </button>
+                    @endif
+                    <button type="button" @click="reminder_modal = true" class="flex-1 flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $colorCode }};">
+                        <h1 class="text-lg text-white"><i class="fa-regular fa-calendar"></i></h1>
                         <span class="text-xs text-white">REMINDER</span>
                     </button>
-                    <button type="button" @click="contact_modal = true" class="inline-flex flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $colorCode }};">
-                        <h1 class="text-[20px] text-white"><i class="fa-solid fa-phone"></i></h1>
+                    <button type="button" @click="contact_modal = true" class="flex-1 flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $colorCode }};">
+                        <h1 class="text-lg text-white"><i class="fa-solid fa-phone"></i></h1>
                         <span class="text-xs text-white">TELEFON</span>
                     </button>
-                    <button type="button" @click="location_modal = true" class="inline-flex flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $colorCode }};">
-                        <h1 class="text-[20px] text-white"><i class="fa-solid fa-location-dot"></i></h1>
-                        <span class="text-xs text-white">LOKASI</span>
-                    </button>
-                    <button type="button" class="inline-flex flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $colorCode }};">
-                        <h1 class="text-[20px] text-white"><i class="fa-solid fa-location-dot"></i></h1>
-                        <span class="text-xs text-white">LOCATION</span>
-                    </button>
+                    @if ($kadData->package_id == 2 || $kadData->package_id == 3)
+                        <button type="button" @click="location_modal = true" class="flex-1 flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $colorCode }};">
+                            <h1 class="text-lg text-white"><i class="fa-solid fa-location-dot"></i></h1>
+                            <span class="text-xs text-white">LOKASI</span>
+                        </button>
+                    @endif
                 </div>
             </div>
         </footer>
