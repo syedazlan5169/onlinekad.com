@@ -354,16 +354,18 @@
                     </div>
                     
                    <!-- Slider -->
-                    <div class="main-slider size-80 w-full max-h-[400px] mx-auto overflow-hidden rounded-xl">
-                        @foreach($imageUrls as $url)
-                            @if (!empty($url))  <!-- Check if $url is not null or empty -->
-                                <div class="slide">
-                                    <img src="{{ asset($url) }}" alt="Slide Image" class="slide-image">
-                                </div>
-                            @endif
-                        @endforeach
-                    </div>
-
+                   @if ($kadData->slider_is_on)
+                        <div class="main-slider size-80 w-full max-h-[400px] mx-auto overflow-hidden rounded-xl">
+                            @foreach($imageUrls as $url)
+                                @if (!empty($url))  <!-- Check if $url is not null or empty -->
+                                    <div class="slide">
+                                        <img src="{{ asset($url) }}" alt="Slide Image" class="slide-image">
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+                    @endif
+                    <!-- End of Slider -->
 
                     <!-- Doa Pengantin -->
                     <div class="items-center w-full h-auto mb-6 rounded-xl p-4" style="background-color: {{ $colorCode }};">
@@ -371,17 +373,19 @@
                     </div>
 
                     <!-- Guestbook -->
-                    <div class="mt-7 w-full rounded-xl border-[1px] py-6 px-3 mb-16 bg-white bg-opacity-30" style="border-color: {{ $colorCode }};">
-                        <div>
-                            <div class="flex justify-center items-center mb-5">
-                                <div>
-                                    <!-- Open the modal using ID.showModal() method -->
-                                    <x-primary-button @click="form_ucapan = true">Tulis Ucapan</x-primary-button>
+                    @if ($kadData->guestbook_is_on)
+                        <div class="mt-7 w-full rounded-xl border-[1px] py-6 px-3 mb-16 bg-white bg-opacity-30" style="border-color: {{ $colorCode }};">
+                            <div>
+                                <div class="flex justify-center items-center mb-5">
+                                    <div>
+                                        <!-- Open the modal using ID.showModal() method -->
+                                        <x-primary-button @click="form_ucapan = true">Tulis Ucapan</x-primary-button>
+                                    </div>
                                 </div>
                             </div>
+                            <livewire:guestbook-wishes :kad_id="$kadData->id" />
                         </div>
-                        <livewire:guestbook-wishes :kad_id="$kadData->id" />
-                    </div>     
+                    @endif
                     <!-- Move to wishes section after paginate -->
                     <script>
                         document.addEventListener('livewire:load', function () {
@@ -390,12 +394,13 @@
                                 section.scrollIntoView({ behavior: 'smooth' });
                             });
                         });
-                    </script> 
+                    </script>
+                    <!-- End of Guestbook -->
 
                 </div>
             </div>
 
-            <!-- Custom Play/Pause Button with Randomized Music Bars -->
+            <!-- Custom Audio Player -->
             <div x-data="{ isPlaying: true, audio: null, showModal: @if(!session('success')) true @else false @endif }" 
                 x-init="audio = $refs.audioElement" class="flex items-center justify-center mb-4">
 
@@ -436,6 +441,7 @@
                     </div>
                 </div>
             </div>
+            <!-- End of Custom Audio Player-->
             <img class="w-full px-3 h-18 mb-16 pt-0 mt-0" src="/images/Curly-Border-Bottom.png" alt=""> 
         </div>
 
