@@ -261,19 +261,56 @@
                         <div class="text-center">
                             <p class="text-sm text-center px-4 font-serif" style="color: {{ $colorCode }}">ASSALAMUALAIKUM W.B.T</p>
                         </div>
-                        <div class="text-center">
-                            <p class="text-xl text-center text-gray-600 font-serif">{{ $kadData->nama_bapa_pengantin_lelaki }}</p>
-                            <p class="text-xl text-center text-gray-600 font-serif">&</p>
-                            <p class="text-xl text-center text-gray-600 font-serif">{{ $kadData->nama_ibu_pengantin_lelaki }}</p>
-                        </div>
+
+                        <!-- Penjemput Pihak Lelaki -->
+                        @if ($kadData->penjemput == 1)
+                            <div class="text-center">
+                                <p class="text-xl text-center text-gray-600 font-serif">{{ $kadData->nama_bapa_pengantin_lelaki }}</p>
+                                <p class="text-xl text-center text-gray-600 font-serif">&</p>
+                                <p class="text-xl text-center text-gray-600 font-serif">{{ $kadData->nama_ibu_pengantin_lelaki }}</p>
+                            </div>
+                        @elseif ($kadData->penjemput == 2)
+                            <!-- Penjemput Pihak Perempuan -->
+                            <div class="text-center">
+                                <p class="text-xl text-center text-gray-600 font-serif">{{ $kadData->nama_bapa_pengantin_perempuan }}</p>
+                                <p class="text-xl text-center text-gray-600 font-serif">&</p>
+                                <p class="text-xl text-center text-gray-600 font-serif">{{ $kadData->nama_ibu_pengantin_perempuan }}</p>
+                            </div>
+                        @elseif ($kadData->penjemput == 3)
+                            <!-- Penjemput Dua Pihak -->
+                            <div class="text-center">
+                                <p class="text-xl text-center text-gray-600 font-serif">{{ $kadData->nama_bapa_pengantin_lelaki }}</p>
+                                <p class="text-xl text-center text-gray-600 font-serif">&</p>
+                                <p class="text-xl text-center text-gray-600 font-serif">{{ $kadData->nama_ibu_pengantin_lelaki }}</p>
+                            </div>
+                            <div class="w-[70%] py-0 my-0 border-t" style="border-color: {{ $colorCode }}"></div>
+                            <div class="text-center">
+                                <p class="text-xl text-center text-gray-600 font-serif">{{ $kadData->nama_bapa_pengantin_perempuan }}</p>
+                                <p class="text-xl text-center text-gray-600 font-serif">&</p>
+                                <p class="text-xl text-center text-gray-600 font-serif">{{ $kadData->nama_ibu_pengantin_perempuan }}</p>
+                            </div>
+                        @endif
+
                         <div class="text-center">
                             <p class="text-sm text-center px-4 font-serif" style="color: {{ $colorCode }}">{{ $kadData->ayat_jemputan }}</p>
                         </div>
-                        <div class="text-center px-2">
-                            <p class="text-2xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_lelaki }}</p>
-                            <p class="text-xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">&</p>
-                            <p class="text-2xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_perempuan }}</p>
-                        </div>
+
+                        @if ($kadData->penjemput == 1 || $kadData->penjemput == 3)
+                            <!-- Penjemput Pihak Lelaki -->
+                            <div class="text-center px-2">
+                                <p class="text-2xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_lelaki }}</p>
+                                <p class="text-xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">&</p>
+                                <p class="text-2xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_perempuan }}</p>
+                            </div>
+                        @elseif ($kadData->penjemput ==2)
+                            <!-- Penjemput Pihak Perempuan -->
+                            <div class="text-center px-2">
+                                <p class="text-2xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_perempuan }}</p>
+                                <p class="text-xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">&</p>
+                                <p class="text-2xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_lelaki }}</p>
+                            </div>
+                        @endif
+
                         <div class="flex flex-col justify-center gap-5">
                             <div>
                                 <div class="flex justify-center">
