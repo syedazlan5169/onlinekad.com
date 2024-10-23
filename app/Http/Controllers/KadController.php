@@ -445,29 +445,25 @@ class KadController extends Controller
     }
 
     public function deleteOldImage($imagePath)
-{
-    // Remove '/storage/' from the path to make it relative to the storage folder
-    $relativePath = str_replace('/storage/', 'public/', $imagePath);
+    {
+        // Remove '/storage/' from the path to make it relative to the storage folder
+        $relativePath = str_replace('/storage/', 'public/', $imagePath);
 
-    // Log the relative path to check if it is correct
-    Log::info('Deleting file: ' . $relativePath);
+        // Log the relative path to check if it is correct
+        Log::info('Deleting file: ' . $relativePath);
 
-    // Use the public disk explicitly
-    if (Storage::disk('public')->exists(str_replace('public/', '', $relativePath))) {
-        Log::info('File exists, attempting to delete: ' . $relativePath);
-        
-        // Delete the file
-        Storage::disk('public')->delete(str_replace('public/', '', $relativePath));
-        
-        Log::info('File deleted successfully: ' . $relativePath);
-    } else {
-        Log::warning('File does not exist: ' . $relativePath);
+        // Use the public disk explicitly
+        if (Storage::disk('public')->exists(str_replace('public/', '', $relativePath))) {
+            Log::info('File exists, attempting to delete: ' . $relativePath);
+            
+            // Delete the file
+            Storage::disk('public')->delete(str_replace('public/', '', $relativePath));
+            
+            Log::info('File deleted successfully: ' . $relativePath);
+        } else {
+            Log::warning('File does not exist: ' . $relativePath);
+        }
     }
-}
-
-
-
-
 
 
     public function generateReminderUrl($title, $description, $location, $start, $end, $orderId)

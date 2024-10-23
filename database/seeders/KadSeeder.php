@@ -16,6 +16,7 @@ class KadSeeder extends Seeder
         $kads = [
             [
                 // Maklumat Kad
+                'id' => '1',
                 'slug' => 'Preview',
                 'order_id' => 'Preview',
                 'is_paid' => true,

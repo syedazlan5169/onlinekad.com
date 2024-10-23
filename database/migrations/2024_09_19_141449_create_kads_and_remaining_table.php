@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -67,6 +68,8 @@ return new class extends Migration
             $table->longText('doa_pengantin')->nullable();
             $table->timestamps();
         });
+
+        DB::statement('ALTER TABLE kads AUTO_INCREMENT = 1000;');
 
         // Guestbooks Table
         Schema::create('guestbooks', function (Blueprint $table) {
