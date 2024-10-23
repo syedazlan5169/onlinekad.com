@@ -28,7 +28,12 @@
                             '{{ $font->id }}': '{{ $font->font_name }}',
                         @endforeach
                     	},
-						openSection: 'maklumatPengantin', namaLelaki: '{{ $kadData->nama_panggilan_lelaki }}', namaPerempuan: '{{ $kadData->nama_panggilan_perempuan }}'
+						openSection: 'maklumatPengantin',
+						 packageId: '{{ $kadData->package_id }}',
+						 namaLelaki: '{{ $kadData->nama_panggilan_lelaki }}',
+						 namaPerempuan: '{{ $kadData->nama_panggilan_perempuan }}',
+						 namaPasanganPertama: '{{ $kadData->nama_panggilan_pasangan_pertama }}',
+						 namaPasanganKedua: '{{ $kadData->nama_panggilan_pasangan_kedua }}'
 					}" class="max-w-7xl mx-auto p-8">
 					
 					<!-- Form starts -->
@@ -44,19 +49,58 @@
 									<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
 								</svg>
 							</h2>
-							<div x-show="openSection === 'maklumatPengantin'" x-data="{ penjemput: '{{ $kadData->penjemput }}' }" class="mt-8 grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-6 sm:grid-cols-1">
+							<div x-show="openSection === 'maklumatPengantin'" x-data="{ penjemput: '{{ $kadData->penjemput }}', duaPasanganIsOn: {{ $kadData->dua_pasangan_is_on }} }" class="mt-8 grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-6 sm:grid-cols-1">
 								<input type="hidden" name="design-id" id="design-id" value="{{ $kadData->design->id }}">
 
+								<!-- Dua Pasangan Toggle -->
+								<div x-show="packageId == 3" x-cloak x-data="{ enabled: {{ $kadData->dua_pasangan_is_on }} }" class="sm:col-span-6">
+									<!-- Button Element -->
+									<button 
+										@click="enabled = !enabled, duaPasanganIsOn = enabled, penjemput = enabled ? '4' : '1'" 
+										:class="enabled ? 'bg-indigo-600' : 'bg-gray-200'" 
+										type="button" 
+										class="mb-2 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" 
+										role="switch" 
+										:aria-checked="enabled.toString()" 
+									>
+										<!-- Toggle Circle -->
+										<span 
+											:class="enabled ? 'translate-x-5' : 'translate-x-0'" 
+											class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+											aria-hidden="true"
+										></span>
+									</button>
+									
+									<!-- Label Text -->
+									<span class="ml-3 text-sm" id="dua-pasangan-is-on">
+										<span class="font-medium text-gray-900">Dua Pasangan</span>
+									</span>
+									<input type="hidden" name="dua-pasangan-is-on" :value="enabled ? 1 : 0">
+								</div>
+
 								<!-- Nama Penuh Pengantin Lelaki -->
-								<div class="lg:col-span-3 sm:col-span-1">
+								<div x-show="duaPasanganIsOn == true"  class="lg:col-span-3 sm:col-span-1">
+									<label for="nama-penuh-pasangan-pertama" class="block text-sm font-medium text-gray-900">Nama Penuh Pasangan Pertama</label>
+									<div class="mt-2">
+										<input type="text" name="nama-penuh-pasangan-pertama" id="nama-penuh-pasangan-pertama" value="{{ $kadData->nama_penuh_pasangan_pertama }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+									</div>
+								</div>
+								<div x-show="duaPasanganIsOn == false" class="lg:col-span-3 sm:col-span-1">
 									<label for="nama-penuh-lelaki" class="block text-sm font-medium text-gray-900">Nama Penuh Pengantin Lelaki</label>
 									<div class="mt-2">
 										<input type="text" name="nama-penuh-lelaki" id="nama-penuh-lelaki" value="{{ $kadData->nama_penuh_lelaki }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
 									</div>
 								</div>
 
+
 								<!-- Nama Panggilan Pengantin Lelaki -->
-								<div class="lg:col-span-3 sm:col-span-1">
+								<div x-show="duaPasanganIsOn == true"  class="lg:col-span-3 sm:col-span-1">
+									<label for="nama-panggilan-pasangan-pertama" class="block text-sm font-medium text-gray-900">Nama Panggilan Pasangan Pertama</label>
+									<div class="mt-2">
+										<input x-model="namaPasanganPertama" type="text" name="nama-panggilan-pasangan-pertama" id="nama-panggilan-pasangan-pertama" maxlength="24" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+									</div>
+								</div>
+								<div x-show="duaPasanganIsOn == false" class="lg:col-span-3 sm:col-span-1">
 									<label for="nama-panggilan-lelaki" class="block text-sm font-medium text-gray-900">Nama Panggilan Pengantin Lelaki</label>
 									<div class="mt-2">
 										<input x-model="namaLelaki" type="text" name="nama-panggilan-lelaki" id="nama-panggilan-lelaki" maxlength="12" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
@@ -64,7 +108,13 @@
 								</div>
 
 								<!-- Nama Penuh Pengantin Perempuan -->
-								<div class="lg:col-span-3 sm:col-span-1">
+								<div x-show="duaPasanganIsOn == true"  class="lg:col-span-3 sm:col-span-1">
+									<label for="nama-penuh-pasangan-kedua" class="block text-sm font-medium text-gray-900">Nama Penuh Pasangan Kedua</label>
+									<div class="mt-2">
+										<input type="text" name="nama-penuh-pasangan-kedua" id="nama-penuh-pasangan-kedua" value="{{ $kadData->nama_penuh_pasangan_kedua }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+									</div>
+								</div>
+								<div x-show="duaPasanganIsOn == false" class="lg:col-span-3 sm:col-span-1">
 									<label for="nama-penuh-perempuan" class="block text-sm font-medium text-gray-900">Nama Penuh Pengantin Perempuan</label>
 									<div class="mt-2">
 										<input type="text" name="nama-penuh-perempuan" id="nama-penuh-perempuan" value="{{ $kadData->nama_penuh_perempuan }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
@@ -72,25 +122,47 @@
 								</div>
 
 								<!-- Nama Panggilan Pengantin Perempuan -->
-								<div class="lg:col-span-3 sm:col-span-1">
+								<div x-show="duaPasanganIsOn == true" class="lg:col-span-3 sm:col-span-1">
+									<label for="nama-panggilan-pasangan-kedua" class="block text-sm font-medium text-gray-900">Nama Panggilan Pasangan Kedua</label>
+									<div class="mt-2">
+										<input x-model="namaPasanganKedua" type="text" name="nama-panggilan-pasangan-kedua" id="nama-panggilan-pasangan-kedua" maxlength="24" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+									</div>
+								</div>
+								<div x-show="duaPasanganIsOn == false" class="lg:col-span-3 sm:col-span-1">
 									<label for="nama-panggilan-perempuan" class="block text-sm font-medium text-gray-900">Nama Panggilan Pengantin Perempuan</label>
 									<div class="mt-2">
 										<input x-model="namaPerempuan" type="text" name="nama-panggilan-perempuan" id="nama-panggilan-perempuan" maxlength="12" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
 									</div>
 								</div>
 
+
 								<!-- Preview Box for Nama Pengantin -->
-								<div class="lg:col-span-6 sm:col-span-1 mt-4">
-									<div class="text-center">
-										<p class="text-4xl" :style="{ fontFamily: fonts[selectedFont] }">
-											<span x-text="namaLelaki"></span>
-										</p>
-										<p class="text-4xl" :style="{ fontFamily: fonts[selectedFont] }">&</p>
-										<p class="text-4xl" :style="{ fontFamily: fonts[selectedFont] }">
-											<span x-text="namaPerempuan"></span>
-										</p>
+								<template x-if="duaPasanganIsOn == true">
+									<div class="lg:col-span-6 sm:col-span-1 mt-4">
+										<div class="text-center">
+											<p class="text-4xl" :style="{ fontFamily: fonts[selectedFont] }">
+												<span x-text="namaPasanganPertama"></span>
+											</p>
+											<p class="text-2xl" :style="{ fontFamily: fonts[selectedFont] }">Bersama</p>
+											<p class="text-4xl" :style="{ fontFamily: fonts[selectedFont] }">
+												<span x-text="namaPasanganKedua"></span>
+											</p>
+										</div>
 									</div>
-								</div>
+								</template>
+								<template x-if="duaPasanganIsOn == false">
+									<div class="lg:col-span-6 sm:col-span-1 mt-4">
+										<div class="text-center">
+											<p class="text-4xl" :style="{ fontFamily: fonts[selectedFont] }">
+												<span x-text="namaLelaki"></span>
+											</p>
+											<p class="text-4xl" :style="{ fontFamily: fonts[selectedFont] }">&</p>
+											<p class="text-4xl" :style="{ fontFamily: fonts[selectedFont] }">
+												<span x-text="namaPerempuan"></span>
+											</p>
+										</div>
+									</div>
+								</template>
 
 								<!-- Font Selection -->
 								<div class="lg:col-span-4 sm:col-span-1">
@@ -101,18 +173,38 @@
 								</div>
 
 								<!-- Penjemput -->
-								<div class="lg:col-span-4 sm:col-span-1">
-									<label for="penjemput" class="block text-sm font-medium text-gray-900">Penjemput</label>
-									<div class="mt-2">
-										<select x-model="penjemput" id="penjemput" name="penjemput" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:max-w-xs sm:text-sm">
-											<option value="1">Pihak Lelaki</option>
-											<option value="2">Pihak Perempuan</option>
-											<option value="3">Dua Belah Pihak</option>
-										</select>
+								<template x-if="duaPasanganIsOn == false">
+									<div class="lg:col-span-4 sm:col-span-1">
+										<label for="penjemput" class="block text-sm font-medium text-gray-900">Penjemput</label>
+										<div class="mt-2">
+											<select x-model="penjemput" id="penjemput" name="penjemput" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:max-w-xs sm:text-sm">
+												<option value="1">Pihak Lelaki</option>
+												<option value="2">Pihak Perempuan</option>
+												<option value="3">Dua Belah Pihak</option>
+												<template x-if="duaPasanganIsOn == true">
+													<option value="4">Dua Pasangan</option>
+												</template>
+											</select>
+										</div>
+									</div>
+								</template>
+                                <input type="hidden" name="penjemput" :value="penjemput">
+
+								<!-- Show fields when duaPasanganIsOn == true -->
+								<div x-show="duaPasanganIsOn == true" class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-8">
+									<div class="sm:col-span-1">
+										<label for="nama-bapa-pengantin" class="block text-sm font-medium text-gray-900">Nama Bapa Pengantin (Pihak Majlis)</label>
+										<div class="mt-2">
+											<input type="text" name="nama-bapa-pengantin" id="nama-bapa-pengantin" value="{{ $kadData->nama_bapa_pengantin }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+										</div>
+									</div>
+									<div class="sm:col-span-1">
+										<label for="nama-ibu-pengantin" class="block text-sm font-medium text-gray-900">Nama Ibu Pengantin (Pihak Majlis)</label>
+										<div class="mt-2">
+											<input type="text" name="nama-ibu-pengantin" id="nama-ibu-pengantin" value="{{ $kadData->nama_ibu_pengantin }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+										</div>
 									</div>
 								</div>
-
-								<!-- Conditional Fields for Nama Bapa/Ibu -->
 								<!-- Show fields when penjemput is 1 or 3 -->
 								<div x-show="penjemput === '3' || penjemput === '1'" class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-8">
 									<div class="sm:col-span-1">
@@ -259,7 +351,7 @@
 							</div>
 						</div>
 
-						<!-- Accordion Section 3: Review Information -->
+						<!-- Accordion Section 3: Others Information -->
 						<div class="border rounded-md p-4 mb-4">
 							<h2 @click="openSection = openSection === 'others' ? '' : 'others'" class="text-lg underline font-bold cursor-pointer flex justify-between items-center">
 								Lain-lain 

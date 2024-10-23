@@ -66,7 +66,12 @@
                     <li class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow">
                         <div class="flex flex-1 flex-col p-8">
                         <img class="mx-auto h-32 w-32 flex-shrink-0 rounded-full" src="{{ asset($kad->design->product_image_url) }}" alt="">
-                        <h3 class="mt-6 text-sm font-medium text-gray-900">{{ $kad->nama_panggilan_lelaki }} & {{ $kad->nama_panggilan_perempuan }}</h3>
+                        @if ($kad->dua_pasangan_is_on == true)
+                            <h3 class="mt-6 text-sm font-medium text-gray-900">{{ $kad->nama_panggilan_pasangan_pertama }}</h3>
+                            <h3 class="mt-1 text-sm font-medium text-gray-900">{{ $kad->nama_panggilan_pasangan_kedua }}</h3>
+                        @else
+                            <h3 class="mt-6 text-sm font-medium text-gray-900">{{ $kad->nama_panggilan_lelaki }} & {{ $kad->nama_panggilan_perempuan }}</h3>
+                        @endif
                         <dl class="mt-1 flex flex-grow flex-col justify-between">
                             <dt class="sr-only">Nama Panggilan</dt>
                             <dd class="text-sm text-gray-500">{{ \Carbon\Carbon::parse($kad->tarikh_majlis)->format('d-F-Y') }}</dd>
@@ -149,7 +154,13 @@
                                 </a>
                                 </div>
                                 <div class="-ml-px flex w-0 flex-1">
-                                <button x-on:click="deleteModal = true; selectedKadId='{{ $kad->id }}'; selectedKadTitle='{{ $kad->nama_panggilan_lelaki }} & {{ $kad->nama_panggilan_perempuan }}'" class="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg border border-transparent py-4 text-sm font-semibold text-gray-900">
+                                    <button x-on:click="
+                                    deleteModal = true; 
+                                    selectedKadId = '{{ $kad->id }}'; 
+                                    {{ $kad->dua_pasangan_is_on }} 
+                                        ? selectedKadTitle = '{{ $kad->nama_panggilan_pasangan_pertama }} * {{ $kad->nama_panggilan_pasangan_kedua }}' 
+                                        : selectedKadTitle = '{{ $kad->nama_panggilan_lelaki }} & {{ $kad->nama_panggilan_perempuan }}'
+                                " class="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg border border-transparent py-4 text-sm font-semibold text-gray-900">
                                     <svg class="h-5 w-5 text-red-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                         <path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z" clip-rule="evenodd" />
                                     </svg>

@@ -197,9 +197,11 @@
                             '{{ $font->id }}': '{{ $font->font_name }}',
                         @endforeach
                     },
-                    openSection: 'others', 
+                    openSection: 'maklumatPengantin', 
                     namaLelaki: '', 
-                    namaPerempuan: ''}" class="max-w-7xl mx-auto p-8">
+                    namaPerempuan: '',
+                    namaPasanganPertama: '',
+                    namaPasanganKedua:''}" class="max-w-7xl mx-auto p-8">
                     
                     <!-- Form starts -->
                     <form action="{{ route('tempah') }}" method="POST" enctype="multipart/form-data">
@@ -215,96 +217,228 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                                 </svg>
                             </h2>
+                            
 
                             <!-- Maklumat Pengantin Fields -->
-                            <div x-show="openSection === 'maklumatPengantin'" x-data="{ penjemput: '1' }" class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div x-show="openSection === 'maklumatPengantin'" x-data="{ penjemput: '1', duaPasanganIsOn: false}" class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                
+                                <!-- Dua Pasangan Toggle -->
+                                <div x-data="{ enabled: false }" x-show="selectedPackage === '3'" class="sm:col-span-2">
+                                    <!-- Button Element -->
+                                    <button 
+                                        @click="enabled = !enabled; duaPasanganIsOn = enabled; penjemput = duaPasanganIsOn ? '4' : '2'" 
+                                        :class="enabled ? 'bg-indigo-600' : 'bg-gray-200'" 
+                                        type="button" 
+                                        class="mb-2 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" 
+                                        role="switch" 
+                                        :aria-checked="enabled.toString()"
+                                    >
+                                        <!-- Toggle Circle -->
+                                        <span 
+                                            :class="enabled ? 'translate-x-5' : 'translate-x-0'" 
+                                            class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+                                            aria-hidden="true"
+                                        ></span>
+                                    </button>
+
+                                    
+                                    <!-- Label Text -->
+                                    <span class="ml-3 text-sm" id="dua-pasangan-is-on">
+                                        <span class="font-medium text-gray-900">Dua Pasangan</span>
+                                    </span>
+                                    <input type="hidden" name="dua-pasangan-is-on" :value="enabled ? 1 : 0">
+                                </div>
 
                                 <!-- Nama Penuh Lelaki -->
-                                <div class="sm:col-span-1">
-                                    <label for="nama-penuh-lelaki" class="block text-sm font-medium text-gray-900">Nama Penuh Pengantin Lelaki</label>
-                                    <div class="mt-2">
-                                        <input type="text" name="nama-penuh-lelaki" id="nama-penuh-lelaki" placeholder="Abdul Rahman Bin Abdul Rahim" value="{{ old('nama-penuh-lelaki') }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                <template x-if="duaPasanganIsOn == false">
+                                    <div class="sm:col-span-1">
+                                        <label for="nama-penuh-lelaki" class="block text-sm font-medium text-gray-900">Nama Penuh Pengantin Lelaki</label>
+                                        <div class="mt-2">
+                                            <input type="text" name="nama-penuh-lelaki" id="nama-penuh-lelaki" placeholder="Muhammad Adam Bin Abdul Rahim" value="{{ old('nama-penuh-lelaki') }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        </div>
                                     </div>
-                                </div>
+                                </template>
+                                <template x-if="duaPasanganIsOn == true">
+                                    <div class="sm:col-span-1">
+                                        <label for="nama-penuh-pasangan-pertama" class="block text-sm font-medium text-gray-900">Nama Penuh Pasangan Pertama</label>
+                                        <div class="mt-2">
+                                            <input type="text" name="nama-penuh-pasangan-pertama" id="nama-penuh-pasangan-pertama" placeholder="Muhammad Adam & Nurul Hawa" value="{{ old('nama-penuh-pasangan-pertama') }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        </div>
+                                    </div>
+                                </template>
+
 
                                 <!-- Nama Panggilan Lelaki -->
-                                <div class="sm:col-span-1">
-                                    <label for="nama-panggilan-lelaki" class="block text-sm font-medium text-gray-900">Nama Panggilan Pengantin Lelaki</label>
-                                    <div class="mt-2">
-                                        <input 
-                                            x-model="namaLelaki" 
-                                            x-init="namaLelaki = '{{ old('nama-panggilan-lelaki') }}'" 
-                                            type="text" 
-                                            name="nama-panggilan-lelaki" 
-                                            id="nama-panggilan-lelaki" 
-                                            maxlength="12" 
-                                            spellcheck="false" 
-                                            placeholder="Adam" 
-                                            class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                <template x-if="duaPasanganIsOn == false">
+                                    <div class="sm:col-span-1">
+                                        <label for="nama-panggilan-lelaki" class="block text-sm font-medium text-gray-900">Nama Panggilan Pengantin Lelaki</label>
+                                        <div class="mt-2">
+                                            <input 
+                                                x-model="namaLelaki" 
+                                                x-init="namaLelaki = '{{ old('nama-panggilan-lelaki') }}'" 
+                                                type="text" 
+                                                name="nama-panggilan-lelaki" 
+                                                id="nama-panggilan-lelaki" 
+                                                maxlength="12" 
+                                                spellcheck="false" 
+                                                placeholder="Adam" 
+                                                class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        </div>
                                     </div>
-                                </div>
+                                </template>
+                                <template x-if="duaPasanganIsOn == true">
+                                    <div class="sm:col-span-1">
+                                        <label for="nama-panggilan-pasangan-pertama" class="block text-sm font-medium text-gray-900">Nama Panggilan Pasangan Pertama</label>
+                                        <div class="mt-2">
+                                            <input 
+                                                x-model="namaPasanganPertama" 
+                                                x-init="namaPasanganPertama = '{{ old('nama-panggilan-pasangan-pertama') }}'" 
+                                                type="text" 
+                                                name="nama-panggilan-pasangan-pertama" 
+                                                id="nama-panggilan-pasangan-pertama" 
+                                                maxlength="24" 
+                                                spellcheck="false" 
+                                                placeholder="Adam & Hawa" 
+                                                class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        </div>
+                                    </div>
+                                </template>
 
                                 <!-- Nama Penuh Perempuan -->
-                                <div class="sm:col-span-1">
-                                    <label for="nama-penuh-perempuan" class="block text-sm font-medium text-gray-900">Nama Penuh Pengantin Perempuan</label>
-                                    <div class="mt-2">
-                                        <input type="text" name="nama-penuh-perempuan" id="nama-penuh-perempuan" placeholder="Nurul Hawa Binti Mior Rahim" value="{{ old('nama-penuh-perempuan') }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                <template x-if="duaPasanganIsOn == false">
+                                    <div class="sm:col-span-1">
+                                        <label for="nama-penuh-perempuan" class="block text-sm font-medium text-gray-900">Nama Penuh Pengantin Perempuan</label>
+                                        <div class="mt-2">
+                                            <input type="text" name="nama-penuh-perempuan" id="nama-penuh-perempuan" placeholder="Nurul Hawa Binti Mior Rahim" value="{{ old('nama-penuh-perempuan') }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        </div>
                                     </div>
-                                </div>
+                                </template>
+                                <template x-if="duaPasanganIsOn == true">
+                                    <div class="sm:col-span-1">
+                                        <label for="nama-penuh-pasangan-kedua" class="block text-sm font-medium text-gray-900">Nama Penuh Pasangan Kedua</label>
+                                        <div class="mt-2">
+                                            <input type="text" name="nama-penuh-pasangan-kedua" id="nama-penuh-pasangan-kedua" placeholder="Syed Yusuf & Sharifah Zulaikha" value="{{ old('nama-penuh-pasangan-kedua') }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        </div>
+                                    </div>
+                                </template>
+
 
                                 <!-- Nama Panggilan Perempuan -->
-                                <div class="sm:col-span-1">
-                                    <label for="nama-panggilan-perempuan" class="block text-sm font-medium text-gray-900">Nama Panggilan Pengantin Perempuan</label>
-                                    <div class="mt-2">
-                                        <input 
-                                            x-model="namaPerempuan" 
-                                            x-init="namaPerempuan = '{{ old('nama-panggilan-perempuan') }}'" 
-                                            type="text" 
-                                            name="nama-panggilan-perempuan" 
-                                            id="nama-panggilan-perempuan" 
-                                            maxlength="12" 
-                                            spellcheck="false" 
-                                            placeholder="Hawa" 
-                                            class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                <template x-if="duaPasanganIsOn == false">
+                                    <div class="sm:col-span-1">
+                                        <label for="nama-panggilan-perempuan" class="block text-sm font-medium text-gray-900">Nama Panggilan Pengantin Perempuan</label>
+                                        <div class="mt-2">
+                                            <input 
+                                                x-model="namaPerempuan" 
+                                                x-init="namaPerempuan = '{{ old('nama-panggilan-perempuan') }}'" 
+                                                type="text" 
+                                                name="nama-panggilan-perempuan" 
+                                                id="nama-panggilan-perempuan" 
+                                                maxlength="12" 
+                                                spellcheck="false" 
+                                                placeholder="Hawa" 
+                                                class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        </div>
                                     </div>
-                                </div>
+                                </template>
+                                <template x-if="duaPasanganIsOn == true">
+                                    <div class="sm:col-span-1">
+                                        <label for="nama-panggilan-pasangan-kedua" class="block text-sm font-medium text-gray-900">Nama Panggilan Pasangan Kedua</label>
+                                        <div class="mt-2">
+                                            <input 
+                                                x-model="namaPasanganKedua" 
+                                                xrinit="namaPasanganKedua = '{{ old('nama-panggilan-pasangan-kedua') }}'" 
+                                                type="text" 
+                                                name="nama-panggilan-pasangan-kedua" 
+                                                id="nama-panggilan-pasangan-kedua" 
+                                                maxlength="24" 
+                                                spellcheck="false" 
+                                                placeholder="Yusuf & Zulaikha" 
+                                                class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        </div>
+                                    </div>
+                                </template>
+
                                 
 
                                 <!-- Font Selection and Preview -->
-                                <div class="sm:col-span-2">
-                                    <div class="text-center">
-                                        <p class="text-4xl" :style="{ fontFamily: fonts[selectedFont] }">
-                                            <span x-text="namaLelaki"></span>
-                                        </p>
-                                        <p class="text-4xl" :style="{ fontFamily: fonts[selectedFont] }">&</p>
-                                        <p class="text-4xl" :style="{ fontFamily: fonts[selectedFont] }">
-                                            <span x-text="namaPerempuan"></span>
-                                        </p>
-                                    </div>
+                                <template x-if="duaPasanganIsOn == false">
+                                    <div class="sm:col-span-2">
+                                        <div class="text-center">
+                                            <p class="text-4xl" :style="{ fontFamily: fonts[selectedFont] }">
+                                                <span x-text="namaLelaki"></span>
+                                            </p>
+                                            <p class="text-4xl" :style="{ fontFamily: fonts[selectedFont] }">&</p>
+                                            <p class="text-4xl" :style="{ fontFamily: fonts[selectedFont] }">
+                                                <span x-text="namaPerempuan"></span>
+                                            </p>
+                                        </div>
 
-                                    <label for="font" class="block text-sm font-medium text-gray-900 mt-4">Font</label>
+                                        <label for="font" class="block text-sm font-medium text-gray-900 mt-4">Font</label>
+                                        <div class="mt-2">
+                                            @livewire('font-dropdown')
+                                        </div>
+                                    </div>
+                                </template>
+                                <template x-if="duaPasanganIsOn == true">
+                                    <div class="sm:col-span-2">
+                                        <div class="text-center">
+                                            <p class="text-4xl" :style="{ fontFamily: fonts[selectedFont] }">
+                                                <span x-text="namaPasanganPertama"></span>
+                                            </p>
+                                            <p class="text-2xl" :style="{ fontFamily: fonts[selectedFont] }">Bersama</p>
+                                            <p class="text-4xl" :style="{ fontFamily: fonts[selectedFont] }">
+                                                <span x-text="namaPasanganKedua"></span>
+                                            </p>
+                                        </div>
+
+                                        <label for="font" class="block text-sm font-medium text-gray-900 mt-4">Font</label>
+                                        <div class="mt-2">
+                                            @livewire('font-dropdown')
+                                        </div>
+                                    </div>
+                                </template>
+
+                                <!-- Penjemput Dropdown -->
+                                <template x-if="duaPasanganIsOn == false">
+                                    <div class="sm:col-span-2">
+                                        <label for="penjemput" class="block text-sm font-medium text-gray-900">Penjemput</label>
+                                        <div class="mt-2">
+                                            <select 
+                                                x-model="penjemput" 
+                                                x-init="penjemput = duaPasanganIsOn ? '4' : '{{ old('penjemput', 1) }}'" 
+                                                id="penjemput" 
+                                                name="penjemput" 
+                                                class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:max-w-xs sm:text-sm">
+                                                <option value="1">Pihak Lelaki</option>
+                                                <option value="2">Pihak Perempuan</option>
+                                                <option value="3">Dua Belah Pihak</option>
+                                                <template x-if="duaPasanganIsOn == true">
+                                                    <option value="4">Dua Pasangan</option>
+                                                </template>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </template>
+                                <input type="hidden" name="penjemput" :value="penjemput">
+
+                                <!-- Nama Bapa/Ibu Pihak Majlis show when duaPasangan is true -->
+                                <div x-show="duaPasanganIsOn == true" class="sm:col-span-1">
+                                    <label for="nama-bapa-pengantin" class="block text-sm font-medium text-gray-900">Nama Bapa Pengantin (Pihak Majlis)</label>
                                     <div class="mt-2">
-                                        @livewire('font-dropdown')
+                                        <input type="text" name="nama-bapa-pengantin" id="nama-bapa-pengantin" value="{{ old('nama-bapa-pengantin') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
                                     </div>
                                 </div>
 
-                                <div class="sm:col-span-2">
-                                    <label for="penjemput" class="block text-sm font-medium text-gray-900">Penjemput</label>
+                                <div x-show="duaPasanganIsOn == true" class="sm:col-span-1">
+                                    <label for="nama-ibu-pengantin" class="block text-sm font-medium text-gray-900">Nama Ibu Pengantin (Pihak Majlis)</label>
                                     <div class="mt-2">
-                                        <select 
-                                            x-model="penjemput" 
-                                            x-init="penjemput = '{{ old('penjemput', 1) }}'" 
-                                            id="penjemput" 
-                                            name="penjemput" 
-                                            class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:max-w-xs sm:text-sm">
-                                            <option value="1">Pihak Lelaki</option>
-                                            <option value="2">Pihak Perempuan</option>
-                                            <option value="3">Dua Belah Pihak</option>
-                                        </select>
+                                        <input type="text" name="nama-ibu-pengantin" id="nama-ibu-pengantin" value="{{ old('nama-ibu-pengantin') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
                                     </div>
                                 </div>
+
                                 
-                                <!-- Nama Bapa/Ibu (Lelaki) -->
+                                <!-- Nama Bapa/Ibu (Lelaki) show when penjemput 1 or 3 and duaPasanganIsOn is false -->
                                 <div x-show="penjemput === '3' || penjemput === '1'" class="sm:col-span-1">
                                     <label for="nama-bapa-pengantin-lelaki" class="block text-sm font-medium text-gray-900">Nama Bapa Pengantin Lelaki</label>
                                     <div class="mt-2">
@@ -319,7 +453,7 @@
                                     </div>
                                 </div>
 
-                                <!-- Nama Bapa/Ibu (Perempuan) -->
+                                <!-- Nama Bapa/Ibu (Perempuan) show when penjemput 2 or 3 and duaPasanganIsOn is false -->
                                 <div x-show="penjemput === '3' || penjemput === '2'" class="sm:col-span-1">
                                     <label for="nama-bapa-pengantin-perempuan" class="block text-sm font-medium text-gray-900">Nama Bapa Pengantin Perempuan</label>
                                     <div class="mt-2">

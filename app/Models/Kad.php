@@ -27,6 +27,8 @@ class Kad extends Model
         'nama_panggilan_lelaki',
         'nama_panggilan_perempuan',
         'penjemput',
+        'nama_bapa_pengantin',
+        'nama_ibu_pengantin',
         'nama_bapa_pengantin_lelaki',
         'nama_ibu_pengantin_lelaki',
         'nama_bapa_pengantin_perempuan',
@@ -43,6 +45,11 @@ class Kad extends Model
         'nombor_telefon',
         'ayat_jemputan',
         'doa_pengantin',
+        'dua_pasangan_is_on',
+        'nama_penuh_pasangan_pertama',
+        'nama_penuh_pasangan_kedua',
+        'nama_panggilan_pasangan_pertama',
+        'nama_panggilan_pasangan_kedua',
     ];
 
     protected $casts = [

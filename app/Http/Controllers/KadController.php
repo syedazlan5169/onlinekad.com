@@ -69,10 +69,14 @@ class KadController extends Controller
         // Validate the request data
         $request->validate([
             // Maklumat Pengantin
-            'nama-penuh-lelaki' => ['required'],
-            'nama-panggilan-lelaki' => ['required', 'max:12'],
-            'nama-penuh-perempuan' => ['required'],
-            'nama-panggilan-perempuan' => ['required', 'max:12'],
+            'nama-penuh-lelaki' => ['required_if:duaPasanganIsOn,false'],
+            'nama-panggilan-lelaki' => ['required_if:duaPasanganIsOn,false', 'max:12'],
+            'nama-penuh-perempuan' => ['required_if:duaPasanganIsOn,false'],
+            'nama-panggilan-perempuan' => ['required_if:duaPasanganIsOn,false', 'max:12'],
+            'nama-penuh-pasangan-pertama' => ['required_if:duaPasanganIsOn,true'],
+            'nama-penuh-pasangan-kedua' => ['required_if:duaPasanganIsOn,true'],
+            'nama-panggilan-pasangan-pertama' => ['required_if:duaPasanganIsOn,true', 'max:24'],
+            'nama-panggilan-pasangan-kedua' => ['required_if:duaPasanganIsOn,true', 'max:24'],
             'penjemput' => ['required', 'numeric'],
             'nama-bapa-pengantin-lelaki' => ['required_if:penjemput,1,3'],
             'nama-ibu-pengantin-lelaki' => ['required_if:penjemput,1,3'],
@@ -112,13 +116,20 @@ class KadController extends Controller
             'rsvp_is_on' =>$request->input('rsvp-is-on'),
             'guestbook_is_on' =>$request->input('guestbook-is-on'),
             'slideshow_is_on' =>$request->input('slideshow-is-on'),
+            'dua_pasangan_is_on' =>$request->input('dua-pasangan-is-on'),
 
             // Maklumat Pengantin
             'nama_penuh_lelaki' => $request->input('nama-penuh-lelaki'),
             'nama_panggilan_lelaki' => $request->input('nama-panggilan-lelaki'),
             'nama_penuh_perempuan' => $request->input('nama-penuh-perempuan'),
             'nama_panggilan_perempuan' => $request->input('nama-panggilan-perempuan'),
+            'nama_penuh_pasangan_pertama' => $request->input('nama-penuh-pasangan-pertama'),
+            'nama_penuh_pasangan_kedua' => $request->input('nama-penuh-pasangan-kedua'),
+            'nama_panggilan_pasangan_pertama' => $request->input('nama-panggilan-pasangan-pertama'),
+            'nama_panggilan_pasangan_kedua' => $request->input('nama-panggilan-pasangan-kedua'),
             'penjemput' => $request->input('penjemput'),
+            'nama_bapa_pengantin' => $request->input('nama-bapa-pengantin'),
+            'nama_ibu_pengantin' => $request->input('nama-ibu-pengantin'),
             'nama_bapa_pengantin_lelaki' => $request->input('nama-bapa-pengantin-lelaki'),
             'nama_ibu_pengantin_lelaki' => $request->input('nama-ibu-pengantin-lelaki'),
             'nama_bapa_pengantin_perempuan' => $request->input('nama-bapa-pengantin-perempuan'),
@@ -238,10 +249,14 @@ class KadController extends Controller
     {
         request()->validate([
             // Maklumat Pengantin
-            'nama-penuh-lelaki' => ['required'],
-            'nama-panggilan-lelaki' => ['required', 'max:12'],
-            'nama-penuh-perempuan' => ['required'],
-            'nama-panggilan-perempuan' => ['required', 'max:12'],
+            'nama-penuh-lelaki' => ['required_if:duaPasanganIsOn,false'],
+            'nama-panggilan-lelaki' => ['required_if:duaPasanganIsOn,false', 'max:12'],
+            'nama-penuh-perempuan' => ['required_if:duaPasanganIsOn,false'],
+            'nama-panggilan-perempuan' => ['required_if:duaPasanganIsOn,false', 'max:12'],
+            'nama-penuh-pasangan-pertama' => ['required_if:duaPasanganIsOn,true'],
+            'nama-penuh-pasangan-kedua' => ['required_if:duaPasanganIsOn,true'],
+            'nama-panggilan-pasangan-pertama' => ['required_if:duaPasanganIsOn,true', 'max:24'],
+            'nama-panggilan-pasangan-kedua' => ['required_if:duaPasanganIsOn,true', 'max:24'],
             'penjemput' => ['required', 'numeric'],
             'nama-bapa-pengantin-lelaki' => ['required_if:penjemput,1,3'],
             'nama-ibu-pengantin-lelaki' => ['required_if:penjemput,1,3'],
@@ -281,10 +296,19 @@ class KadController extends Controller
             $isPaid = false;
         }
 
+        if (request('dua-pasangan-is-on'))
+        {
+            $slug = Str::random(7);
+        }
+        else
+        {
+            $slug =  Str::slug(request('nama-panggilan-lelaki')) . '-' . Str::slug(request('nama-panggilan-perempuan')) . '-' . Str::random(5);
+        }
+
         // Create a new Kad entry
         $kad = Kad::create([
             // Maklumat Kad
-            'slug' => Str::slug(request('nama-panggilan-lelaki')) . '-' . Str::slug(request('nama-panggilan-perempuan')) . '-' . Str::random(5),
+            'slug' => $slug,
             'order_id' => $orderId,
             'user_id' => Auth::id(),
             'design_id' => request('design-id'), 
@@ -294,6 +318,7 @@ class KadController extends Controller
             'rsvp_is_on' =>request('rsvp-is-on'),
             'guestbook_is_on' =>request('guestbook-is-on'),
             'slideshow_is_on' =>request('slideshow-is-on'),
+            'dua_pasangan_is_on' =>request('dua-pasangan-is-on'),
             'is_paid' => $isPaid,
 
             // Maklumat Pengantin
@@ -301,7 +326,13 @@ class KadController extends Controller
             'nama_panggilan_lelaki' => request('nama-panggilan-lelaki'),
             'nama_penuh_perempuan' => request('nama-penuh-perempuan'),
             'nama_panggilan_perempuan' => request('nama-panggilan-perempuan'),
+            'nama_penuh_pasangan_pertama' => request('nama-penuh-pasangan-pertama'),
+            'nama_penuh_pasangan_kedua' => request('nama-penuh-pasangan-kedua'),
+            'nama_panggilan_pasangan_pertama' => request('nama-panggilan-pasangan-pertama'),
+            'nama_panggilan_pasangan_kedua' => request('nama-panggilan-pasangan-kedua'),
             'penjemput' => request('penjemput'),
+            'nama_bapa_pengantin' => request('nama-bapa-pengantin'),
+            'nama_ibu_pengantin' => request('nama-ibu-pengantin'),
             'nama_bapa_pengantin_lelaki' => request('nama-bapa-pengantin-lelaki'),
             'nama_ibu_pengantin_lelaki' => request('nama-ibu-pengantin-lelaki'),
             'nama_bapa_pengantin_perempuan' => request('nama-bapa-pengantin-perempuan'),

@@ -36,36 +36,31 @@ class FontSeeder extends Seeder
             ],
             [
                 'id' => '5',
-                'font_url' => 'https://fonts.googleapis.com/css2?family=Qwitcher+Grypen:wght@400;700&display=swap',
-                'font_name' => 'Qwitcher Grypen',
-            ],
-            [
-                'id' => '6',
                 'font_url' => 'https://fonts.googleapis.com/css2?family=Montez&display=swap',
                 'font_name' => 'Montez',
             ],
             [
-                'id' => '7',
+                'id' => '6',
                 'font_url' => 'https://fonts.googleapis.com/css2?family=Updock&display=swap',
                 'font_name' => 'Updock',
             ],
             [
-                'id' => '8',
+                'id' => '7',
                 'font_url' => 'https://fonts.googleapis.com/css2?family=Satisfy&display=swap',
                 'font_name' => 'Satisfy',
             ],
             [
-                'id' => '9',
+                'id' => '8',
                 'font_url' => 'https://fonts.googleapis.com/css2?family=Sacramento&display=swap',
                 'font_name' => 'Sacramento',
             ],
             [
-                'id' => '10',
+                'id' => '9',
                 'font_url' => 'https://fonts.googleapis.com/css2?family=Allura&display=swap',
                 'font_name' => 'Allura',
             ],
             [
-                'id' => '11',
+                'id' => '10',
                 'font_url' => 'https://fonts.googleapis.com/css2?family=Qwigley&display=swap',
                 'font_name' => 'Qwigley',
             ],

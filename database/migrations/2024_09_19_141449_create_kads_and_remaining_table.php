@@ -44,10 +44,10 @@ return new class extends Migration
             $table->integer('bg_song_id');
             $table->integer('package_id');
             // Maklumat Pengantin
-            $table->string('nama_penuh_lelaki');
-            $table->string('nama_penuh_perempuan');
-            $table->string('nama_panggilan_lelaki');
-            $table->string('nama_panggilan_perempuan');
+            $table->string('nama_penuh_lelaki')->nullable();
+            $table->string('nama_penuh_perempuan')->nullable();
+            $table->string('nama_panggilan_lelaki')->nullable();
+            $table->string('nama_panggilan_perempuan')->nullable();
             $table->string('nama_bapa_pengantin_lelaki')->nullable();
             $table->string('nama_ibu_pengantin_lelaki')->nullable();
             $table->string('nama_bapa_pengantin_perempuan')->nullable();

@@ -195,11 +195,25 @@
                 <div class="absolute inset-0 bg-white bg-opacity-20">
                     <div class="flex flex-col justify-center gap-20 items-center h-full">
                         <h1 class="text-2xl text-center text-gray-600 animate-slide-up" style="font-family: 'Noticia Text', cursive; margin-bottom: 0;">{{ $kadData->tajuk_kad }}</h1>
-                        <div class="text-center">
-                            <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">{{ $kadData->nama_panggilan_lelaki }}</p>
-                            <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">&</p>
-                            <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">{{ $kadData->nama_panggilan_perempuan }}</p>
-                        </div>
+                        @if ($kadData->dua_pasangan_is_on == true)
+                            <div class="text-center">
+                                <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">{{ $kadData->nama_panggilan_pasangan_pertama }}</p>
+                                <p class="text-2xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">Bersama</p>
+                                <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">{{ $kadData->nama_panggilan_pasangan_kedua }}</p>
+                            </div>
+                        @elseif ($kadData->penjemput == 2)
+                            <div class="text-center">
+                                <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">{{ $kadData->nama_panggilan_perempuan }}</p>
+                                <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">&</p>
+                                <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">{{ $kadData->nama_panggilan_lelaki }}</p>
+                            </div>
+                        @else
+                            <div class="text-center">
+                                <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">{{ $kadData->nama_panggilan_lelaki }}</p>
+                                <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">&</p>
+                                <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">{{ $kadData->nama_panggilan_perempuan }}</p>
+                            </div>
+                        @endif
                         <div class="text-center">
                             <p class="text-2xl text-gray-600 leading-tight animate-slide-up-delay" style="font-family: 'Noticia Text', cursive; margin-bottom: 0;">{{ $dateTime['hari_majlis'] }}</p>
                             <p class="text-2xl text-gray-600 leading-tight animate-slide-up-delay" style="font-family: 'Noticia Text', cursive;">{{ $dateTime['tarikh_majlis'] }}</p>
@@ -289,6 +303,13 @@
                                 <p class="text-xl text-center text-gray-600 font-serif">&</p>
                                 <p class="text-xl text-center text-gray-600 font-serif">{{ $kadData->nama_ibu_pengantin_perempuan }}</p>
                             </div>
+                        @elseif ($kadData->penjemput == 4 && $kadData->dua_pasangan_is_on == true)
+                            <!-- Dua Pasangan -->
+                            <div class="text-center">
+                                <p class="text-xl text-center text-gray-600 font-serif">{{ $kadData->nama_bapa_pengantin }}</p>
+                                <p class="text-xl text-center text-gray-600 font-serif">&</p>
+                                <p class="text-xl text-center text-gray-600 font-serif">{{ $kadData->nama_ibu_pengantin }}</p>
+                            </div>
                         @endif
 
                         <div class="text-center">
@@ -302,12 +323,21 @@
                                 <p class="text-xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">&</p>
                                 <p class="text-2xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_perempuan }}</p>
                             </div>
-                        @elseif ($kadData->penjemput ==2)
+                        @elseif ($kadData->penjemput == 2)
                             <!-- Penjemput Pihak Perempuan -->
                             <div class="text-center px-2">
                                 <p class="text-2xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_perempuan }}</p>
                                 <p class="text-xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">&</p>
                                 <p class="text-2xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_lelaki }}</p>
+                            </div>
+                        @elseif ($kadData->penjemput == 4 && $kadData->dua_pasangan_is_on == true)
+                            <!-- Penjemput Dua Pihak -->
+                            <div class="text-center">
+                                <p class="text-2xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_pasangan_pertama }}</p>
+                            </div>
+                            <div class="w-[70%] py-0 my-0 border-t" style="border-color: {{ $colorCode }}"></div>
+                            <div class="text-center">
+                                <p class="text-2xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_pasangan_kedua }}</p>
                             </div>
                         @endif
 
