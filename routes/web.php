@@ -6,6 +6,7 @@ use App\Http\Controllers\RsvpController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ToyyibpayController;
 use App\Http\Controllers\Auth\GoogleController;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Guestbook;
 use App\Models\Rsvp;
 use Illuminate\Support\Facades\Route;
@@ -51,5 +52,16 @@ Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallba
 //Show Kad
 Route::get('/invitation/{slug}', [KadController::class, 'show']);
 Route::get('/preview/{slug}', [KadController::class, 'showPreview']);
+
+
+//Mail testing
+Route::get('/send-test-email', function () {
+    Mail::raw('This is a test email using Zoho SMTP.', function ($message) {
+        $message->to('syedazlan5169@gmail.com')
+                ->subject('Test Email');
+    });
+
+    return 'Test email sent!';
+});
 
 require __DIR__.'/auth.php';
