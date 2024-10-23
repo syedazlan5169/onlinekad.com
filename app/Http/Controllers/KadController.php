@@ -579,6 +579,12 @@ class KadController extends Controller
         $bgSong = BgSong::findOrFail($kadData->bg_song_id);
         $slider = Slider::where('kad_id', $kadData->id)->firstOrFail();
 
+        Log::info('kadData:', ['kadData' => $kadData]);
+        Log::info('design:', ['design' => $design]);
+        Log::info('font:', ['font' => $font]);
+        Log::info('bgSong:', ['bgSong' => $bgSong]);
+        Log::info('slider:', ['slider' => $slider]);
+
         $dateTime = [
             'hari_tarikh_majlis' => $this->translateToMalay($kadData->tarikh_majlis, 3),
             'hari_majlis' => $this->translateToMalay($kadData->tarikh_majlis, 1),
@@ -607,7 +613,7 @@ class KadController extends Controller
     public function showPreview($slug)
     {
 
-        $kadData = Kad::findOrFail(1);
+        $kadData = Kad::findOrFail(2);
         $design = Design::where('design_code', $slug)->firstOrFail();
         $font = Font::findOrFail($kadData->font_id);
         $bgSong = BgSong::findOrFail($kadData->bg_song_id);

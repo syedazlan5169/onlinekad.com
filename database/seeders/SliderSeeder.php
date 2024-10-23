@@ -14,8 +14,18 @@ class SliderSeeder extends Seeder
     public function run(): void
     {
         $slider = [
-            'id' => 1,
-            'kad_id' => 1,
+            [
+                'id' => 1,
+                'kad_id' => 1,
+            ],
+            [
+                'id' => 2,
+                'kad_id' => 2,
+            ],
+            [
+                'id' => 3,
+                'kad_id' => 3,
+            ],
         ];
 
         Slider::create($slider);
