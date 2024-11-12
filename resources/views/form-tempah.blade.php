@@ -594,8 +594,8 @@
                             </div>
                         </div>
 
-                        <!-- Accordion Section 3: Others -->
-                        <div class="border rounded-md p-4 mb-4">
+                        <!-- Accordion Section 3: Lain-lain -->
+                        <div x-show="selectedPackage == 2 || selectedPackage == 3" class="border rounded-md p-4 mb-4">
                             <h2 @click="openSection = openSection === 'others' ? '' : 'others'" class="text-lg underline font-bold cursor-pointer flex justify-between items-center">
                                 Lain-lain
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" :class="openSection === 'others' ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

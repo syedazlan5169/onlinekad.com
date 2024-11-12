@@ -352,7 +352,7 @@
 						</div>
 
 						<!-- Accordion Section 3: Others Information -->
-						<div class="border rounded-md p-4 mb-4">
+						<div x-show="packageId == 2 || packageId == 3" x class="border rounded-md p-4 mb-4">
 							<h2 @click="openSection = openSection === 'others' ? '' : 'others'" class="text-lg underline font-bold cursor-pointer flex justify-between items-center">
 								Lain-lain 
 								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" :class="openSection === 'others' ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
