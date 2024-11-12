@@ -168,7 +168,7 @@
 								<div class="lg:col-span-4 sm:col-span-1">
 									<label for="font" class="block text-sm font-medium text-gray-900">Font</label>
 									<div class="mt-2">
-										@livewire('font-dropdown', ['selectedFont' => $kadData->font_id])
+										@livewire('font-dropdown', ['$currentSelectedFont' => $kadData->font_id])
 									</div>
 								</div>
 

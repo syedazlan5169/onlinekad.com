@@ -10,10 +10,10 @@ class FontDropdown extends Component
     public $fonts;
     public $selectedFont;
 
-    public function mount($selectedFont = 1)
+    public function mount($currentSelectedFont = null)
     {
         $this->fonts = Font::all();
-        $this->selectedFont = $selectedFont;
+        $this->selectedFont = $currentSelectedFont ?? $this->fonts->first()->id;
     }
     public function render()
     {

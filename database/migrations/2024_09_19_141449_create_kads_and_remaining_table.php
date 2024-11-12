@@ -56,13 +56,13 @@ return new class extends Migration
             $table->integer('penjemput');
             // Maklumat Majlis
             $table->string('tajuk_kad');
-            $table->string('ayat_jemputan');
+            $table->longText('ayat_jemputan');
             $table->date('tarikh_majlis');
             $table->time('masa_mula_majlis');
             $table->time('masa_tamat_majlis');
             $table->string('alamat_majlis');
-            $table->string('google_url')->nullable();
-            $table->string('waze_url')->nullable();
+            $table->longText('google_url')->nullable();
+            $table->longText('waze_url')->nullable();
             $table->json('nombor_telefon')->nullable();
             $table->json('aturcara_majlis')->nullable();
             $table->longText('doa_pengantin')->nullable();
