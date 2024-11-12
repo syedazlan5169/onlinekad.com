@@ -13,7 +13,7 @@ class SliderSeeder extends Seeder
      */
     public function run(): void
     {
-        $slider = [
+        $sliders = [
             [
                 'id' => 1,
                 'kad_id' => 1,
@@ -28,6 +28,9 @@ class SliderSeeder extends Seeder
             ],
         ];
 
-        Slider::create($slider);
+        foreach ($sliders as $slider)
+        {
+            Slider::create($slider);
+        }
     }
 }

@@ -26,6 +26,9 @@ class KadSeeder extends Seeder
                 'package_id' => 3,
                 'bg_song_id' => 2,
                 'dua_pasangan_is_on' => 1,
+                'rsvp_is_on' => 1,
+                'guestbook_is_on' => 1,
+                'slideshow_is_on' => 1,
                 
                 // Maklumat Pengantin
                 'nama_penuh_lelaki' => 'Syed Azlan Izzuddin Shah Bin Syed Shaharom',
@@ -81,6 +84,9 @@ class KadSeeder extends Seeder
                 'package_id' => 2,
                 'bg_song_id' => 2,
                 'dua_pasangan_is_on' => 0,
+                'rsvp_is_on' => 1,
+                'guestbook_is_on' => 1,
+                'slideshow_is_on' => 1,
                 
                 // Maklumat Pengantin
                 'nama_penuh_lelaki' => 'Syed Azlan Izzuddin Shah Bin Syed Shaharom',
