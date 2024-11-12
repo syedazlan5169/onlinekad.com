@@ -4,19 +4,44 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\BgSong;
+use Illuminate\Support\Facades\Log;
 
 class BgSongDropdown extends Component
 {
-    public $bgSongs; // Property to hold the list of songs
-    public $selectedSong; // Property for selected song
+    public $bgSongs;
+    public $selectedSong;
+    public $selectedSongUrl;
 
-    public function mount($selectedSong = 1)
+    public function mount($selectedSong = 2)
     {
-        // Fetch the background songs from the database
-        $this->bgSongs = BgSong::all(); // Get all records from BgSong model
+        // Fetch all background songs
+        $this->bgSongs = BgSong::all();
 
+        // Set the initial selected song
         $this->selectedSong = $selectedSong;
+        
+        // Update the selected song URL based on the selected song
+        $this->updateSelectedSongUrl();
     }
+
+    public function triggerUpdatedSelectedSong()
+    {
+        $this->updatedSelectedSong();
+    }
+
+    public function updatedSelectedSong()
+    {
+        // Update the song URL when selected song changes
+        Log::info('updatedSelectedSong method was called with selectedSong:', ['selectedSong' => $this->selectedSong]);
+        $this->updateSelectedSongUrl();
+    }
+
+    public function updateSelectedSongUrl()
+    {
+        // Fetch the URL of the selected song
+        $this->selectedSongUrl = BgSong::where('id', $this->selectedSong)->value('song_url'); 
+    }
+
     public function render()
     {
         return view('livewire.bg-song-dropdown');
