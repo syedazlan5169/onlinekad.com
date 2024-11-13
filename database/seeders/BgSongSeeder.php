@@ -26,6 +26,34 @@ class BgSongSeeder extends Seeder
                 'song_url' => '/musics/a-thousand-years.mp3',
                 'song_name' => 'A Thousand Years ( Instrumental )',
             ],
+            [
+                'song_url' => '/musics/perfect.mp3',
+                'song_name' => 'Perfect ( Violin )',
+            ],
+            [
+                'song_url' => '/musics/sempurna.mp3',
+                'song_name' => 'Sempurna ( Guitar )',
+            ],
+            [
+                'song_url' => '/musics/bunga-rampai.mp3',
+                'song_name' => 'Bunga Rampai ( Instrumental )',
+            ],
+            [
+                'song_url' => '/musics/sekapur-sirih.mp3',
+                'song_name' => 'Sekapur Sirih ( Instrumental )',
+            ],
+            [
+                'song_url' => '/musics/di-renjis-renjis.mp3',
+                'song_name' => 'Di Renjis-renjis ( Instrumental )',
+            ],
+            [
+                'song_url' => '/musics/menghitung-hari.mp3',
+                'song_name' => 'Menghitung Hari ( Piano )',
+            ],
+            [
+                'song_url' => '/musics/cant-help-falling-in-love.mp3',
+                'song_name' => 'Can\'t Help Falling in Love ( Piano )',
+            ],
         ];
 
         foreach ($songs as $song)
