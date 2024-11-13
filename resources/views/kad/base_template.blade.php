@@ -233,7 +233,7 @@
 
                             <!-- Play/Pause Button -->
                             <button @click="isPlaying ? audio.pause() : audio.play(); isPlaying = !isPlaying" 
-                                class="bg-gray-50 flex items-center space-x-2 py-1 px-2 mt-4 rounded-full transition-colors duration-300 ease-in-out shadow-md">
+                                class="bg-gray-50 opacity-70 fixed top-2 z-50 flex items-center  space-x-2 py-0 px-2 rounded-full transition-colors duration-300 ease-in-out shadow-md">
                                 
                                 <!-- Music Bars Icon (Animate when playing) -->
                                 <svg class="w-6 h-6 text-gray-500" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -247,6 +247,7 @@
 
                                 <p class="text-xs font-sans font-semibold">{{ $bgSong->song_name }}</p>
                             </button>
+
 
                             <!-- Hidden Audio Element -->
                             <audio x-ref="audioElement" loop>
