@@ -743,7 +743,7 @@
                                 
                                 <!-- Icons on the right -->
                                 <div class="flex space-x-4">
-                                    <a href="https://api.whatsapp.com/send?phone={{ $entry['nombor_telefon'] }}" target="_blank" class="transition-transform transform hover:scale-105">
+                                    <a href="https://api.whatsapp.com/send?phone=6{{ $entry['nombor_telefon'] }}" target="_blank" class="transition-transform transform hover:scale-105">
                                         <img src="{{ asset('images/icons/whatsapp-100.png') }}" alt="Whatsapp" class="h-8 w-8 rounded-lg border-2 border-white hover:border-gray-300 hover:bg-white shadow-md">
                                     </a>
                                     <a href="tel:{{ $entry['nombor_telefon'] }}" target="_blank" class="transition-transform transform hover:scale-105">
