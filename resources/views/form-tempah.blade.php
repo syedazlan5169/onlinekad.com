@@ -711,7 +711,7 @@
                                                         type="file"
                                                         name="picture_1" 
                                                         id="picture_1" 
-                                                        accept="image/png, image/jpeg"
+                                                        accept="image/png, image/jpeg, image/heic"
                                                     >
                                                     <button 
                                                         type="button" 
@@ -737,7 +737,7 @@
                                                         type="file"
                                                         name="picture_2" 
                                                         id="picture_2" 
-                                                        accept="image/png, image/jpeg"
+                                                        accept="image/png, image/jpeg, image/heic"
                                                     >
                                                     <button 
                                                         type="button" 
@@ -762,7 +762,7 @@
                                                         type="file"
                                                         name="picture_3" 
                                                         id="picture_3" 
-                                                        accept="image/png, image/jpeg"
+                                                        accept="image/png, image/jpeg, image/heic"
                                                     >
                                                     <button 
                                                         type="button" 
@@ -806,6 +806,45 @@
                                                 inputFile.value = ''; // Reset file input
                                             });
                                         }
+
+                                        // Define allowed file size (e.g., 5MB in bytes)
+										const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+
+                                        // Function to validate image file
+                                        function validateImageUpload(inputFile) {
+                                            const file = inputFile.files[0];
+                                            const allowedTypes = ['image/jpeg', 'image/png', 'image/heic', 'image/heif']; // Add HEIC-related MIME types
+                                            const allowedExtensions = ['jpg', 'jpeg', 'png', 'heic', 'heif']; // Add 'heic' for HEIC files
+
+                                            if (file) {
+                                                // Check file type or extension (for HEIC, since MIME detection might fail)
+                                                const fileExtension = file.name.split('.').pop().toLowerCase();
+                                                if (!allowedTypes.includes(file.type) && !allowedExtensions.includes(fileExtension)) {
+                                                    alert('Invalid file type. Please upload a JPEG, PNG, or HEIC image.');
+                                                    inputFile.value = ''; // Reset the input
+                                                    return false;
+                                                }
+
+                                                // Check file size
+                                                if (file.size > MAX_FILE_SIZE) {
+                                                    alert('File is too large. Please upload an image smaller than 5MB.');
+                                                    inputFile.value = ''; // Reset the input
+                                                    return false;
+                                                }
+                                            }
+                                            return true;
+                                        }
+
+                                        // Attach validation to each file input
+                                        document.getElementById('picture_1').addEventListener('change', function() {
+                                            validateImageUpload(this);
+                                        });
+                                        document.getElementById('picture_2').addEventListener('change', function() {
+                                            validateImageUpload(this);
+                                        });
+                                        document.getElementById('picture_3').addEventListener('change', function() {
+                                            validateImageUpload(this);
+                                        });
                                     
                                         // Setup for each input
                                         setupImageUpload('picture_1', 'picture_1_img', 'picture_1_delete');
