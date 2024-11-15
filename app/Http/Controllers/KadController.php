@@ -16,6 +16,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\ImageManager;
 
 class KadController extends Controller
 {
@@ -426,6 +428,9 @@ class KadController extends Controller
 
     private function uploadImage($file)
     {
+        // Log memory usage before processing
+        logger("Initial memory usage: " . memory_get_usage(true) . " bytes");
+
         // Define the directory for storing images
         $directory = 'slider';
 
@@ -435,13 +440,42 @@ class KadController extends Controller
         }
 
         // Create a unique file name
-        $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+        $filename = uniqid() . '.' . '.webp';
+
+        // Initialize ImageManager
+        $manager = new ImageManager(new Driver);
+
+        // Read the image using Intervention Image read() method
+        $image = $manager->read($file);
+        // Log memory usage after reading the image
+        logger("Memory usage after reading image: " . memory_get_usage(true) . " bytes");
+
+        $image->orient();
+         // Log memory usage after orientation correction
+        logger("Memory usage after orientation correction: " . memory_get_usage(true) . " bytes");
+
+        // Resize image 
+        $image->scale(width: 640);
+        // Log memory usage after resizing
+        logger("Memory usage after resizing: " . memory_get_usage(true) . " bytes");
+
+        // Encode to WEBP file
+        $encodedImage = $image->toWebp();
+        // Log memory usage after encoding
+        logger("Memory usage after encoding: " . memory_get_usage(true) . " bytes");
         
-        // Store the file in the 'storage/app/public/slider' directory
-        $file->storeAs($directory, $filename, 'public');
-        
-        // Return the file path
-        return Storage::url("{$directory}/{$filename}");
+        // Store the encoded image in the public disk
+        $path = "{$directory}/{$filename}";
+        Storage::disk('public')->put($path, $encodedImage);
+
+        // Log memory usage after storing the image
+        logger("Memory usage after storing image: " . memory_get_usage(true) . " bytes");
+
+        // Log peak memory usage
+        logger("Peak memory usage: " . memory_get_peak_usage(true) . " bytes");
+
+        // Return the public URL for the image
+        return Storage::url($path);
     }
 
     public function deleteOldImage($imagePath)

@@ -813,14 +813,14 @@
                                         // Function to validate image file
                                         function validateImageUpload(inputFile) {
                                             const file = inputFile.files[0];
-                                            const allowedTypes = ['image/jpeg', 'image/png', 'image/heic', 'image/heif']; // Add HEIC-related MIME types
-                                            const allowedExtensions = ['jpg', 'jpeg', 'png', 'heic', 'heif']; // Add 'heic' for HEIC files
+                                            const allowedTypes = ['image/jpeg', 'image/png']; // Add HEIC-related MIME types
+                                            const allowedExtensions = ['jpg', 'jpeg', 'png']; // Add 'heic' for HEIC files
 
                                             if (file) {
                                                 // Check file type or extension (for HEIC, since MIME detection might fail)
                                                 const fileExtension = file.name.split('.').pop().toLowerCase();
                                                 if (!allowedTypes.includes(file.type) && !allowedExtensions.includes(fileExtension)) {
-                                                    alert('Invalid file type. Please upload a JPEG, PNG, or HEIC image.');
+                                                    alert('Invalid file type. Please upload a JPEG or PNG image.');
                                                     inputFile.value = ''; // Reset the input
                                                     return false;
                                                 }
