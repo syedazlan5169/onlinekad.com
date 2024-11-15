@@ -78,7 +78,7 @@ class ToyyibpayController extends Controller
         Log::info('Bill data being sent to ToyyibPay: ', $bill);
 
         // Send request to ToyyibPay API
-        $url = 'https://dev.toyyibpay.com/index.php/api/createBill';
+        $url = config('services.toyyibpay.createBillUrl');
         
         try {
             $response = Http::asForm()->post($url, $bill);
@@ -89,7 +89,7 @@ class ToyyibpayController extends Controller
             // Check if the response was successful and contains a BillCode
             if ($response->successful() && isset($response[0]['BillCode'])) {
                 $billCode = $response[0]['BillCode'];
-                return redirect()->away('https://dev.toyyibpay.com/' . $billCode);
+                return redirect()->away(config('services.toyyibpay.redirectUrl') . $billCode);
             } else {
                 Log::error('ToyyibPay API Error: ' . $response->body());
                 return redirect()->back()->withErrors('Failed to create bill. Please try again.');

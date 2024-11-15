@@ -50,7 +50,9 @@ return [
 
     'toyyibpay' => [
         'secretKey' => env('TOYYIBPAY_KEY'),
-        'category' => env('TOYYIBPAY_CATEGORY'),    
+        'category' => env('TOYYIBPAY_CATEGORY'),
+        'createBillUrl' => env('TOYYIBPAY_CREATEBILL_URL'),
+        'redirectUrl' => env('TOYYIBPAY_REDIRECT_URL'),
     ],
 
 ];
