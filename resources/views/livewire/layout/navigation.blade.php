@@ -35,17 +35,17 @@ new class extends Component
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('katalog.show')" :active="request()->routeIs('katalog')" wire:navigate>
+                    <x-nav-link :href="route('katalog.show')" :active="request()->routeIs('katalog.show')" wire:navigate>
                         {{ __('Katalog') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('pakej.show')" :active="request()->routeIs('pakej')" wire:navigate>
+                    <x-nav-link :href="route('pakej.show')" :active="request()->routeIs('pakej.show')" wire:navigate>
                         {{ __('Pakej') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('tutorial.show')" :active="request()->routeIs('tutorial')" wire:navigate>
+                    <x-nav-link :href="route('tutorial.show')" :active="request()->routeIs('tutorial.show')" wire:navigate>
                         {{ __('Tutorial') }}
                     </x-nav-link>
                 </div>
@@ -127,13 +127,13 @@ new class extends Component
             <x-responsive-nav-link :href="route('/')" :active="request()->routeIs('/')" wire:navigate>
                 {{ __('Home') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('katalog.show')" :active="request()->routeIs('katalog')" wire:navigate>
+            <x-responsive-nav-link :href="route('katalog.show')" :active="request()->routeIs('katalog.show')" wire:navigate>
                 {{ __('Katalog') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('pakej.show')" :active="request()->routeIs('pakej')" wire:navigate>
+            <x-responsive-nav-link :href="route('pakej.show')" :active="request()->routeIs('pakej.show')" wire:navigate>
                 {{ __('Pakej') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('tutorial.show')" :active="request()->routeIs('tutorial')" wire:navigate>
+            <x-responsive-nav-link :href="route('tutorial.show')" :active="request()->routeIs('tutorial.show')" wire:navigate>
                 {{ __('Tutorial') }}
             </x-responsive-nav-link>
         </div>
@@ -147,11 +147,11 @@ new class extends Component
             </div>
     
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile')" wire:navigate>
+                <x-responsive-nav-link :href="route('profile')" :active="request()->routeIs('profile')" wire:navigate>
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
 
-                <x-responsive-nav-link :href="route('senarai-kad.show')" wire:navigate>
+                <x-responsive-nav-link :href="route('senarai-kad.show')" :active="request()->routeIs('senarai-kad.show')" wire:navigate>
                     {{ __('Senarai Kad') }}
                 </x-responsive-nav-link>
     
