@@ -488,9 +488,11 @@
                     <!-- End of Slider -->
 
                     <!-- Doa Pengantin -->
-                    <div class="items-center w-full h-auto mb-6 rounded-xl p-4" style="background-color: {{ $colorCode }};">
-                        <p class="text-center text-white font-sans">{{ $kadData->doa_pengantin }}</p>
-                    </div>
+                    @if ($kadData->package_id == 2 || $kadData->package_id == 3)
+                        <div class="items-center w-full h-auto mb-6 rounded-xl p-4" style="background-color: {{ $colorCode }};">
+                            <p class="text-center text-white font-sans">{{ $kadData->doa_pengantin }}</p>
+                        </div>
+                    @endif
 
                     <!-- Guestbook -->
                     @if (($kadData->package_id == 2 || $kadData->package_id == 3) && $kadData->guestbook_is_on)
@@ -772,10 +774,12 @@
                         <h1 class="text-lg text-white"><i class="fa-regular fa-calendar"></i></h1>
                         <span class="text-xs text-white">REMINDER</span>
                     </button>
-                    <button type="button" @click="contact_modal = true" class="flex-1 flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $colorCode }};">
-                        <h1 class="text-lg text-white"><i class="fa-solid fa-phone"></i></h1>
-                        <span class="text-xs text-white">TELEFON</span>
-                    </button>
+                    @if ($kadData->package_id == 2 || $kadData->package_id == 3)
+                        <button type="button" @click="contact_modal = true" class="flex-1 flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $colorCode }};">
+                            <h1 class="text-lg text-white"><i class="fa-solid fa-phone"></i></h1>
+                            <span class="text-xs text-white">TELEFON</span>
+                        </button>
+                    @endif
                     @if ($kadData->package_id == 2 || $kadData->package_id == 3)
                         <button type="button" @click="location_modal = true" class="flex-1 flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $colorCode }};">
                             <h1 class="text-lg text-white"><i class="fa-solid fa-location-dot"></i></h1>
