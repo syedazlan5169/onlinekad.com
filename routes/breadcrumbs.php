@@ -43,6 +43,12 @@ Breadcrumbs::for('profile', function (BreadcrumbTrail $trail) {
     $trail->push('Profile', route('profile'));
 });
 
+// Home > Tempah 
+Breadcrumbs::for('form-tempah', function (BreadcrumbTrail $trail, $id) {
+    $trail->parent('/');
+    $trail->push('Tempah Kad', route('form-tempah.show', $id));
+});
+
 // Home > Senarai Kad > Guestbook
 Breadcrumbs::for('kad-guestbook', function (BreadcrumbTrail $trail, $id) {
     $trail->parent('senarai-kad');

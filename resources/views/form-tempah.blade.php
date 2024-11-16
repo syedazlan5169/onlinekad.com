@@ -1,8 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-gray-800 leading-tight">
+        <h2 class="mb-5 font-semibold text-gray-800 leading-tight">
             {{ __('Tempah') }}
         </h2>
+        <div>
+            {{ Breadcrumbs::render('form-tempah', $id) }}
+        </div>
     </x-slot>
 
     <div class="py-12">

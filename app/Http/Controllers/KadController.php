@@ -63,7 +63,7 @@ class KadController extends Controller
         $package2 = $packages[1] ?? null;  // Example for Package 2
         $package3 = $packages[2] ?? null;  // Example for Package 3
 
-        return view('form-tempah', compact('design', 'package1', 'package2', 'package3', 'fonts'));
+        return view('form-tempah', compact('design', 'package1', 'package2', 'package3', 'fonts', 'id'));
     }
 
     public function patch(Request $request, $Id)
