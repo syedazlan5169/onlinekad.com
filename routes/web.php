@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\GuestbookController;
 use App\Http\Controllers\KadController;
+use App\Http\Controllers\PakejController;
 use App\Http\Controllers\RsvpController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ToyyibpayController;
@@ -12,8 +13,9 @@ use App\Models\Rsvp;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('/');
+Route::get('pakej', [PakejController::class, 'index'])->name('pakej.show');
 Route::view('katalog', 'katalog')->name('katalog.show');
-Route::view('pakej', 'pakej')->name('pakej.show');
+//Route::view('pakej', 'pakej')->name('pakej.show');
 Route::view('tutorial', 'tutorial')->name('tutorial.show');
 Route::post('/tulis-ucapan', [GuestbookController::class, 'create'])->name('tulis-ucapan');
 Route::post('/create-rsvp', [RsvpController::class, 'create'])->name('create-rsvp');
