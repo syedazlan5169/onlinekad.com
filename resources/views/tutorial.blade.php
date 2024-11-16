@@ -1,8 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold  text-gray-800 leading-tight">
+        <h2 class="mb-5 font-semibold  text-gray-800 leading-tight">
             {{ __('Tutorial') }}
         </h2>
+        <div class="mb-0 pb-0">
+            {{ Breadcrumbs::render('tutorial') }}
+        </div>
     </x-slot>
 
     <div class="py-12">

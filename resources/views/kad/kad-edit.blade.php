@@ -1,8 +1,11 @@
 <x-app-layout>
 	<x-slot name="header">
-		<h2 class="font-semibold text-gray-800 leading-tight">
+		<h2 class="mb-5 font-semibold text-gray-800 leading-tight">
 			{{ __('Edit Kad') }}
 		</h2>
+        <div>
+            {{ Breadcrumbs::render('kad-edit', $kadData->id) }}
+        </div>
 	</x-slot>
 
 	<div class="relative isolate mt-12 sm:mt-10 sm:pt-12">

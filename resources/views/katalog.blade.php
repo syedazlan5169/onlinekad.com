@@ -1,9 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-gray-800 leading-tight">
+        <h2 class="mb-5 font-semibold text-gray-800 leading-tight">
             {{ __('Katalog') }}
         </h2>
+        <div>
+            {{ Breadcrumbs::render('katalog') }}
+        </div>
     </x-slot>
+
+
 
         <!-- Testimonials section -->
         <div class="relative isolate mt-32 sm:mt-56 sm:pt-32">

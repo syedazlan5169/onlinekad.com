@@ -1,8 +1,11 @@
 <x-app-layout>
 	<x-slot name="header">
-		<h2 class="font-semibold text-gray-800 leading-tight">
+		<h2 class="mb-5 font-semibold text-gray-800 leading-tight">
             {{ __('Guestbook') }}
 		</h2>
+        <div>
+            {{ Breadcrumbs::render('kad-guestbook', $kadData->id) }}
+        </div>
 	</x-slot>
 
 	<div class="relative isolate mt-12 sm:mt-10 sm:pt-12">
@@ -16,7 +19,7 @@
             <rect width="100%" height="100%" stroke-width="0" fill="url(#55d3d46d-692e-45f2-becd-d8bdc9344f45)" />
         </svg>
         <!-- Background Gradients -->
-        <div class="absolute inset-x-0 top-1/2 -z-10 -translate-y-1/2 transform-gpu overflow-hidden opacity-30 blur-3xl" aria-hidden="true">
+        <div class="absolute inset-x-0 top-1/2 -z-10 -translate-y-1/2 transform-gpu overflow-hidden opacity-30 blur-3xl pointer-events-none" aria-hidden="true">
             <div class="ml-[max(50%,38rem)] aspect-[1313/771] w-[82.0625rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
         </div>
         <div class="absolute inset-x-0 top-0 -z-10 flex transform-gpu overflow-hidden pt-8 opacity-25 blur-3xl xl:justify-end" aria-hidden="true">
@@ -24,8 +27,8 @@
         </div>
 
 		<div class="py-12">
-		<!-- Notification Panel -->
-		@if(session('success'))
+			<!-- Notification Panel -->
+			@if(session('success'))
 		<!-- Global notification live region -->
 		<div 
 			x-data="{ show: true }" 
