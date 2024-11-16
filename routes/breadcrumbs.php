@@ -37,6 +37,12 @@ Breadcrumbs::for('senarai-kad', function (BreadcrumbTrail $trail) {
     $trail->push('Senarai Kad', route('senarai-kad.show'));
 });
 
+// Home > Profile 
+Breadcrumbs::for('profile', function (BreadcrumbTrail $trail) {
+    $trail->parent('/');
+    $trail->push('Profile', route('profile'));
+});
+
 // Home > Senarai Kad > Guestbook
 Breadcrumbs::for('kad-guestbook', function (BreadcrumbTrail $trail, $id) {
     $trail->parent('senarai-kad');
