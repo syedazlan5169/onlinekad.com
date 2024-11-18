@@ -93,8 +93,6 @@ class KadController extends Controller
             'masa-mula-majlis' => ['required'],
             'masa-tamat-majlis' => ['required'],
             'alamat-majlis' => ['required'],
-            'google-url' => ['required'],
-            'waze-url' => ['required'],
         ]);
 
         // Retrieve the specific Kad by its ID
@@ -268,13 +266,10 @@ class KadController extends Controller
             // Maklumat Majlis
             'tajuk-kad' => ['required', 'max:20'],
             'ayat-jemputan' => ['required'],
-            'doa-pengantin' => ['required'],
             'tarikh-majlis' => ['required', 'date'],
             'masa-mula-majlis' => ['required', 'date_format:H:i'],
             'masa-tamat-majlis' => ['required', 'date_format:H:i'],
             'alamat-majlis' => ['required'],
-            'google-url' => ['required'],
-            'waze-url' => ['required'],
         ]);
 
         //Generate orderId

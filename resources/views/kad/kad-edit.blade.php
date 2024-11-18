@@ -269,10 +269,36 @@
 								</div>
 
 								<!-- Doa Pengantin -->
-								<div class="sm:col-span-3">
+								<div x-show="packageId == 2 || packageId == 3" class="sm:col-span-3">
 									<label for="doa-pengantin" class="block text-sm font-medium text-gray-900">Doa Pengantin</label>
 									<div class="mt-2">
 										<textarea name="doa-pengantin" id="doa-pengantin" rows="4" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">{{ $kadData->doa_pengantin }}</textarea>
+									</div>
+								</div>
+
+								<!-- Alamat Majlis -->
+								<div class="sm:col-span-3">
+									<label for="alamat-majlis" class="block text-sm font-medium text-gray-900">Alamat Majlis</label>
+									<div class="mt-2">
+										<textarea name="alamat-majlis" id="alamat-majlis" rows="4" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">{{ $kadData->alamat_majlis }}</textarea>
+									</div>
+								</div>
+
+								<!-- Google Maps URL -->
+								<div x-show="packageId == 2 || packageId == 3" class="sm:grid-cols-1 sm:col-span-3">
+									<div>
+										<label for="google-url" class="block text-sm font-medium text-gray-900">URL Google Maps</label>
+										<div class="mt-2">
+											<input type="text" name="google-url" id="google-url" value="{{ $kadData->google_url }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+										</div>
+									</div>
+
+									<!-- Waze URL -->
+									<div>
+										<label for="waze-url" class="mt-2 block text-sm font-medium text-gray-900">URL Waze</label>
+										<div class="mt-1">
+											<input type="text" name="waze-url" id="waze-url" value="{{ $kadData->waze_url }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+										</div>
 									</div>
 								</div>
 
@@ -300,34 +326,8 @@
 									</div>
 								</div>
 
-								<!-- Alamat Majlis -->
-								<div class="sm:col-span-3">
-									<label for="alamat-majlis" class="block text-sm font-medium text-gray-900">Alamat Majlis</label>
-									<div class="mt-2">
-										<textarea name="alamat-majlis" id="alamat-majlis" rows="4" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">{{ $kadData->alamat_majlis }}</textarea>
-									</div>
-								</div>
-
-								<!-- Google Maps URL -->
-								<div class="sm:grid-cols-1 sm:col-span-3">
-									<div>
-										<label for="google-url" class="block text-sm font-medium text-gray-900">URL Google Maps</label>
-										<div class="mt-2">
-											<input type="text" name="google-url" id="google-url" value="{{ $kadData->google_url }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
-										</div>
-									</div>
-
-									<!-- Waze URL -->
-									<div>
-										<label for="waze-url" class="mt-2 block text-sm font-medium text-gray-900">URL Waze</label>
-										<div class="mt-1">
-											<input type="text" name="waze-url" id="waze-url" value="{{ $kadData->waze_url }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
-										</div>
-									</div>
-								</div>
-
 								<!-- Nombor Telefon Waris -->
-								<div class="sm:col-span-6">
+								<div x-show="packageId == 2 || packageId == 3" class="sm:col-span-6">
 									<label class="block text-sm font-medium text-gray-900">Nombor Telefon Waris</label>
 									<div class="mt-2 space-y-4">
 										@for ($i = 0; $i < 5; $i++)
@@ -340,7 +340,7 @@
 								</div>
 
 								<!-- Aturcara Majlis -->
-								<div class="sm:col-span-6">
+								<div x-show="packageId == 2 || packageId == 3" class="sm:col-span-6">
 									<label class="block text-sm font-medium text-gray-900">Aturcara Majlis</label>
 									<div class="mt-2 space-y-4">
 										@for ($i = 0; $i < 6; $i++)

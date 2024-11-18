@@ -524,7 +524,7 @@
                                 </div>
 
                                 <!-- Doa Pengantin -->
-                                <div class="sm:col-span-1">
+                                <div x-show="selectedPackage == 2 || selectedPackage == 3" class="sm:col-span-1">
                                     <label for="doa-pengantin" class="block text-sm font-medium text-gray-900">Doa Pengantin</label>
                                     <div class="mt-2">
                                         <textarea name="doa-pengantin" id="doa-pengantin" rows="4" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">{{ old('doa-pengantin', '“Ya Allah, berkatilah majlis perkahwinan ini, limpahkan baraqah dan rahmat kepada kedua mempelai ini, Kurniakanlah mereka zuriat yang soleh dan solehah. Kekalkan jodoh mereka di dunia dan di akhirat dan sempurnakanlah agama mereka dengan berkat ikatan ini.”') }}</textarea>
@@ -539,14 +539,14 @@
                                     </div>
                                 </div>
 
-                                <div class="sm:col-span-1">
+                                <div x-show="selectedPackage == 2 || selectedPackage == 3" class="sm:col-span-1">
                                     <label for="google-url" class="block text-sm font-medium text-gray-900">URL Google Maps</label>
                                     <div class="mt-2">
                                         <input type="text" name="google-url" id="google-url" value="{{ old('google-url') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
                                     </div>
                                 </div>
 
-                                <div class="sm:col-span-1">
+                                <div x-show="selectedPackage == 2 || selectedPackage == 3" class="sm:col-span-1">
                                     <label for="waze-url" class="block text-sm font-medium text-gray-900">URL Waze</label>
                                     <div class="mt-2">
                                         <input type="text" name="waze-url" id="waze-url" value="{{ old('waze-url') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
@@ -554,7 +554,7 @@
                                 </div>
 
                                 <!-- Nombor Telefon -->
-                                <div class="sm:col-span-2">
+                                <div x-show="selectedPackage == 2 || selectedPackage == 3" class="sm:col-span-2">
                                     <label class="block text-sm font-medium text-gray-900">Nombor Telefon Waris</label>
                                     <div x-data="{ warisCount: 2 }" class="mt-2 space-y-2">
                                         <!-- Initial input fields (2 fields) -->
@@ -575,7 +575,7 @@
                                 </div>
 
                                 <!-- Aturcara Majlis -->
-                                <div class="sm:col-span-2">
+                                <div x-show="selectedPackage == 2 || selectedPackage == 3" class="sm:col-span-2">
                                     <label class="block text-sm font-medium text-gray-900">Aturcara Majlis</label>
                                     <div x-data="{ acaraCount: 3 }" class="mt-2 space-y-2">
                                         <!-- Initial input fields (2 fields) -->

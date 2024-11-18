@@ -409,8 +409,10 @@
                 </div>
             </div>
 
+            @if ($kadData->package_id == 2 || $kadData->package_id == 3)
             <img class="w-full px-3 h-18 mt-6 pb-6" src="/images/Curly-Border-Top.png" alt=""> 
             <!-- Fetures Section -->
+
             <div>
                 <div class="flex flex-col justify-center gap-5 items-center h-full px-6 pb-0 mb-0">
 
@@ -474,7 +476,6 @@
                     </div>
                     
                    <!-- Slider -->
-                   @if (($kadData->package_id == 2 || $kadData->package_id == 3) && $kadData->slideshow_is_on)
                         <div class="main-slider size-80 w-full max-h-[400px] mx-auto overflow-hidden rounded-xl">
                             @foreach($imageUrls as $url)
                                 @if (!empty($url))  <!-- Check if $url is not null or empty -->
@@ -484,18 +485,14 @@
                                 @endif
                             @endforeach
                         </div>
-                    @endif
                     <!-- End of Slider -->
 
                     <!-- Doa Pengantin -->
-                    @if ($kadData->package_id == 2 || $kadData->package_id == 3)
                         <div class="items-center w-full h-auto mb-6 rounded-xl p-4" style="background-color: {{ $colorCode }};">
                             <p class="text-center text-white font-sans">{{ $kadData->doa_pengantin }}</p>
                         </div>
-                    @endif
 
                     <!-- Guestbook -->
-                    @if (($kadData->package_id == 2 || $kadData->package_id == 3) && $kadData->guestbook_is_on)
                         <div class="mt-7 w-full rounded-xl border-[1px] py-6 px-3 mb-16 bg-white bg-opacity-30" style="border-color: {{ $colorCode }};">
                             <div>
                                 <div class="flex justify-center items-center mb-5">
@@ -507,7 +504,6 @@
                             </div>
                             <livewire:guestbook-wishes :kad_id="$kadData->id" />
                         </div>
-                    @endif
                     <!-- Move to wishes section after paginate -->
                     <script>
                         document.addEventListener('livewire:load', function () {
@@ -522,8 +518,40 @@
                 </div>
             </div>
 
-
             <img class="w-full px-3 h-18 mb-16 pt-0 mt-0" src="/images/Curly-Border-Bottom.png" alt=""> 
+            @endif
+
+            <!-- Footer Section -->
+            @if ($kadData->package_id == 2 || $kadData->package_id == 3)
+            <footer class="w-full mx-auto sm:w-[400px] flex justify-center items-center]">
+                <div class="fixed bottom-0 z-50 w-full sm:w-[400px] mx-auto h-18 border-t" style="background-color: {{ $colorFooter }};">
+                    <div class="flex justify-center items-center my-1 w-[97%] gap-2 max-w-lg mx-auto font-medium">
+                        @if (($kadData->package_id == 2 || $kadData->package_id == 3) && $kadData->rsvp_is_on)
+                            <button type="button" @click="form_rsvp = true" class="flex-1 flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $colorCode }};">
+                                <h1 class="text-lg text-white"><i class="fa-solid fa-list"></i></h1>
+                                <span class="text-xs text-white">RSVP</span>
+                            </button>
+                        @endif
+                        <button type="button" @click="reminder_modal = true" class="flex-1 flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $colorCode }};">
+                            <h1 class="text-lg text-white"><i class="fa-regular fa-calendar"></i></h1>
+                            <span class="text-xs text-white">REMINDER</span>
+                        </button>
+                        @if ($kadData->package_id == 2 || $kadData->package_id == 3)
+                            <button type="button" @click="contact_modal = true" class="flex-1 flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $colorCode }};">
+                                <h1 class="text-lg text-white"><i class="fa-solid fa-phone"></i></h1>
+                                <span class="text-xs text-white">TELEFON</span>
+                            </button>
+                        @endif
+                        @if ($kadData->package_id == 2 || $kadData->package_id == 3)
+                            <button type="button" @click="location_modal = true" class="flex-1 flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $colorCode }};">
+                                <h1 class="text-lg text-white"><i class="fa-solid fa-location-dot"></i></h1>
+                                <span class="text-xs text-white">LOKASI</span>
+                            </button>
+                        @endif
+                    </div>
+                </div>
+            </footer>
+            @endif
         </div>
 
         <!-- Form Tulis Ucapan -->
@@ -760,35 +788,7 @@
         </div> 
         <!-- End of Contacts Modal Popup -->
 
-        <!-- Footer Section -->
-        <footer class="w-full mx-auto sm:w-[400px] flex justify-center items-center]">
-            <div class="fixed bottom-0 z-50 w-full sm:w-[400px] mx-auto h-18 border-t" style="background-color: {{ $colorFooter }};">
-                <div class="flex justify-center items-center my-1 w-[97%] gap-2 max-w-lg mx-auto font-medium">
-                    @if (($kadData->package_id == 2 || $kadData->package_id == 3) && $kadData->rsvp_is_on)
-                        <button type="button" @click="form_rsvp = true" class="flex-1 flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $colorCode }};">
-                            <h1 class="text-lg text-white"><i class="fa-solid fa-list"></i></h1>
-                            <span class="text-xs text-white">RSVP</span>
-                        </button>
-                    @endif
-                    <button type="button" @click="reminder_modal = true" class="flex-1 flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $colorCode }};">
-                        <h1 class="text-lg text-white"><i class="fa-regular fa-calendar"></i></h1>
-                        <span class="text-xs text-white">REMINDER</span>
-                    </button>
-                    @if ($kadData->package_id == 2 || $kadData->package_id == 3)
-                        <button type="button" @click="contact_modal = true" class="flex-1 flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $colorCode }};">
-                            <h1 class="text-lg text-white"><i class="fa-solid fa-phone"></i></h1>
-                            <span class="text-xs text-white">TELEFON</span>
-                        </button>
-                    @endif
-                    @if ($kadData->package_id == 2 || $kadData->package_id == 3)
-                        <button type="button" @click="location_modal = true" class="flex-1 flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $colorCode }};">
-                            <h1 class="text-lg text-white"><i class="fa-solid fa-location-dot"></i></h1>
-                            <span class="text-xs text-white">LOKASI</span>
-                        </button>
-                    @endif
-                </div>
-            </div>
-        </footer>
+
     @livewireScripts
     <script>
         const canvas = document.querySelector('canvas')
