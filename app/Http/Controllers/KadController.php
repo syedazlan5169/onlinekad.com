@@ -418,6 +418,12 @@ class KadController extends Controller
 
         $slider->save();
 
+        // Count how many times a design was create
+        $design = Design::findOrFail(request('design-id'));
+        $newTotal = $design->total_created + 1;
+        $design->update(['total_created' => $newTotal]);
+
+
         return redirect('/senarai-kad');
     }
 

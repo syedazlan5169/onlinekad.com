@@ -12,6 +12,8 @@ class Design extends Model
     protected $fillable = [
         'design_code',
         'design_url',
+        'category',
+        'total_created',
     ];
 
     public function kads()
