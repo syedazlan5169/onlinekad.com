@@ -135,6 +135,7 @@
         @php
             $colorCode = $design->color_code;
             $colorFooter = $design->color_footer;
+            $textColor = '';
         @endphp
         
     </head>
@@ -194,29 +195,29 @@
             <div class="h-screen w-full bg-cover bg-center" style="background-image: url('{{ asset($design->design_url_1) }}');">
                 <div class="absolute inset-0 bg-white bg-opacity-20">
                     <div class="flex flex-col justify-center gap-20 items-center h-full">
-                        <h1 class="text-2xl text-center text-gray-600 animate-slide-up" style="font-family: 'Noticia Text', cursive; margin-bottom: 0;">{{ $kadData->tajuk_kad }}</h1>
+                        <h1 class="text-2xl text-center text-gray-600 animate-slide-up" style="font-family: 'Noticia Text', cursive; color: {{ $textColor }};">{{ $kadData->tajuk_kad }}</h1>
                         @if ($kadData->dua_pasangan_is_on == true)
                             <div class="text-center">
-                                <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">{{ $kadData->nama_panggilan_pasangan_pertama }}</p>
-                                <p class="text-2xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">Bersama</p>
-                                <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">{{ $kadData->nama_panggilan_pasangan_kedua }}</p>
+                                <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $textColor }};">{{ $kadData->nama_panggilan_pasangan_pertama }}</p>
+                                <p class="text-2xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $textColor }};">Bersama</p>
+                                <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $textColor }};">{{ $kadData->nama_panggilan_pasangan_kedua }}</p>
                             </div>
                         @elseif ($kadData->penjemput == 2)
                             <div class="text-center">
-                                <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">{{ $kadData->nama_panggilan_perempuan }}</p>
-                                <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">&</p>
-                                <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">{{ $kadData->nama_panggilan_lelaki }}</p>
+                                <p class="text-6xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $textColor }};">{{ $kadData->nama_panggilan_perempuan }}</p>
+                                <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $textColor }};">&</p>
+                                <p class="text-6xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $textColor }};">{{ $kadData->nama_panggilan_lelaki }}</p>
                             </div>
                         @else
                             <div class="text-center">
-                                <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">{{ $kadData->nama_panggilan_lelaki }}</p>
-                                <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">&</p>
-                                <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; margin-bottom: 0;">{{ $kadData->nama_panggilan_perempuan }}</p>
+                                <p class="text-7xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $textColor }};">{{ $kadData->nama_panggilan_lelaki }}</p>
+                                <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $textColor }};">&</p>
+                                <p class="text-7xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $textColor }};">{{ $kadData->nama_panggilan_perempuan }}</p>
                             </div>
                         @endif
                         <div class="text-center">
-                            <p class="text-2xl text-gray-600 leading-tight animate-slide-up-delay" style="font-family: 'Noticia Text', cursive; margin-bottom: 0;">{{ $dateTime['hari_majlis'] }}</p>
-                            <p class="text-2xl text-gray-600 leading-tight animate-slide-up-delay" style="font-family: 'Noticia Text', cursive;">{{ $dateTime['tarikh_majlis'] }}</p>
+                            <p class="text-2xl text-gray-600 leading-tight animate-slide-up-delay" style="font-family: 'Noticia Text', cursive; color: {{ $textColor }};">{{ $dateTime['hari_majlis'] }}</p>
+                            <p class="text-2xl text-gray-600 leading-tight animate-slide-up-delay" style="font-family: 'Noticia Text', cursive; color: {{ $textColor }};">{{ $dateTime['tarikh_majlis'] }}</p>
                         </div>
                     </div>
                 </div>
@@ -828,7 +829,7 @@
 
         // Petal class with CSS shape (ellipse)
         class Petal {
-            constructor() {
+            //constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = (Math.random() * canvas.height * 2) - canvas.height;
                 this.w = 25 + Math.random() * 15;
