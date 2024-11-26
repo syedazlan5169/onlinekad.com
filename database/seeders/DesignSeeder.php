@@ -136,6 +136,15 @@ class DesignSeeder extends Seeder
                 'color_footer' => '#F183A0',
                 'category' => 'floral'
             ],
+            [
+                'design_code' => 'N015',
+                'product_image_url' => '/images/products/Product-N015.webp',
+                'design_url_1' => '/images/designs/N015-1.webp',
+                'design_url_2' => '/images/designs/N015-2.webp',
+                'color_code' => '#AA5A6B',
+                'color_footer' => '#D58385',
+                'category' => 'floral'
+            ],
             // Add more entries as needed
         ];
 
