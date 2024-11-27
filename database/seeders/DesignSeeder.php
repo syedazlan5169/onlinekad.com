@@ -145,6 +145,34 @@ class DesignSeeder extends Seeder
                 'color_footer' => '#D58385',
                 'category' => 'floral'
             ],
+            [
+                'design_code' => 'N016',
+                'product_image_url' => '/images/products/Product-N016.webp',
+                'design_url_1' => '/images/designs/N016-1.webp',
+                'design_url_2' => '/images/designs/N016-2.webp',
+                'color_code' => '#4B746A',
+                'color_footer' => '#8EB5AB',
+                'category' => 'floral'
+            ],
+            [
+                'design_code' => 'N017',
+                'product_image_url' => '/images/products/Product-N017.webp',
+                'design_url_1' => '/images/designs/N017-1.webp',
+                'design_url_2' => '/images/designs/N017-2.webp',
+                'color_code' => '#D16E29',
+                'color_footer' => '#E1833B',
+                'category' => 'floral'
+            ],
+            [
+                'design_code' => 'N018',
+                'product_image_url' => '/images/products/Product-N018.webp',
+                'design_url_1' => '/images/designs/N018-1.webp',
+                'design_url_2' => '/images/designs/N018-2.webp',
+                'color_code' => '#C9547C',
+                'color_footer' => '#EAB2D3',
+                'category' => 'floral'
+            ],
+
             // Add more entries as needed
         ];
 
