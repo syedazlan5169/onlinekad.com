@@ -6,6 +6,20 @@
 
         <title>{{ $kadData->nama_panggilan_lelaki}} &#10084; {{ $kadData->nama_panggilan_perempuan}}</title>
 
+        <!-- Open Graph Meta Tags -->
+        <meta property="og:title" content="{{ $kadData->tajuk_kad }}">
+        <meta property="og:description" content="Anda dijemput hadir ke majlis {{ $kadData->nama_panggilan_lelaki }} dan {{ $kadData->nama_panggilan_perempuan }} pada {{ $dateTime['tarikh_majlis'] }} di {{ $kadData->alamat_majlis }}.">
+        <meta property="og:image" content="{{ asset('/images/kad-thumbnail.webp') }}">
+        <meta property="og:url" content="{{ url()->current() }}">
+        <meta property="og:type" content="website">
+        <meta property="og:locale" content="en_US"> <!-- Change this to your language -->
+
+        <!-- Twitter Card Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{{ $kadData->tajuk_kad }}">
+        <meta name="twitter:description" content="Anda dijemput hadir ke {{ $kadData->nama_panggilan_lelaki }} & {{ $kadData->nama_panggilan_perempuan }} pada {{ $dateTime['tarikh_majlis'] }} di {{ $kadData->alamat_majlis }}.">
+        <meta name="twitter:image" content="{{ asset('/images/kad-thumbnail.webp') }}">
+
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
