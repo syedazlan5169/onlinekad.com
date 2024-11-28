@@ -45,6 +45,9 @@ Route::middleware(['auth'])->group(function () {
     //Tempah Kad
     Route::get('/form-tempah/{id}', [KadController::class, 'showFormTempah'])->name('form-tempah.show');
     Route::post('/tempah', [KadController::class, 'tempahKad'])->name('tempah');
+
+    //Download RSVP
+    Route::get('/export-rsvp', [RsvpController::class, 'exportToExcel'])->name('export-rsvp');
 });
 
 //GoogleController
