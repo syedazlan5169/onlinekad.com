@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\RsvpListExport;
 use Illuminate\Http\Request;
 use App\Models\Rsvp;
 use App\Models\Kad;
+use Maatwebsite\Excel\Facades\Excel;
 
 class RsvpController extends Controller
 {
@@ -31,5 +33,10 @@ class RsvpController extends Controller
         $rsvp->delete();
 
         return back()->with('success', 'Rsvp deleted successfully');
+    }
+
+    public function exportToExcel()
+    {
+        return Excel::download(new RsvpListExport, 'rsvp-list.xlsx');
     }
 }

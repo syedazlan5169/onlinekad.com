@@ -26,6 +26,7 @@
                 </select>
             </div>
         </div>
+
     </div>
 
     <div class="px-4 sm:px-0">
@@ -80,7 +81,12 @@
                 </div>
             </div>
         </div>
-        <div class="mt-4">{{ $rsvp->links() }}</div>
+        <div class="flex justify-between">
+            <div class="mt-4">{{ $rsvp->links() }}</div>
+            <div>
+                <x-primary-button class="h-10" href="{{ route('export-rsvp') }}">Download</x-primary-button>
+            </div>
+        </div>
     </div>
 
 

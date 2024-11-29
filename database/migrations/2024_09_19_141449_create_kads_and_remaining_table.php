@@ -86,7 +86,7 @@ return new class extends Migration
             $table->foreignIdFor(\App\Models\Kad::class);
             $table->string('nama');
             $table->string('nombor_telefon');
-            $table->integer('jumlah_kehadiran')->default(1);
+            $table->integer('jumlah_kehadiran')->nullable();
             $table->string('kehadiran');  // Possibly this is a varchar or enum
             $table->timestamps();
         });
