@@ -49,6 +49,15 @@ new class extends Component
                         {{ __('Tutorial') }}
                     </x-nav-link>
                 </div>
+                @auth
+                @if (Auth::user()->is_admin)
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('admin.show')" :active="request()->routeIs('admin.show')" wire:navigate>
+                            {{ __('Admin') }}
+                        </x-nav-link>
+                    </div>
+                @endif
+                @endauth
             </div>
 
             <!-- Settings Dropdown -->
@@ -136,6 +145,13 @@ new class extends Component
             <x-responsive-nav-link :href="route('tutorial.show')" :active="request()->routeIs('tutorial.show')" wire:navigate>
                 {{ __('Tutorial') }}
             </x-responsive-nav-link>
+            @auth
+            @if (Auth::user()->is_admin)
+                <x-responsive-nav-link :href="route('admin.show')" :active="request()->routeIs('admin.show')" wire:navigate>
+                    {{ __('Admin') }}
+                </x-responsive-nav-link>
+            @endif
+            @endauth
         </div>
     
         @auth

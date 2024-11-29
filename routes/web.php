@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GuestbookController;
 use App\Http\Controllers\KadController;
 use App\Http\Controllers\PakejController;
@@ -23,6 +24,11 @@ Route::post('/toyyibpay-callback', [ToyyibpayController::class, 'handleToyyibpay
 
 Route::middleware(['auth'])->group(function () {
     Route::view('profile', 'profile')->name('profile');
+
+    //AdminController
+    Route::get('/senarai-kad', [KadController::class, 'index'])->name('senarai-kad.show');
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.show');
+    Route::delete('/user/{id}', [AdminController::class, 'destroyUser']);
 
     //KadController
     Route::get('/senarai-kad', [KadController::class, 'index'])->name('senarai-kad.show');

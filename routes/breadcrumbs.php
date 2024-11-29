@@ -13,6 +13,12 @@ Breadcrumbs::for('/', function (BreadcrumbTrail $trail) {
     $trail->push('Home', route('/'));
 });
 
+// Home > Admin 
+Breadcrumbs::for('admin', function (BreadcrumbTrail $trail) {
+    $trail->parent('/');
+    $trail->push('Admin', route('admin.show'));
+});
+
 // Home > Katalog 
 Breadcrumbs::for('katalog', function (BreadcrumbTrail $trail) {
     $trail->parent('/');

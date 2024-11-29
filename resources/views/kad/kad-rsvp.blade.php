@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="mb-5 font-semibold text-gray-800 leading-tight">
-            {{ __('RSVP') }}
+            {{ __('RSVP ') }}{{ $kadData->nama_panggilan_lelaki }} & {{ $kadData->nama_panggilan_perempuan }}
         </h2>
         <div>
             {{ Breadcrumbs::render('kad-rsvp', $kadData->id) }}
