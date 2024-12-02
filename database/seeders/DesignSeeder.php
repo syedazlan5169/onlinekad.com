@@ -190,6 +190,42 @@ class DesignSeeder extends Seeder
                 'color_footer' => '#933A41',
                 'category' => 'floral'
             ],
+            [
+                'design_code' => 'N021',
+                'product_image_url' => '/images/products/Product-N021.webp',
+                'design_url_1' => '/images/designs/N021-1.webp',
+                'design_url_2' => '/images/designs/N02i-2.webp',
+                'color_code' => '#8B4871',
+                'color_footer' => '#A66788',
+                'category' => 'floral'
+            ],
+            [
+                'design_code' => 'N022',
+                'product_image_url' => '/images/products/Product-N022.webp',
+                'design_url_1' => '/images/designs/N022-1.webp',
+                'design_url_2' => '/images/designs/N022-2.webp',
+                'color_code' => '#BA4D39',
+                'color_footer' => '#CE8953',
+                'category' => 'floral'
+            ],
+            [
+                'design_code' => 'N023',
+                'product_image_url' => '/images/products/Product-N023.webp',
+                'design_url_1' => '/images/designs/N023-1.webp',
+                'design_url_2' => '/images/designs/N023-2.webp',
+                'color_code' => '#9A5425',
+                'color_footer' => '#C48053',
+                'category' => 'floral'
+            ],
+            [
+                'design_code' => 'N024',
+                'product_image_url' => '/images/products/Product-N024.webp',
+                'design_url_1' => '/images/designs/N024-1.webp',
+                'design_url_2' => '/images/designs/N024-2.webp',
+                'color_code' => '#C03C32',
+                'color_footer' => '#ECA59D',
+                'category' => 'floral'
+            ],
 
             // Add more entries as needed
         ];
