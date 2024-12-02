@@ -208,7 +208,7 @@
             <!-- Kad Section -->
             <div class="h-screen w-full bg-cover bg-center" style="background-image: url('{{ asset($design->design_url_1) }}');">
                 <div class="absolute inset-0 bg-white bg-opacity-20">
-                    <div class="flex flex-col justify-center gap-20 items-center h-full">
+                    <div class="flex flex-col justify-center gap-16 items-center h-full">
                         <h1 class="text-2xl text-center text-gray-600 animate-slide-up" style="font-family: 'Noticia Text', cursive; color: {{ $textColor }};">{{ $kadData->tajuk_kad }}</h1>
                         @if ($kadData->dua_pasangan_is_on == true)
                             <div class="text-center">
@@ -218,9 +218,9 @@
                             </div>
                         @elseif ($kadData->penjemput == 2)
                             <div class="text-center">
-                                <p class="text-6xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $textColor }};">{{ $kadData->nama_panggilan_perempuan }}</p>
+                                <p class="text-7xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $textColor }};">{{ $kadData->nama_panggilan_perempuan }}</p>
                                 <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $textColor }};">&</p>
-                                <p class="text-6xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $textColor }};">{{ $kadData->nama_panggilan_lelaki }}</p>
+                                <p class="text-7xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $textColor }};">{{ $kadData->nama_panggilan_lelaki }}</p>
                             </div>
                         @else
                             <div class="text-center">
