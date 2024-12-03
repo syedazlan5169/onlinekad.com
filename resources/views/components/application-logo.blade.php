@@ -1,4 +1,4 @@
-<img src="{{ asset('images/logo-bulat-512x512.webp') }}" alt="Application Logo" {{ $attributes->merge(['class' => 'h-32 w-auto']) }}>
+<img src="{{ asset('images/Logo-Header.webp') }}" alt="Application Logo" {{ $attributes->merge(['class' => 'h-16 w-auto']) }}>
 
 
 <!-- <svg viewBox="0 0 316 316" xmlns="http://www.w3.org/2000/svg" {{ $attributes }}>
