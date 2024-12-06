@@ -76,38 +76,40 @@
                 <p class="mt-6 text-lg leading-8 text-gray-300">Ciri-ciri eksklusif kami direka untuk memastikan jemputan anda lebih mudah, lengkap, dan bermakna:</p>
                 </div>
             <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-center lg:border-t lg:border-white/10 lg:gap-y-0">
-
-                <!-- <img src="https://tailwindui.com/plus/img/component-images/dark-project-app-screenshot.png" alt="Product screenshot" class="relative -z-20 min-w-full max-w-xl rounded-xl shadow-xl ring-1 ring-white/10 lg:row-span-4 lg:w-[64rem] lg:max-w-none" width="2432" height="1442"> -->
-                <div class="relative min-w-full max-w-xl lg:row-span-4 lg:w-[64rem] lg:max-w-none">
+                <div class="lg:row-span-4 flex justify-center">
+                    <video playinline autoplay muted loop controlslist="nodownload" class="h-[40rem]" src="/images/features.mp4"></video>
+                </div>
+                <!--<img src="/images/features.gif" alt="Product screenshot" class="relative -z-20 min-w-full max-w-xl rounded-xl shadow-xl ring-1 ring-white/10 lg:row-span-4 lg:w-[64rem] lg:max-w-none" width="1500" height="500">-->
+                <!--<div class="relative min-w-full max-w-xl lg:row-span-4 lg:w-[64rem] lg:max-w-none">
                 <div class="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
                     <div class="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
                       <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1670272504528-790c24957dda?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=left&w=400&h=528&q=80" alt="" class="w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
+                        <img src="/images/feature-1.webp" alt="" class="w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
                         <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
                       </div>
                     </div>
                     <div class="mr-auto w-44 flex-none space-y-8 sm:mr-0 sm:pt-52 lg:pt-36">
                       <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1485217988980-11786ced9454?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
+                        <img src="/images/feature-2.webp" alt="" class="w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
                         <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
                       </div>
                       <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-x=.4&w=396&h=528&q=80" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
+                        <img src="/images/feature-1.webp" alt="" class="w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
                         <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
                       </div>
                     </div>
                     <div class="w-44 flex-none space-y-8 pt-32 sm:pt-0">
                       <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1670272504528-790c24957dda?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=left&w=400&h=528&q=80" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
+                        <img src="/images/feature-2.webp" alt="" class="w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
                         <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
                       </div>
                       <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1670272505284-8faba1c31f7d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
+                        <img src="/images/feature-1.webp" alt="" class="w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
                         <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
                       </div>
                     </div>
                 </div>
-                </div>
+                </div>-->
                 <div class="max-w-xl lg:row-start-3 lg:mt-10 lg:max-w-md lg:pt-10">
                 <dl class="max-w-xl space-y-8 text-base leading-7 text-gray-300 lg:max-w-none">
                     <div class="relative">
