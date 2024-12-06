@@ -6,6 +6,20 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
+        <!-- Open Graph Meta Tags -->
+        <meta property="og:title" content="ONLINEKAD.COM">
+        <meta property="og:description" content="Kad Undangan Digital">
+        <meta property="og:image" content="{{ asset('/images/thumbnail-home-120x120.webp') }}">
+        <meta property="og:url" content="www.onlinekad.com">
+        <meta property="og:type" content="website">
+        <meta property="og:locale" content="en_US"> <!-- Change this to your language -->
+
+        <!-- Twitter Card Meta Tags -->
+        <meta name="twitter:card" content="Kad Undangan Digital">
+        <meta name="twitter:title" content="ONLINEKAD.COM">
+        <meta name="twitter:description" content="Kad Undangan Digital">
+        <meta name="twitter:image" content="{{ asset('/images/thumbnail-home-120x120.webp') }}">
+
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
