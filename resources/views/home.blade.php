@@ -13,6 +13,13 @@
         <!-- Styles -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
+
+    @php
+        $package1 = $packages->firstWhere('id', 1);           
+        $package2 = $packages->firstWhere('id', 2);
+        $package3 = $packages->firstWhere('id', 3);           
+    @endphp
+
     <body class="antialiased font-sans">
 
     <div class="bg-white">
@@ -37,24 +44,11 @@
             </svg>
             <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-40">
             <div class="mx-auto max-w-2xl lg:mx-0 lg:flex-auto">
-                <div class="flex">
-                <div class="relative flex items-center gap-x-4 rounded-full px-4 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                    <span class="font-semibold text-indigo-600">We’re hiring</span>
-                    <span class="h-4 w-px bg-gray-900/10" aria-hidden="true"></span>
-                    <a href="#" class="flex items-center gap-x-1">
-                    <span class="absolute inset-0" aria-hidden="true"></span>
-                    See open positions
-                    <svg class="-mr-2 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-                    </svg>
-                    </a>
-                </div>
-                </div>
-                <h1 class="mt-10 max-w-lg text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">A better way to ship your projects</h1>
-                <p class="mt-6 text-lg leading-8 text-gray-600">Esse id magna consectetur fugiat non dolor in ad laboris magna laborum ea consequat. Nisi irure aliquip nisi adipisicing veniam voluptate id. In veniam incididunt ex veniam adipisicing sit.</p>
+                <h1 class="mt-10 max-w-lg text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Jemputan Digital Yang Memukau, Mudah dan Cepat!</h1>
+                <p class="mt-6 text-lg leading-8 text-gray-600">Cipta jemputan anda dengan reka bentuk unik, sesuaikan mengikut kehendak, dan kongsi terus kepada tetamu anda hanya dalam beberapa klik!</p>
                 <div class="mt-10 flex items-center gap-x-6">
-                <a href="#" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Get started</a>
-                <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Learn more <span aria-hidden="true">→</span></a>
+                <a href="{{ Route('katalog.show') }}" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Tempah Sekarang</a>
+                <a href="{{ Route('katalog.show') }}" class="text-sm font-semibold leading-6 text-gray-900">Lihat Design Kami <span aria-hidden="true">→</span></a>
                 </div>
             </div>
             <div class="mt-16 sm:mt-24 lg:mt-0 lg:flex-shrink-0 lg:flex-grow">
@@ -74,6 +68,133 @@
             </div>
         </div>
     
+        <!-- Feature section -->
+        <div class="mx-auto mt-32 max-w-7xl sm:mt-56 sm:px-6 lg:px-8">
+            <div class="relative isolate overflow-hidden bg-gray-900 px-6 py-20 sm:rounded-3xl sm:px-10 sm:py-24 lg:py-24 xl:px-24">
+                <div class="text-center pb-8">
+                <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Semua yang Anda Perlukan untuk Jemputan Digital Sempurna</h2>
+                <p class="mt-6 text-lg leading-8 text-gray-300">Ciri-ciri eksklusif kami direka untuk memastikan jemputan anda lebih mudah, lengkap, dan bermakna:</p>
+                </div>
+            <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-center lg:border-t lg:border-white/10 lg:gap-y-0">
+                <div class="lg:row-span-4 flex justify-center">
+                    <video playinline autoplay muted loop controlslist="nodownload" class="h-[40rem]" src="/images/features.mp4"></video>
+                </div>
+                <!--<img src="/images/features.gif" alt="Product screenshot" class="relative -z-20 min-w-full max-w-xl rounded-xl shadow-xl ring-1 ring-white/10 lg:row-span-4 lg:w-[64rem] lg:max-w-none" width="1500" height="500">-->
+                <!--<div class="relative min-w-full max-w-xl lg:row-span-4 lg:w-[64rem] lg:max-w-none">
+                <div class="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
+                    <div class="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
+                      <div class="relative">
+                        <img src="/images/feature-1.webp" alt="" class="w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
+                        <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
+                      </div>
+                    </div>
+                    <div class="mr-auto w-44 flex-none space-y-8 sm:mr-0 sm:pt-52 lg:pt-36">
+                      <div class="relative">
+                        <img src="/images/feature-2.webp" alt="" class="w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
+                        <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
+                      </div>
+                      <div class="relative">
+                        <img src="/images/feature-1.webp" alt="" class="w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
+                        <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
+                      </div>
+                    </div>
+                    <div class="w-44 flex-none space-y-8 pt-32 sm:pt-0">
+                      <div class="relative">
+                        <img src="/images/feature-2.webp" alt="" class="w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
+                        <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
+                      </div>
+                      <div class="relative">
+                        <img src="/images/feature-1.webp" alt="" class="w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
+                        <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
+                      </div>
+                    </div>
+                </div>
+                </div>-->
+                <div class="max-w-xl lg:row-start-3 lg:mt-10 lg:max-w-md lg:pt-10">
+                <dl class="max-w-xl space-y-8 text-base leading-7 text-gray-300 lg:max-w-none">
+                    <div class="relative">
+                    <dt class="ml-9 inline-block font-semibold text-white">
+                        <svg class="absolute left-1 top-1 h-6 w-6 text-indigo-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M7.502 6h7.128A3.375 3.375 0 0 1 18 9.375v9.375a3 3 0 0 0 3-3V6.108c0-1.505-1.125-2.811-2.664-2.94a48.972 48.972 0 0 0-.673-.05A3 3 0 0 0 15 1.5h-1.5a3 3 0 0 0-2.663 1.618c-.225.015-.45.032-.673.05C8.662 3.295 7.554 4.542 7.502 6ZM13.5 3A1.5 1.5 0 0 0 12 4.5h4.5A1.5 1.5 0 0 0 15 3h-1.5Z" clip-rule="evenodd" />
+                            <path fill-rule="evenodd" d="M3 9.375C3 8.339 3.84 7.5 4.875 7.5h9.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-9.75A1.875 1.875 0 0 1 3 20.625V9.375ZM6 12a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H6.75a.75.75 0 0 1-.75-.75V12Zm2.25 0a.75.75 0 0 1 .75-.75h3.75a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75ZM6 15a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H6.75a.75.75 0 0 1-.75-.75V15Zm2.25 0a.75.75 0 0 1 .75-.75h3.75a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75ZM6 18a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H6.75a.75.75 0 0 1-.75-.75V18Zm2.25 0a.75.75 0 0 1 .75-.75h3.75a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+                          </svg>
+                        RSVP - 
+                    </dt>
+                    <dd class="inline">Jejaki kehadiran tetamu dengan sistem RSVP pintar.</dd>
+                    </div>
+                    <div class="relative">
+                    <dt class="ml-9 inline-block font-semibold text-white">
+                        <svg class="absolute left-1 top-1 h-6 w-6 text-indigo-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M2.625 6.75a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875 0A.75.75 0 0 1 8.25 6h12a.75.75 0 0 1 0 1.5h-12a.75.75 0 0 1-.75-.75ZM2.625 12a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0ZM7.5 12a.75.75 0 0 1 .75-.75h12a.75.75 0 0 1 0 1.5h-12A.75.75 0 0 1 7.5 12Zm-4.875 5.25a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875 0a.75.75 0 0 1 .75-.75h12a.75.75 0 0 1 0 1.5h-12a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+                          </svg>
+                        Aturcara Majlis - 
+                    </dt>
+                    <dd class="inline">Sertakan jadual acara untuk memudahkan tetamu merancang perjalanan.</dd>
+                    </div>
+                    <div class="relative">
+                    <dt class="ml-9 inline-block font-semibold text-white">
+                        <svg class="absolute left-1 top-1 h-6 w-6 text-indigo-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 6a.75.75 0 0 0-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 0 0 0-1.5h-3.75V6Z" clip-rule="evenodd" />
+                          </svg>
+                        Countdown Timer - 
+                    </dt>
+                    <dd class="inline">Tambahkan elemen keterujaan dengan memaparkan penantian hari istimewa anda.</dd>
+                    </div>
+                    <div class="relative">
+                    <dt class="ml-9 inline-block font-semibold text-white">
+                        <svg class="absolute left-1 top-1 h-6 w-6 text-indigo-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd" />
+                          </svg>
+                        Slideshow
+                    </dt>
+                    <dd class="inline">Kongsi gambar-gambar kenangan atau sneak peek majlis anda.</dd>
+                    </div>
+                    <div class="relative">
+                    <dt class="ml-9 inline-block font-semibold text-white">
+                        <svg class="absolute left-1 top-1 h-6 w-6 text-indigo-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M19.952 1.651a.75.75 0 0 1 .298.599V16.303a3 3 0 0 1-2.176 2.884l-1.32.377a2.553 2.553 0 1 1-1.403-4.909l2.311-.66a1.5 1.5 0 0 0 1.088-1.442V6.994l-9 2.572v9.737a3 3 0 0 1-2.176 2.884l-1.32.377a2.553 2.553 0 1 1-1.402-4.909l2.31-.66a1.5 1.5 0 0 0 1.088-1.442V5.25a.75.75 0 0 1 .544-.721l10.5-3a.75.75 0 0 1 .658.122Z" clip-rule="evenodd" />
+                          </svg>
+                        Muzik Latar
+                    </dt>
+                    <dd class="inline">Hidupkan suasana jemputan anda dengan muzik latar pilihan anda.</dd>
+                    </div>
+                    <div class="relative">
+                    <dt class="ml-9 inline-block font-semibold text-white">
+                        <svg class="absolute left-1 top-1 h-6 w-6 text-indigo-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M12.75 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM7.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM8.25 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM9.75 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM10.5 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM12.75 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM14.25 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" />
+                            <path fill-rule="evenodd" d="M6.75 2.25A.75.75 0 0 1 7.5 3v1.5h9V3A.75.75 0 0 1 18 3v1.5h.75a3 3 0 0 1 3 3v11.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V7.5a3 3 0 0 1 3-3H6V3a.75.75 0 0 1 .75-.75Zm13.5 9a1.5 1.5 0 0 0-1.5-1.5H5.25a1.5 1.5 0 0 0-1.5 1.5v7.5a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5v-7.5Z" clip-rule="evenodd" />
+                          </svg>
+                        Kalendar 
+                    </dt>
+                    <dd class="inline">Tetamu boleh menyimpan tarikh majlis ke kalendar mereka dengan satu klik.</dd>
+                    </div>
+                    <div class="relative">
+                    <dt class="ml-9 inline-block font-semibold text-white">
+                        <svg class="absolute left-1 top-1 h-6 w-6 text-indigo-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 0 0 6.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z" clip-rule="evenodd" />
+                          </svg>
+                        Contact 
+                    </dt>
+                    <dd class="inline">Memudahkan tetamu untuk menghubungi pihak majlis dengan panggilan atau whatsapp.</dd>
+                    </div>
+                    <div class="relative">
+                    <dt class="ml-9 inline-block font-semibold text-white">
+                        <svg class="absolute left-1 top-1 h-6 w-6 text-indigo-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd" />
+                          </svg>
+                        Lokasi 
+                    </dt>
+                    <dd class="inline">Penunjuk arah ke lokasi majlis menggunakan Google Maps atau Waze.</dd>
+                    </div>
+                </dl>
+                </div>
+            </div>
+            <div class="pointer-events-none absolute left-12 top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-3xl lg:bottom-[-12rem] lg:top-auto lg:translate-y-0 lg:transform-gpu" aria-hidden="true">
+                <div class="aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-25" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+            </div>
+            </div>
+        </div>
+
         <!-- Best Selling Section -->
         <div class="bg-white">
             <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
@@ -116,8 +237,14 @@
                         </div>
                     @endforeach
                 </div>
+                <div class="flex justify-end">
+                    <a href="/katalog" class="hidden  text-sm font-medium text-indigo-600 hover:text-indigo-500 md:block">
+                        Lihat Semua Design
+                        <span aria-hidden="true"> &rarr;</span>
+                    </a>
+                </div>
 
-                <div class="mt-8 text-sm md:hidden">
+                <div class="text-sm md:hidden">
                 <a href="/katalog" class="font-medium text-indigo-600 hover:text-indigo-500">
                     Lihat Semua Design
                     <span aria-hidden="true"> &rarr;</span>
@@ -126,121 +253,419 @@
             </div>
         </div>
 
-          
-    
-        <!-- Feature section -->
-        <div class="mx-auto mt-32 max-w-7xl sm:mt-56 sm:px-6 lg:px-8">
-            <div class="relative isolate overflow-hidden bg-gray-900 px-6 py-20 sm:rounded-3xl sm:px-10 sm:py-24 lg:py-24 xl:px-24">
-            <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-center lg:gap-y-0">
-                <div class="lg:row-start-2 lg:max-w-md">
-                <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Boost your productivity.<br>Start using our app today.</h2>
-                <p class="mt-6 text-lg leading-8 text-gray-300">Ac euismod vel sit maecenas id pellentesque eu sed consectetur. Malesuada adipiscing sagittis vel nulla. Ac euismod vel sit maecenas.</p>
-                </div>
-                <img src="https://tailwindui.com/img/component-images/dark-project-app-screenshot.png" alt="Product screenshot" class="relative -z-20 min-w-full max-w-xl rounded-xl shadow-xl ring-1 ring-white/10 lg:row-span-4 lg:w-[64rem] lg:max-w-none" width="2432" height="1442">
-                <div class="max-w-xl lg:row-start-3 lg:mt-10 lg:max-w-md lg:border-t lg:border-white/10 lg:pt-10">
-                <dl class="max-w-xl space-y-8 text-base leading-7 text-gray-300 lg:max-w-none">
-                    <div class="relative">
-                    <dt class="ml-9 inline-block font-semibold text-white">
-                        <svg class="absolute left-1 top-1 h-5 w-5 text-indigo-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M5.5 17a4.5 4.5 0 01-1.44-8.765 4.5 4.5 0 018.302-3.046 3.5 3.5 0 014.504 4.272A4 4 0 0115 17H5.5zm3.75-2.75a.75.75 0 001.5 0V9.66l1.95 2.1a.75.75 0 101.1-1.02l-3.25-3.5a.75.75 0 00-1.1 0l-3.25 3.5a.75.75 0 101.1 1.02l1.95-2.1v4.59z" clip-rule="evenodd" />
-                        </svg>
-                        Push to deploy.
-                    </dt>
-                    <dd class="inline">Lorem ipsum, dolor sit amet consectetur adipisicing elit aute id magna.</dd>
-                    </div>
-                    <div class="relative">
-                    <dt class="ml-9 inline-block font-semibold text-white">
-                        <svg class="absolute left-1 top-1 h-5 w-5 text-indigo-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clip-rule="evenodd" />
-                        </svg>
-                        SSL certificates.
-                    </dt>
-                    <dd class="inline">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.</dd>
-                    </div>
-                    <div class="relative">
-                    <dt class="ml-9 inline-block font-semibold text-white">
-                        <svg class="absolute left-1 top-1 h-5 w-5 text-indigo-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path d="M4.632 3.533A2 2 0 016.577 2h6.846a2 2 0 011.945 1.533l1.976 8.234A3.489 3.489 0 0016 11.5H4c-.476 0-.93.095-1.344.267l1.976-8.234z" />
-                        <path fill-rule="evenodd" d="M4 13a2 2 0 100 4h12a2 2 0 100-4H4zm11.24 2a.75.75 0 01.75-.75H16a.75.75 0 01.75.75v.01a.75.75 0 01-.75.75h-.01a.75.75 0 01-.75-.75V15zm-2.25-.75a.75.75 0 00-.75.75v.01c0 .414.336.75.75.75H13a.75.75 0 00.75-.75V15a.75.75 0 00-.75-.75h-.01z" clip-rule="evenodd" />
-                        </svg>
-                        Database backups.
-                    </dt>
-                    <dd class="inline">Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus.</dd>
-                    </div>
-                </dl>
-                </div>
-            </div>
-            <div class="pointer-events-none absolute left-12 top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-3xl lg:bottom-[-12rem] lg:top-auto lg:translate-y-0 lg:transform-gpu" aria-hidden="true">
-                <div class="aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-25" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
-            </div>
-            </div>
-        </div>
-    
-        <!-- Feature section -->
-        <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-56 lg:px-8">
-            <div class="mx-auto max-w-2xl lg:text-center">
-            <h2 class="text-base font-semibold leading-7 text-indigo-600">Deploy faster</h2>
-            <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Everything you need to deploy your app</p>
-            <p class="mt-6 text-lg leading-8 text-gray-600">Quis tellus eget adipiscing convallis sit sit eget aliquet quis. Suspendisse eget egestas a elementum pulvinar et feugiat blandit at. In mi viverra elit nunc.</p>
-            </div>
-            <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-            <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
-                <div class="flex flex-col">
-                <dt class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
-                    <svg class="h-5 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M5.5 17a4.5 4.5 0 01-1.44-8.765 4.5 4.5 0 018.302-3.046 3.5 3.5 0 014.504 4.272A4 4 0 0115 17H5.5zm3.75-2.75a.75.75 0 001.5 0V9.66l1.95 2.1a.75.75 0 101.1-1.02l-3.25-3.5a.75.75 0 00-1.1 0l-3.25 3.5a.75.75 0 101.1 1.02l1.95-2.1v4.59z" clip-rule="evenodd" />
-                    </svg>
-                    Push to deploy
-                </dt>
-                <dd class="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
-                    <p class="flex-auto">Commodo nec sagittis tortor mauris sed. Turpis tortor quis scelerisque diam id accumsan nullam tempus. Pulvinar etiam lacus volutpat eu. Phasellus praesent ligula sit faucibus.</p>
-                    <p class="mt-6">
-                    <a href="#" class="text-sm font-semibold leading-6 text-indigo-600">Learn more <span aria-hidden="true">→</span></a>
-                    </p>
-                </dd>
-                </div>
-                <div class="flex flex-col">
-                <dt class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
-                    <svg class="h-5 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clip-rule="evenodd" />
-                    </svg>
-                    SSL certificates
-                </dt>
-                <dd class="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
-                    <p class="flex-auto">Pellentesque enim a commodo malesuada turpis eleifend risus. Facilisis donec placerat sapien consequat tempor fermentum nibh.</p>
-                    <p class="mt-6">
-                    <a href="#" class="text-sm font-semibold leading-6 text-indigo-600">Learn more <span aria-hidden="true">→</span></a>
-                    </p>
-                </dd>
-                </div>
-                <div class="flex flex-col">
-                <dt class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
-                    <svg class="h-5 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M15.312 11.424a5.5 5.5 0 01-9.201 2.466l-.312-.311h2.433a.75.75 0 000-1.5H3.989a.75.75 0 00-.75.75v4.242a.75.75 0 001.5 0v-2.43l.31.31a7 7 0 0011.712-3.138.75.75 0 00-1.449-.39zm1.23-3.723a.75.75 0 00.219-.53V2.929a.75.75 0 00-1.5 0V5.36l-.31-.31A7 7 0 003.239 8.188a.75.75 0 101.448.389A5.5 5.5 0 0113.89 6.11l.311.31h-2.432a.75.75 0 000 1.5h4.243a.75.75 0 00.53-.219z" clip-rule="evenodd" />
-                    </svg>
-                    Simple queues
-                </dt>
-                <dd class="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
-                    <p class="flex-auto">Pellentesque sit elit congue ante nec amet. Dolor aenean curabitur viverra suspendisse iaculis eget. Nec mollis placerat ultricies euismod ut condimentum.</p>
-                    <p class="mt-6">
-                    <a href="#" class="text-sm font-semibold leading-6 text-indigo-600">Learn more <span aria-hidden="true">→</span></a>
-                    </p>
-                </dd>
-                </div>
-            </dl>
-            </div>
-        </div>
-    
-        <!-- Newsletter section -->
-        <div class="mx-auto mt-32 max-w-7xl sm:mt-56 sm:px-6 lg:px-8">
+        <!-- Frequently Asked Questions -->
+        <div class="mx-auto mt-12 max-w-7xl sm:mt-18 sm:px-6 lg:px-8">
             <div class="relative isolate overflow-hidden bg-gray-900 px-6 py-24 shadow-2xl sm:rounded-3xl sm:px-24 xl:py-32">
-            <h2 class="mx-auto max-w-2xl text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">Get notified when we’re launching.</h2>
-            <p class="mx-auto mt-2 max-w-xl text-center text-lg leading-8 text-gray-300">Reprehenderit ad esse et non officia in nulla. Id proident tempor incididunt nostrud nulla et culpa.</p>
-            <form class="mx-auto mt-10 flex max-w-md gap-x-4">
-                <label for="email-address" class="sr-only">Email address</label>
-                <input id="email-address" name="email" type="email" autocomplete="email" required class="min-w-0 flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6" placeholder="Enter your email">
-                <button type="submit" class="flex-none rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Notify me</button>
-            </form>
+                <div class="mx-auto max-w-4xl divide-y divide-white/10">
+                    <h2 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">Soalan Lazim</h2>
+                    <dl class="mt-10 space-y-6 divide-y divide-white/10" x-data="{ activeIndex: null }">
+                        <!-- FAQ 1 -->
+                        <div class="pt-6">
+                            <dt>
+                                <button 
+                                    type="button" 
+                                    class="flex w-full items-start justify-between text-left text-white" 
+                                    @click="activeIndex = activeIndex === 0 ? null : 0" 
+                                    aria-expanded="activeIndex === 0"
+                                >
+                                    <span class="text-base/7 font-semibold">Apakah Kad Undangan Digital?</span>
+                                    <span class="ml-6 flex h-7 items-center">
+                                        <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" x-show="activeIndex !== 0">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+                                        </svg>
+                                        <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" x-show="activeIndex === 0">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
+                                        </svg>
+                                    </span>
+                                </button>
+                            </dt>
+                            <dd x-show="activeIndex === 0" x-collapse class="mt-2 pr-12">
+                                <p class="text-base/7 text-gray-300">Kad undangan digital adalah kad jemputan yang mempunyai pelbagai fungsi untuk memudahkan pihak majlis dan juga tetamu yang dijemput. Pelanggan akan mendapat 1 link untuk dikongsi di media social sebagai jemputan kepada para tetamu majlis.</p>
+                            </dd>
+                        </div>
+
+                        <!-- FAQ 2 -->
+                        <div class="pt-6">
+                            <dt>
+                                <button 
+                                    type="button" 
+                                    class="flex w-full items-start justify-between text-left text-white" 
+                                    @click="activeIndex = activeIndex === 1 ? null : 1" 
+                                    aria-expanded="activeIndex === 1"
+                                >
+                                    <span class="text-base/7 font-semibold">Berapa lama tempoh validity kad digital ini?</span>
+                                    <span class="ml-6 flex h-7 items-center">
+                                        <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" x-show="activeIndex !== 1">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+                                        </svg>
+                                        <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" x-show="activeIndex === 1">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
+                                        </svg>
+                                    </span>
+                                </button>
+                            </dt>
+                            <dd x-show="activeIndex === 1" x-collapse class="mt-2 pr-12">
+                                <p class="text-base/7 text-gray-300">Kad jemputan digital kami tidak mempunyai tempoh luput. Setelah pelangan membeli kad dari website kami, kad akan kekal untuk kegunaan pelanggan.</p>
+                            </dd>
+                        </div>
+
+                        <!-- FAQ 3 -->
+                        <div class="pt-6">
+                            <dt>
+                                <button 
+                                    type="button" 
+                                    class="flex w-full items-start justify-between text-left text-white" 
+                                    @click="activeIndex = activeIndex === 2 ? null : 2" 
+                                    aria-expanded="activeIndex === 2"
+                                >
+                                    <span class="text-base/7 font-semibold">Berapa lama tempoh proses untuk siapkan kad digital?</span>
+                                    <span class="ml-6 flex h-7 items-center">
+                                        <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" x-show="activeIndex !== 2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+                                        </svg>
+                                        <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" x-show="activeIndex === 2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
+                                        </svg>
+                                    </span>
+                                </button>
+                            </dt>
+                            <dd x-show="activeIndex === 2" x-collapse class="mt-2 pr-12">
+                                <p class="text-base/7 text-gray-300">Instant!!. Setelah pelanggan memasukkan semua maklumat majlis dan simpan kad, satu pautan untuk kad digital yang lengkap akan dihasilkan dan sedia untuk diedarkan. Namun jika pelanggan memilih pakej berbayar, bayaran perlu dibuat terlebih dahulu untuk menghilangkan watermark pada kad.</p>
+                            </dd>
+                        </div>
+
+                        <!-- FAQ 4 -->
+                        <div class="pt-6">
+                            <dt>
+                                <button 
+                                    type="button" 
+                                    class="flex w-full items-start justify-between text-left text-white" 
+                                    @click="activeIndex = activeIndex === 3 ? null : 3" 
+                                    aria-expanded="activeIndex === 3"
+                                >
+                                    <span class="text-base/7 font-semibold">Bolehkah maklumat pada kad ditukar setelah kad siap?</span>
+                                    <span class="ml-6 flex h-7 items-center">
+                                        <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" x-show="activeIndex !== 3">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+                                        </svg>
+                                        <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" x-show="activeIndex === 3">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
+                                        </svg>
+                                    </span>
+                                </button>
+                            </dt>
+                            <dd x-show="activeIndex === 3" x-collapse class="mt-2 pr-12">
+                                <p class="text-base/7 text-gray-300">Pengguna akan dilengakapi dengan satu dashboard. Di dashboard ini pengguna boleh memantau entri guestbook, entri RSVP dan fungsi untuk mengemaskini maklumat pada kad jemputan secara live.</p>
+                            </dd>
+                        </div>
+
+                        <!-- FAQ 5 -->
+                        <div class="pt-6">
+                            <dt>
+                                <button 
+                                    type="button" 
+                                    class="flex w-full items-start justify-between text-left text-white" 
+                                    @click="activeIndex = activeIndex === 4 ? null : 4" 
+                                    aria-expanded="activeIndex === 4"
+                                >
+                                    <span class="text-base/7 font-semibold">Adakah sistem RSVP disertakan?</span>
+                                    <span class="ml-6 flex h-7 items-center">
+                                        <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" x-show="activeIndex !== 4">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+                                        </svg>
+                                        <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" x-show="activeIndex === 4">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
+                                        </svg>
+                                    </span>
+                                </button>
+                            </dt>
+                            <dd x-show="activeIndex === 4" x-collapse class="mt-2 pr-12">
+                                <p class="text-base/7 text-gray-300">Pakej Kirana & Juwita dilengkapi dengan sistem RSVP automatik untuk memantau kehadiran tetamu. Fungsi ini tidak disertakan pada pakej percuma "Ratna"</p>
+                            </dd>
+                        </div>
+
+                        <!-- FAQ 6 -->
+                        <div class="pt-6">
+                            <dt>
+                                <button 
+                                    type="button" 
+                                    class="flex w-full items-start justify-between text-left text-white" 
+                                    @click="activeIndex = activeIndex === 5 ? null : 5" 
+                                    aria-expanded="activeIndex === 5"
+                                >
+                                    <span class="text-base/7 font-semibold">Bolehkah ucapan dalam guestbook dipadam?</span>
+                                    <span class="ml-6 flex h-7 items-center">
+                                        <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" x-show="activeIndex !== 5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+                                        </svg>
+                                        <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" x-show="activeIndex === 5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
+                                        </svg>
+                                    </span>
+                                </button>
+                            </dt>
+                            <dd x-show="activeIndex === 5" x-collapse class="mt-2 pr-12">
+                                <p class="text-base/7 text-gray-300">Semua entri guestbook boleh dipadam sekiranya terdapan ucapan yang kurang menyenangkan pihak majlis.</p>
+                            </dd>
+                        </div>
+
+                        <!-- FAQ 7 -->
+                        <div class="pt-6">
+                            <dt>
+                                <button 
+                                    type="button" 
+                                    class="flex w-full items-start justify-between text-left text-white" 
+                                    @click="activeIndex = activeIndex === 6 ? null : 6" 
+                                    aria-expanded="activeIndex === 6"
+                                >
+                                    <span class="text-base/7 font-semibold">Adakah kad digital ini percuma?</span>
+                                    <span class="ml-6 flex h-7 items-center">
+                                        <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" x-show="activeIndex !== 6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+                                        </svg>
+                                        <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" x-show="activeIndex === 6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
+                                        </svg>
+                                    </span>
+                                </button>
+                            </dt>
+                            <dd x-show="activeIndex === 6" x-collapse class="mt-2 pr-12">
+                                <p class="text-base/7 text-gray-300">Kami menawarkan pakej kad digital percuma "Ratna". Pelanggan boleh membuat kad digital dan sedia diedarkan tanpa sebarang bayaran. Pelanggan juga boleh memilih pakej berbayar untuk menikmati fungsi-fungsi yang lebih menarik.</p>
+                            </dd>
+                        </div>
+
+                    </dl>
+                </div>
+                <svg viewBox="0 0 1024 1024" class="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-x-1/2" aria-hidden="true">
+                    <circle cx="512" cy="512" r="512" fill="url(#759c1415-0410-454c-8f7c-9a820de03641)" fill-opacity="0.7" />
+                    <defs>
+                        <radialGradient id="759c1415-0410-454c-8f7c-9a820de03641" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(512 512) rotate(90) scale(512)">
+                            <stop stop-color="#7775D6" />
+                            <stop offset="1" stop-color="#E935C1" stop-opacity="0" />
+                        </radialGradient>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+
+    
+        <!-- Pakej section -->
+                <div class="bg-white py-16 sm:py-24">
+                    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                      <div class="mx-auto max-w-4xl text-center">
+                        <p class="mt-2 text-balance text-5xl font-semibold tracking-tight text-gray-900 sm:text-6xl">Pakej Kad Kahwin Digital</p>
+                      </div>
+                      <p class="mx-auto mt-6 max-w-2xl text-pretty text-center text-lg font-medium text-gray-600 sm:text-xl/8">Kami menawarkan pakej kad kahwin digital PERCUMA!!!. Anda juga boleh memilih pakej berbayar kami yang mempunyai pelbagai fungsi tambahan dengan harga yang berpatutan</p>
+                      <div class="isolate mx-auto mt-10 grid max-w-md grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+
+                        <div class="rounded-3xl p-8 ring-2 ring-pink-600 xl:p-10">
+                          <div class="flex items-center justify-between gap-x-4">
+                            <h3 id="tier-startup" class="text-lg/8 font-semibold text-pink-600">{{ $package1->name }}</h3>
+                          </div>
+                          <p class="mt-4 text-sm/6 text-gray-600">{{ $package1->description }}</p>
+                          <p class="mt-6 flex items-baseline gap-x-1">
+                            <!-- Price, update based on frequency toggle state -->
+                            <span class="text-4xl font-semibold tracking-tight text-gray-900">Rm {{ $package1->price }}</span>
+                          </p>
+                          <a href="/invitation/{{ $package1->name }}" aria-describedby="tier-startup" class="mt-6 block rounded-md bg-pink-600 px-3 py-2 text-center text-sm/6 font-semibold text-white shadow-sm hover:bg-pink-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-600">Preview</a>
+                          <ul role="list" class="mt-8 space-y-3 text-sm/6 text-gray-600 xl:mt-10">
+                            <li class="flex gap-x-3">
+                              <svg class="h-6 w-5 flex-none text-pink-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                              </svg>
+                              Countdown Timer
+                            </li>
+                            <li class="flex gap-x-3">
+                              <svg class="h-6 w-5 flex-none text-pink-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                              </svg>
+                              Google Calendar & Apple Calendar
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="rounded-3xl p-8 ring-2 ring-purple-600 xl:p-10">
+                            <div class="flex items-center justify-between gap-x-4">
+                              <h3 id="tier-startup" class="text-lg/8 font-semibold text-purple-600">{{ $package2->name }}</h3>
+                              <p class="rounded-full bg-indigo-600/10 px-2.5 py-1 text-xs/5 font-semibold text-gray-600">Most popular</p>
+                            </div>
+                            <p class="mt-4 text-sm/6 text-gray-600">{{ $package2->description }}</p>
+                            <p class="mt-6 flex items-baseline gap-x-1">
+                              <!-- Price, update based on frequency toggle state -->
+                              <span class="text-4xl font-semibold tracking-tight text-gray-900">Rm {{ $package2->price }}</span>
+                            </p>
+                            <a href="/invitation/{{ $package2->name }}" aria-describedby="tier-startup" class="mt-6 block rounded-md bg-purple-600 px-3 py-2 text-center text-sm/6 font-semibold text-white shadow-sm hover:bg-purple-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600">Preview</a>
+                            <ul role="list" class="mt-8 space-y-3 text-sm/6 text-gray-600 xl:mt-10">
+                              <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-purple-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                </svg>
+                                Countdown Timer
+                              </li>
+                              <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-purple-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                </svg>
+                                Google Calendar & Apple Calendar
+                              </li>
+                              <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-purple-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                </svg>
+                                Doa Pengantin 
+                              </li>
+                              <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-purple-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                </svg>
+                                Panggilan & Whatsapp
+                              </li>
+                              <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-purple-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                </svg>
+                                Google Maps & Waze
+                              </li>
+                              <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-purple-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                </svg>
+                                Aturcara Majlis
+                              </li>
+                              <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-purple-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                </svg>
+                                Slideshow
+                              </li>
+                              <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-purple-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                </svg>
+                                Guestbook
+                              </li>
+                              <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-purple-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                </svg>
+                                Muzik Latar
+                              </li>
+                              <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-purple-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                </svg>
+                                RSVP 
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="rounded-3xl p-8 ring-2 ring-green-600 xl:p-10">
+                            <div class="flex items-center justify-between gap-x-4">
+                              <h3 id="tier-startup" class="text-lg/8 font-semibold text-green-600">{{ $package3->name }}</h3>
+                            </div>
+                            <p class="mt-4 text-sm/6 text-gray-600">{{ $package3->description }}</p>
+                            <p class="mt-6 flex items-baseline gap-x-1">
+                              <!-- Price, update based on frequency toggle state -->
+                              <span class="text-4xl font-semibold tracking-tight text-gray-900">Rm {{ $package3->price }}</span>
+                            </p>
+                            <a href="/invitation/{{ $package3->name }}" aria-describedby="tier-startup" class="mt-6 block rounded-md bg-green-600 px-3 py-2 text-center text-sm/6 font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600">Preview</a>
+                            <ul role="list" class="mt-8 space-y-3 text-sm/6 text-gray-600 xl:mt-10">
+                                <li class="flex gap-x-3">
+                                    <svg class="h-6 w-5 flex-none text-green-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                    </svg>
+                                    Countdown Timer
+                                  </li>
+                                  <li class="flex gap-x-3">
+                                    <svg class="h-6 w-5 flex-none text-green-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                    </svg>
+                                    Google Calendar & Apple Calendar
+                                  </li>
+                                  <li class="flex gap-x-3">
+                                    <svg class="h-6 w-5 flex-none text-green-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                    </svg>
+                                    Doa Pengantin 
+                                  </li>
+                                  <li class="flex gap-x-3">
+                                    <svg class="h-6 w-5 flex-none text-green-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                    </svg>
+                                    Panggilan & Whatsapp
+                                  </li>
+                                  <li class="flex gap-x-3">
+                                    <svg class="h-6 w-5 flex-none text-green-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                    </svg>
+                                    Google Maps & Waze
+                                  </li>
+                                  <li class="flex gap-x-3">
+                                    <svg class="h-6 w-5 flex-none text-green-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                    </svg>
+                                    Aturcara Majlis
+                                  </li>
+                                  <li class="flex gap-x-3">
+                                    <svg class="h-6 w-5 flex-none text-green-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                    </svg>
+                                    Slideshow
+                                  </li>
+                                  <li class="flex gap-x-3">
+                                    <svg class="h-6 w-5 flex-none text-green-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                    </svg>
+                                    Guestbook
+                                  </li>
+                                  <li class="flex gap-x-3">
+                                    <svg class="h-6 w-5 flex-none text-green-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                    </svg>
+                                    Muzik Latar
+                                  </li>
+                                  <li class="flex gap-x-3">
+                                    <svg class="h-6 w-5 flex-none text-green-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                    </svg>
+                                    RSVP 
+                                  </li>
+                                  <li class="flex gap-x-3">
+                                    <svg class="h-6 w-5 flex-none text-green-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                    </svg>
+                                    Option Dua Pasangan 
+                                  </li>
+                                  <li class="flex gap-x-3">
+                                    <svg class="h-6 w-5 flex-none text-green-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                    </svg>
+                                    Muzik Latar Sendiri 
+                                  </li>
+                                  <li class="flex gap-x-3">
+                                    <svg class="h-6 w-5 flex-none text-green-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                    </svg>
+                                    Salam Kaut 
+                                  </li>
+                            </ul>
+                          </div>
+
+                      </div>
+                    </div>
+                  </div>
+ 
+
+        <!-- Contact section -->
+        <div class="mx-auto mt-20 max-w-7xl sm:px-6 lg:px-8">
+            <div class="relative isolate overflow-hidden bg-gray-900 px-6 py-24 shadow-2xl sm:rounded-3xl sm:px-24 xl:py-32">
+            <h2 class="mx-auto max-w-2xl text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">Masih keliru?</h2>
+            <p class="mx-auto mt-2 max-w-xl text-center text-lg leading-8 text-gray-300">Anda boleh mengemukakan sebarang soalan ke talian whatsapp kami.</p>
+            <div class="mt-8 flex justify-center">
+                <a href="https://api.whatsapp.com/send?phone=60108323516" class="flex items-center rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Hubungi Kami
+                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 48 48" class="ml-2">
+                    <path fill="#fff" d="M4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-0.001,0,0,0,0,0h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303z"></path><path fill="#fff" d="M4.868,43.803c-0.132,0-0.26-0.052-0.355-0.148c-0.125-0.127-0.174-0.312-0.127-0.483l2.639-9.636c-1.636-2.906-2.499-6.206-2.497-9.556C4.532,13.238,13.273,4.5,24.014,4.5c5.21,0.002,10.105,2.031,13.784,5.713c3.679,3.683,5.704,8.577,5.702,13.781c-0.004,10.741-8.746,19.48-19.486,19.48c-3.189-0.001-6.344-0.788-9.144-2.277l-9.875,2.589C4.953,43.798,4.911,43.803,4.868,43.803z"></path><path fill="#cfd8dc" d="M24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,4C24.014,4,24.014,4,24.014,4C12.998,4,4.032,12.962,4.027,23.979c-0.001,3.367,0.849,6.685,2.461,9.622l-2.585,9.439c-0.094,0.345,0.002,0.713,0.254,0.967c0.19,0.192,0.447,0.297,0.711,0.297c0.085,0,0.17-0.011,0.254-0.033l9.687-2.54c2.828,1.468,5.998,2.243,9.197,2.244c11.024,0,19.99-8.963,19.995-19.98c0.002-5.339-2.075-10.359-5.848-14.135C34.378,6.083,29.357,4.002,24.014,4L24.014,4z"></path><path fill="#40c351" d="M35.176,12.832c-2.98-2.982-6.941-4.625-11.157-4.626c-8.704,0-15.783,7.076-15.787,15.774c-0.001,2.981,0.833,5.883,2.413,8.396l0.376,0.597l-1.595,5.821l5.973-1.566l0.577,0.342c2.422,1.438,5.2,2.198,8.032,2.199h0.006c8.698,0,15.777-7.077,15.78-15.776C39.795,19.778,38.156,15.814,35.176,12.832z"></path><path fill="#fff" fill-rule="evenodd" d="M19.268,16.045c-0.355-0.79-0.729-0.806-1.068-0.82c-0.277-0.012-0.593-0.011-0.909-0.011c-0.316,0-0.83,0.119-1.265,0.594c-0.435,0.475-1.661,1.622-1.661,3.956c0,2.334,1.7,4.59,1.937,4.906c0.237,0.316,3.282,5.259,8.104,7.161c4.007,1.58,4.823,1.266,5.693,1.187c0.87-0.079,2.807-1.147,3.202-2.255c0.395-1.108,0.395-2.057,0.277-2.255c-0.119-0.198-0.435-0.316-0.909-0.554s-2.807-1.385-3.242-1.543c-0.435-0.158-0.751-0.237-1.068,0.238c-0.316,0.474-1.225,1.543-1.502,1.859c-0.277,0.317-0.554,0.357-1.028,0.119c-0.474-0.238-2.002-0.738-3.815-2.354c-1.41-1.257-2.362-2.81-2.639-3.285c-0.277-0.474-0.03-0.731,0.208-0.968c0.213-0.213,0.474-0.554,0.712-0.831c0.237-0.277,0.316-0.475,0.474-0.791c0.158-0.317,0.079-0.594-0.04-0.831C20.612,19.329,19.69,16.983,19.268,16.045z" clip-rule="evenodd"></path>
+                </svg>   
+                </a>
+            </div>
             <svg viewBox="0 0 1024 1024" class="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-x-1/2" aria-hidden="true">
                 <circle cx="512" cy="512" r="512" fill="url(#759c1415-0410-454c-8f7c-9a820de03641)" fill-opacity="0.7" />
                 <defs>
@@ -254,7 +679,7 @@
         </div>
     
         <!-- Testimonials section -->
-        <div class="relative isolate mt-32 sm:mt-56 sm:pt-32">
+        <div class="relative isolate mt-32 sm:pt-32">
             <svg class="absolute inset-0 -z-10 hidden h-full w-full stroke-gray-200 [mask-image:radial-gradient(64rem_64rem_at_top,white,transparent)] sm:block" aria-hidden="true">
             <defs>
                 <pattern id="55d3d46d-692e-45f2-becd-d8bdc9344f45" width="200" height="200" x="50%" y="0" patternUnits="userSpaceOnUse">
@@ -275,8 +700,8 @@
             </div>
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
                 <div class="mx-auto max-w-xl sm:text-center">
-                <h2 class="text-lg font-semibold leading-8 tracking-tight text-indigo-600">Testimonials</h2>
-                <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">We have worked with thousands of amazing people</p>
+                <h2 class="text-2xl font-semibold leading-8 tracking-tight text-indigo-600">Apa Kata Pengguna Kami?</h2>
+                <p class="mt-2 text-xl tracking-tight text-gray-900 sm:text-2xl">Jadi Sebahagian Daripada Pengguna Kami Yang Berpuas Hati!</p>
                 </div>
                 <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 grid-rows-1 gap-8 text-sm leading-6 text-gray-900 sm:mt-20 sm:grid-cols-2 xl:mx-0 xl:max-w-none xl:grid-flow-col xl:grid-cols-4">
                 <figure class="col-span-2 hidden sm:block sm:rounded-2xl sm:bg-white sm:shadow-lg sm:ring-1 sm:ring-gray-900/5 xl:col-start-2 xl:row-end-1">
