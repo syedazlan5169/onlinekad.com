@@ -20,6 +20,7 @@ class Kad extends Model
         'bg_song_id',
         'tajuk_kad',
         'rsvp_is_on',
+        'slider_image',
         'guestbook_is_on',
         'slideshow_is_on',
         'nama_penuh_lelaki',
