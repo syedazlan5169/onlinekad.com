@@ -42,9 +42,9 @@
             </svg>
             <rect width="100%" height="100%" stroke-width="0" fill="url(#83fd4e5a-9d52-42fc-97b6-718e5d7ee527)" />
             </svg>
-            <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-40">
+            <div class="mx-auto max-w-7xl px-6 py-8 sm:py-18 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-18">
             <div class="mx-auto max-w-2xl lg:mx-0 lg:flex-auto">
-                <h1 class="mt-10 max-w-lg text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Jemputan Digital Yang Memukau, Mudah dan Cepat!</h1>
+                <h1 class="max-w-lg text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Jemputan Digital Yang Memukau, Mudah dan Cepat!</h1>
                 <p class="mt-6 text-lg leading-8 text-gray-600">Cipta jemputan anda dengan reka bentuk unik, sesuaikan mengikut kehendak, dan kongsi terus kepada tetamu anda hanya dalam beberapa klik!</p>
                 <div class="mt-10 flex items-center gap-x-6">
                 <a href="{{ Route('katalog.show') }}" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Tempah Sekarang</a>
@@ -77,7 +77,7 @@
                 </div>
             <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-center lg:border-t lg:border-white/10 lg:gap-y-0">
                 <div class="lg:row-span-4 flex justify-center">
-                    <video playinline autoplay muted loop controlslist="nodownload" class="h-[40rem]" src="/images/features.mp4"></video>
+                    <video playinline autoplay muted loop controlslist="nodownload" class="h-[35rem]" src="/images/features.mp4"></video>
                 </div>
                 <!--<img src="/images/features.gif" alt="Product screenshot" class="relative -z-20 min-w-full max-w-xl rounded-xl shadow-xl ring-1 ring-white/10 lg:row-span-4 lg:w-[64rem] lg:max-w-none" width="1500" height="500">-->
                 <!--<div class="relative min-w-full max-w-xl lg:row-span-4 lg:w-[64rem] lg:max-w-none">
