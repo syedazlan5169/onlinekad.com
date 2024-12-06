@@ -15,7 +15,7 @@
         @livewireStyles()
 
     </head>
-    <body class="font-sans antialiased dark:bg-black dark:text-white/50">
+    <body class="font-sans antialiased">
         <div class="bg-gray-100" x-data="{ statusId: {{ $statusId }} }">
             <!-- Success Message -->
             <div class="bg-white p-6 md:mx-auto" x-show="statusId == 1">
