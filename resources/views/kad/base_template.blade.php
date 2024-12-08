@@ -588,6 +588,11 @@
                             <h1 class="text-lg text-white"><i class="fa-regular fa-calendar"></i></h1>
                             <span class="text-xs text-white">REMINDER</span>
                         </button>
+                        @if ($kadData->package_id == 3 && $kadData->gift_is_on)
+                            <button type="button" @click="gift_modal = true" class="h-16 w-16 flex-1 flex-col items-center justify-center rounded-full border border-white" style="background-color: {{ $colorCode }};">
+                                <h1 class="text-3xl text-white"><i class="fa-solid fa fa-gift"></i></h1>
+                            </button>
+                        @endif
                         @if ($kadData->package_id == 2 || $kadData->package_id == 3)
                             <button type="button" @click="contact_modal = true" class="flex-1 flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $colorCode }};">
                                 <h1 class="text-lg text-white"><i class="fa-solid fa-phone"></i></h1>
@@ -598,12 +603,6 @@
                             <button type="button" @click="location_modal = true" class="flex-1 flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $colorCode }};">
                                 <h1 class="text-lg text-white"><i class="fa-solid fa-location-dot"></i></h1>
                                 <span class="text-xs text-white">LOKASI</span>
-                            </button>
-                        @endif
-                        @if ($kadData->package_id == 3 && $kadData->gift_is_on)
-                            <button type="button" @click="gift_modal = true" class="flex-1 flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $colorCode }};">
-                                <h1 class="text-lg text-white"><i class="fa-solid fa fa-gift"></i></h1>
-                                <span class="text-xs text-white">HADIAH</span>
                             </button>
                         @endif
                     </div>
@@ -764,7 +763,7 @@
                         <!-- Button -->
                         <div class="flex justify-center gap-3">
                             <x-primary-button class="h-8 w-24 flex justify-center items-center" @click="navigator.clipboard.writeText(accountNumber).then(() => text = 'Copied!' )"><span x-text="text"></span></x-primary-button>
-                            <x-primary-button class="h-8 w-24 flex items-center">Download</x-primary-button>
+                            <x-primary-button href="{{ $kadData->qr_image }}" download class="h-8 w-24 flex items-center">Download</x-primary-button>
                         </div>
                     </div>
                 </div>
