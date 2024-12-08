@@ -15,18 +15,18 @@ class PackageSeeder extends Seeder
     {
         $packages = [
             [
-                'name' => 'Ratna',
-                'description' => 'Package 1',
+                'name' => 'Basic',
+                'description' => 'Kad kahwin digital lengkap percuma!!. Boleh diedarkan serta-merta',
                 'price' => 00,
             ],
             [
-                'name' => 'Kirana',
-                'description' => 'Package 2',
+                'name' => 'Premium',
+                'description' => 'Kaya dengan pelbagai fungsi menarik bagi memudahkan tetamu jemputan dan pihak majlis',
                 'price' => 49,
             ],
             [
-                'name' => 'Juwita',
-                'description' => 'Package 3',
+                'name' => 'Deluxe',
+                'description' => 'Dua pasangan dalam satu majlis?? Pakej Juwita pilihan yang tepat',
                 'price' => 69,
             ],
         ];

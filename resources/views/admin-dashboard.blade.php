@@ -190,9 +190,36 @@
                                                     </button>
                                                 </td>
                                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium border border-l text-gray-900 sm:pl-6">{{ $kad->id }}</td>
-                                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium border border-l text-gray-900 sm:pl-6">{{ $kad->package_id }}</td>
-                                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium border border-l text-gray-900 sm:pl-6">{{ $kad->is_paid }}</td>
-                                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium border border-l text-gray-900 sm:pl-6">{{ $kad->design_id }}</td>
+                                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium border border-l text-gray-900 sm:pl-6">
+                                                    @if($kad->package->name == 'Basic')
+                                                        <span class="inline-flex items-center rounded-full bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-600/20">
+                                                            Basic
+                                                        </span>
+                                                    @elseif($kad->package->name == 'Premium')
+                                                        <span class="inline-flex items-center rounded-full bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700 ring-1 ring-inset ring-purple-600/20">
+                                                            Premium
+                                                        </span>
+                                                    @else($kad->package->name == 'Deluxe')
+                                                        <span class="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+                                                            Deluxe
+                                                        </span>
+                                                    @endif
+                                                </td>
+                                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium border border-l text-gray-900 sm:pl-6">
+                                                    @if($kad->is_paid)
+
+                                                        <!-- Paid Badge -->
+                                                        <span class="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+                                                            Paid
+                                                        </span>
+                                                    @else
+                                                        <!-- Unpaid Badge -->
+                                                        <span class="inline-flex items-center rounded-full bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20">
+                                                            Unpaid
+                                                        </span>
+                                                    @endif
+                                                </td>
+                                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium border border-l text-gray-900 sm:pl-6">{{ $kad->design->design_code }}</td>
                                                 @if ($kad->dua_pasangan_is_on)
                                                     <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium border border-l text-gray-900 sm:pl-6">{{ $kad->nama_panggilan_pasangan_pertama }} & {{ $kad->nama_panggilan_pasangan_kedua}}</td>
                                                 @elseif ($kad->penjemput == 2)

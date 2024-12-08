@@ -117,6 +117,7 @@ class KadController extends Controller
             'guestbook_is_on' =>$request->input('guestbook-is-on'),
             'slideshow_is_on' =>$request->input('slideshow-is-on'),
             'dua_pasangan_is_on' =>$request->input('dua-pasangan-is-on'),
+            'slider_image' =>$request->input('slider-image'),
 
             // Maklumat Pengantin
             'nama_penuh_lelaki' => $request->input('nama-penuh-lelaki'),
@@ -315,6 +316,7 @@ class KadController extends Controller
             'rsvp_is_on' =>request('rsvp-is-on'),
             'guestbook_is_on' =>request('guestbook-is-on'),
             'slideshow_is_on' =>request('slideshow-is-on'),
+            'slider_image' =>request('slider-image'),
             'dua_pasangan_is_on' =>request('dua-pasangan-is-on'),
             'is_paid' => $isPaid,
 
@@ -622,7 +624,7 @@ class KadController extends Controller
             'masa_tamat_majlis' => Carbon::createFromFormat('H:i:s', $kadData->masa_tamat_majlis)->format('g:i A')
         ];
 
-        if ($slider->image_url_1 == null)
+        if ($slider->image_url_1 == null || $kadData->slider_image == 1)
         {
             $imageUrls = json_decode('["images/slide1.webp", "images/slide2.webp", "images/slide3.webp"]');
         }

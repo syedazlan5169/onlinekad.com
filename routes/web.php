@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('/');
 Route::get('pakej', [PakejController::class, 'index'])->name('pakej.show');
-Route::get('katalog', [KatalogController::class, 'index'])->name('katalog.show');
+//Route::get('katalog', [KatalogController::class, 'index'])->name('katalog.show');
+Route::view('katalog', 'katalog')->name('katalog.show');
 Route::view('tutorial', 'tutorial')->name('tutorial.show');
 Route::post('/tulis-ucapan', [GuestbookController::class, 'create'])->name('tulis-ucapan');
 Route::post('/create-rsvp', [RsvpController::class, 'create'])->name('create-rsvp');

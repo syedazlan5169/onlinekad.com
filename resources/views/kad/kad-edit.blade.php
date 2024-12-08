@@ -456,11 +456,22 @@
                                     </div>
 
 									<!-- Gallery Upload -->
-									<div>
-										<label class="mb-2 mt-4 block text-sm font-medium text-gray-900">Galeri <span class="text-xs">(Optional)</span></label> 
-										
+									<div x-data="{ sliderImage: {{ $kadData->slider_image ?? 1 }} }">
+										<fieldset>
+                                            <legend class="pt-6 text-sm font-semibold text-gray-900">Galeri Slideshow</legend>
+                                            <div class="mt-2 mb-4 space-y-2 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
+                                                <div class="flex items-center">
+                                                    <input id="default" name="slider-image" type="radio" value="1" x-model="sliderImage" checked class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden">
+                                                    <label for="default" class="ml-3 block text-sm/6 font-medium text-gray-900">Gambar Default</label>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <input id="own-image" name="slider-image" type="radio" value="2" x-model="sliderImage" class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden">
+                                                    <label for="own-image" class="ml-3 block text-sm/6 font-medium text-gray-900">Upload Gambar</label>
+                                                </div>
+                                            </div>
+                                        </fieldset>
 										<!-- Upload Input 1 -->
-										<div class="mb-2">
+										<div class="mb-2" x-show="sliderImage == '2'" x-cloak>
 											<div class="flex items-center space-x-3">
                 									<img src="{{ asset($slider->image_url_1) }}" id="picture_1_img" alt="Photo" class="w-14 h-14 object-cover border border-gray-300 rounded-md" /> 
 												<div class="flex-1 relative">
@@ -486,7 +497,7 @@
 										</div>
 									
 										<!-- Upload Input 2 -->
-										<div class="mb-2">
+										<div class="mb-2" x-show="sliderImage == '2'" x-cloak>
 											<div class="flex items-center space-x-3">
 													<img src="{{ asset($slider->image_url_2) }}" id="picture_2_img" alt="Photo" class="w-14 h-14 object-cover border border-gray-300 rounded-md" /> 
 												<div class="flex-1 relative">
@@ -512,7 +523,7 @@
 										</div>
 									
 										<!-- Upload Input 3 -->
-										<div class="mb-2">
+										<div class="mb-2" x-show="sliderImage == '2'" x-cloak>
 											<div class="flex items-center space-x-3">
 													<img src="{{ asset($slider->image_url_3) }}" id="picture_3_img" alt="Photo" class="w-14 h-14 object-cover border border-gray-300 rounded-md" /> 
 												<div class="flex-1 relative">
