@@ -474,7 +474,7 @@
 
                         <div class="rounded-3xl p-8 ring-2 ring-pink-600 xl:p-10">
                           <div class="flex items-center justify-between gap-x-4">
-                            <h3 id="tier-startup" class="text-lg/8 font-semibold text-pink-600">{{ $package1->name }}</h3>
+                            <h3 id="tier-startup" class="text-4xl/8 font-semibold text-pink-600">{{ $package1->name }}</h3>
                           </div>
                           <p class="mt-4 text-sm/6 text-gray-600">{{ $package1->description }}</p>
                           <p class="mt-6 flex items-baseline gap-x-1">
@@ -499,7 +499,7 @@
                         </div>
                         <div class="rounded-3xl p-8 ring-2 ring-purple-600 xl:p-10">
                             <div class="flex items-center justify-between gap-x-4">
-                              <h3 id="tier-startup" class="text-lg/8 font-semibold text-purple-600">{{ $package2->name }}</h3>
+                              <h3 id="tier-startup" class="text-4xl/8 font-semibold text-purple-600">{{ $package2->name }}</h3>
                               <p class="rounded-full bg-indigo-600/10 px-2.5 py-1 text-xs/5 font-semibold text-gray-600">Most popular</p>
                             </div>
                             <p class="mt-4 text-sm/6 text-gray-600">{{ $package2->description }}</p>
@@ -573,7 +573,7 @@
                           </div>
                           <div class="rounded-3xl p-8 ring-2 ring-green-600 xl:p-10">
                             <div class="flex items-center justify-between gap-x-4">
-                              <h3 id="tier-startup" class="text-lg/8 font-semibold text-green-600">{{ $package3->name }}</h3>
+                              <h3 id="tier-startup" class="text-4xl/8 font-semibold text-green-600">{{ $package3->name }}</h3>
                             </div>
                             <p class="mt-4 text-sm/6 text-gray-600">{{ $package3->description }}</p>
                             <p class="mt-6 flex items-baseline gap-x-1">
@@ -658,7 +658,7 @@
                                     <svg class="h-6 w-5 flex-none text-green-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
                                       <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
                                     </svg>
-                                    Salam Kaut 
+                                    Money Gift 
                                   </li>
                             </ul>
                           </div>

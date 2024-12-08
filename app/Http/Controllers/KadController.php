@@ -303,6 +303,11 @@ class KadController extends Controller
             $slug =  Str::slug(request('nama-panggilan-lelaki')) . '-' . Str::slug(request('nama-panggilan-perempuan')) . '-' . Str::random(5);
         }
 
+        // Handle QR Code image upload and return file path
+        if (request()->hasFile('qr-image')) {
+                    $qrImagePath = $this->uploadQRImage(request()->file('qr-image'));
+                }
+
         // Create a new Kad entry
         $kad = Kad::create([
             // Maklumat Kad
@@ -316,9 +321,14 @@ class KadController extends Controller
             'rsvp_is_on' =>request('rsvp-is-on'),
             'guestbook_is_on' =>request('guestbook-is-on'),
             'slideshow_is_on' =>request('slideshow-is-on'),
+            'gift_is_on' =>request('gift-is-on'),
             'slider_image' =>request('slider-image'),
             'dua_pasangan_is_on' =>request('dua-pasangan-is-on'),
             'is_paid' => $isPaid,
+            'account_number' =>request('account-number'),
+            'bank_name' =>request('bank-name'),
+            'qr_image' => $qrImagePath,
+            
 
             // Maklumat Pengantin
             'nama_penuh_lelaki' => request('nama-penuh-lelaki'),
@@ -429,10 +439,44 @@ class KadController extends Controller
         return redirect('/senarai-kad');
     }
 
+    private function uploadQRImage($file)
+    {
+        // Define the directory for storing images
+        $directory = 'qr';
+
+        // Check if the directory exists, if not, create it
+        if (!Storage::disk('public')->exists($directory)) {
+            Storage::disk('public')->makeDirectory($directory);
+        }
+
+        // Create a unique file name
+        $filename = uniqid() . '.' . '.webp';
+
+        // Initialize ImageManager
+        $manager = new ImageManager(new Driver);
+
+        // Read the image using Intervention Image read() method
+        $image = $manager->read($file);
+
+        $image->orient();
+
+        // Resize image 
+        $image->scale(width: 640);
+
+        // Encode to WEBP file
+        $encodedImage = $image->toWebp();
+        
+        // Store the encoded image in the public disk
+        $path = "{$directory}/{$filename}";
+        Storage::disk('public')->put($path, $encodedImage);
+
+        // Return the public URL for the image
+        return Storage::url($path);
+    }
+
+
     private function uploadImage($file)
     {
-        // Log memory usage before processing
-        logger("Initial memory usage: " . memory_get_usage(true) . " bytes");
 
         // Define the directory for storing images
         $directory = 'slider';
@@ -450,32 +494,18 @@ class KadController extends Controller
 
         // Read the image using Intervention Image read() method
         $image = $manager->read($file);
-        // Log memory usage after reading the image
-        logger("Memory usage after reading image: " . memory_get_usage(true) . " bytes");
 
         $image->orient();
-         // Log memory usage after orientation correction
-        logger("Memory usage after orientation correction: " . memory_get_usage(true) . " bytes");
 
         // Resize image 
         $image->scale(width: 640);
-        // Log memory usage after resizing
-        logger("Memory usage after resizing: " . memory_get_usage(true) . " bytes");
 
         // Encode to WEBP file
         $encodedImage = $image->toWebp();
-        // Log memory usage after encoding
-        logger("Memory usage after encoding: " . memory_get_usage(true) . " bytes");
         
         // Store the encoded image in the public disk
         $path = "{$directory}/{$filename}";
         Storage::disk('public')->put($path, $encodedImage);
-
-        // Log memory usage after storing the image
-        logger("Memory usage after storing image: " . memory_get_usage(true) . " bytes");
-
-        // Log peak memory usage
-        logger("Peak memory usage: " . memory_get_peak_usage(true) . " bytes");
 
         // Return the public URL for the image
         return Storage::url($path);
