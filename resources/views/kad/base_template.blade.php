@@ -154,7 +154,7 @@
         
     </head>
 
-    <body x-data="{ form_ucapan: false, form_rsvp: false, location_modal: false, reminder_modal: false, contact_modal: false }">
+    <body x-data="{ form_ucapan: false, form_rsvp: false, location_modal: false, reminder_modal: false, contact_modal: false, gift_modal: false}">
 
 
         @if(!$kadData->is_paid && in_array($kadData->package_id, [2, 3]))
@@ -600,6 +600,12 @@
                                 <span class="text-xs text-white">LOKASI</span>
                             </button>
                         @endif
+                        @if ($kadData->package_id == 3 && $kadData->gift_is_on)
+                            <button type="button" @click="gift_modal = true" class="flex-1 flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $colorCode }};">
+                                <h1 class="text-lg text-white"><i class="fa-solid fa fa-gift"></i></h1>
+                                <span class="text-xs text-white">HADIAH</span>
+                            </button>
+                        @endif
                     </div>
                 </div>
             </footer>
@@ -718,6 +724,57 @@
         </form>
 
         <!-- End Form Rsvp -->
+
+        <!-- Gift Modal Popup -->
+        <div x-data="{ text: 'Copy', accountNumber: '{{ $kadData->account_number }}'} " x-cloak x-show="gift_modal"
+            @click.away="gift_modal = false, text = 'Copy'" 
+            x-transition:enter="ease-out duration-300" 
+            x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
+            x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" 
+            x-transition:leave="ease-in duration-200" 
+            x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" 
+            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
+            class="fixed inset-0 z-50 flex items-center justify-center p-4"
+            aria-labelledby="modal-title" 
+            role="dialog" 
+            aria-modal="true">
+            
+            <!-- Background backdrop -->
+            <div class="absolute inset-0 bg-gray-500 bg-opacity-75" @click="gift_modal = false, text = 'Copy'"></div>
+
+            <!-- Modal Content -->
+            <div class="relative z-10 w-full max-w-md pt-3 rounded-xl mx-auto" style="background-color: {{ $colorCode }};">
+                <div class="mt-5">
+                    <div class="bg-white mx-8 mb-5 p-5 rounded-lg">
+                        <!-- QR Code Image -->
+                        <img src="{{ asset($kadData->qr_image)}}" class="h-auto w-full mb-4 rounded-lg border border-spacing-2 border-gray-200 object-cover aspect-square"/> 
+
+                        <!-- Bank Name -->
+                        <div class="grid grid-cols-1 items-center pb-8">
+                            <label for="bank-name" class="text-sm underline flex items-center justify-center font-semibold text-gray-900">Nama Bank</label>
+                            <label class="bg-gray-200 p-1 mt-1 text-xl flex items-center justify-center rounded-lg text-gray-700">{{ $kadData->bank_name }}</label>
+                        </div>
+
+                        <!-- Account Number -->
+                        <div class="grid grid-cols-1 items-center pb-8">
+                            <label for="bank-name" class="text-sm underline flex items-center justify-center font-semibold text-gray-900">Nombor Account</label>
+                            <label class="bg-gray-200 p-1 mt-1 text-xl flex items-center justify-center rounded-lg text-gray-700"><span x-text="accountNumber"></span></label>
+                        </div>
+
+                        <!-- Button -->
+                        <div class="flex justify-center gap-3">
+                            <x-primary-button class="h-8 w-24 flex justify-center items-center" @click="navigator.clipboard.writeText(accountNumber).then(() => text = 'Copied!' )"><span x-text="text"></span></x-primary-button>
+                            <x-primary-button class="h-8 w-24 flex items-center">Download</x-primary-button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Credit Link -->
+                <div class="flex justify-center mb-2">
+                    <a class="text-xs underline text-white" href="{{ Route('/') }}">Created by onlinekad.com</a>
+                </div>
+            </div>
+        </div> 
+        <!-- End of Gift Modal Popup -->
 
         <!-- Location Modal Popup -->
         <div x-cloak x-show="location_modal"

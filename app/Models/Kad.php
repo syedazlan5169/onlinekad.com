@@ -23,6 +23,7 @@ class Kad extends Model
         'slider_image',
         'guestbook_is_on',
         'slideshow_is_on',
+        'gift_is_on',
         'nama_penuh_lelaki',
         'nama_penuh_perempuan',
         'nama_panggilan_lelaki',
@@ -51,6 +52,9 @@ class Kad extends Model
         'nama_penuh_pasangan_kedua',
         'nama_panggilan_pasangan_pertama',
         'nama_panggilan_pasangan_kedua',
+        'account_number',
+        'qr_image',
+        'bank_name',
     ];
 
     protected $casts = [

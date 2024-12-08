@@ -17,8 +17,8 @@ class KadSeeder extends Seeder
             [
                 // Maklumat Kad
                 'id' => '1',
-                'slug' => 'Juwita',
-                'order_id' => 'Juwita',
+                'slug' => 'Deluxe',
+                'order_id' => 'Deluxe',
                 'is_paid' => true,
                 'user_id' => 1,
                 'design_id' => 1,
@@ -75,8 +75,8 @@ class KadSeeder extends Seeder
             [
                 // Maklumat Kad
                 'id' => '2',
-                'slug' => 'Kirana',
-                'order_id' => 'Kirana',
+                'slug' => 'Premium',
+                'order_id' => 'Premium',
                 'is_paid' => true,
                 'user_id' => 1,
                 'design_id' => 2,
@@ -127,8 +127,8 @@ class KadSeeder extends Seeder
             [
                 // Maklumat Kad
                 'id' => '3',
-                'slug' => 'Ratna',
-                'order_id' => 'Ratna',
+                'slug' => 'Basic',
+                'order_id' => 'Basic',
                 'is_paid' => true,
                 'user_id' => 1,
                 'design_id' => 3,

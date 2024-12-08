@@ -9,15 +9,15 @@
     </x-slot>
 
     <div class="py-12">
-        <div x-data="{ selectedPackage: '{{ old('package-id', 2) }}' }" class="max-w-7xl mx-auto sm:flex sm:justify-center gap-3 sm:px-6">
+        <div x-data="{ selectedPackage: '{{ old('package-id', 2) }}' }" class="max-w-7xl mx-auto lg:flex lg:justify-center gap-3 lg:px-6">
             <!-- Column 1 -->
-            <div class="h-full sm:w-[30%] sm:pr-4">
+            <div class="h-full lg:w-[30%] lg:pr-4">
 
 
                 <!-- Design Section -->
                 <div class="mb-4 p-8 bg-white shadow-lg rounded-lg overflow-hidden">
                                     <!-- Displaying all error Mobile -->
-                <div class="mb-4 sm:hidden">
+                <div class="mb-4 lg:hidden">
                     @if($errors->any)
                         <ul>
                             @foreach($errors->all() as $error)
@@ -28,7 +28,7 @@
                 </div>
                     <div class="rounded-xl p-8 ring-1 ring-gray-200">
                         <!-- Product Image -->
-                        <div class="h-full w-full overflow-hidden sm:h-40">
+                        <div class="h-full w-full overflow-hidden lg:h-40">
                             <img src="{{ asset($design->product_image_url) }}" alt="{{ $design->design_code }}"
                                 class="h-full w-full object-cover object-center group-hover:opacity-90 transition-opacity duration-300">
                         </div>
@@ -192,7 +192,7 @@
                 </div>
             </div>
             <!-- Column 2 -->
-            <div class="bg-white h-full overflow-hidden shadow-lg sm:rounded-lg sm:w-[70%]">
+            <div class="bg-white h-full overflow-hidden shadow-lg lg:rounded-lg lg:w-[70%]">
                 <div x-data="{
                     selectedFont: '1', 
                     fonts: {
@@ -223,10 +223,10 @@
                             
 
                             <!-- Maklumat Pengantin Fields -->
-                            <div x-show="openSection === 'maklumatPengantin'" x-data="{ penjemput: '1', duaPasanganIsOn: false}" class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div x-show="openSection === 'maklumatPengantin'" x-data="{ penjemput: '1', duaPasanganIsOn: false}" class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
                                 
                                 <!-- Dua Pasangan Toggle -->
-                                <div x-data="{ enabled: false }" x-show="selectedPackage === '3'" class="sm:col-span-2">
+                                <div x-data="{ enabled: false }" x-show="selectedPackage === '3'" class="lg:col-span-2">
                                     <!-- Button Element -->
                                     <button 
                                         @click="enabled = !enabled; duaPasanganIsOn = enabled; penjemput = duaPasanganIsOn ? '4' : '2'" 
@@ -254,18 +254,18 @@
 
                                 <!-- Nama Penuh Lelaki -->
                                 <template x-if="duaPasanganIsOn == false">
-                                    <div class="sm:col-span-1">
+                                    <div class="lg:col-span-1">
                                         <label for="nama-penuh-lelaki" class="block text-sm font-medium text-gray-900">Nama Penuh Pengantin Lelaki</label>
                                         <div class="mt-2">
-                                            <input type="text" name="nama-penuh-lelaki" id="nama-penuh-lelaki" placeholder="Muhammad Adam Bin Abdul Rahim" value="{{ old('nama-penuh-lelaki') }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                            <input type="text" name="nama-penuh-lelaki" id="nama-penuh-lelaki" placeholder="Muhammad Adam Bin Abdul Rahim" value="{{ old('nama-penuh-lelaki') }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
                                         </div>
                                     </div>
                                 </template>
                                 <template x-if="duaPasanganIsOn == true">
-                                    <div class="sm:col-span-1">
+                                    <div class="lg:col-span-1">
                                         <label for="nama-penuh-pasangan-pertama" class="block text-sm font-medium text-gray-900">Nama Penuh Pasangan Pertama</label>
                                         <div class="mt-2">
-                                            <input type="text" name="nama-penuh-pasangan-pertama" id="nama-penuh-pasangan-pertama" placeholder="Muhammad Adam & Nurul Hawa" value="{{ old('nama-penuh-pasangan-pertama') }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                            <input type="text" name="nama-penuh-pasangan-pertama" id="nama-penuh-pasangan-pertama" placeholder="Muhammad Adam & Nurul Hawa" value="{{ old('nama-penuh-pasangan-pertama') }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
                                         </div>
                                     </div>
                                 </template>
@@ -273,7 +273,7 @@
 
                                 <!-- Nama Panggilan Lelaki -->
                                 <template x-if="duaPasanganIsOn == false">
-                                    <div class="sm:col-span-1">
+                                    <div class="lg:col-span-1">
                                         <label for="nama-panggilan-lelaki" class="block text-sm font-medium text-gray-900">Nama Panggilan Pengantin Lelaki</label>
                                         <div class="mt-2">
                                             <input 
@@ -285,12 +285,12 @@
                                                 maxlength="12" 
                                                 spellcheck="false" 
                                                 placeholder="Adam" 
-                                                class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                                class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
                                         </div>
                                     </div>
                                 </template>
                                 <template x-if="duaPasanganIsOn == true">
-                                    <div class="sm:col-span-1">
+                                    <div class="lg:col-span-1">
                                         <label for="nama-panggilan-pasangan-pertama" class="block text-sm font-medium text-gray-900">Nama Panggilan Pasangan Pertama</label>
                                         <div class="mt-2">
                                             <input 
@@ -302,25 +302,25 @@
                                                 maxlength="24" 
                                                 spellcheck="false" 
                                                 placeholder="Adam & Hawa" 
-                                                class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                                class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
                                         </div>
                                     </div>
                                 </template>
 
                                 <!-- Nama Penuh Perempuan -->
                                 <template x-if="duaPasanganIsOn == false">
-                                    <div class="sm:col-span-1">
+                                    <div class="lg:col-span-1">
                                         <label for="nama-penuh-perempuan" class="block text-sm font-medium text-gray-900">Nama Penuh Pengantin Perempuan</label>
                                         <div class="mt-2">
-                                            <input type="text" name="nama-penuh-perempuan" id="nama-penuh-perempuan" placeholder="Nurul Hawa Binti Mior Rahim" value="{{ old('nama-penuh-perempuan') }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                            <input type="text" name="nama-penuh-perempuan" id="nama-penuh-perempuan" placeholder="Nurul Hawa Binti Mior Rahim" value="{{ old('nama-penuh-perempuan') }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
                                         </div>
                                     </div>
                                 </template>
                                 <template x-if="duaPasanganIsOn == true">
-                                    <div class="sm:col-span-1">
+                                    <div class="lg:col-span-1">
                                         <label for="nama-penuh-pasangan-kedua" class="block text-sm font-medium text-gray-900">Nama Penuh Pasangan Kedua</label>
                                         <div class="mt-2">
-                                            <input type="text" name="nama-penuh-pasangan-kedua" id="nama-penuh-pasangan-kedua" placeholder="Syed Yusuf & Sharifah Zulaikha" value="{{ old('nama-penuh-pasangan-kedua') }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                            <input type="text" name="nama-penuh-pasangan-kedua" id="nama-penuh-pasangan-kedua" placeholder="Syed Yusuf & Sharifah Zulaikha" value="{{ old('nama-penuh-pasangan-kedua') }}" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
                                         </div>
                                     </div>
                                 </template>
@@ -328,7 +328,7 @@
 
                                 <!-- Nama Panggilan Perempuan -->
                                 <template x-if="duaPasanganIsOn == false">
-                                    <div class="sm:col-span-1">
+                                    <div class="lg:col-span-1">
                                         <label for="nama-panggilan-perempuan" class="block text-sm font-medium text-gray-900">Nama Panggilan Pengantin Perempuan</label>
                                         <div class="mt-2">
                                             <input 
@@ -340,12 +340,12 @@
                                                 maxlength="12" 
                                                 spellcheck="false" 
                                                 placeholder="Hawa" 
-                                                class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                                class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
                                         </div>
                                     </div>
                                 </template>
                                 <template x-if="duaPasanganIsOn == true">
-                                    <div class="sm:col-span-1">
+                                    <div class="lg:col-span-1">
                                         <label for="nama-panggilan-pasangan-kedua" class="block text-sm font-medium text-gray-900">Nama Panggilan Pasangan Kedua</label>
                                         <div class="mt-2">
                                             <input 
@@ -357,7 +357,7 @@
                                                 maxlength="24" 
                                                 spellcheck="false" 
                                                 placeholder="Yusuf & Zulaikha" 
-                                                class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                                class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
                                         </div>
                                     </div>
                                 </template>
@@ -366,7 +366,7 @@
 
                                 <!-- Font Selection and Preview -->
                                 <template x-if="duaPasanganIsOn == false">
-                                    <div class="sm:col-span-2">
+                                    <div class="lg:col-span-2">
                                         <div class="text-center">
                                             <p class="text-4xl" :style="{ fontFamily: fonts[selectedFont] }">
                                                 <span x-text="namaLelaki"></span>
@@ -384,7 +384,7 @@
                                     </div>
                                 </template>
                                 <template x-if="duaPasanganIsOn == true">
-                                    <div class="sm:col-span-2">
+                                    <div class="lg:col-span-2">
                                         <div class="text-center">
                                             <p class="text-4xl" :style="{ fontFamily: fonts[selectedFont] }">
                                                 <span x-text="namaPasanganPertama"></span>
@@ -404,7 +404,7 @@
 
                                 <!-- Penjemput Dropdown -->
                                 <template x-if="duaPasanganIsOn == false">
-                                    <div class="sm:col-span-2">
+                                    <div class="lg:col-span-2">
                                         <label for="penjemput" class="block text-sm font-medium text-gray-900">Penjemput</label>
                                         <div class="mt-2">
                                             <select 
@@ -412,7 +412,7 @@
                                                 x-init="penjemput = duaPasanganIsOn ? '4' : '{{ old('penjemput', 1) }}'" 
                                                 id="penjemput" 
                                                 name="penjemput" 
-                                                class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:max-w-xs sm:text-sm">
+                                                class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:max-w-xs lg:text-sm">
                                                 <option value="1">Pihak Lelaki</option>
                                                 <option value="2">Pihak Perempuan</option>
                                                 <option value="3">Dua Belah Pihak</option>
@@ -426,48 +426,48 @@
                                 <input type="hidden" name="penjemput" :value="penjemput">
 
                                 <!-- Nama Bapa/Ibu Pihak Majlis show when duaPasangan is true -->
-                                <div x-show="duaPasanganIsOn == true" class="sm:col-span-1">
+                                <div x-show="duaPasanganIsOn == true" class="lg:col-span-1">
                                     <label for="nama-bapa-pengantin" class="block text-sm font-medium text-gray-900">Nama Bapa Pengantin (Pihak Majlis)</label>
                                     <div class="mt-2">
-                                        <input type="text" name="nama-bapa-pengantin" id="nama-bapa-pengantin" value="{{ old('nama-bapa-pengantin') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        <input type="text" name="nama-bapa-pengantin" id="nama-bapa-pengantin" value="{{ old('nama-bapa-pengantin') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
                                     </div>
                                 </div>
 
-                                <div x-show="duaPasanganIsOn == true" class="sm:col-span-1">
+                                <div x-show="duaPasanganIsOn == true" class="lg:col-span-1">
                                     <label for="nama-ibu-pengantin" class="block text-sm font-medium text-gray-900">Nama Ibu Pengantin (Pihak Majlis)</label>
                                     <div class="mt-2">
-                                        <input type="text" name="nama-ibu-pengantin" id="nama-ibu-pengantin" value="{{ old('nama-ibu-pengantin') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        <input type="text" name="nama-ibu-pengantin" id="nama-ibu-pengantin" value="{{ old('nama-ibu-pengantin') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
                                     </div>
                                 </div>
 
                                 
                                 <!-- Nama Bapa/Ibu (Lelaki) show when penjemput 1 or 3 and duaPasanganIsOn is false -->
-                                <div x-show="penjemput === '3' || penjemput === '1'" class="sm:col-span-1">
+                                <div x-show="penjemput === '3' || penjemput === '1'" class="lg:col-span-1">
                                     <label for="nama-bapa-pengantin-lelaki" class="block text-sm font-medium text-gray-900">Nama Bapa Pengantin Lelaki</label>
                                     <div class="mt-2">
-                                        <input type="text" name="nama-bapa-pengantin-lelaki" id="nama-bapa-pengantin-lelaki" value="{{ old('nama-bapa-pengantin-lelaki') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        <input type="text" name="nama-bapa-pengantin-lelaki" id="nama-bapa-pengantin-lelaki" value="{{ old('nama-bapa-pengantin-lelaki') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
                                     </div>
                                 </div>
 
-                                <div x-show="penjemput === '3' || penjemput === '1'" class="sm:col-span-1">
+                                <div x-show="penjemput === '3' || penjemput === '1'" class="lg:col-span-1">
                                     <label for="nama-ibu-pengantin-lelaki" class="block text-sm font-medium text-gray-900">Nama Ibu Pengantin Lelaki</label>
                                     <div class="mt-2">
-                                        <input type="text" name="nama-ibu-pengantin-lelaki" id="nama-ibu-pengantin-lelaki" value="{{ old('nama-ibu-pengantin-lelaki') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        <input type="text" name="nama-ibu-pengantin-lelaki" id="nama-ibu-pengantin-lelaki" value="{{ old('nama-ibu-pengantin-lelaki') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
                                     </div>
                                 </div>
 
                                 <!-- Nama Bapa/Ibu (Perempuan) show when penjemput 2 or 3 and duaPasanganIsOn is false -->
-                                <div x-show="penjemput === '3' || penjemput === '2'" class="sm:col-span-1">
+                                <div x-show="penjemput === '3' || penjemput === '2'" class="lg:col-span-1">
                                     <label for="nama-bapa-pengantin-perempuan" class="block text-sm font-medium text-gray-900">Nama Bapa Pengantin Perempuan</label>
                                     <div class="mt-2">
-                                        <input type="text" name="nama-bapa-pengantin-perempuan" id="nama-bapa-pengantin-perempuan" value="{{ old('nama-bapa-pengantin-perempuan') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        <input type="text" name="nama-bapa-pengantin-perempuan" id="nama-bapa-pengantin-perempuan" value="{{ old('nama-bapa-pengantin-perempuan') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
                                     </div>
                                 </div>
 
-                                <div x-show="penjemput === '3' || penjemput === '2'" class="sm:col-span-1">
+                                <div x-show="penjemput === '3' || penjemput === '2'" class="lg:col-span-1">
                                     <label for="nama-ibu-pengantin-perempuan" class="block text-sm font-medium text-gray-900">Nama Ibu Pengantin Perempuan</label>
                                     <div class="mt-2">
-                                        <input type="text" name="nama-ibu-pengantin-perempuan" id="nama-ibu-pengantin-perempuan" value="{{ old('nama-ibu-pengantin-perempuan') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        <input type="text" name="nama-ibu-pengantin-perempuan" id="nama-ibu-pengantin-perempuan" value="{{ old('nama-ibu-pengantin-perempuan') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
                                     </div>
                                 </div>
                             </div>
@@ -483,85 +483,85 @@
                             </h2>
 
                             <!-- Maklumat Majlis Fields -->
-                            <div x-show="openSection === 'maklumatMajlis'" class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div x-show="openSection === 'maklumatMajlis'" class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
                                 
                                 <!-- Tajuk Kad -->
-                                <div class="sm:col-span-1">
+                                <div class="lg:col-span-1">
                                     <label for="tajuk-kad" class="block text-sm font-medium text-gray-900">Tajuk Kad</label>
                                     <div class="mt-2">
-                                        <input type="text" name="tajuk-kad" id="tajuk-kad" spellcheck="false" value="{{ old('tajuk-kad', 'Walimatulurus') }}" maxlength="20" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        <input type="text" name="tajuk-kad" id="tajuk-kad" spellcheck="false" value="{{ old('tajuk-kad', 'Walimatulurus') }}" maxlength="20" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
                                     </div>
                                 </div>
 
                                 <!-- Tarikh, Masa -->
-                                <div class="sm:col-span-1">
+                                <div class="lg:col-span-1">
                                     <label for="tarikh-majlis" class="block text-sm font-medium text-gray-900">Tarikh Majlis</label>
                                     <div class="mt-2">
-                                        <input type="date" name="tarikh-majlis" id="tarikh-majlis" value="{{ old('tarikh-majlis') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        <input type="date" name="tarikh-majlis" id="tarikh-majlis" value="{{ old('tarikh-majlis') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
                                     </div>
                                 </div>
 
-                                <div class="sm:col-span-1">
+                                <div class="lg:col-span-1">
                                     <label for="masa-mula-majlis" class="block text-sm font-medium text-gray-900">Masa Mula</label>
                                     <div class="mt-2">
-                                        <input type="time" name="masa-mula-majlis" id="masa-mula-majlis" value="{{ old('masa-mula-majlis', isset($kadData->masa_mula_majelis) ? \Carbon\Carbon::parse($kadData->masa_mula_majelis)->format('H:i') : '') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        <input type="time" name="masa-mula-majlis" id="masa-mula-majlis" value="{{ old('masa-mula-majlis', isset($kadData->masa_mula_majelis) ? \Carbon\Carbon::parse($kadData->masa_mula_majelis)->format('H:i') : '') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
                                     </div>
                                 </div>
                                 
-                                <div class="sm:col-span-1">
+                                <div class="lg:col-span-1">
                                     <label for="masa-tamat-majlis" class="block text-sm font-medium text-gray-900">Masa Tamat</label>
                                     <div class="mt-2">
-                                        <input type="time" name="masa-tamat-majlis" id="masa-tamat-majlis" value="{{ old('masa-tamat-majlis', isset($kadData->masa_tamat_majelis) ? \Carbon\Carbon::parse($kadData->masa_tamat_majelis)->format('H:i') : '') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        <input type="time" name="masa-tamat-majlis" id="masa-tamat-majlis" value="{{ old('masa-tamat-majlis', isset($kadData->masa_tamat_majelis) ? \Carbon\Carbon::parse($kadData->masa_tamat_majelis)->format('H:i') : '') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
                                     </div>
                                 </div>
 
                                 <!-- Ayat Jemputan -->
-                                <div class="sm:col-span-1">
+                                <div class="lg:col-span-1">
                                     <label for="ayat-jemputan" class="block text-sm font-medium text-gray-900">Ayat Jemputan</label>
                                     <div class="mt-2">
-                                        <textarea name="ayat-jemputan" id="ayat-jemputan" rows="4" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">{{ old('ayat-jemputan', 'DENGAN SEGALA HORMATNYA MENJEMPUT DATO\'/ DATIN/ TUAN/ PUAN/ ENCIK/ CIK DAN SEISI KELUARGA KE MAJLIS PERKAHWINAN PUTERA KAMI BERSAMA PASANGANNYA') }}</textarea>
+                                        <textarea name="ayat-jemputan" id="ayat-jemputan" rows="4" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">{{ old('ayat-jemputan', 'DENGAN SEGALA HORMATNYA MENJEMPUT DATO\'/ DATIN/ TUAN/ PUAN/ ENCIK/ CIK DAN SEISI KELUARGA KE MAJLIS PERKAHWINAN PUTERA KAMI BERSAMA PASANGANNYA') }}</textarea>
                                     </div>
                                 </div>
 
                                 <!-- Doa Pengantin -->
-                                <div x-show="selectedPackage == 2 || selectedPackage == 3" class="sm:col-span-1">
+                                <div x-show="selectedPackage == 2 || selectedPackage == 3" class="lg:col-span-1">
                                     <label for="doa-pengantin" class="block text-sm font-medium text-gray-900">Doa Pengantin</label>
                                     <div class="mt-2">
-                                        <textarea name="doa-pengantin" id="doa-pengantin" rows="4" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">{{ old('doa-pengantin', '“Ya Allah, berkatilah majlis perkahwinan ini, limpahkan baraqah dan rahmat kepada kedua mempelai ini, Kurniakanlah mereka zuriat yang soleh dan solehah. Kekalkan jodoh mereka di dunia dan di akhirat dan sempurnakanlah agama mereka dengan berkat ikatan ini.”') }}</textarea>
+                                        <textarea name="doa-pengantin" id="doa-pengantin" rows="4" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">{{ old('doa-pengantin', '“Ya Allah, berkatilah majlis perkahwinan ini, limpahkan baraqah dan rahmat kepada kedua mempelai ini, Kurniakanlah mereka zuriat yang soleh dan solehah. Kekalkan jodoh mereka di dunia dan di akhirat dan sempurnakanlah agama mereka dengan berkat ikatan ini.”') }}</textarea>
                                     </div>
                                 </div>
                                 
                                 <!-- Alamat, Google Maps, Waze -->
-                                <div class="sm:col-span-2">
+                                <div class="lg:col-span-2">
                                     <label for="alamat-majlis" class="block text-sm font-medium text-gray-900">Alamat Majlis</label>
                                     <div class="mt-2">
-                                        <textarea name="alamat-majlis" id="alamat-majlis" rows="4" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">{{ old('alamat-majlis') }}</textarea>
+                                        <textarea name="alamat-majlis" id="alamat-majlis" rows="4" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">{{ old('alamat-majlis') }}</textarea>
                                     </div>
                                 </div>
 
-                                <div x-show="selectedPackage == 2 || selectedPackage == 3" class="sm:col-span-1">
+                                <div x-show="selectedPackage == 2 || selectedPackage == 3" class="lg:col-span-1">
                                     <label for="google-url" class="block text-sm font-medium text-gray-900">URL Google Maps</label>
                                     <div class="mt-2">
-                                        <input type="text" name="google-url" id="google-url" value="{{ old('google-url') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        <input type="text" name="google-url" id="google-url" value="{{ old('google-url') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
                                     </div>
                                 </div>
 
-                                <div x-show="selectedPackage == 2 || selectedPackage == 3" class="sm:col-span-1">
+                                <div x-show="selectedPackage == 2 || selectedPackage == 3" class="lg:col-span-1">
                                     <label for="waze-url" class="block text-sm font-medium text-gray-900">URL Waze</label>
                                     <div class="mt-2">
-                                        <input type="text" name="waze-url" id="waze-url" value="{{ old('waze-url') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                        <input type="text" name="waze-url" id="waze-url" value="{{ old('waze-url') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
                                     </div>
                                 </div>
 
                                 <!-- Nombor Telefon -->
-                                <div x-show="selectedPackage == 2 || selectedPackage == 3" class="sm:col-span-2">
+                                <div x-show="selectedPackage == 2 || selectedPackage == 3" class="lg:col-span-2">
                                     <label class="block text-sm font-medium text-gray-900">Nombor Telefon Waris</label>
                                     <div x-data="{ warisCount: 2 }" class="mt-2 space-y-2">
                                         <!-- Initial input fields (2 fields) -->
                                         <template x-for="i in warisCount" :key="i">
                                             <div class="flex space-x-4">
-                                                <input type="text" :name="'nama-' + i" :id="'nama-' + i" placeholder="Nama" maxlength="20" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
-                                                <input type="text" :name="'nombor-telefon-' + i" :id="'nombor-telefon-' + i" placeholder="Nombor Telefon" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                                <input type="text" :name="'nama-' + i" :id="'nama-' + i" placeholder="Nama" maxlength="20" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
+                                                <input type="text" :name="'nombor-telefon-' + i" :id="'nombor-telefon-' + i" placeholder="Nombor Telefon" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
                                             </div>
                                         </template>
                                         <!-- Tambah button -->
@@ -575,14 +575,14 @@
                                 </div>
 
                                 <!-- Aturcara Majlis -->
-                                <div x-show="selectedPackage == 2 || selectedPackage == 3" class="sm:col-span-2">
+                                <div x-show="selectedPackage == 2 || selectedPackage == 3" class="lg:col-span-2">
                                     <label class="block text-sm font-medium text-gray-900">Aturcara Majlis</label>
                                     <div x-data="{ acaraCount: 3 }" class="mt-2 space-y-2">
                                         <!-- Initial input fields (2 fields) -->
                                         <template x-for="i in acaraCount" :key="i">
                                             <div class="flex space-x-4">
-                                                <input type="time" :name="'masa-acara-' + i" :id="'masa-acara-' + i" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
-                                                <input type="text" :name="'acara-' + i" :id="'acara-' + i" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+                                                <input type="time" :name="'masa-acara-' + i" :id="'masa-acara-' + i" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
+                                                <input type="text" :name="'acara-' + i" :id="'acara-' + i" spellcheck="false" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
                                             </div>
                                         </template>
                                         <!-- Tambah button -->
@@ -607,12 +607,12 @@
                             </h2>
 
                             <!-- Show a summary of all sections or additional form fields here -->
-                            <div x-show="openSection === 'others'" class="mt-8">
+                            <div x-data="{ enabled: true, giftEnabled: false }" x-show="openSection === 'others'" class="mt-8">
                                 <div>
 
                                     <!-- Fungsi Active -->
                                     <label class="block text-sm font-semibold text-gray-900">Fungsi</label>
-                                    <div class="mt-2 mb-4 sm:flex sm:items-center sm:justify-between">
+                                    <div class="my-2 lg:flex lg:items-center lg:justify-between">
                                         <!-- RSVP Toggle -->
                                         <div x-data="{ enabled: true }" class="flex items-center">
                                             <!-- Button Element -->
@@ -664,7 +664,7 @@
                                             <input type="hidden" name="guestbook-is-on" :value="enabled ? 1 : 0">
                                         </div>
                                         <!-- Slideshow Toggle -->
-                                        <div x-data="{ enabled: true }" class="flex items-center">
+                                        <div class="flex items-center">
                                             <!-- Button Element -->
                                             <button 
                                                 @click="enabled = !enabled" 
@@ -689,23 +689,99 @@
                                             </span>
                                             <input type="hidden" name="slideshow-is-on" :value="enabled ? 1 : 0">
                                         </div>
+                                        <!-- Gift Toggle -->
+                                        <div x-show="selectedPackage == 3" class="flex items-center">
+                                            <!-- Button Element -->
+                                            <button 
+                                                @click="giftEnabled = !giftEnabled" 
+                                                :class="giftEnabled ? 'bg-indigo-600' : 'bg-gray-200'" 
+                                                type="button" 
+                                                class="mb-2 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" 
+                                                role="switch" 
+                                                :aria-checked="giftEnabled.toString()" 
+                                                aria-labelledby="slideshow-is-on"
+                                            >
+                                                <!-- Toggle Circle -->
+                                                <span 
+                                                    :class="giftEnabled ? 'translate-x-5' : 'translate-x-0'" 
+                                                    class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+                                                    aria-hidden="true"
+                                                ></span>
+                                            </button>
+                                            
+                                            <!-- Label Text -->
+                                            <span class="ml-3 text-sm" id="slideshow-is-on">
+                                                <span class="font-medium text-gray-900">Money Gift</span>
+                                            </span>
+                                            <input type="hidden" name="gift-is-on" :value="giftEnabled ? 1 : 0">
+                                        </div>
                                     </div>
                                     <!-- End of Fungsi Active -->
 
-                                    <!-- Bg Song Selection -->
-                                    <label for="bg-song-id" class="block text-sm font-semibold text-gray-900">Muzik Latar</label>
-                                    <div class="mt-2">
-                                        @livewire('bg-song-dropdown')
+                                    <div class="grid lg:grid-cols-2">
+                                        <!-- Bg Song Selection -->
+                                        <div class="mt-8 lg:col-span-1">
+                                            <label for="bg-song-id" class="block text-sm font-semibold text-gray-900">Muzik Latar</label>
+                                            <div class="mt-2">
+                                                @livewire('bg-song-dropdown')
+                                            </div>
+                                        </div>
+                                        <!-- End of Bg Song Selection -->
+
+                                        <!-- Account Detail Upload -->
+                                        <div x-show="giftEnabled" x-cloak class="mt-8 lg:col-span-1">
+                                            <div class="lg:flex lg:justify-between">
+                                                <div>
+                                                    <label for="bank-name" class="block text-sm font-semibold text-gray-900">Nama Bank</label>
+                                                    <div class="mt-2">
+                                                        <input type="text" name="bank-name" id="bank-name" placeholder="cth: Maybank" value="{{ old('bank_name') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
+                                                    </div>
+                                                </div>
+                                                <div class="mt-2 lg:mt-0">
+                                                    <label for="account-number" class="block text-sm font-semibold text-gray-900">Nombor Account</label>
+                                                    <div class="mt-2">
+                                                        <input type="text" name="account-number" id="account-number" placeholder="cth: 71038294829" value="{{ old('account_number') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Upload QR Code -->
+                                            <div class="mt-2">
+                                                <div class="flex items-center">
+                                                    <img src="" id="qr_img" alt="Photo" class="hidden w-14 h-14 object-cover border border-gray-300 rounded-md" /> 
+                                                    <div class="flex-1 relative">
+                                                        <input 
+                                                            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none" 
+                                                            type="file"
+                                                            name="qr-image" 
+                                                            id="qr-image" 
+                                                            accept="image/png, image/jpeg"
+                                                        >
+                                                        <button 
+                                                            type="button" 
+                                                            class="p-1 mt-1 bg-red-500 text-white rounded-md hidden" 
+                                                            id="qr_img_delete">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+                                                                <path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z" clip-rule="evenodd" />
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                
+                                                <label class="text-sm text-gray-500" for="qr-image">Upload Gambar QR Code</label>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- End of Account Detail Upload -->
                                     </div>
-                                    <!-- End of Bg Song Selection -->
 
 
                                     <!-- Gallery upload -->
-                                    <div x-data="{ sliderImage: '1' }">
+                                    <div x-data="{ sliderImage: '1' }" class="mt-8">
                                         <!--<label class="mb-2 mt-4 block text-sm font-medium text-gray-900">Galeri <span class="text-xs">(Optional)</span></label>-->
                                         <fieldset>
-                                            <legend class="pt-6 text-sm font-semibold text-gray-900">Galeri Slideshow</legend>
-                                            <div class="mt-2 mb-4 space-y-2 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
+                                            <legend class="text-sm font-semibold text-gray-900">Galeri Slideshow</legend>
+                                            <div class="mt-2 mb-4 space-y-2 lg:flex lg:items-center lg:space-x-10 lg:space-y-0">
                                                 <div class="flex items-center">
                                                     <input id="default" name="slider-image" type="radio" value="1" x-model="sliderImage" checked class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden">
                                                     <label for="default" class="ml-3 block text-sm/6 font-medium text-gray-900">Gambar Default</label>
@@ -726,7 +802,7 @@
                                                         type="file"
                                                         name="picture_1" 
                                                         id="picture_1" 
-                                                        accept="image/png, image/jpeg, image/heic"
+                                                        accept="image/png, image/jpeg"
                                                     >
                                                     <button 
                                                         type="button" 
@@ -752,7 +828,7 @@
                                                         type="file"
                                                         name="picture_2" 
                                                         id="picture_2" 
-                                                        accept="image/png, image/jpeg, image/heic"
+                                                        accept="image/png, image/jpeg"
                                                     >
                                                     <button 
                                                         type="button" 
@@ -777,7 +853,7 @@
                                                         type="file"
                                                         name="picture_3" 
                                                         id="picture_3" 
-                                                        accept="image/png, image/jpeg, image/heic"
+                                                        accept="image/png, image/jpeg"
                                                     >
                                                     <button 
                                                         type="button" 
@@ -873,7 +949,7 @@
                         </div>
 
                         <!-- Displaying all error desktop -->
-                        <div class="mt-10 hidden sm:block">
+                        <div class="mt-10 hidden lg:block">
                             @if($errors->any)
                                 <ul>
                                     @foreach($errors->all() as $error)
