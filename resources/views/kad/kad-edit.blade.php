@@ -363,7 +363,7 @@
 								</svg>
 							</h2>
 
-							<div x-show="openSection === 'others'" class="mt-8">
+							<div x-data="{ giftEnabled: {{ $kadData->gift_is_on }} }" x-show="openSection === 'others'" class="mt-8">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-900">Fungsi</label>
 
@@ -445,15 +445,90 @@
                                             </span>
                                             <input type="hidden" name="slideshow-is-on" :value="enabled ? 1 : 0">
                                         </div>
+                                        <!-- Gift Toggle -->
+                                        <div x-show="packageId == 3" class="flex items-center">
+                                            <!-- Button Element -->
+                                            <button 
+                                                @click="giftEnabled = !giftEnabled" 
+                                                :class="giftEnabled ? 'bg-indigo-600' : 'bg-gray-200'" 
+                                                type="button" 
+                                                class="mb-2 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" 
+                                                role="switch" 
+                                                :aria-checked="giftEnabled.toString()" 
+                                                aria-labelledby="slideshow-is-on"
+                                            >
+                                                <!-- Toggle Circle -->
+                                                <span 
+                                                    :class="giftEnabled ? 'translate-x-5' : 'translate-x-0'" 
+                                                    class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+                                                    aria-hidden="true"
+                                                ></span>
+                                            </button>
+                                            
+                                            <!-- Label Text -->
+                                            <span class="ml-3 text-sm" id="slideshow-is-on">
+                                                <span class="font-medium text-gray-900">Money Gift</span>
+                                            </span>
+                                            <input type="hidden" name="gift-is-on" :value="giftEnabled ? 1 : 0">
+                                        </div>
                                     </div>
 									<!-- End of Fungsi Active -->
 
+									<div class="grid lg:grid-cols-2">
+										<!-- Bg Song Selection -->
+										<div class="mt-8 lg:col-span-1">
+											<label for="bg-song-id" class="block text-sm font-medium text-gray-900">Lagu Latar Belakang</label>
+											<div class="mt-2">
+												@livewire('bg-song-dropdown', ['selectedSong' => $kadData->bg_song_id])
+											</div>
+										</div>
 
-                                    <!-- Bg Song Selection -->
-                                    <label for="bg-song-id" class="block text-sm font-medium text-gray-900">Lagu Latar Belakang</label>
-                                    <div class="mt-2">
-										@livewire('bg-song-dropdown', ['selectedSong' => $kadData->bg_song_id])
-                                    </div>
+										<!-- Account Detail Upload -->
+										<div x-show="giftEnabled" x-cloak class="mt-8 lg:col-span-1">
+											<div class="lg:flex lg:gap-6">
+												<div>
+													<label for="bank-name" class="block text-sm font-semibold text-gray-900">Nama Bank</label>
+													<div class="mt-2">
+														<input type="text" name="bank-name" id="bank-name" placeholder="cth: Maybank" value="{{ $kadData->bank_name }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
+													</div>
+												</div>
+												<div class="mt-2 lg:mt-0">
+													<label for="account-number" class="block text-sm font-semibold text-gray-900">Nombor Account</label>
+													<div class="mt-2">
+														<input type="text" name="account-number" id="account-number" placeholder="cth: 71038294829" value="{{ $kadData->account_number }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
+													</div>
+												</div>
+											</div>
+
+											<!-- Upload QR Code -->
+											<div class="mt-2">
+												<div class="flex items-center">
+													<img src="" id="qr_img" alt="Photo" class="hidden w-14 h-14 object-cover border border-gray-300 rounded-md" /> 
+													<div class="flex-1 relative">
+														<input 
+															class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none" 
+															type="file"
+															name="qr-image" 
+															id="qr-image" 
+															accept="image/png, image/jpeg"
+														>
+														<button 
+															type="button" 
+															class="p-1 mt-1 bg-red-500 text-white rounded-md hidden" 
+															id="qr_img_delete">
+															<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+																<path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z" clip-rule="evenodd" />
+															</svg>
+														</button>
+													</div>
+												</div>
+												
+												<label class="text-xs leading-none text-gray-500" for="qr-image">Crop bahagia QR sahaja sebelum upload untuk dapatkan paparan yang jelas</label>
+											</div>
+										</div>
+										<!-- End of Account Detail Upload -->
+									</div>
+
 
 									<!-- Gallery Upload -->
 									<div x-data="{ sliderImage: {{ $kadData->slider_image ?? 1 }} }">

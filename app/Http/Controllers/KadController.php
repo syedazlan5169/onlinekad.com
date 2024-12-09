@@ -107,6 +107,13 @@ class KadController extends Controller
         $endFormatted = str_replace(['-', ':'], '', $end);
         $reminderUrl = $this->generateReminderUrl($title, $title, $location, $startFormatted, $endFormatted, $kad->order_id);
 
+        // Handle QR image uploads and store paths
+        $qrImagePath = $kad->qr_image;
+        if ($request->hasFile('qr-image')) {
+            // If a new file is uploaded, delete the old one
+            $this->deleteOldImage($kad->qr_image);
+            $qrImagePath = $this->uploadQRImage(request()->file('qr-image'));
+        }
 
         // Update the Kad with the validated data
         $kad->update([
@@ -117,7 +124,11 @@ class KadController extends Controller
             'guestbook_is_on' =>$request->input('guestbook-is-on'),
             'slideshow_is_on' =>$request->input('slideshow-is-on'),
             'dua_pasangan_is_on' =>$request->input('dua-pasangan-is-on'),
+            'gift_is_on' =>$request->input('gift-is-on'),
             'slider_image' =>$request->input('slider-image'),
+            'bank_name' =>$request->input('bank-name'),
+            'account_number' =>$request->input('account-number'),
+            'qr_image' => $qrImagePath,
 
             // Maklumat Pengantin
             'nama_penuh_lelaki' => $request->input('nama-penuh-lelaki'),
