@@ -271,6 +271,15 @@ class DesignSeeder extends Seeder
                 'color_footer' => '#D5967D',
                 'category' => 'abstract'
             ],
+            [
+                'design_code' => 'N030',
+                'product_image_url' => '/images/products/Product-N030.webp',
+                'design_url_1' => '/images/designs/N030-1.webp',
+                'design_url_2' => '/images/designs/N030-2.webp',
+                'color_code' => '#AA2451',
+                'color_footer' => '#E08FA7',
+                'category' => 'abstract'
+            ],
 
             // Add more entries as needed
         ];

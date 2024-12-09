@@ -589,9 +589,7 @@
                             <span class="text-xs text-white">REMINDER</span>
                         </button>
                         @if ($kadData->package_id == 3 && $kadData->gift_is_on)
-                            <button type="button" @click="gift_modal = true" class="h-16 w-16 flex-1 flex-col items-center justify-center rounded-full border border-white" style="background-color: {{ $colorCode }};">
-                                <h1 class="text-3xl text-white"><i class="fa-solid fa fa-gift"></i></h1>
-                            </button>
+                                <h1 @click="gift_modal = true" class="text-4xl outline-white" style="color: {{ $colorCode }}; text-shadow: 1px 1px 0 #fff, -1px 1px 0 #fff, 1px -1px 0 #fff, -1px -1px 0 #fff;"><i class="fa-solid fa fa-gift"></i></h1>
                         @endif
                         @if ($kadData->package_id == 2 || $kadData->package_id == 3)
                             <button type="button" @click="contact_modal = true" class="flex-1 flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $colorCode }};">
@@ -750,13 +748,13 @@
 
                         <!-- Bank Name -->
                         <div class="grid grid-cols-1 items-center pb-8">
-                            <label for="bank-name" class="text-sm underline flex items-center justify-center font-semibold text-gray-900">Nama Bank</label>
+                            <label class="text-sm underline flex items-center justify-center font-semibold text-gray-900">Nama Bank</label>
                             <label class="bg-gray-200 p-1 mt-1 text-xl flex items-center justify-center rounded-lg text-gray-700">{{ $kadData->bank_name }}</label>
                         </div>
 
                         <!-- Account Number -->
                         <div class="grid grid-cols-1 items-center pb-8">
-                            <label for="bank-name" class="text-sm underline flex items-center justify-center font-semibold text-gray-900">Nombor Account</label>
+                            <label class="text-sm underline flex items-center justify-center font-semibold text-gray-900">Nombor Account</label>
                             <label class="bg-gray-200 p-1 mt-1 text-xl flex items-center justify-center rounded-lg text-gray-700"><span x-text="accountNumber"></span></label>
                         </div>
 
