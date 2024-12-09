@@ -450,7 +450,7 @@ class KadController extends Controller
         }
 
         // Create a unique file name
-        $filename = uniqid() . '.' . '.webp';
+        $filename = uniqid() . '.' . '.png';
 
         // Initialize ImageManager
         $manager = new ImageManager(new Driver);
@@ -463,8 +463,7 @@ class KadController extends Controller
         // Resize image 
         $image->scale(width: 640);
 
-        // Encode to WEBP file
-        $encodedImage = $image->toWebp();
+        $encodedImage = $image->toPng();
         
         // Store the encoded image in the public disk
         $path = "{$directory}/{$filename}";
