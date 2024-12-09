@@ -768,10 +768,9 @@
                                                     </div>
                                                 </div>
                                                 
-                                                <label class="text-sm text-gray-500" for="qr-image">Upload Gambar QR Code</label>
+												<label class="text-xs leading-none text-gray-500" for="qr-image">Crop bahagia QR sahaja sebelum upload untuk dapatkan paparan yang jelas</label>
                                             </div>
                                         </div>
-                                        
                                         <!-- End of Account Detail Upload -->
                                     </div>
 

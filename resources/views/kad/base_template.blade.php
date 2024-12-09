@@ -740,11 +740,11 @@
             <div class="absolute inset-0 bg-gray-500 bg-opacity-75" @click="gift_modal = false, text = 'Copy'"></div>
 
             <!-- Modal Content -->
-            <div class="relative z-10 w-full max-w-md pt-3 rounded-xl mx-auto" style="background-color: {{ $colorCode }};">
+            <div class="relative z-10 w-full max-w-md pt-3 rounded-xl mx-auto bg-white">
                 <div class="mt-5">
                     <div class="bg-white mx-8 mb-5 p-5 rounded-lg">
                         <!-- QR Code Image -->
-                        <img src="{{ asset($kadData->qr_image)}}" class="h-auto w-full mb-4 rounded-lg border border-spacing-2 border-gray-200 object-cover aspect-square"/> 
+                        <img src="{{ asset($kadData->qr_image)}}" class="h-auto w-full mb-4 rounded-lg border border-spacing-2 shadow-lg border-gray-200 object-cover aspect-square"/> 
 
                         <!-- Bank Name -->
                         <div class="grid grid-cols-1 items-center pb-8">
