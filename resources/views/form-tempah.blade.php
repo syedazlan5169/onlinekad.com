@@ -224,6 +224,22 @@
 
                             <!-- Maklumat Pengantin Fields -->
                             <div x-show="openSection === 'maklumatPengantin'" x-data="{ penjemput: '1', duaPasanganIsOn: false}" class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                                <!-- Radio Button Bahasa -->
+                                <div class="lg:col-span-2">
+                                    <fieldset>
+                                        <div class="mb-4 space-y-2 lg:flex lg:items-center lg:space-x-10 lg:space-y-0">
+                                            <div class="flex items-center">
+                                                <input id="malay" name="bahasa" type="radio" value="0" checked class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden">
+                                                <label for="malay" class="ml-3 block text-sm/6 font-medium text-gray-900">Bahasa Malaysia</label>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <input id="english" name="bahasa" type="radio" value="1" class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden">
+                                                <label for="english" class="ml-3 block text-sm/6 font-medium text-gray-900">English</label>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
                                 
                                 <!-- Dua Pasangan Toggle -->
                                 <div x-data="{ enabled: false }" x-show="selectedPackage === '3'" class="lg:col-span-2">
@@ -610,8 +626,9 @@
                             <div x-data="{ enabled: true, giftEnabled: false }" x-show="openSection === 'others'" class="mt-8">
                                 <div>
 
+
                                     <!-- Fungsi Active -->
-                                    <label class="block text-sm font-semibold text-gray-900">Fungsi</label>
+                                    <label class="mt-4 block text-sm font-semibold text-gray-900">Fungsi</label>
                                     <div class="my-2 lg:flex lg:items-center lg:justify-between">
                                         <!-- RSVP Toggle -->
                                         <div x-data="{ enabled: true }" class="flex items-center">

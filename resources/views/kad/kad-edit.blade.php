@@ -55,8 +55,22 @@
 							<div x-show="openSection === 'maklumatPengantin'" x-data="{ penjemput: '{{ $kadData->penjemput }}', duaPasanganIsOn: {{ $kadData->dua_pasangan_is_on }} }" class="mt-8 grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-6 sm:grid-cols-1">
 								<input type="hidden" name="design-id" id="design-id" value="{{ $kadData->design->id }}">
 
+                                <!-- Radio Button Bahasa -->
+                                <fieldset class="lg:col-span-6">
+                                    <div x-data="{ bahasa: '{{ $kadData->is_english }}' }" class="mb-4 space-y-2 lg:flex lg:items-center lg:space-x-10 lg:space-y-0">
+                                        <div class="flex items-center">
+                                            <input id="malay" name="bahasa" type="radio" value="0" x-model="bahasa" class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden">
+                                            <label for="malay" class="ml-3 block text-sm/6 font-medium text-gray-900">Bahasa Malaysia</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input id="english" name="bahasa" type="radio" value="1" x-model="bahasa" class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden">
+                                            <label for="english" class="ml-3 block text-sm/6 font-medium text-gray-900">English</label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
 								<!-- Dua Pasangan Toggle -->
-								<div x-show="packageId == 3" x-cloak x-data="{ enabled: {{ $kadData->dua_pasangan_is_on }} }" class="sm:col-span-6">
+								<div x-show="packageId == 3" x-cloak x-data="{ enabled: {{ $kadData->dua_pasangan_is_on }} }" class="lg:col-span-6">
 									<!-- Button Element -->
 									<button 
 										@click="enabled = !enabled, duaPasanganIsOn = enabled, penjemput = enabled ? '4' : '1'" 
