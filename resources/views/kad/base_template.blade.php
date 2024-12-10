@@ -214,7 +214,7 @@
                         @if ($kadData->dua_pasangan_is_on == true)
                             <div class="text-center">
                                 <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_pasangan_pertama }}</p>
-                                <p class="text-2xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">Bersama</p>
+                                <p class="text-2xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->is_english ? 'With' : 'Bersama' }}</p>
                                 <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_pasangan_kedua }}</p>
                             </div>
                         @elseif ($kadData->penjemput == 2)
@@ -279,7 +279,7 @@
                                     <div class="text-center">
                                         <button @click="audio.play(); showModal = false" 
                                             class="bg-blue-500 text-white py-2 px-4 rounded-lg shadow hover:bg-blue-600 transition">
-                                            Buka
+                                            {{ $kadData->is_english ? 'Open' : 'Buka' }} 
                                         </button>
                                     </div>
                                 </div>
@@ -435,25 +435,25 @@
 
                     <!-- Countdown Timer -->
                     <div class="items-center w-full h-auto mb-6 rounded-xl p-4" style="background-color: {{ $colorCode }};">
-                        <p class="text-2xl text-white text-center mb-2">Menanti Hari</p>
+                        <p class="text-2xl text-white text-center mb-2">{{ $kadData->is_english ? 'Counting Days' : 'Menanti Hari' }}</p>
 
                         <!-- Countdown Container -->
                         <div id="countdown" class="text-center flex justify-center gap-4">
                             <div class="flex flex-col items-center">
                                 <span id="days" class="text-4xl font-semibold text-white"></span>
-                                <span class="text-sm text-white">Hari</span>
+                                <span class="text-sm text-white">{{ $kadData->is_english ? 'Day' : 'Hari' }}</span>
                             </div>
                             <div class="flex flex-col items-center">
                                 <span id="hours" class="text-4xl font-semibold text-white"></span>
-                                <span class="text-sm text-white">Jam</span>
+                                <span class="text-sm text-white">{{ $kadData->is_english ? 'Hour' : 'Jam' }}</span>
                             </div>
                             <div class="flex flex-col items-center">
                                 <span id="minutes" class="text-4xl font-semibold text-white"></span>
-                                <span class="text-sm text-white">Minit</span>
+                                <span class="text-sm text-white">{{ $kadData->is_english ? 'Min' : 'Hari' }}</span>
                             </div>
                             <div class="flex flex-col items-center">
                                 <span id="seconds" class="text-4xl font-semibold text-white"></span>
-                                <span class="text-sm text-white">Saat</span>
+                                <span class="text-sm text-white">{{ $kadData->is_english ? 'Sec' : 'Hari' }}</span>
                             </div>
                         </div>
 
@@ -514,7 +514,7 @@
                                 <div class="flex justify-center items-center mb-5">
                                     <div>
                                         <!-- Open the modal using ID.showModal() method -->
-                                        <x-primary-button @click="form_ucapan = true">Tulis Ucapan</x-primary-button>
+                                        <x-primary-button @click="form_ucapan = true">{{ $kadData->is_english ? 'Write a wish' : 'Tulis Ucapan' }}</x-primary-button>
                                     </div>
                                 </div>
                             </div>
@@ -587,7 +587,7 @@
                         @endif
                         <button type="button" @click="reminder_modal = true" class="flex-1 flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $colorCode }};">
                             <h1 class="text-lg text-white"><i class="fa-regular fa-calendar"></i></h1>
-                            <span class="text-xs text-white">REMINDER</span>
+                            <span class="text-xs text-white">{{ $kadData->is_english ? 'REMINDER' : 'KALENDAR' }}</span>
                         </button>
                         @if ($kadData->package_id == 3 && $kadData->gift_is_on)
                                 <h1 @click="gift_modal = true" class="text-4xl outline-white" style="color: {{ $colorCode }}; text-shadow: 1px 1px 0 #fff, -1px 1px 0 #fff, 1px -1px 0 #fff, -1px -1px 0 #fff;"><i class="fa-solid fa fa-gift"></i></h1>
@@ -595,13 +595,13 @@
                         @if ($kadData->package_id == 2 || $kadData->package_id == 3)
                             <button type="button" @click="contact_modal = true" class="flex-1 flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $colorCode }};">
                                 <h1 class="text-lg text-white"><i class="fa-solid fa-phone"></i></h1>
-                                <span class="text-xs text-white">TELEFON</span>
+                                <span class="text-xs text-white">{{ $kadData->is_english ? 'CONTACTS' : 'TELEFON' }}</span>
                             </button>
                         @endif
                         @if ($kadData->package_id == 2 || $kadData->package_id == 3)
                             <button type="button" @click="location_modal = true" class="flex-1 flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $colorCode }};">
                                 <h1 class="text-lg text-white"><i class="fa-solid fa-location-dot"></i></h1>
-                                <span class="text-xs text-white">LOKASI</span>
+                                <span class="text-xs text-white">{{ $kadData->is_english ? 'LOCATIONS' : 'LOKASI' }}</span>
                             </button>
                         @endif
                     </div>
@@ -632,18 +632,18 @@
                     <div class="md:p-10 p-0 flex flex-col gap-4">
                         <!-- Form fields -->
                         <div class="text-[white] flex flex-col gap-2">
-                            <h3>Nama</h3>
+                            <h3>{{ $kadData->is_english ? 'Name' : 'Nama' }}</h3>
                             <input required type="text" class="py-2 px-3 text-black focus:to-blue-600 rounded-[4px]" name="author" id="author">
                         </div>
                         <div class="text-[white] flex flex-col gap-2">
-                            <h3>Ucapan</h3>
+                            <h3>{{ $kadData->is_english ? 'Wish' : 'Ucapan' }}</h3>
                             <textarea required class="py-2 px-3 text-black focus:to-blue-600 rounded-[4px]" name="wish" id="wish"></textarea>
                         </div>
             
                         <!-- Buttons -->
                         <div class="py-3 sm:flex sm:flex-row-reverse sm:px-6">
                             <x-primary-button type="submit">Submit</x-primary-button>
-                            <x-primary-button type="button" class="bg-red-500 hover:bg-red-300" @click="form_ucapan = false">Tutup</x-primary-button>
+                            <x-primary-button type="button" class="bg-red-500 hover:bg-red-300" @click="form_ucapan = false">{{ $kadData->is_english ? 'Close' : 'Tutup' }}</x-primary-button>
                         </div>
                     </div>
                 </div>
@@ -677,39 +677,39 @@
                     <h1 class="text-center pb-4 font-bold text-xl text-[white] open-sans">{{ $kadData['nama_panggilan_lelaki'] }} & {{ $kadData['nama_panggilan_perempuan'] }}</h1>
                     
                     <!-- Form -->
-                    <div x-data="{ kehadiran: 'hadir' }" class="md:p-10 p-0 flex flex-col gap-4">
+                    <div x-data="{ kehadiran: 'Hadir' }" class="md:p-10 p-0 flex flex-col gap-4">
                         
                         <!-- Name Field -->
                         <div class="text-[white] flex flex-col gap-2">
-                            <h3>Nama (Required)</h3>
+                            <h3>{{ $kadData->is_english ? 'Name' : 'Nama' }} (Required)</h3>
                             <input required type="text" class="py-2 px-3 text-black focus:to-blue-600 rounded-[4px]" name="nama" id="nama">
                         </div>
                         
                         <!-- Phone Number Field -->
                         <div class="text-[white] flex flex-col gap-2">
-                            <h3>Telefon (Required)</h3>
+                            <h3>{{ $kadData->is_english ? 'Phone' : 'Telefon' }} (Required)</h3>
                             <input required type="text" class="py-2 px-3 text-black focus:to-blue-600 rounded-[4px]" name="nombor_telefon" id="nombor_telefon">
                         </div>
 
                         <!-- Kehadiran Field -->
                         <div class="text-[white] flex flex-col gap-2">
-                            <h3>Kehadiran (Required)</h3>
+                            <h3>{{ $kadData->is_english ? 'Name' : 'Nama' }} (Required)</h3>
                             <select x-model="kehadiran" class="w-full text-black py-2 px-3 focus:to-blue-600 rounded-[4px]" name="kehadiran" id="kehadiran">
-                                <option value="Hadir">Hadir</option>
-                                <option value="Tidak Hadir">Tidak Hadir</option>
+                                <option value="Hadir">{{ $kadData->is_english ? 'Yes' : 'Hadir' }}</option>
+                                <option value="Tidak Hadir">{{ $kadData->is_english ? 'No' : 'Tidak Hadir' }}</option>
                             </select>
                         </div>
 
                         <!-- Jumlah Kehadiran Field (Shown only if "Hadir" is selected) -->
-                        <div x-show="kehadiran === 'hadir'" class="text-[white] flex flex-col gap-2">
-                            <h3>Jumlah Kehadiran</h3>
+                        <div x-show="kehadiran === 'Hadir'" class="text-[white] flex flex-col gap-2">
+                            <h3>{{ $kadData->is_english ? 'Number of Attendees' : 'Jumlah Kehadiran' }}</h3>
                             <input type="number" class="py-2 px-3 text-black focus:to-blue-600 rounded-[4px]" name="jumlah_kehadiran" id="jumlah_kehadiran">
                         </div>
 
                         <!-- Action Buttons -->
-                        <div class="py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                        <div class="py-3">
                             <x-primary-button type="submit">Submit</x-primary-button>
-                            <x-primary-button class="bg-red-500 hover:bg-red-300" @click="form_rsvp = false">Tutup</x-primary-button>
+                            <x-primary-button class="bg-red-500 hover:bg-red-300" @click="form_rsvp = false">{{ $kadData->is_english ? 'Close' : 'Tutup' }}</x-primary-button>
                         </div>
 
                         <!-- Credit Link -->
@@ -749,13 +749,13 @@
 
                         <!-- Bank Name -->
                         <div class="grid grid-cols-1 items-center pb-8">
-                            <label class="text-sm underline flex items-center justify-center font-semibold text-gray-900">Nama Bank</label>
+                            <label class="text-sm underline flex items-center justify-center font-semibold text-gray-900">{{ $kadData->is_english ? 'Bank Name' : 'Nama Bank'}}</label>
                             <label class="bg-gray-200 p-1 mt-1 text-xl flex items-center justify-center rounded-lg text-gray-700">{{ $kadData->bank_name }}</label>
                         </div>
 
                         <!-- Account Number -->
                         <div class="grid grid-cols-1 items-center pb-8">
-                            <label class="text-sm underline flex items-center justify-center font-semibold text-gray-900">Nombor Account</label>
+                            <label class="text-sm underline flex items-center justify-center font-semibold text-gray-900">{{ $kadData->is_english ? 'Account Number' : 'Nombor Akaun'}}</label>
                             <label class="bg-gray-200 p-1 mt-1 text-xl flex items-center justify-center rounded-lg text-gray-700"><span x-text="accountNumber"></span></label>
                         </div>
 

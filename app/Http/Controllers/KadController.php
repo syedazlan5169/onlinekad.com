@@ -120,15 +120,16 @@ class KadController extends Controller
             //Maklumat Kad
             'font_id' => $request->input('font'),
             'bg_song_id' => $request->input('bg-song-id'),
-            'rsvp_is_on' =>$request->input('rsvp-is-on'),
-            'guestbook_is_on' =>$request->input('guestbook-is-on'),
-            'slideshow_is_on' =>$request->input('slideshow-is-on'),
-            'dua_pasangan_is_on' =>$request->input('dua-pasangan-is-on'),
-            'gift_is_on' =>$request->input('gift-is-on'),
-            'slider_image' =>$request->input('slider-image'),
-            'bank_name' =>$request->input('bank-name'),
-            'account_number' =>$request->input('account-number'),
+            'rsvp_is_on' => $request->input('rsvp-is-on'),
+            'guestbook_is_on' => $request->input('guestbook-is-on'),
+            'slideshow_is_on' => $request->input('slideshow-is-on'),
+            'dua_pasangan_is_on' => $request->input('dua-pasangan-is-on'),
+            'gift_is_on' => $request->input('gift-is-on'),
+            'slider_image' => $request->input('slider-image'),
+            'bank_name' => $request->input('bank-name'),
+            'account_number' => $request->input('account-number'),
             'qr_image' => $qrImagePath,
+            'is_english' => $request->input('bahasa'),
 
             // Maklumat Pengantin
             'nama_penuh_lelaki' => $request->input('nama-penuh-lelaki'),
@@ -315,6 +316,7 @@ class KadController extends Controller
         }
 
         // Handle QR Code image upload and return file path
+        $qrImagePath = '';
         if (request()->hasFile('qr-image')) {
                     $qrImagePath = $this->uploadQRImage(request()->file('qr-image'));
                 }
@@ -329,16 +331,17 @@ class KadController extends Controller
             'font_id' => request('font'),
             'package_id' => request('package-id'),
             'bg_song_id' => request('bg-song-id'),
-            'rsvp_is_on' =>request('rsvp-is-on'),
-            'guestbook_is_on' =>request('guestbook-is-on'),
-            'slideshow_is_on' =>request('slideshow-is-on'),
-            'gift_is_on' =>request('gift-is-on'),
-            'slider_image' =>request('slider-image'),
-            'dua_pasangan_is_on' =>request('dua-pasangan-is-on'),
+            'rsvp_is_on' => request('rsvp-is-on'),
+            'guestbook_is_on' => request('guestbook-is-on'),
+            'slideshow_is_on' => request('slideshow-is-on'),
+            'gift_is_on' => request('gift-is-on'),
+            'slider_image' => request('slider-image'),
+            'dua_pasangan_is_on' => request('dua-pasangan-is-on'),
             'is_paid' => $isPaid,
-            'account_number' =>request('account-number'),
-            'bank_name' =>request('bank-name'),
+            'account_number' => request('account-number'),
+            'bank_name' => request('bank-name'),
             'qr_image' => $qrImagePath,
+            'is_english' => request('bahasa'),
             
 
             // Maklumat Pengantin
@@ -656,13 +659,24 @@ class KadController extends Controller
         $bgSong = BgSong::findOrFail($kadData->bg_song_id);
         $slider = Slider::where('kad_id', $kadData->id)->firstOrFail();
 
-        $dateTime = [
-            'hari_tarikh_majlis' => $this->translateToMalay($kadData->tarikh_majlis, 3),
-            'hari_majlis' => $this->translateToMalay($kadData->tarikh_majlis, 1),
-            'tarikh_majlis' => $this->translateToMalay($kadData->tarikh_majlis, 2),
-            'masa_mula_majlis' => Carbon::createFromFormat('H:i:s', $kadData->masa_mula_majlis)->format('g:i A'),
-            'masa_tamat_majlis' => Carbon::createFromFormat('H:i:s', $kadData->masa_tamat_majlis)->format('g:i A')
-        ];
+        // Check if the language is English or Malay
+        if ($kadData->is_english) {
+            $dateTime = [
+                'hari_tarikh_majlis' => $kadData->tarikh_majlis->format('l d F Y'), // English day + date
+                'hari_majlis' => $kadData->tarikh_majlis->format('l'), // English day
+                'tarikh_majlis' => $kadData->tarikh_majlis->format('d F Y'), // English date
+                'masa_mula_majlis' => Carbon::createFromFormat('H:i:s', $kadData->masa_mula_majlis)->format('g:i A'),
+                'masa_tamat_majlis' => Carbon::createFromFormat('H:i:s', $kadData->masa_tamat_majlis)->format('g:i A'),
+            ];
+        } else {
+            $dateTime = [
+                'hari_tarikh_majlis' => $this->translateToMalay($kadData->tarikh_majlis, 3), // Malay day + date
+                'hari_majlis' => $this->translateToMalay($kadData->tarikh_majlis, 1), // Malay day
+                'tarikh_majlis' => $this->translateToMalay($kadData->tarikh_majlis, 2), // Malay date
+                'masa_mula_majlis' => Carbon::createFromFormat('H:i:s', $kadData->masa_mula_majlis)->format('g:i A'),
+                'masa_tamat_majlis' => Carbon::createFromFormat('H:i:s', $kadData->masa_tamat_majlis)->format('g:i A'),
+            ];
+        }
 
         if ($slider->image_url_1 == null || $kadData->slider_image == 1)
         {
