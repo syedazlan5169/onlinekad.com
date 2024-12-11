@@ -26,7 +26,6 @@ class ToyyibpayController extends Controller
             Order::create([
                 'user_id' => Auth::user()->id,
                 'user_email' => Auth::user()->email,
-                'package_id' => $kad->package_id,
                 'order_id' => $kad->order_id,
             ]);
         }
