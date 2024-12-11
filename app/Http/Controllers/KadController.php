@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NewKad;
 use App\Models\BgSong;
 use Illuminate\Http\Request;
 use App\Models\Kad;
@@ -16,6 +17,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
 
@@ -449,7 +451,13 @@ class KadController extends Controller
         $newTotal = $design->total_created + 1;
         $design->update(['total_created' => $newTotal]);
 
-
+        // Send New Kad created email
+        try {
+            Mail::to('admin@onlinekad.com')->send(new NewKad());
+        } catch (\Exception $e) {
+            Log::error('Email failed: ' . $e->getMessage());
+        }
+        
         return redirect('/senarai-kad');
     }
 

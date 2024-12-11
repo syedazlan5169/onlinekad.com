@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NewPayment;
 use App\Models\Kad;
 use App\Models\Order;
 use App\Models\Payment;
@@ -10,6 +11,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 
 class ToyyibpayController extends Controller
@@ -23,6 +25,7 @@ class ToyyibpayController extends Controller
             // If no existing order, create a new one
             Order::create([
                 'user_id' => Auth::user()->id,
+                'user_email' => Auth::user()->email,
                 'package_id' => $kad->package_id,
                 'order_id' => $kad->order_id,
             ]);
@@ -137,6 +140,14 @@ class ToyyibpayController extends Controller
             // Update the is_paid field to true using the Kad model
             if ($kad) {
                 $kad->update(['is_paid' => true]);
+
+                // Send payment success email to user
+                try {
+                    Mail::to($order->user_email)->send(new NewPayment());
+                } catch (\Exception $e) {
+                    Log::error('Email failed: ' . $e->getMessage());
+                }
+
             } else {
                 Log::error('No associated Kad found for the order.');
             }
