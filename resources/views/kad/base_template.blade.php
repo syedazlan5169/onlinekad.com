@@ -510,14 +510,6 @@
 
                     <!-- Guestbook -->
                         <div class="mt-7 w-full rounded-xl border-[1px] py-6 px-3 mb-16 bg-white bg-opacity-30" style="border-color: {{ $colorCode }};">
-                            <div>
-                                <div class="flex justify-center items-center mb-5">
-                                    <div>
-                                        <!-- Open the modal using ID.showModal() method -->
-                                        <x-primary-button @click="form_ucapan = true">{{ $kadData->is_english ? 'Write a wish' : 'Tulis Ucapan' }}</x-primary-button>
-                                    </div>
-                                </div>
-                            </div>
                             <livewire:guestbook-wishes :kad_id="$kadData->id" />
                         </div>
                     <!-- Move to wishes section after paginate -->
