@@ -10,6 +10,8 @@ use App\Http\Controllers\KatalogController;
 use App\Http\Controllers\ToyyibpayController;
 use App\Http\Controllers\Auth\GoogleController;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
+use App\Mail\NewKad;
 use App\Models\Guestbook;
 use App\Models\Rsvp;
 use Illuminate\Support\Facades\Route;
@@ -68,12 +70,21 @@ Route::get('/preview/{slug}', [KadController::class, 'showPreview']);
 
 //Mail testing
 Route::get('/send-test-email', function () {
-    Mail::raw('This is a test email using Zoho SMTP.', function ($message) {
-        $message->to('syedazlan5169@gmail.com')
-                ->subject('Test Email');
-    });
+    if (app()->environment('local'))
+    {
+        try {
+            Mail::to('syedazlan5169@gmail.com')->send(new NewKad());
+        } catch (\Exception $e) {
+            Log::error('Email failed: ' . $e->getMessage());
+            return 'Email failed. Check logs for details.';
+        }
 
-    return 'Test email sent!';
+        return 'Test email sent!';
+    }
+
+    abort(403, 'Unauthorized action.');
+
 });
+
 
 require __DIR__.'/auth.php';
