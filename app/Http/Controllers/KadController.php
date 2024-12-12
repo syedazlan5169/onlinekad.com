@@ -565,18 +565,19 @@ class KadController extends Controller
         $googleCalendarLink = "https://www.google.com/calendar/render?action=TEMPLATE&text={$eventTitle}&dates={$startDateTime}/{$endDateTime}&details={$eventDescription}&location={$eventLocation}&sf=true&output=xml";
 
         $icalContent = "BEGIN:VCALENDAR
-        VERSION:2.0
-        PRODID:-//Your Company//Your Product//EN
-        BEGIN:VEVENT
-        UID:" . uniqid() . "
-        DTSTAMP:" . gmdate('Ymd\THis\Z') . "
-        DTSTART:{$startDateTime}
-        DTEND:{$endDateTime}
-        SUMMARY:{$eventTitle}
-        DESCRIPTION:{$eventDescription}
-        LOCATION:{$eventLocation}
-        END:VEVENT
-        END:VCALENDAR";
+VERSION:2.0
+PRODID:ONLINEKAD.COM
+BEGIN:VEVENT
+UID:" . uniqid() . "
+DTSTAMP:" . gmdate('Ymd\THis\Z') . "
+DTSTART:{$startDateTime}
+DTEND:{$endDateTime}
+SUMMARY:{$title}
+DESCRIPTION:{$description}
+LOCATION:{$location}
+END:VEVENT
+END:VCALENDAR";
+
 
         // Define a unique file name
         $fileName = $orderId . '.ics';
