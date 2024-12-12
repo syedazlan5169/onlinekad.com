@@ -6,6 +6,11 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
+        <!-- SEO Meta Tags -->
+        <meta name="description" content="Kad kahwin digital percuma. Jemputan Digital Yang Memukau, Cepat dan Mudah. Pelbagai fungsi yang menarik. Dapatkan sekarang!">
+        <meta name="keywords" content="kad kahwin, kad kawin, digital wedding card, kad kahwin digital, kad kawin digital, kad jemputan digital, kad kahwin murah, kad jemputan kahwin, kahwinnow, kad digital kahwinnow, kahwinnow digital card, digital kad, digital invitation, jemputan, contoh kad kahwin, kad undangan digital, kad kahwin digital percuma">
+        <meta name="author" content="OnlineKad">
+
         <!-- Open Graph Meta Tags -->
         <meta property="og:title" content="ONLINEKAD.COM">
         <meta property="og:description" content="Kad Undangan Digital">
