@@ -28,7 +28,7 @@ Route::post('/toyyibpay-callback', [ToyyibpayController::class, 'handleToyyibpay
 Route::middleware(['auth'])->group(function () {
     Route::view('profile', 'profile')->name('profile');
 
-    Route::middleware(['is_admin'])->group(function () {
+    Route::middleware(['admin'])->group(function () {
         //AdminController
         Route::get('/senarai-kad', [KadController::class, 'index'])->name('senarai-kad.show');
         Route::get('/admin', [AdminController::class, 'index'])->name('admin.show');
