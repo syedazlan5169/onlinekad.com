@@ -28,11 +28,13 @@ Route::post('/toyyibpay-callback', [ToyyibpayController::class, 'handleToyyibpay
 Route::middleware(['auth'])->group(function () {
     Route::view('profile', 'profile')->name('profile');
 
-    //AdminController
-    Route::get('/senarai-kad', [KadController::class, 'index'])->name('senarai-kad.show');
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin.show');
-    Route::delete('/user/{id}', [AdminController::class, 'destroyUser']);
-
+    Route::middleware(['is_admin'])->group(function () {
+        //AdminController
+        Route::get('/senarai-kad', [KadController::class, 'index'])->name('senarai-kad.show');
+        Route::get('/admin', [AdminController::class, 'index'])->name('admin.show');
+        Route::delete('/user/{id}', [AdminController::class, 'destroyUser']);
+    });
+    
     //KadController
     Route::get('/senarai-kad', [KadController::class, 'index'])->name('senarai-kad.show');
     Route::get('/kad-guestbook/{id}', [KadController::class, 'showGuestbook'])->name('kad-guestbook.show');
