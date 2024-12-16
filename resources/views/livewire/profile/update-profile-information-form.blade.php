@@ -10,6 +10,7 @@ new class extends Component
 {
     public string $name = '';
     public string $email = '';
+    public string $phone = '';
 
     /**
      * Mount the component.
@@ -18,6 +19,7 @@ new class extends Component
     {
         $this->name = Auth::user()->name;
         $this->email = Auth::user()->email;
+        $this->phone= Auth::user()->phone;
     }
 
     /**
@@ -29,6 +31,7 @@ new class extends Component
 
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($user->id)],
         ]);
 
@@ -78,6 +81,12 @@ new class extends Component
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input wire:model="name" id="name" name="name" type="text" class="mt-1 block w-full" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
+        </div>
+
+        <div>
+            <x-input-label for="phone" :value="__('Phone')" />
+            <x-text-input wire:model="phone" id="phone" name="phone" type="text" class="mt-1 block w-full" required autofocus autocomplete="phone" />
+            <x-input-error class="mt-2" :messages="$errors->get('phone')" />
         </div>
 
         <div>

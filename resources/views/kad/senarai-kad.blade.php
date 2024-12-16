@@ -180,6 +180,25 @@
                                     Link Kad Jemputan
                                 </a>
                                 </div>
+                                <div x-data="{ copiedNotification: false, input: 'https://onlinekad.com/invitation/{{ $kad->slug }}'}" class="flex items-center justify-center w-16">
+                                    <button @click="navigator.clipboard.writeText(input), copiedNotification = true, setTimeout(() => copiedNotification = false, 2000)">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75" />
+                                        </svg>
+                                    </button>
+
+                                    <div x-show="copiedNotification" @click.away="copiedNotification = false" class="fixed bottom-3 right-3 z-20 max-w-sm overflow-hidden bg-green-100 border border-green-300 rounded" style="display: none;"
+                                        x-transition:enter="transform ease-out duration-300 transition"
+                                        x-transition:enter-start="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
+                                        x-transition:enter-end="translate-y-0 opacity-100 sm:translate-x-0"
+                                        x-transition:leave="transition ease-in duration-100"
+                                        x-transition:leave-start="opacity-100"
+                                        x-transition:leave-end="opacity-0"
+                                        >
+                                        <p class="p-3 flex items-center justify-center text-green-600">URL Copied to Clipboard</p>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </li>

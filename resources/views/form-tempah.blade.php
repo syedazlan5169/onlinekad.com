@@ -746,7 +746,7 @@
                                         <!-- End of Bg Song Selection -->
 
                                         <!-- Account Detail Upload -->
-                                        <div x-show="giftEnabled" x-cloak class="mt-8 lg:col-span-1">
+                                        <div x-show="giftEnabled && selectedPackage == 3" x-cloak class="mt-8 lg:col-span-1">
                                             <div class="lg:flex lg:justify-between">
                                                 <div>
                                                     <label for="bank-name" class="block text-sm font-semibold text-gray-900">Nama Bank</label>
@@ -791,9 +791,29 @@
                                         <!-- End of Account Detail Upload -->
                                     </div>
 
+                                    <div class="lg:grid lg:grid-cols-2">
+                                    <!-- Info Tambahan -->
+                                    <div class="mt-6 lg:col-span-1">
+                                        <label for="info-tambahan" class="block text-sm font-semibold text-gray-900">Info Tambahan</label>
+                                        <div class="mt-2">
+                                            <textarea name="info-tambahan" 
+                                            id="info-tambahan" 
+                                            rows="5" 
+                                            spellcheck="false" 
+                                            placeholder="Parking di tingkat 2
+                                    Surau di tingkat 1" 
+                                            class="block text-center w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm lg:w-72">{{ old('info-tambahan') }}</textarea>
+
+                                            <style>
+                                            #info-tambahan::placeholder {
+                                                white-space: pre-line;
+                                            }
+                                            </style>
+                                        </div>
+                                    </div>
 
                                     <!-- Gallery upload -->
-                                    <div x-data="{ sliderImage: '1' }" class="mt-8">
+                                    <div x-data="{ sliderImage: '1' }" class="mt-8 lg:col-span-1">
                                         <!--<label class="mb-2 mt-4 block text-sm font-medium text-gray-900">Galeri <span class="text-xs">(Optional)</span></label>-->
                                         <fieldset>
                                             <legend class="text-sm font-semibold text-gray-900">Galeri Slideshow</legend>
@@ -959,6 +979,7 @@
                                         setupImageUpload('picture_3', 'picture_3_img', 'picture_3_delete');
                                     </script>
                                     <!-- End Gallery Upload -->
+                                    </div>
 
                                 </div>
                             </div>

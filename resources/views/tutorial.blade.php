@@ -13,16 +13,16 @@
             <div class="flex justify-center">
                 <span class="isolate inline-flex rounded-md shadow-sm">
                     <button type="button" @click="selectedTab = 'tempah'"
-                     class="relative inline-flex items-center rounded-l-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
-                     :class="selectedTab === 'tempah' ? 'text-white bg-indigo-500 ring-indigo-500 hover:bg-indigo-500' : 'text-gray-900 hover:bg-gray-50'"
+                     class="relative inline-flex items-center rounded-l-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
+                     :class="selectedTab === 'tempah' ? 'text-white bg-indigo-500 ring-indigo-500 hover:bg-indigo-500' : 'bg-white text-gray-900 hover:bg-gray-50'"
                      >Tempah</button>
                     <button type="button" @click="selectedTab = 'rsvp'"
-                     class="relative -ml-px inline-flex items-center bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
-                     :class="selectedTab === 'rsvp' ? 'text-white bg-indigo-500 ring-indigo-500 hover:bg-indigo-500' : 'text-gray-900 hover:bg-gray-50'"
+                     class="relative -ml-px inline-flex items-center px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
+                     :class="selectedTab === 'rsvp' ? 'text-white bg-indigo-500 ring-indigo-500 hover:bg-indigo-500' : 'bg-white text-gray-900 hover:bg-gray-50'"
                      >RSVP</button>
                     <button type="button" @click="selectedTab = 'edit'"
-                     class="relative -ml-px inline-flex items-center rounded-r-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
-                     :class="selectedTab === 'edit' ? 'text-white bg-indigo-500 ring-indigo-500 hover:bg-indigo-500' : 'text-gray-900 hover:bg-gray-50'"
+                     class="relative -ml-px inline-flex items-center rounded-r-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
+                     :class="selectedTab === 'edit' ? 'text-white bg-indigo-500 ring-indigo-500 hover:bg-indigo-500' : 'bg-white text-gray-900 hover:bg-gray-50'"
                      >Kemaskini</button>
                 </span>
             </div>
@@ -113,6 +113,23 @@
                     <div class="px-4 py-5 sm:p-6">
                         <!-- Content goes here -->
                         <img src="{{ asset('images/tempah-5.webp') }}" alt="" />
+                    </div>
+                </div>
+                <div class="mt-5 divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow">
+                    <div class="px-4 py-5 sm:px-6">
+                        <!-- Content goes here -->
+                        <div class="flex gap-3">
+                            <div>
+                                <span class="inline-flex size-3 rounded-full bg-green-100 p-5 text-2xl font-medium text-green-700 items-center justify-center">5</span>
+                            </div>
+                            <div class="flex items-center">
+                                <p class="text-left mb-0 tutorial-title">Anda boleh klik pada <b>Link Kad Jemputan</b> untuk melihat kad jemputan atau klik pada icon <b>Copy</b> untuk menyalin URL kad jemputan dan edarkan di media social.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-4 py-5 sm:p-6">
+                        <!-- Content goes here -->
+                        <img src="{{ asset('images/tempah-6.webp') }}" alt="" />
                     </div>
                 </div>
             </div>

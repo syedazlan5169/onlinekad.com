@@ -132,6 +132,7 @@ class KadController extends Controller
             'account_number' => $request->input('account-number'),
             'qr_image' => $qrImagePath,
             'is_english' => $request->input('bahasa'),
+            'info_tambahan' => $request->input('info-tambahan'),
 
             // Maklumat Pengantin
             'nama_penuh_lelaki' => $request->input('nama-penuh-lelaki'),
@@ -344,6 +345,7 @@ class KadController extends Controller
             'bank_name' => request('bank-name'),
             'qr_image' => $qrImagePath,
             'is_english' => request('bahasa'),
+            'info_tambahan' => request('info-tambahan'),
             
 
             // Maklumat Pengantin
