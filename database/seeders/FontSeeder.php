@@ -64,6 +64,82 @@ class FontSeeder extends Seeder
                 'font_url' => 'https://fonts.googleapis.com/css2?family=Qwigley&display=swap',
                 'font_name' => 'Qwigley',
             ],
+            [
+                'id' => '11',
+                'font_url' => 'https://fonts.googleapis.com/css2?family=Fleur+De+Leah&display=swap',
+                'font_name' => 'Fleur De Leah',
+            ],
+            [
+                'id' => '12',
+                'font_url' => 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap',
+                'font_name' => 'Playfair Display',
+            ],
+            [
+                'id' => '13',
+                'font_url' => 'https://fonts.googleapis.com/css2?family=Imperial+Script&display=swap',
+                'font_name' => 'Imperial Script',
+            ],
+            [
+                'id' => '14',
+                'font_url' => 'https://fonts.googleapis.com/css2?family=Mea+Culpa&display=swap',
+                'font_name' => 'Mea Culpa',
+            ],
+            [
+                'id' => '15',
+                'font_url' => 'https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap',
+                'font_name' => 'Tangerine',
+            ],
+            [
+                'id' => '16',
+                'font_url' => 'https://fonts.googleapis.com/css2?family=Rouge+Script&display=swap',
+                'font_name' => 'Rouge Script',
+            ],
+            [
+                'id' => '17',
+                'font_url' => 'https://fonts.googleapis.com/css2?family=Yesteryear&display=swap',
+                'font_name' => 'Yesteryear',
+            ],
+            [
+                'id' => '18',
+                'font_url' => 'https://fonts.googleapis.com/css2?family=Niconne&display=swap',
+                'font_name' => 'Niconne',
+            ],
+            [
+                'id' => '19',
+                'font_url' => 'https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap',
+                'font_name' => 'Original Surfer',
+            ],
+            [
+                'id' => '20',
+                'font_url' => 'https://fonts.googleapis.com/css2?family=Gabriela&display=swap',
+                'font_name' => 'Gabriela',
+            ],
+            [
+                'id' => '21',
+                'font_url' => 'https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap',
+                'font_name' => 'Yeon Sung',
+            ],
+            [
+                'id' => '22',
+                'font_url' => 'https://fonts.googleapis.com/css2?family=Lovers+Quarrel&display=swap',
+                'font_name' => 'Lovers Quarrel',
+            ],
+            [
+                'id' => '23',
+                'font_url' => 'https://fonts.googleapis.com/css2?family=Italianno&display=swap',
+                'font_name' => 'Italianno',
+            ],
+            [
+                'id' => '24',
+                'font_url' => 'https://fonts.googleapis.com/css2?family=Ruthie&display=swap',
+                'font_name' => 'Ruthie',
+            ],
+            [
+                'id' => '25',
+                'font_url' => 'https://fonts.googleapis.com/css2?family=Lavishly+Yours&display=swap',
+                'font_name' => 'Lavishly Yours',
+            ],
+
         ];
 
         foreach ($fonts as $font)
