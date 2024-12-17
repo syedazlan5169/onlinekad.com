@@ -15,6 +15,15 @@ use App\Mail\NewKad;
 use App\Models\Guestbook;
 use App\Models\Rsvp;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Response;
+
+Route::get('/robots.txt', function () {
+    $content = app()->environment('production')
+        ? "User-agent: *\nAllow: /"
+        : "User-agent: *\nDisallow: /";
+
+    return Response::make($content, 200, ['Content-Type' => 'text/plain']);
+});
 
 Route::get('/', [HomeController::class, 'index'])->name('/');
 Route::get('pakej', [PakejController::class, 'index'])->name('pakej.show');
