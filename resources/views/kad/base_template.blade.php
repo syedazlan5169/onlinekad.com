@@ -27,7 +27,14 @@
         <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Noticia+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
         <link href="{{ $font->font_url }}" rel="stylesheet">
+
+        <!-- CSS Animation -->
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        
+
+
 
         <script src="https://kit.fontawesome.com/5a63289656.js" crossorigin="anonymous"></script>
 
@@ -35,24 +42,37 @@
         @vite(['resources/css/app.css','resources/js/app.js'])
         <style>
 
-            /* Element Animation */
-            @keyframes slide-up {
+            /* Zoom-In Animation */
+            @keyframes zoom-in {
                 0% {
-                    transform: translateY(100%);
-                    opacity: 0;
+                    opacity: 0; /* Start invisible */
+                    transform: scale(0.5); /* Start smaller */
                 }
                 100% {
-                    transform: translateY(0);
-                    opacity: 1;
+                    opacity: 1; /* Fully visible */
+                    transform: scale(1); /* Full size */
                 }
             }
-        
-            .animate-slide-up {
-                animation: slide-up 0.8s ease-out forwards;
+
+            /* Animation Classes */
+            .animate-zoom-in {
+                animation: zoom-in 0.8s ease-out forwards; /* Default zoom-in */
             }
-        
-            .animate-slide-up-delay {
-                animation: slide-up 1.2s ease-out forwards;
+
+            .animate-zoom-in-delay-1 {
+                animation: zoom-in 1.2s ease-out forwards; /* Delayed zoom-in */
+            }
+
+            .animate-zoom-in-delay-2 {
+                animation: zoom-in 1.6s ease-out forwards; /* Delayed zoom-in */
+            }
+
+            .animate-zoom-in-delay-3 {
+                animation: zoom-in 2.0s ease-out forwards; /* Delayed zoom-in */
+            }
+
+            .animate-zoom-in-delay-4 {
+                animation: zoom-in 2.4s ease-out forwards; /* Delayed zoom-in */
             }
 
             /* Watermark Styles */
@@ -202,20 +222,21 @@
         <!-- End of Notification Panel -->
 
 
-        <div class="h-full w-full bg-cover bg-center sm:w-[400px] sm:bg-contain sm:mx-auto sm:max-w-lg sm:rounded-lg sm:shadow-xl" style="background-image: url('{{ asset($design->design_url_2) }}'); background-attachment: fixed; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);">
+        <div x-data="{ showModal: @if(!session('success')) true @else false @endif }"
+             class="h-full w-full bg-cover bg-center lg:w-[400px] sm:bg-contain sm:mx-auto sm:max-w-lg sm:rounded-lg sm:shadow-xl" style="background-image: url('{{ asset($design->design_url_2) }}'); background-attachment: fixed; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);">
 
 
-        <canvas class="fixed opacity-30" style="pointer-events: none"></canvas>
+            <canvas class="fixed opacity-30" style="pointer-events: none"></canvas>
             <!-- Kad Section -->
             <div class="h-screen w-full bg-cover bg-center" style="background-image: url('{{ asset($design->design_url_1) }}');">
                 <div class="absolute inset-0 bg-white bg-opacity-20">
-                    <div class="flex flex-col justify-center gap-16 items-center h-full">
-                        <h1 class="text-2xl text-center text-gray-600 animate-slide-up" style="font-family: 'Noticia Text', cursive; color: {{ $primaryTextColor }};">{{ $kadData->tajuk_kad }}</h1>
+                    <div x-show="showModal == false" class="flex flex-col justify-center gap-16 items-center h-full">
+                        <h1 class="text-2xl text-center text-gray-600 animate-zoom-in" style="font-family: 'Noticia Text', cursive; color: {{ $primaryTextColor }};">{{ $kadData->tajuk_kad }}</h1>
                         @if ($kadData->dua_pasangan_is_on == true)
                             <div class="text-center">
-                                <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_pasangan_pertama }}</p>
-                                <p class="text-2xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->is_english ? 'With' : 'Bersama' }}</p>
-                                <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_pasangan_kedua }}</p>
+                                <p class="text-5xl text-gray-600 mb-0 leading-tight animate-zoom-in-delay-1" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_pasangan_pertama }}</p>
+                                <p class="text-2xl text-gray-600 mb-0 leading-tight animate-zoom-in-delay-1" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->is_english ? 'With' : 'Bersama' }}</p>
+                                <p class="text-5xl text-gray-600 mb-0 leading-tight animate-zoom-in-delay-1" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_pasangan_kedua }}</p>
                             </div>
                         @elseif ($kadData->penjemput == 2)
                             <div class="text-center">
@@ -225,14 +246,14 @@
                             </div>
                         @else
                             <div class="text-center">
-                                <p class="text-7xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_lelaki }}</p>
-                                <p class="text-5xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">&</p>
-                                <p class="text-7xl text-gray-600 mb-0 leading-tight animate-slide-up-delay" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_perempuan }}</p>
+                                <p class="text-7xl text-gray-600 mb-0 leading-tight animate-zoom-in-delay-1" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_lelaki }}</p>
+                                <p class="text-5xl text-gray-600 mb-0 leading-tight animate-zoom-in-delay-2" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">&</p>
+                                <p class="text-7xl text-gray-600 mb-0 leading-tight animate-zoom-in-delay-3" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_perempuan }}</p>
                             </div>
                         @endif
                         <div class="text-center">
-                            <p class="text-2xl text-gray-600 leading-tight animate-slide-up-delay" style="font-family: 'Noticia Text', cursive; color: {{ $primaryTextColor }};">{{ $dateTime['hari_majlis'] }}</p>
-                            <p class="text-2xl text-gray-600 leading-tight animate-slide-up-delay" style="font-family: 'Noticia Text', cursive; color: {{ $primaryTextColor }};">{{ $dateTime['tarikh_majlis'] }}</p>
+                            <p class="text-2xl text-gray-600 leading-tight animate-zoom-in-delay-4" style="font-family: 'Noticia Text', cursive; color: {{ $primaryTextColor }};">{{ $dateTime['hari_majlis'] }}</p>
+                            <p class="text-2xl text-gray-600 leading-tight animate-zoom-in-delay-4" style="font-family: 'Noticia Text', cursive; color: {{ $primaryTextColor }};">{{ $dateTime['tarikh_majlis'] }}</p>
                         </div>
                     </div>
                 </div>
@@ -244,7 +265,7 @@
                 <div class="relative top-0 bg-white bg-opacity-40">
                     <!-- Custom Audio Player -->
                     @if (($kadData->package_id == 2 || $kadData->package_id == 3) && $bgSong->id !== 1)
-                        <div x-data="{ isPlaying: true, audio: null, showModal: @if(!session('success')) true @else false @endif }" 
+                        <div x-data="{ isPlaying: true, audio: null }" 
                             x-init="audio = $refs.audioElement" class="flex items-center justify-center mb-4">
 
                             <!-- Play/Pause Button -->
@@ -272,94 +293,128 @@
                             </audio>
 
                             <!-- Modal for User Interaction to Play Audio -->
-                            <div x-show="showModal" x-cloak 
-                                class="fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-75">
-                                <!-- Modal Content -->
-                                <div class="bg-white p-6 rounded-lg shadow-lg">
-                                    <div class="text-center">
-                                        <button @click="audio.play(); showModal = false" 
-                                            class="bg-blue-500 text-white py-2 px-4 rounded-lg shadow hover:bg-blue-600 transition">
-                                            {{ $kadData->is_english ? 'Open' : 'Buka' }} 
-                                        </button>
+                            <div class="flex justify-center items-center">
+                                <div x-show="showModal" x-cloak
+                                    x-transition:leave="transition ease-out duration-[1500ms] transform"
+                                    x-transition:leave-start="translate-y-0"
+                                    x-transition:leave-end="-translate-y-full"
+                                    class="fixed inset-0 z-[9999] flex items-center justify-center bg-opacity-75 bg-cover lg:w-[400px] lg:mx-auto lg:my-auto lg:flex lg:items-center lg:justify-center">
+                                    <!-- Modal Content -->
+                                    <div class="h-full w-full relative">
+                                        <!-- Blurred Background Image -->
+                                        <div 
+                                            class="absolute inset-0 bg-cover bg-center blur-sm" 
+                                            style="background-image: url('{{ asset($design->design_url_1) }}');">
+                                        </div>
+
+                                        <!-- Content Overlay -->
+                                        <div class="relative z-10 flex flex-col gap-6 items-center justify-center h-full">
+                                            @if ($kadData->dua_pasangan_is_on == true)
+                                                <div class="text-center">
+                                                    <p class="text-5xl text-gray-600 mb-0 leading-tight" data-aos="zoom-in" data-aos-duration="2000" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_pasangan_pertama }}</p>
+                                                    <p class="text-2xl text-gray-600 mb-0 leading-tight" data-aos="zoom-in" data-aos-duration="2000" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->is_english ? 'With' : 'Bersama' }}</p>
+                                                    <p class="text-5xl text-gray-600 mb-0 leading-tight" data-aos="zoom-in" data-aos-duration="2000" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_pasangan_kedua }}</p>
+                                                </div>
+                                            @elseif ($kadData->penjemput == 2)
+                                                <div class="text-center">
+                                                    <p class="text-7xl text-gray-600 mb-0 leading-tight" data-aos="zoom-in" data-aos-duration="2000" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_perempuan }}</p>
+                                                    <p class="text-5xl text-gray-600 mb-0 leading-tight" data-aos="zoom-in" data-aos-duration="2000" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">&</p>
+                                                    <p class="text-7xl text-gray-600 mb-0 leading-tight" data-aos="zoom-in" data-aos-duration="2000" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_lelaki }}</p>
+                                                </div>
+                                            @else
+                                                <div class="text-center">
+                                                    <p class="text-7xl text-gray-600 mb-0 leading-tight" data-aos="zoom-in" data-aos-duration="2000" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_lelaki }}</p>
+                                                    <p class="text-5xl text-gray-600 mb-0 leading-tight" data-aos="zoom-in" data-aos-duration="2000" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">&</p>
+                                                    <p class="text-7xl text-gray-600 mb-0 leading-tight" data-aos="zoom-in" data-aos-duration="2000" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_perempuan }}</p>
+                                                </div>
+                                            @endif
+                                            <button 
+                                                @click="audio.play(); showModal = false" 
+                                                class="bg-blue-500 text-white py-2 px-4 rounded-lg shadow animate-pulse hover:bg-blue-600 transition">
+                                                {{ $kadData->is_english ? 'Open' : 'Buka' }} 
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     @endif
                     <!-- End of Custom Audio Player-->
+
                     <div class="flex flex-col justify-center gap-5 items-center h-full">
-                        <img class="w-full px-3 py-6 h-18" src="/images/bismillah.webp" alt="">
-                        <div class="text-center">
+                        <img data-aos="zoom-in" data-aos-duration="2000" data-aos="zoom-in" data-aos-duration="2000" class="w-full px-3 py-6 h-18" src="/images/bismillah.webp" alt="">
+                        <div data-aos="zoom-in" data-aos-duration="2000" class="text-center">
                             <p class="text-sm text-center px-4 font-serif" style="color: {{ $colorCode }}">ASSALAMUALAIKUM W.B.T</p>
                         </div>
 
                         <!-- Penjemput Pihak Lelaki -->
                         @if ($kadData->penjemput == 1)
-                            <div class="text-center">
+                            <div data-aos="zoom-in" data-aos-duration="2000" class="text-center">
                                 <p class="text-xl text-center text-gray-600 font-serif">{{ $kadData->nama_bapa_pengantin_lelaki }}</p>
                                 <p class="text-xl text-center text-gray-600 font-serif">&</p>
                                 <p class="text-xl text-center text-gray-600 font-serif">{{ $kadData->nama_ibu_pengantin_lelaki }}</p>
                             </div>
                         @elseif ($kadData->penjemput == 2)
                             <!-- Penjemput Pihak Perempuan -->
-                            <div class="text-center">
+                            <div data-aos="zoom-in" data-aos-duration="2000" class="text-center">
                                 <p class="text-xl text-center text-gray-600 font-serif">{{ $kadData->nama_bapa_pengantin_perempuan }}</p>
                                 <p class="text-xl text-center text-gray-600 font-serif">&</p>
                                 <p class="text-xl text-center text-gray-600 font-serif">{{ $kadData->nama_ibu_pengantin_perempuan }}</p>
                             </div>
                         @elseif ($kadData->penjemput == 3)
                             <!-- Penjemput Dua Pihak -->
-                            <div class="text-center">
+                            <div data-aos="zoom-in" data-aos-duration="2000" class="text-center">
                                 <p class="text-xl text-center text-gray-600 font-serif">{{ $kadData->nama_bapa_pengantin_lelaki }}</p>
                                 <p class="text-xl text-center text-gray-600 font-serif">&</p>
                                 <p class="text-xl text-center text-gray-600 font-serif">{{ $kadData->nama_ibu_pengantin_lelaki }}</p>
                             </div>
-                            <div class="w-[70%] py-0 my-0 border-t" style="border-color: {{ $colorCode }}"></div>
-                            <div class="text-center">
+                            <div data-aos="zoom-in" data-aos-duration="2000" class="w-[70%] py-0 my-0 border-t" style="border-color: {{ $colorCode }}"></div>
+                            <div data-aos="zoom-in" data-aos-duration="2000" class="text-center">
                                 <p class="text-xl text-center text-gray-600 font-serif">{{ $kadData->nama_bapa_pengantin_perempuan }}</p>
                                 <p class="text-xl text-center text-gray-600 font-serif">&</p>
                                 <p class="text-xl text-center text-gray-600 font-serif">{{ $kadData->nama_ibu_pengantin_perempuan }}</p>
                             </div>
                         @elseif ($kadData->penjemput == 4 && $kadData->dua_pasangan_is_on == true)
                             <!-- Dua Pasangan -->
-                            <div class="text-center">
+                            <div data-aos="zoom-in" data-aos-duration="2000" class="text-center">
                                 <p class="text-xl text-center text-gray-600 font-serif">{{ $kadData->nama_bapa_pengantin }}</p>
                                 <p class="text-xl text-center text-gray-600 font-serif">&</p>
                                 <p class="text-xl text-center text-gray-600 font-serif">{{ $kadData->nama_ibu_pengantin }}</p>
                             </div>
                         @endif
 
-                        <div class="text-center">
+                        <div data-aos="zoom-in" data-aos-duration="2000" class="text-center">
                             <p class="text-sm text-center px-4 font-serif" style="color: {{ $colorCode }}">{{ $kadData->ayat_jemputan }}</p>
                         </div>
 
                         @if ($kadData->penjemput == 1 || $kadData->penjemput == 3)
                             <!-- Penjemput Pihak Lelaki -->
-                            <div class="text-center px-2">
+                            <div data-aos="zoom-in" data-aos-duration="2000" class="text-center px-2">
                                 <p class="text-2xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_lelaki }}</p>
                                 <p class="text-xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">&</p>
                                 <p class="text-2xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_perempuan }}</p>
                             </div>
                         @elseif ($kadData->penjemput == 2)
                             <!-- Penjemput Pihak Perempuan -->
-                            <div class="text-center px-2">
+                            <div data-aos="zoom-in" data-aos-duration="2000" class="text-center px-2">
                                 <p class="text-2xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_perempuan }}</p>
                                 <p class="text-xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">&</p>
                                 <p class="text-2xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_lelaki }}</p>
                             </div>
                         @elseif ($kadData->penjemput == 4 && $kadData->dua_pasangan_is_on == true)
                             <!-- Penjemput Dua Pihak -->
-                            <div class="text-center">
+                            <div data-aos="zoom-in" data-aos-duration="2000" class="text-center">
                                 <p class="text-2xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_pasangan_pertama }}</p>
                             </div>
-                            <div class="w-[70%] py-0 my-0 border-t" style="border-color: {{ $colorCode }}"></div>
-                            <div class="text-center">
+                            <div data-aos="zoom-in" data-aos-duration="2000" class="w-[70%] py-0 my-0 border-t" style="border-color: {{ $colorCode }}"></div>
+                            <div data-aos="zoom-in" data-aos-duration="2000" class="text-center">
                                 <p class="text-2xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_pasangan_kedua }}</p>
                             </div>
                         @endif
 
                         <div class="flex flex-col justify-center gap-5">
-                            <div>
+                            <div data-aos="zoom-in" data-aos-duration="2000">
                                 <div class="flex justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="{{ $colorCode }}" class="size-12">
                                     <path d="M12.75 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM7.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM8.25 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM9.75 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM10.5 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM12.75 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM14.25 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" />
@@ -368,7 +423,7 @@
                                 </div>
                                 <p class="text-l font-bold text-center text-gray-600 font-sans">{{ $dateTime['hari_tarikh_majlis'] }}</p>
                             </div>
-                            <div>
+                            <di data-aos="zoom-in" data-aos-duration="2000"v>
                                 <div class="flex justify-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="{{ $colorCode }}" class="size-12">
                                         <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 6a.75.75 0 0 0-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 0 0 0-1.5h-3.75V6Z" clip-rule="evenodd" />
@@ -377,7 +432,7 @@
                                 <p class="text-l font-bold text-center text-gray-600 font-sans">{{ $dateTime['masa_mula_majlis'] }} ~ {{ $dateTime['masa_tamat_majlis'] }}</p>
                             </div>
 
-                            <div>
+                            <di data-aos="zoom-in" data-aos-duration="2000"v>
                                 <div class="flex justify-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="{{ $colorCode }}" class="size-12">
                                         <path fill-rule="evenodd" d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd" />
@@ -387,7 +442,7 @@
                             </div>
 
                             @if ($kadData->package_id == 2 || $kadData->package_id ==3)
-                                <div>
+                                <div class="mt-4" data-aos="zoom-in" data-aos-duration="2000"v>
                                     <!-- Aturcara Majlis List -->
                                     <ul class="space-y-2">
                                         @php
@@ -421,7 +476,7 @@
                             @endif
 
                             @if (!empty($kadData->info_tambahan))
-                            <div class="m-7 py-4 border rounded-lg border-gray-400">
+                            <div data-aos="zoom-in" data-aos-duration="2000" class="m-7 py-4 border rounded-lg border-gray-400">
                                 <p class="mb-2 text-l font-bold underline text-center text-gray-600 font-sans px-14">Info Tambahan</p>
                                 <p class="text-sm text-center text-gray-600 font-sans px-14">{!! nl2br(e($kadData->info_tambahan)) !!}</p>
                             </div>
@@ -575,8 +630,8 @@
 
             <!-- Footer Section -->
             @if ($kadData->package_id == 2 || $kadData->package_id == 3)
-            <footer class="w-full mx-auto sm:w-[400px] flex justify-center items-center]">
-                <div class="fixed bottom-0 z-50 w-full sm:w-[400px] mx-auto h-18 border-t" style="background-color: {{ $colorFooter }};">
+            <footer class="w-full mx-auto lg:w-[400px] flex justify-center items-center]">
+                <div class="fixed bottom-0 z-50 w-full lg:w-[400px] mx-auto h-18 border-t" style="background-color: {{ $colorFooter }};">
                     <div class="flex justify-center items-center my-1 w-[97%] gap-2 max-w-lg mx-auto font-medium">
                         @if (($kadData->package_id == 2 || $kadData->package_id == 3) && $kadData->rsvp_is_on)
                             <button type="button" @click="form_rsvp = true" class="flex-1 flex-col items-center justify-center px-1 pb-1 rounded-md border border-white" style="background-color: {{ $colorCode }};">
@@ -990,6 +1045,10 @@
             }
         }
 
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
     </script>
     </body>
 </html>
