@@ -797,7 +797,7 @@
                                                     </div>
                                                 </div>
                                                 
-												<label class="text-xs leading-none text-gray-500" for="qr-image">Crop bahagia QR sahaja sebelum upload untuk dapatkan paparan yang jelas</label>
+												<label class="text-xs leading-none text-gray-500" for="qr-image">Crop bahagian QR sahaja sebelum upload untuk dapatkan paparan yang jelas</label>
                                             </div>
                                         </div>
                                         <!-- End of Account Detail Upload -->
