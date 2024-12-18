@@ -27,6 +27,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Noticia+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
 
         <link href="{{ $font->font_url }}" rel="stylesheet">
 
@@ -346,48 +348,48 @@
                     <div class="flex flex-col justify-center gap-2 items-center h-full">
                         <img data-aos="fade-up" data-aos-duration="1000" data-aos="fade-up" data-aos-duration="1000" class="w-[70%] px-3 py-4 mt-6" src="/images/bismillah.webp" alt="">
                         <div data-aos="fade-up" data-aos-duration="1000" class="text-center">
-                            <p class="text-sm text-center px-4 font-sans" style="color: {{ $colorCode }}">ASSALAMUALAIKUM W.B.T</p>
+                            <p class="text-sm text-center px-4 font-serif" style="font-family: 'EB Garamond'; color: {{ $colorCode }}">ASSALAMUALAIKUM W.B.T</p>
                         </div>
 
 
                         <!-- Penjemput Pihak Lelaki -->
                         @if ($kadData->penjemput == 1)
                             <div data-aos="fade-up" data-aos-duration="1000" class="text-center">
-                                <p class="text-lg text-center text-gray-600 font-sans">{{ $kadData->nama_bapa_pengantin_lelaki }}</p>
-                                <p class="text-lg text-center text-gray-600 font-sans">&</p>
-                                <p class="text-lg text-center text-gray-600 font-sans">{{ $kadData->nama_ibu_pengantin_lelaki }}</p>
+                                <p class="text-lg text-center text-gray-600 font-serif" style="font-family: 'EB Garamond'">{{ $kadData->nama_bapa_pengantin_lelaki }}</p>
+                                <p class="text-lg text-center text-gray-600 font-serif" style="font-family: 'EB Garamond'">&</p>
+                                <p class="text-lg text-center text-gray-600 font-serif" style="font-family: 'EB Garamond'">{{ $kadData->nama_ibu_pengantin_lelaki }}</p>
                             </div>
                         @elseif ($kadData->penjemput == 2)
                             <!-- Penjemput Pihak Perempuan -->
                             <div data-aos="fade-up" data-aos-duration="1000" class="text-center">
-                                <p class="text-lg text-center text-gray-600 font-sans">{{ $kadData->nama_bapa_pengantin_perempuan }}</p>
-                                <p class="text-lg text-center text-gray-600 font-sans">&</p>
-                                <p class="text-lg text-center text-gray-600 font-sans">{{ $kadData->nama_ibu_pengantin_perempuan }}</p>
+                                <p class="text-lg text-center text-gray-600 font-serif" style="font-family: 'EB Garamond'">{{ $kadData->nama_bapa_pengantin_perempuan }}</p>
+                                <p class="text-lg text-center text-gray-600 font-serif" style="font-family: 'EB Garamond'">&</p>
+                                <p class="text-lg text-center text-gray-600 font-serif" style="font-family: 'EB Garamond'">{{ $kadData->nama_ibu_pengantin_perempuan }}</p>
                             </div>
                         @elseif ($kadData->penjemput == 3)
                             <!-- Penjemput Dua Pihak -->
                             <div data-aos="fade-up" data-aos-duration="1000" class="text-center">
-                                <p class="text-lg text-center text-gray-600 font-sans">{{ $kadData->nama_bapa_pengantin_lelaki }}</p>
-                                <p class="text-lg text-center text-gray-600 font-sans">&</p>
-                                <p class="text-lg text-center text-gray-600 font-sans">{{ $kadData->nama_ibu_pengantin_lelaki }}</p>
+                                <p class="text-lg text-center text-gray-600 font-serif" style="font-family: 'EB Garamond'">{{ $kadData->nama_bapa_pengantin_lelaki }}</p>
+                                <p class="text-lg text-center text-gray-600 font-serif" style="font-family: 'EB Garamond'">&</p>
+                                <p class="text-lg text-center text-gray-600 font-serif" style="font-family: 'EB Garamond'">{{ $kadData->nama_ibu_pengantin_lelaki }}</p>
                             </div>
                             <div data-aos="fade-up" data-aos-duration="1000" class="w-[70%] py-0 my-0 border-t" style="border-color: {{ $colorCode }}"></div>
                             <div data-aos="fade-up" data-aos-duration="1000" class="text-center">
-                                <p class="text-lg text-center text-gray-600 font-sans">{{ $kadData->nama_bapa_pengantin_perempuan }}</p>
-                                <p class="text-lg text-center text-gray-600 font-sans">&</p>
-                                <p class="text-lg text-center text-gray-600 font-sans">{{ $kadData->nama_ibu_pengantin_perempuan }}</p>
+                                <p class="text-lg text-center text-gray-600 font-serif" style="font-family: 'EB Garamond'">{{ $kadData->nama_bapa_pengantin_perempuan }}</p>
+                                <p class="text-lg text-center text-gray-600 font-serif" style="font-family: 'EB Garamond'">&</p>
+                                <p class="text-lg text-center text-gray-600 font-serif" style="font-family: 'EB Garamond'">{{ $kadData->nama_ibu_pengantin_perempuan }}</p>
                             </div>
                         @elseif ($kadData->penjemput == 4 && $kadData->dua_pasangan_is_on == true)
                             <!-- Dua Pasangan -->
                             <div data-aos="fade-up" data-aos-duration="1000" class="text-center">
-                                <p class="text-lg text-center text-gray-600 font-sans">{{ $kadData->nama_bapa_pengantin }}</p>
-                                <p class="text-lg text-center text-gray-600 font-sans">&</p>
-                                <p class="text-lg text-center text-gray-600 font-sans">{{ $kadData->nama_ibu_pengantin }}</p>
+                                <p class="text-lg text-center text-gray-600 font-serif" style="font-family: 'EB Garamond'">{{ $kadData->nama_bapa_pengantin }}</p>
+                                <p class="text-lg text-center text-gray-600 font-serif" style="font-family: 'EB Garamond'">&</p>
+                                <p class="text-lg text-center text-gray-600 font-serif" style="font-family: 'EB Garamond'">{{ $kadData->nama_ibu_pengantin }}</p>
                             </div>
                         @endif
 
                         <div data-aos="fade-up" data-aos-duration="1000" class="text-center">
-                            <p class="text-sm text-center px-6 font-sans" style="color: {{ $colorCode }}">{{ $kadData->ayat_jemputan }}</p>
+                            <p class="text-sm text-center px-6 font-serif" style="font-family: 'EB Garamond'; color: {{ $colorCode }}">{{ $kadData->ayat_jemputan }}</p>
                         </div>
 
                         <!-- Separator -->
@@ -396,16 +398,16 @@
                         @if ($kadData->penjemput == 1 || $kadData->penjemput == 3)
                             <!-- Penjemput Pihak Lelaki -->
                             <div data-aos="fade-up" data-aos-duration="1000" class="text-center px-4">
-                                <p class="text-xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_lelaki }}</p>
+                                <p class="text-2xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_lelaki }}</p>
                                 <p class="text-lg font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">&</p>
-                                <p class="text-xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_perempuan }}</p>
+                                <p class="text-2xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_perempuan }}</p>
                             </div>
                         @elseif ($kadData->penjemput == 2)
                             <!-- Penjemput Pihak Perempuan -->
                             <div data-aos="fade-up" data-aos-duration="1000" class="text-center px-4">
-                                <p class="text-xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_perempuan }}</p>
+                                <p class="text-2xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_perempuan }}</p>
                                 <p class="text-lg font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">&</p>
-                                <p class="text-xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_lelaki }}</p>
+                                <p class="text-2xl font-bold text-gray-600 mb-0 leading-tight" style="font-family: 'Dancing Script', cursive; margin-bottom: 0;">{{ $kadData->nama_penuh_lelaki }}</p>
                             </div>
                         @elseif ($kadData->penjemput == 4 && $kadData->dua_pasangan_is_on == true)
                             <!-- Penjemput Dua Pihak -->
@@ -418,7 +420,7 @@
                             </div>
                         @endif
 
-                        <div class="mt-5 flex flex-col justify-center gap-5">
+                        <div class="mt-5 flex flex-col justify-center gap-6">
                             <div data-aos="fade-up" data-aos-duration="1000">
                                 <div class="flex justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="{{ $colorCode }}" class="size-12">
@@ -426,15 +428,15 @@
                                     <path fill-rule="evenodd" d="M6.75 2.25A.75.75 0 0 1 7.5 3v1.5h9V3A.75.75 0 0 1 18 3v1.5h.75a3 3 0 0 1 3 3v11.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V7.5a3 3 0 0 1 3-3H6V3a.75.75 0 0 1 .75-.75Zm13.5 9a1.5 1.5 0 0 0-1.5-1.5H5.25a1.5 1.5 0 0 0-1.5 1.5v7.5a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5v-7.5Z" clip-rule="evenodd" />
                                 </svg>
                                 </div>
-                                <p class="text-sm font-bold text-center text-gray-600 font-sans">{{ $dateTime['hari_tarikh_majlis'] }}</p>
+                                <p class="text-base font-semibold text-center text-gray-600"  style="font-family: 'EB Garamond'; text-transform: uppercase;">{{ $dateTime['hari_tarikh_majlis'] }}</p>
                             </div>
-                            <di data-aos="fade-up" data-aos-duration="1000"v>
+                            <div data-aos="fade-up" data-aos-duration="1000"v>
                                 <div class="flex justify-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="{{ $colorCode }}" class="size-12">
                                         <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 6a.75.75 0 0 0-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 0 0 0-1.5h-3.75V6Z" clip-rule="evenodd" />
                                     </svg>
                                 </div>
-                                <p class="text-sm font-bold text-center text-gray-600 font-sans">{{ $dateTime['masa_mula_majlis'] }} ~ {{ $dateTime['masa_tamat_majlis'] }}</p>
+                                <p class="text-base font-semibold text-center text-gray-600" style="font-family: 'EB Garamond'; text-transform: uppercase;">{{ $dateTime['masa_mula_majlis'] }} ~ {{ $dateTime['masa_tamat_majlis'] }}</p>
                             </div>
 
                             <di data-aos="fade-up" data-aos-duration="1000"v>
@@ -443,7 +445,7 @@
                                         <path fill-rule="evenodd" d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd" />
                                     </svg>
                                 </div>
-                                <p class="text-sm font-bold text-center text-gray-600 font-sans px-14">{!! nl2br(e($kadData->alamat_majlis)) !!}</p>
+                                <p class="text-base font-semibold text-center text-gray-600 px-14" style="font-family: 'EB Garamond'; text-transform: uppercase;">{!! nl2br(e($kadData->alamat_majlis)) !!}</p>
                             </div>
 
                             @if ($kadData->package_id == 2 || $kadData->package_id ==3)
@@ -467,11 +469,11 @@
                                                 <li class="grid grid-cols-3 gap-8 items-center px-6">
                                                     <!-- Show 'masa_acara' if not empty -->
                                                     @if(!empty($entry['masa_acara']))
-                                                        <p class="col-span-1 text-sm font-bold text-end text-gray-600 font-sans">{{ \Carbon\Carbon::parse($entry['masa_acara'])->format('g:i A') }}</p>
+                                                        <p class="col-span-1 text-base font-semibold text-end text-gray-600" style="font-family: 'EB Garamond'">{{ \Carbon\Carbon::parse($entry['masa_acara'])->format('g:i A') }}</p>
                                                     @endif
                                                     <!-- Show 'acara' if not empty -->
                                                     @if(!empty($entry['acara']))
-                                                        <p class="col-span-2 text-sm italic text-start text-gray-600 font-sans">{{ $entry['acara'] }}</p>
+                                                        <p class="col-span-2 text-base italic text-start text-gray-600" style="font-family: 'EB Garamond'">{{ $entry['acara'] }}</p>
                                                     @endif
                                                 </li>
                                             @endif
@@ -482,8 +484,8 @@
 
                             @if (!empty($kadData->info_tambahan))
                             <div data-aos="fade-up" data-aos-duration="1000" class="m-7 py-4 border rounded-lg border-gray-400">
-                                <p class="mb-2 text-sm font-bold underline text-center text-gray-600 font-sans px-14">Info Tambahan</p>
-                                <p class="text-xs text-center text-gray-600 font-sans px-14">{!! nl2br(e($kadData->info_tambahan)) !!}</p>
+                                <p class="mb-2 text-sm  underline text-center text-gray-600 font-serif px-14">Info Tambahan</p>
+                                <p class="text-xs text-center text-gray-600 font-serif px-14">{!! nl2br(e($kadData->info_tambahan)) !!}</p>
                             </div>
                             @endif
                             
@@ -603,7 +605,7 @@
             <!-- Bottom Credit -->
             @if ($kadData->package_id == 1)
             <div>
-                <ul class="py-6 bg-white bg-opacity-80">
+                <ul class="mt-10 py-6 bg-white bg-opacity-80">
                     <li class="flex justify-center text-center">
                         <p class="text-gray-700 italic">Dapatkan Kad Digital percuma anda</p>
                     </li>
