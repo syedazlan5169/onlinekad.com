@@ -72,7 +72,6 @@ class ToyyibpayController extends Controller
             'billSplitPaymentArgs' => '',
             'billPaymentChannel' => '0',
             'billContentEmail' => 'Thank you for purchasing our product!',
-            'billExpiryDate' => '17-12-2024 17:00:00',
             'billExpiryDays' => 3
         ];
 
