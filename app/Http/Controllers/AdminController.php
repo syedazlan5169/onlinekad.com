@@ -35,19 +35,14 @@ class AdminController extends Controller
         $todayRevenue = Order::where('status', 1)->whereDate('created_at', Carbon::today())->sum('amount');
         $yesterdayRevenue = Order::where('status', 1)->whereDate('created_at', Carbon::yesterday())->sum('amount');
 
-        if ($lastMonthRevenue > 0)
+        function calculatePercentageChange($current, $previous)
         {
-            $monthChange = round((($thisMonthRevenue - $lastMonthRevenue) / $lastMonthRevenue) * 100, 2) . '%';
-            $weekchange = round((($thisWeekRevenue - $lastWeekRevenue) / $lastWeekRevenue) * 100, 2) . '%';
-            $dayChange = round((($todayRevenue - $yesterdayRevenue) / $yesterdayRevenue) * 100, 2) . '%';
-        }
-        else
-        {
-            $monthChange = 'null';
-            $weekChange = 'null';
-            $dayChange = 'null';
+            return $previous > 0 ? round((($current - $previous) / $previous) * 100, 2) . '%' : 'null';
         }
 
+        $monthChange = calculatePercentageChange($thisMonthRevenue, $lastMonthRevenue);
+        $weekChange = calculatePercentageChange($thisWeekRevenue, $lastWeekRevenue);
+        $dayChange = calculatePercentageChange($todayRevenue, $yesterdayRevenue);
 
         return view('admin-dashboard', compact('users', 'totalUsers', 'kads', 'totalKads', 'orders', 'totalRevenue', 'thisMonthRevenue','thisWeekRevenue', 'todayRevenue', 'monthChange', 'weekChange', 'dayChange'));
     }
