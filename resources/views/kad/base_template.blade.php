@@ -573,8 +573,9 @@
                     <!-- End of Slider -->
 
                     <!-- Doa Pengantin -->
-                        <div class="items-center w-full h-auto mb-6 rounded-xl p-4" style="background-color: {{ $colorCode }};">
-                            <p class="text-center text-white font-sans">{{ $kadData->doa_pengantin }}</p>
+                        <div class="items-center w-full h-auto mb-6 rounded-xl p-4">
+                            <p class="mb-5 text-center text-2xl underline" style="font-family: 'EB Garamond'">DOA PENGANTIN</p>
+                            <p class="text-center text-lg" style="font-family: 'EB Garamond'">{{ $kadData->doa_pengantin }}</p>
                         </div>
 
                     <!-- Guestbook -->
@@ -1025,7 +1026,7 @@
         document.querySelector("#autoScroll").addEventListener("click", () => {
             const targetPosition = document.body.scrollHeight; // Scroll target
             const startPosition = window.scrollY; // Current position
-            const duration = 100000; // Duration in milliseconds
+            const duration = 200000; // Duration in milliseconds
             const startTime = performance.now();
             let isUserScrolling = false; // Detect manual scrolling
     
