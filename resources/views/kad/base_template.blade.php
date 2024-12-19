@@ -266,11 +266,12 @@
             <div class="mb-8 pb-8">
                 <div class="relative top-0 bg-white bg-opacity-40">
                     <!-- Custom Audio Player -->
-                    @if (($kadData->package_id == 2 || $kadData->package_id == 3) && $bgSong->id !== 1)
+                    @if ($kadData->package_id == 2 || $kadData->package_id == 3)
                         <div x-data="{ isPlaying: true, audio: null }" 
                             x-init="audio = $refs.audioElement" class="flex items-center justify-center mb-4">
 
                             <!-- Play/Pause Button -->
+                            @if ($kadData->bg_song_id != 1)
                             <button @click="isPlaying ? audio.pause() : audio.play(); isPlaying = !isPlaying" 
                                 class="bg-gray-50 opacity-70 fixed top-2 z-50 flex items-center  space-x-2 py-0 px-2 rounded-full transition-colors duration-300 ease-in-out shadow-md">
                                 
@@ -286,6 +287,7 @@
 
                                 <p class="text-xs font-sans font-semibold">{{ $bgSong->song_name }}</p>
                             </button>
+                            @endif
 
 
                             <!-- Hidden Audio Element -->
