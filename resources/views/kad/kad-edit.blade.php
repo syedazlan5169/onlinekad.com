@@ -687,6 +687,15 @@
 													reader.readAsDataURL(file);
 												}
 											});
+
+											// Delete the selected image
+                                            deleteButton.addEventListener('click', function() {
+                                                imgElement.src = ''; // Clear image preview
+                                                imgElement.classList.add('hidden'); // Hide the image
+                                                deleteButton.classList.add('hidden'); // Hide the delete button
+                                                inputFile.value = ''; // Reset file input
+												deleteFlag.value = '1'; // Delete image
+                                            });
 										}
 
 										// Define allowed file size (e.g., 5MB in bytes)
