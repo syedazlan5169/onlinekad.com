@@ -504,25 +504,25 @@
 
                     <!-- Countdown Timer -->
                     <div class="items-center w-full h-auto mb-6 rounded-xl p-4" style="background-color: {{ $colorCode }};">
-                        <p class="text-2xl text-white text-center mb-2">{{ $kadData->is_english ? 'Counting Days' : 'Menanti Hari' }}</p>
+                        <p class="text-2xl text-white text-center mb-2" style="font-family: 'EB Garamond'">{{ $kadData->is_english ? 'Counting Days' : 'Menanti Hari' }}</p>
 
                         <!-- Countdown Container -->
                         <div id="countdown" class="text-center flex justify-center gap-4">
                             <div class="flex flex-col items-center">
-                                <span id="days" class="text-4xl font-semibold text-white"></span>
-                                <span class="text-sm text-white">{{ $kadData->is_english ? 'Day' : 'Hari' }}</span>
+                                <span id="days" class="text-4xl font-semibold text-white" style="font-family: 'EB Garamond'"></span>
+                                <span class="text-sm text-white" style="font-family: 'EB Garamond'">{{ $kadData->is_english ? 'Day' : 'Hari' }}</span>
                             </div>
                             <div class="flex flex-col items-center">
-                                <span id="hours" class="text-4xl font-semibold text-white"></span>
-                                <span class="text-sm text-white">{{ $kadData->is_english ? 'Hour' : 'Jam' }}</span>
+                                <span id="hours" class="text-4xl font-semibold text-white" style="font-family: 'EB Garamond'"></span>
+                                <span class="text-sm text-white" style="font-family: 'EB Garamond'">{{ $kadData->is_english ? 'Hour' : 'Jam' }}</span>
                             </div>
                             <div class="flex flex-col items-center">
-                                <span id="minutes" class="text-4xl font-semibold text-white"></span>
-                                <span class="text-sm text-white">{{ $kadData->is_english ? 'Min' : 'Hari' }}</span>
+                                <span id="minutes" class="text-4xl font-semibold text-white" style="font-family: 'EB Garamond'"></span>
+                                <span class="text-sm text-white" style="font-family: 'EB Garamond'">{{ $kadData->is_english ? 'Min' : 'Hari' }}</span>
                             </div>
                             <div class="flex flex-col items-center">
-                                <span id="seconds" class="text-4xl font-semibold text-white"></span>
-                                <span class="text-sm text-white">{{ $kadData->is_english ? 'Sec' : 'Hari' }}</span>
+                                <span id="seconds" class="text-4xl font-semibold text-white" style="font-family: 'EB Garamond'"></span>
+                                <span class="text-sm text-white" style="font-family: 'EB Garamond'">{{ $kadData->is_english ? 'Sec' : 'Saat' }}</span>
                             </div>
                         </div>
 
