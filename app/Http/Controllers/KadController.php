@@ -88,7 +88,7 @@ class KadController extends Controller
             'nama-ibu-pengantin-perempuan' => ['required_if:penjemput,2,3'],
 
             // Maklumat Majlis
-            'tajuk-kad' => ['required', 'max:20'],
+            'tajuk-kad' => ['required', 'max:25'],
             'ayat-jemputan' => ['required'],
             'doa-pengantin' => ['required'],
             'tarikh-majlis' => ['required', 'date'],
@@ -280,7 +280,7 @@ class KadController extends Controller
             'nama-ibu-pengantin-perempuan' => ['required_if:penjemput,2,3'],
 
             // Maklumat Majlis
-            'tajuk-kad' => ['required', 'max:20'],
+            'tajuk-kad' => ['required', 'max:25'],
             'ayat-jemputan' => ['required'],
             'tarikh-majlis' => ['required', 'date'],
             'masa-mula-majlis' => ['required', 'date_format:H:i'],

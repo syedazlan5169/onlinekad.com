@@ -517,7 +517,7 @@
                                 <div class="lg:col-span-1">
                                     <label for="tajuk-kad" class="block text-sm font-medium text-gray-900">Tajuk Kad</label>
                                     <div class="mt-2">
-                                        <input type="text" name="tajuk-kad" id="tajuk-kad" spellcheck="false" value="{{ old('tajuk-kad', 'Walimatulurus') }}" maxlength="20" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
+                                        <input type="text" name="tajuk-kad" id="tajuk-kad" spellcheck="false" value="{{ old('tajuk-kad', 'Walimatulurus') }}" maxlength="25" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
                                     </div>
                                 </div>
 

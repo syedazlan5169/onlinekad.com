@@ -233,7 +233,7 @@
             <div class="h-screen w-full bg-cover bg-center" style="background-image: url('{{ asset($design->design_url_1) }}');">
                 <div class="absolute inset-0 bg-white bg-opacity-20">
                     <div x-show="showModal == false || {{ $kadData->package_id }} == '1'" class="flex flex-col justify-center gap-16 items-center h-full">
-                        <h1 class="text-2xl text-center text-gray-600 animate-zoom-in" style="font-family: 'Noticia Text', cursive; color: {{ $primaryTextColor }};">{{ $kadData->tajuk_kad }}</h1>
+                        <h1 class="px-14 text-2xl text-center text-gray-600 animate-zoom-in" style="font-family: 'Noticia Text', cursive; color: {{ $primaryTextColor }};">{{ $kadData->tajuk_kad }}</h1>
                         @if ($kadData->dua_pasangan_is_on == true)
                             <div class="text-center">
                                 <p class="text-5xl text-gray-600 mb-0 leading-tight animate-zoom-in-delay-1" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_pasangan_pertama }}</p>

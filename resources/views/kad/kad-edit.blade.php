@@ -270,7 +270,7 @@
 								<div class="sm:col-span-full">
 									<label for="tajuk-kad" class="block text-sm font-medium text-gray-900">Tajuk Kad</label>
 									<div class="mt-2">
-										<input type="text" name="tajuk-kad" id="tajuk-kad" value="{{ $kadData->tajuk_kad }}" spellcheck="false" maxlength="20" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+										<input type="text" name="tajuk-kad" id="tajuk-kad" value="{{ $kadData->tajuk_kad }}" spellcheck="false" maxlength="25" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
 									</div>
 								</div>
 
