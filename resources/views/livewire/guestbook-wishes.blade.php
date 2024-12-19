@@ -40,5 +40,5 @@
     </ul>
 
     <!-- Pagination Links -->
-    {{ $wishes->links() }}
+    {{ $wishes->links(data: ['scrollTo' => false]) }}
 </div>

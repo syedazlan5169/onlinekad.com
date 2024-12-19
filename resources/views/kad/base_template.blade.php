@@ -584,21 +584,6 @@
                         <div class="mt-7 w-full rounded-xl border-[1px] py-6 px-3 mb-16 bg-white bg-opacity-30" id="guestbook-wishes" style="border-color: {{ $colorCode }};">
                             <livewire:guestbook-wishes :kad_id="$kadData->id" />
                         </div>
-                    <!-- Move to wishes section after paginate -->
-                    <script>
-                        document.addEventListener('livewire:load', function () {
-                            Livewire.hook('element.updated', (el, component) => {
-                                if (component.fingerprint.name === 'guestbook-wishes') {
-                                    const section = document.getElementById('wishes-section');
-                                    if (section) {
-                                        section.scrollIntoView({ behavior: 'smooth' });
-                                    }
-                                }
-                            });
-                        });
-                    </script>
-                    
-
                     <!-- End of Guestbook -->
 
                 </div>
