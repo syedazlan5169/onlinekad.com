@@ -35,10 +35,21 @@ class AdminController extends Controller
         $todayRevenue = Order::where('status', 1)->whereDate('created_at', Carbon::today())->sum('amount');
         $yesterdayRevenue = Order::where('status', 1)->whereDate('created_at', Carbon::yesterday())->sum('amount');
 
-        $monthChange = $monthChange = round((($thisMonthRevenue - $lastMonthRevenue) / $lastMonthRevenue) * 100, 2);
+        if ($lastMonthRevenue > 0)
+        {
+            $monthChange = round((($thisMonthRevenue - $lastMonthRevenue) / $lastMonthRevenue) * 100, 2) . '%';
+            $weekchange = round((($thisWeekRevenue - $lastWeekRevenue) / $lastWeekRevenue) * 100, 2) . '%';
+            $dayChange = round((($todayRevenue - $yesterdayRevenue) / $yesterdayRevenue) * 100, 2) . '%';
+        }
+        else
+        {
+            $monthChange = 'null';
+            $weekChange = 'null';
+            $dayChange = 'null';
+        }
 
 
-        return view('admin-dashboard', compact('users', 'totalUsers', 'kads', 'totalKads', 'orders', 'totalRevenue', 'thisMonthRevenue','thisWeekRevenue', 'todayRevenue', 'monthChange'));
+        return view('admin-dashboard', compact('users', 'totalUsers', 'kads', 'totalKads', 'orders', 'totalRevenue', 'thisMonthRevenue','thisWeekRevenue', 'todayRevenue', 'monthChange', 'weekChange', 'dayChange'));
     }
 
     public function destroyUser($id)

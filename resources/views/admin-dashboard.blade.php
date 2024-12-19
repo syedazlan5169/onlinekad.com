@@ -36,17 +36,17 @@
                     </div>
                     <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 bg-white px-4 py-10 sm:px-6 xl:px-8">
                         <dt class="text-sm/6 font-medium text-gray-500">This Month</dt>
-                        <dd class="text-xs font-medium text-rose-600">{{ $monthChange }}%</dd>
+                        <dd class="text-xs font-medium text-rose-600">{{ $monthChange }}</dd>
                         <dd class="w-full flex-none text-3xl/10 font-medium tracking-tight text-gray-900">RM{{ $thisMonthRevenue }}</dd>
                     </div>
                     <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 bg-white px-4 py-10 sm:px-6 xl:px-8">
                         <dt class="text-sm/6 font-medium text-gray-500">This Week</dt>
-                        <dd class="text-xs font-medium text-gray-700">-1.39%</dd>
+                        <dd class="text-xs font-medium text-gray-700">{{ $weekChange }}</dd>
                         <dd class="w-full flex-none text-3xl/10 font-medium tracking-tight text-gray-900">RM{{ $thisWeekRevenue }}</dd>
                     </div>
                     <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 bg-white px-4 py-10 sm:px-6 xl:px-8">
                         <dt class="text-sm/6 font-medium text-gray-500">Today</dt>
-                        <dd class="text-xs font-medium text-rose-600">+10.18%</dd>
+                        <dd class="text-xs font-medium text-rose-600">{{ $dayChange }}</dd>
                         <dd class="w-full flex-none text-3xl/10 font-medium tracking-tight text-gray-900">RM{{ $todayRevenue }}</dd>
                     </div>
                 </dl>
@@ -185,7 +185,7 @@
             </div>
 
             <!-- Kads Section -->
-            <div x-data="{ deleteModal: false, selectedKadId: ''}" class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div x-data="{ deleteModal: false, selectedKadId: ''}" class="mt-20 max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="px-4 sm:px-6 lg:px-8">
                     <h2 class="text-xl">Total Kads: {{ $totalKads }}</h2>
                     <!-- Users Section -->
@@ -204,6 +204,7 @@
                                                 <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Payment</th>
                                                 <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Design</th>
                                                 <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Name</th>
+                                                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Link</th>
                                             </tr>
                                         </thead>
                                         <tbody class="divide-y divide-gray-200 bg-white">
@@ -254,6 +255,7 @@
                                                 @else
                                                     <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium border border-l text-gray-900 sm:pl-6">{{ $kad->nama_panggilan_lelaki }} & {{ $kad->nama_panggilan_perempuan }}</td>
                                                 @endif
+                                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium border border-l text-blue-500 sm:pl-6"><a href="/invitation/{{ $kad->slug }}">View</a></td>
                                             </tr>
                                             @endforeach
                                         </tbody>
