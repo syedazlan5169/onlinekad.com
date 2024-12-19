@@ -132,7 +132,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-4">{{ $users->links() }}</div>
+                        <div class="mt-4">{{ $users->links(data: ['scrollTo' => false]) }}</div>
                     </div>
 
                     <!--Delete Modal-->
@@ -264,7 +264,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mt-4">{{ $kads->links() }}</div>
+                    <div class="mt-4">{{ $kads->links(data: ['scrollTo' => false]) }}</div>
                 </div>
 
                 <!--Delete Modal-->
