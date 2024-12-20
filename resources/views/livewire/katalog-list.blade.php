@@ -10,6 +10,7 @@
                         <option value="">All</option>
                         <option value="floral">Floral</option>
                         <option value="abstract">Abstract</option>
+                        <option value="simple">Simple</option>
                     </select>
                 </div>
             </div>

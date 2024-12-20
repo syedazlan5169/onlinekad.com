@@ -11,6 +11,7 @@ class DesignSeeder extends Seeder
     {
         $designs = [
             [
+                'id' => 1,
                 'design_code' => 'N001',
                 'product_image_url' => '/images/products/Product-N001.webp',
                 'design_url_1' => '/images/designs/N001-1.webp',
@@ -20,6 +21,7 @@ class DesignSeeder extends Seeder
                 'category' => 'floral'
             ],
             [
+                'id' => 2,
                 'design_code' => 'N002',
                 'product_image_url' => '/images/products/Product-N002.webp',
                 'design_url_1' => '/images/designs/N002-1.webp',
@@ -29,6 +31,7 @@ class DesignSeeder extends Seeder
                 'category' => 'floral'
             ],
             [
+                'id' => 3,
                 'design_code' => 'N003',
                 'product_image_url' => '/images/products/Product-N003.webp',
                 'design_url_1' => '/images/designs/N003-1.webp',
@@ -38,6 +41,7 @@ class DesignSeeder extends Seeder
                 'category' => 'floral'
             ],
             [
+                'id' => 4,
                 'design_code' => 'N004',
                 'product_image_url' => '/images/products/Product-N004.webp',
                 'design_url_1' => '/images/designs/N004-1.webp',
@@ -47,6 +51,7 @@ class DesignSeeder extends Seeder
                 'category' => 'floral'
             ],
             [
+                'id' => 5,
                 'design_code' => 'N005',
                 'product_image_url' => '/images/products/Product-N005.webp',
                 'design_url_1' => '/images/designs/N005-1.webp',
@@ -56,6 +61,7 @@ class DesignSeeder extends Seeder
                 'category' => 'floral'
             ],
             [
+                'id' => 6,
                 'design_code' => 'N006',
                 'product_image_url' => '/images/products/Product-N006.webp',
                 'design_url_1' => '/images/designs/N006-1.webp',
@@ -65,6 +71,7 @@ class DesignSeeder extends Seeder
                 'category' => 'floral'
             ],
             [
+                'id' => 7,
                 'design_code' => 'N007',
                 'product_image_url' => '/images/products/Product-N007.webp',
                 'design_url_1' => '/images/designs/N007-1.webp',
@@ -74,6 +81,7 @@ class DesignSeeder extends Seeder
                 'category' => 'floral'
             ],
             [
+                'id' => 8,
                 'design_code' => 'N008',
                 'product_image_url' => '/images/products/Product-N008.webp',
                 'design_url_1' => '/images/designs/N008-1.webp',
@@ -83,6 +91,7 @@ class DesignSeeder extends Seeder
                 'category' => 'floral'
             ],
             [
+                'id' => 9,
                 'design_code' => 'N009',
                 'product_image_url' => '/images/products/Product-N009.webp',
                 'design_url_1' => '/images/designs/N009-1.webp',
@@ -92,6 +101,7 @@ class DesignSeeder extends Seeder
                 'category' => 'floral'
             ],
             [
+                'id' => 10,
                 'design_code' => 'N010',
                 'product_image_url' => '/images/products/Product-N010.webp',
                 'design_url_1' => '/images/designs/N010-1.webp',
@@ -101,6 +111,7 @@ class DesignSeeder extends Seeder
                 'category' => 'floral'
             ],
             [
+                'id' => 11,
                 'design_code' => 'N011',
                 'product_image_url' => '/images/products/Product-N011.webp',
                 'design_url_1' => '/images/designs/N011-1.webp',
@@ -110,6 +121,7 @@ class DesignSeeder extends Seeder
                 'category' => 'floral'
             ],
             [
+                'id' => 12,
                 'design_code' => 'N012',
                 'product_image_url' => '/images/products/Product-N012.webp',
                 'design_url_1' => '/images/designs/N012-1.webp',
@@ -119,6 +131,7 @@ class DesignSeeder extends Seeder
                 'category' => 'floral'
             ],
             [
+                'id' => 13,
                 'design_code' => 'N013',
                 'product_image_url' => '/images/products/Product-N013.webp',
                 'design_url_1' => '/images/designs/N013-1.webp',
@@ -128,6 +141,7 @@ class DesignSeeder extends Seeder
                 'category' => 'floral'
             ],
             [
+                'id' => 14,
                 'design_code' => 'N014',
                 'product_image_url' => '/images/products/Product-N014.webp',
                 'design_url_1' => '/images/designs/N014-1.webp',
@@ -137,6 +151,7 @@ class DesignSeeder extends Seeder
                 'category' => 'floral'
             ],
             [
+                'id' => 15,
                 'design_code' => 'N015',
                 'product_image_url' => '/images/products/Product-N015.webp',
                 'design_url_1' => '/images/designs/N015-1.webp',
@@ -146,6 +161,7 @@ class DesignSeeder extends Seeder
                 'category' => 'floral'
             ],
             [
+                'id' => 16,
                 'design_code' => 'N016',
                 'product_image_url' => '/images/products/Product-N016.webp',
                 'design_url_1' => '/images/designs/N016-1.webp',
@@ -155,6 +171,7 @@ class DesignSeeder extends Seeder
                 'category' => 'floral'
             ],
             [
+                'id' => 17,
                 'design_code' => 'N017',
                 'product_image_url' => '/images/products/Product-N017.webp',
                 'design_url_1' => '/images/designs/N017-1.webp',
@@ -164,6 +181,7 @@ class DesignSeeder extends Seeder
                 'category' => 'floral'
             ],
             [
+                'id' => 18,
                 'design_code' => 'N018',
                 'product_image_url' => '/images/products/Product-N018.webp',
                 'design_url_1' => '/images/designs/N018-1.webp',
@@ -173,6 +191,7 @@ class DesignSeeder extends Seeder
                 'category' => 'floral'
             ],
             [
+                'id' => 19,
                 'design_code' => 'N019',
                 'product_image_url' => '/images/products/Product-N019.webp',
                 'design_url_1' => '/images/designs/N019-1.webp',
@@ -182,6 +201,7 @@ class DesignSeeder extends Seeder
                 'category' => 'floral'
             ],
             [
+                'id' => 20,
                 'design_code' => 'N020',
                 'product_image_url' => '/images/products/Product-N020.webp',
                 'design_url_1' => '/images/designs/N020-1.webp',
@@ -191,6 +211,7 @@ class DesignSeeder extends Seeder
                 'category' => 'floral'
             ],
             [
+                'id' => 21,
                 'design_code' => 'N021',
                 'product_image_url' => '/images/products/Product-N021.webp',
                 'design_url_1' => '/images/designs/N021-1.webp',
@@ -200,6 +221,7 @@ class DesignSeeder extends Seeder
                 'category' => 'floral'
             ],
             [
+                'id' => 22,
                 'design_code' => 'N022',
                 'product_image_url' => '/images/products/Product-N022.webp',
                 'design_url_1' => '/images/designs/N022-1.webp',
@@ -209,6 +231,7 @@ class DesignSeeder extends Seeder
                 'category' => 'floral'
             ],
             [
+                'id' => 23,
                 'design_code' => 'N023',
                 'product_image_url' => '/images/products/Product-N023.webp',
                 'design_url_1' => '/images/designs/N023-1.webp',
@@ -218,6 +241,7 @@ class DesignSeeder extends Seeder
                 'category' => 'floral'
             ],
             [
+                'id' => 24,
                 'design_code' => 'N024',
                 'product_image_url' => '/images/products/Product-N024.webp',
                 'design_url_1' => '/images/designs/N024-1.webp',
@@ -227,6 +251,7 @@ class DesignSeeder extends Seeder
                 'category' => 'floral'
             ],
             [
+                'id' => 25,
                 'design_code' => 'N025',
                 'product_image_url' => '/images/products/Product-N025.webp',
                 'design_url_1' => '/images/designs/N025-1.webp',
@@ -236,6 +261,7 @@ class DesignSeeder extends Seeder
                 'category' => 'abstract'
             ],
             [
+                'id' => 26,
                 'design_code' => 'N026',
                 'product_image_url' => '/images/products/Product-N026.webp',
                 'design_url_1' => '/images/designs/N026-1.webp',
@@ -245,6 +271,7 @@ class DesignSeeder extends Seeder
                 'category' => 'abstract'
             ],
             [
+                'id' => 27,
                 'design_code' => 'N027',
                 'product_image_url' => '/images/products/Product-N027.webp',
                 'design_url_1' => '/images/designs/N027-1.webp',
@@ -254,6 +281,7 @@ class DesignSeeder extends Seeder
                 'category' => 'abstract'
             ],
             [
+                'id' => 28,
                 'design_code' => 'N028',
                 'product_image_url' => '/images/products/Product-N028.webp',
                 'design_url_1' => '/images/designs/N028-1.webp',
@@ -263,6 +291,7 @@ class DesignSeeder extends Seeder
                 'category' => 'abstract'
             ],
             [
+                'id' => 29,
                 'design_code' => 'N029',
                 'product_image_url' => '/images/products/Product-N029.webp',
                 'design_url_1' => '/images/designs/N029-1.webp',
@@ -272,6 +301,7 @@ class DesignSeeder extends Seeder
                 'category' => 'abstract'
             ],
             [
+                'id' => 30,
                 'design_code' => 'N030',
                 'product_image_url' => '/images/products/Product-N030.webp',
                 'design_url_1' => '/images/designs/N030-1.webp',
@@ -281,6 +311,7 @@ class DesignSeeder extends Seeder
                 'category' => 'abstract'
             ],
             [
+                'id' => 31,
                 'design_code' => 'N031',
                 'product_image_url' => '/images/products/Product-N031.webp',
                 'design_url_1' => '/images/designs/N031-1.webp',
@@ -290,6 +321,7 @@ class DesignSeeder extends Seeder
                 'category' => 'abstract'
             ],
             [
+                'id' => 32,
                 'design_code' => 'N032',
                 'product_image_url' => '/images/products/Product-N032.webp',
                 'design_url_1' => '/images/designs/N032-1.webp',
@@ -299,6 +331,7 @@ class DesignSeeder extends Seeder
                 'category' => 'abstract'
             ],
             [
+                'id' => 33,
                 'design_code' => 'N033',
                 'product_image_url' => '/images/products/Product-N033.webp',
                 'design_url_1' => '/images/designs/N033-1.webp',
@@ -308,6 +341,7 @@ class DesignSeeder extends Seeder
                 'category' => 'abstract'
             ],
             [
+                'id' => 34,
                 'design_code' => 'N034',
                 'product_image_url' => '/images/products/Product-N034.webp',
                 'design_url_1' => '/images/designs/N034-1.webp',
@@ -317,6 +351,7 @@ class DesignSeeder extends Seeder
                 'category' => 'abstract'
             ],
             [
+                'id' => 35,
                 'design_code' => 'N035',
                 'product_image_url' => '/images/products/Product-N035.webp',
                 'design_url_1' => '/images/designs/N035-1.webp',
@@ -326,6 +361,7 @@ class DesignSeeder extends Seeder
                 'category' => 'abstract'
             ],
             [
+                'id' => 36,
                 'design_code' => 'N036',
                 'product_image_url' => '/images/products/Product-N036.webp',
                 'design_url_1' => '/images/designs/N036-1.webp',
@@ -333,6 +369,46 @@ class DesignSeeder extends Seeder
                 'color_code' => '#DD743A',
                 'color_footer' => '#EDA983',
                 'category' => 'abstract'
+            ],
+            [
+                'id' => 37,
+                'design_code' => 'N049',
+                'product_image_url' => '/images/products/Product-N049.webp',
+                'design_url_1' => '/images/designs/N049-1.webp',
+                'design_url_2' => '/images/designs/N049-2.webp',
+                'color_code' => '#4F5D83',
+                'color_footer' => '#A1AAC2',
+                'category' => 'simple'
+            ],
+            [
+                'id' => 38,
+                'design_code' => 'N050',
+                'product_image_url' => '/images/products/Product-N050.webp',
+                'design_url_1' => '/images/designs/N050-1.webp',
+                'design_url_2' => '/images/designs/N050-2.webp',
+                'color_code' => '#EA9632',
+                'color_footer' => '#F2AF5F',
+                'category' => 'simple'
+            ],
+            [
+                'id' => 39,
+                'design_code' => 'N036',
+                'product_image_url' => '/images/products/Product-N051.webp',
+                'design_url_1' => '/images/designs/N051-1.webp',
+                'design_url_2' => '/images/designs/N051-2.webp',
+                'color_code' => '#7F5230',
+                'color_footer' => '#C6804B',
+                'category' => 'simple'
+            ],
+            [
+                'id' => 40,
+                'design_code' => 'N052',
+                'product_image_url' => '/images/products/Product-N052.webp',
+                'design_url_1' => '/images/designs/N052-1.webp',
+                'design_url_2' => '/images/designs/N052-2.webp',
+                'color_code' => '#9B2C27',
+                'color_footer' => '#AA514D',
+                'category' => 'simple'
             ],
 
             // Add more entries as needed
