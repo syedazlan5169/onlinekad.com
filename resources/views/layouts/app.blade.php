@@ -31,7 +31,7 @@
             <!-- Page Heading -->
             @if (isset($header))
             <header class="relative bg-white shadow">
-                <div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('{{ asset('images/header_bg.webp') }}');"></div>
+                <div class="absolute inset-0 bg-cover bg-center opacity-40 blur-sm" style="background-image: url('{{ asset('images/header_bg.webp') }}');"></div>
                 <div class="relative max-w-7xl mx-auto text-center text-4xl pt-14 pb-4 px-4 sm:px-6 lg:px-8">
                     {{ $header }}
                 </div>
