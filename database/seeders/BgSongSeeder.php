@@ -84,6 +84,41 @@ class BgSongSeeder extends Seeder
                 'song_url' => '/musics/umpan-jinak-di-air-tenang.mp3',
                 'song_name' => 'Umpan Jinak Di Air Tenang',
             ],
+            [
+                'id' => 15,
+                'song_url' => '/musics/i-choose-you.mp3',
+                'song_name' => 'I Choose You',
+            ],
+            [
+                'id' => 16,
+                'song_url' => '/musics/kompang-dipalu.mp3',
+                'song_name' => 'Kompang Dipalu',
+            ],
+            [
+                'id' => 17,
+                'song_url' => '/musics/love-story.mp3',
+                'song_name' => 'Love Story (Piano)',
+            ],
+            [
+                'id' => 18,
+                'song_url' => '/musics/mariage-d-amour.mp3',
+                'song_name' => 'Mariage d\'Amour',
+            ],
+            [
+                'id' => 19,
+                'song_url' => '/musics/take-my-hand.mp3',
+                'song_name' => 'Take My Hand',
+            ],
+            [
+                'id' => 20,
+                'song_url' => '/musics/you-are-the-reason.mp3',
+                'song_name' => 'You Are The Reason (Piano)',
+            ],
+            [
+                'id' => 21,
+                'song_url' => '/musics/barakallah.mp3',
+                'song_name' => 'Barakallah',
+            ],
 
         ];
 
