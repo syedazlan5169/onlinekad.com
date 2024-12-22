@@ -34,9 +34,6 @@
 
         <!-- CSS Animation -->
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-        
-
-
 
         <script src="https://kit.fontawesome.com/5a63289656.js" crossorigin="anonymous"></script>
 
@@ -171,7 +168,7 @@
         @php
             $colorCode = $design->color_code;
             $colorFooter = $design->color_footer;
-            $primaryTextColor = $design->primaryTextColor;
+            $primaryTextColor = $design->primary_text_color;
             $secondaryTextColor = $design->secondary_text_color;
         @endphp
         
