@@ -371,44 +371,95 @@ class DesignSeeder extends Seeder
                 'category' => 'abstract'
             ],
             [
-                'id' => 37,
+                'id' => 49,
                 'design_code' => 'N049',
                 'product_image_url' => '/images/products/Product-N049.webp',
                 'design_url_1' => '/images/designs/N049-1.webp',
                 'design_url_2' => '/images/designs/N049-2.webp',
                 'color_code' => '#4F5D83',
                 'color_footer' => '#A1AAC2',
-                'category' => 'simple'
+                'category' => 'minimalist'
             ],
             [
-                'id' => 38,
+                'id' => 50,
                 'design_code' => 'N050',
                 'product_image_url' => '/images/products/Product-N050.webp',
                 'design_url_1' => '/images/designs/N050-1.webp',
                 'design_url_2' => '/images/designs/N050-2.webp',
                 'color_code' => '#EA9632',
                 'color_footer' => '#F2AF5F',
-                'category' => 'simple'
+                'category' => 'minimalist'
             ],
             [
-                'id' => 39,
-                'design_code' => 'N036',
+                'id' => 51,
+                'design_code' => 'N051',
                 'product_image_url' => '/images/products/Product-N051.webp',
                 'design_url_1' => '/images/designs/N051-1.webp',
                 'design_url_2' => '/images/designs/N051-2.webp',
                 'color_code' => '#7F5230',
                 'color_footer' => '#C6804B',
-                'category' => 'simple'
+                'category' => 'minimalist'
             ],
             [
-                'id' => 40,
+                'id' => 52,
                 'design_code' => 'N052',
                 'product_image_url' => '/images/products/Product-N052.webp',
                 'design_url_1' => '/images/designs/N052-1.webp',
                 'design_url_2' => '/images/designs/N052-2.webp',
                 'color_code' => '#9B2C27',
                 'color_footer' => '#AA514D',
-                'category' => 'simple'
+                'category' => 'minimalist'
+            ],
+            [
+                'id' => 53,
+                'design_code' => 'N053',
+                'product_image_url' => '/images/products/Product-N053.webp',
+                'design_url_1' => '/images/designs/N053-1.webp',
+                'design_url_2' => '/images/designs/N053-2.webp',
+                'color_code' => '#A05A2A',
+                'color_footer' => '#C48C66',
+                'category' => 'minimalist',
+                'primary_text_color' => '#C49A7A'
+            ],
+            [
+                'id' => 54,
+                'design_code' => 'N054',
+                'product_image_url' => '/images/products/Product-N054.webp',
+                'design_url_1' => '/images/designs/N054-1.webp',
+                'design_url_2' => '/images/designs/N054-2.webp',
+                'color_code' => '#826127',
+                'color_footer' => '#A58C5E',
+                'category' => 'minimalist'
+            ],
+            [
+                'id' => 55,
+                'design_code' => 'N055',
+                'product_image_url' => '/images/products/Product-N055.webp',
+                'design_url_1' => '/images/designs/N055-1.webp',
+                'design_url_2' => '/images/designs/N055-2.webp',
+                'color_code' => '#374460',
+                'color_footer' => '#5C6272',
+                'category' => 'minimalist'
+            ],
+            [
+                'id' => 56,
+                'design_code' => 'N056',
+                'product_image_url' => '/images/products/Product-N056.webp',
+                'design_url_1' => '/images/designs/N056-1.webp',
+                'design_url_2' => '/images/designs/N056-2.webp',
+                'color_code' => '#F47199',
+                'color_footer' => '#F2ADC3',
+                'category' => 'minimalist'
+            ],
+            [
+                'id' => 57,
+                'design_code' => 'N057',
+                'product_image_url' => '/images/products/Product-N057.webp',
+                'design_url_1' => '/images/designs/N057-1.webp',
+                'design_url_2' => '/images/designs/N057-2.webp',
+                'color_code' => '#604C40',
+                'color_footer' => '#7D7068',
+                'category' => 'minimalist'
             ],
 
             // Add more entries as needed
