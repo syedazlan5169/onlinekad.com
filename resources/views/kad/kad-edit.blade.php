@@ -490,15 +490,75 @@
 
 									<div class="grid lg:grid-cols-2">
 										<!-- Bg Song Selection -->
-										<div class="mt-8 lg:col-span-1">
-											<label for="bg-song-id" class="block text-sm font-medium text-gray-900">Lagu Latar Belakang</label>
-											<div class="mt-2">
+										<div x-data="{ songOption: {{ $kadData->bg_song_option }} }" class="mt-14 lg:col-span-1">
+											<label class="block text-sm font-bold text-gray-900">Muzik Latar</label>
+											<div x-show="{{ $kadData->package_id }} == '3'">
+                                                <fieldset>
+                                                    <div class="mt-2 mb-4 space-y-2 lg:flex lg:items-center lg:space-x-10 lg:space-y-0">
+                                                        <div class="flex items-center">
+                                                            <input id="default-song" name="bg-song-option" type="radio" value="1" x-model="songOption" class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden">
+                                                            <label for="default-song" class="ml-3 block text-sm/6 font-medium text-gray-900">Pilih Lagu</label>
+                                                        </div>
+                                                        <div class="flex items-center">
+                                                            <input id="own-song" name="bg-song-option" type="radio" value="2" x-model="songOption" class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden">
+                                                            <label for="own-song" class="ml-3 block text-sm/6 font-medium text-gray-900">Upload Lagu</label>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+											<div x-show="songOption == '1'" class="mt-2">
 												@livewire('bg-song-dropdown', ['selectedSong' => $kadData->bg_song_id])
 											</div>
+											<div x-show="songOption == '2'" class="mt-2 lg:pr-14">
+                                                <div class="mt-2">
+                                                    <input type="text" name="uploaded-song-name" id="uploaded-song-name" placeholder="Nama Lagu" value="{{ $kadData->uploaded_song_name }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
+                                                </div>
+                                                <input 
+                                                    class="mt-2 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none" 
+                                                    type="file"
+                                                    name="uploaded-song" 
+                                                    id="uploaded-song" 
+                                                    accept="mp3"
+                                                >
+                                            </div>
+											<script>
+                                                // Define allowed file size (e.g., 5MB in bytes)
+                                                const MAX_SONG_FILE_SIZE = 8 * 1024 * 1024; // 8MB
+
+                                                // Function to validate image file
+                                                function validateFileUpload(inputFile) {
+                                                    const file = inputFile.files[0];
+                                                    const allowedTypes = ['mp3']; 
+                                                    const allowedExtensions = ['mp3'];
+
+                                                    if (file) {
+                                                        const fileExtension = file.name.split('.').pop().toLowerCase();
+                                                        if (!allowedTypes.includes(file.type) && !allowedExtensions.includes(fileExtension)) {
+                                                            alert('Invalid file type. Please upload a MP3 file only.');
+                                                            inputFile.value = ''; // Reset the input
+                                                            return false;
+                                                        }
+
+                                                        // Check file size
+                                                        if (file.size > MAX_SONG_FILE_SIZE) {
+                                                            alert('File is too large. Please upload an image smaller than 5MB.');
+                                                            inputFile.value = ''; // Reset the input
+                                                            return false;
+                                                        }
+                                                    }
+                                                    return true;
+                                                }
+
+                                                 // Attach validation to each file input
+                                                document.getElementById('uploaded-song').addEventListener('change', function() {
+                                                    validateFileUpload(this);
+                                                });
+                                            </script>
 										</div>
+										<!-- End of Bg Song Selection -->
 
 										<!-- Account Detail Upload -->
-										<div x-show="giftEnabled" x-cloak class="mt-8 lg:col-span-1">
+										<div x-show="giftEnabled" x-cloak class="mt-14 lg:col-span-1">
 											<div class="lg:flex lg:gap-6">
 												<div>
 													<label for="bank-name" class="block text-sm font-semibold text-gray-900">Nama Bank</label>
@@ -544,18 +604,18 @@
 									</div>
 
 
-									<div class="lg:grid lg:grid-cols-2">
+									<div class="lg:grid lg:grid-cols-2 mt-14">
 									<!-- Info Tambahan -->
                                     <div class="mt-6 lg:col-span-1">
                                         <label for="info-tambahan" class="block text-sm font-semibold text-gray-900">Info Tambahan</label>
-                                        <div class="mt-2">
+                                        <div class="mt-2 lg:pr-12">
                                             <textarea name="info-tambahan" 
                                             id="info-tambahan" 
                                             rows="5" 
                                             spellcheck="false" 
                                             placeholder="Parking di tingkat 2
                                     Surau di tingkat 1" 
-                                            class="block text-center w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm lg:w-72">{{ $kadData->info_tambahan }}</textarea>
+                                            class="block text-center w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">{{ $kadData->info_tambahan }}</textarea>
 
                                             <style>
                                             #info-tambahan::placeholder {
@@ -566,12 +626,12 @@
                                     </div>
 
 									<!-- Gallery Upload -->
-									<div class="lg:col-span-1" x-data="{ sliderImage: {{ $kadData->slider_image ?? 1 }} }">
+									<div class="lg:col-span-1 mt-14" x-data="{ sliderImage: {{ $kadData->slider_image ?? 1 }} }">
 										<fieldset>
                                             <legend class="pt-6 text-sm font-semibold text-gray-900">Galeri Slideshow</legend>
                                             <div class="mt-2 mb-4 space-y-2 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
                                                 <div class="flex items-center">
-                                                    <input id="default" name="slider-image" type="radio" value="1" x-model="sliderImage" checked class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden">
+                                                    <input id="default" name="slider-image" type="radio" value="1" x-model="sliderImage" class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden">
                                                     <label for="default" class="ml-3 block text-sm/6 font-medium text-gray-900">Gambar Default</label>
                                                 </div>
                                                 <div class="flex items-center">

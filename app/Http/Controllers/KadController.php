@@ -111,10 +111,19 @@ class KadController extends Controller
 
         // Handle QR image uploads and store paths
         $qrImagePath = $kad->qr_image;
-        if ($request->hasFile('qr-image')) {
+        if ($request->hasFile('qr-image'))
+        {
             // If a new file is uploaded, delete the old one
             $this->deleteOldImage($kad->qr_image);
             $qrImagePath = $this->uploadQRImage(request()->file('qr-image'));
+        }
+
+        $uploadedSongPath = $kad->uploaded_song_url;
+        if ($request->hasFile('uploaded-song'))
+        {
+            // If a new file is uploaded, delate the old one
+            $this->deleteOldSong($kad->uploaded_song_url);
+            $uploadedSongPath = $this->uploadOwnSong(request()->file('uploaded-song'));
         }
 
         // Update the Kad with the validated data
@@ -133,6 +142,9 @@ class KadController extends Controller
             'qr_image' => $qrImagePath,
             'is_english' => $request->input('bahasa'),
             'info_tambahan' => $request->input('info-tambahan'),
+            'bg_song_option' => $request->input('bg-song-option'),
+            'uploaded_song_name' => $request->input('uploaded-song-name'),
+            'uploaded_song_url' => $uploadedSongPath,
 
             // Maklumat Pengantin
             'nama_penuh_lelaki' => $request->input('nama-penuh-lelaki'),
@@ -320,9 +332,16 @@ class KadController extends Controller
 
         // Handle QR Code image upload and return file path
         $qrImagePath = '';
-        if (request()->hasFile('qr-image')) {
-                    $qrImagePath = $this->uploadQRImage(request()->file('qr-image'));
-                }
+        if (request()->hasFile('qr-image'))
+        {
+            $qrImagePath = $this->uploadQRImage(request()->file('qr-image'));
+        }
+        
+        $uploadedSongPath = '';
+        if (request()->hasFile('uploaded-song'))
+        {
+            $uploadedSongPath = $this->uploadOwnSong(request()->file('uploaded-song'));
+        }
 
         // Create a new Kad entry
         $kad = Kad::create([
@@ -346,6 +365,9 @@ class KadController extends Controller
             'qr_image' => $qrImagePath,
             'is_english' => request('bahasa'),
             'info_tambahan' => request('info-tambahan'),
+            'bg_song_option' => request('bg-song-option'),
+            'uploaded_song_name' => request('uploaded-song-name'),
+            'uploaded_song_url' => $uploadedSongPath,
             
 
             // Maklumat Pengantin
@@ -463,6 +485,47 @@ class KadController extends Controller
         return redirect('/senarai-kad');
     }
 
+    private function uploadOwnSong($file)
+    {
+        // Define the directory for storing images
+        $directory = 'uploadedBgSong';
+
+        // Check if the directory exists, if not, create it
+        if (!Storage::disk('public')->exists($directory)) {
+            Storage::disk('public')->makeDirectory($directory);
+        }
+
+        // Create a unique file name
+        $filename = uniqid() . '.mp3';
+
+        // Store the file in the public disk
+        $path = $file->storeAs($directory, $filename, 'public');
+
+        // Return the public URL for the image
+        return Storage::url($path);
+    }
+
+    public function deleteOldSong($songPath)
+    {
+        // Remove '/storage/' from the path to make it relative to the storage folder
+        $relativePath = str_replace('/storage/', 'public/', $songPath);
+
+        // Log the relative path to check if it is correct
+        Log::info('Deleting file: ' . $relativePath);
+
+        // Use the public disk explicitly
+        if (Storage::disk('public')->exists(str_replace('public/', '', $relativePath))) {
+            Log::info('File exists, attempting to delete: ' . $relativePath);
+            
+            // Delete the file
+            Storage::disk('public')->delete(str_replace('public/', '', $relativePath));
+            
+            Log::info('File deleted successfully: ' . $relativePath);
+        } else {
+            Log::warning('File does not exist: ' . $relativePath);
+        }
+    }
+
     private function uploadQRImage($file)
     {
         // Define the directory for storing images
@@ -474,7 +537,7 @@ class KadController extends Controller
         }
 
         // Create a unique file name
-        $filename = uniqid() . '.' . '.png';
+        $filename = uniqid() . '.png';
 
         // Initialize ImageManager
         $manager = new ImageManager(new Driver);
@@ -510,7 +573,7 @@ class KadController extends Controller
         }
 
         // Create a unique file name
-        $filename = uniqid() . '.' . '.webp';
+        $filename = uniqid() . '.webp';
 
         // Initialize ImageManager
         $manager = new ImageManager(new Driver);

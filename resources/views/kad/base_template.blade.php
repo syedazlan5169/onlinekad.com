@@ -3,8 +3,11 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        @if ($kadData->dua_pasangan_is_on)
+        <title>{{ $kadData->nama_panggilan_pasangan_pertama}} | {{ $kadData->nama_panggilan_pasangan_kedua}}</title>
+        @else
         <title>{{ $kadData->nama_panggilan_lelaki}} &#10084; {{ $kadData->nama_panggilan_perempuan}}</title>
+        @endif
 
         <!-- Open Graph Meta Tags -->
         <meta property="og:title" content="{{ $kadData->tajuk_kad }}">
@@ -170,6 +173,19 @@
             $colorFooter = $design->color_footer;
             $primaryTextColor = $design->primary_text_color;
             $secondaryTextColor = $design->secondary_text_color;
+            $bgSongUrl = '';
+            $bgSongName = '';
+
+            if ($kadData->bg_song_option === 2)
+            {
+                $bgSongUrl = $kadData->uploaded_song_url;
+                $bgSongName = $kadData->uploaded_song_name;
+            }
+            else {
+                $bgSongUrl = $bgSong->song_url;
+                $bgSongName = $bgSong->song_name;
+            }
+
         @endphp
         
     </head>
@@ -233,9 +249,9 @@
                         <h1 class="px-14 text-2xl text-center text-gray-600 animate-zoom-in" style="font-family: 'Noticia Text', cursive; color: {{ $primaryTextColor }};">{{ $kadData->tajuk_kad }}</h1>
                         @if ($kadData->dua_pasangan_is_on == true)
                             <div class="text-center">
-                                <p class="text-5xl text-gray-600 mb-0 leading-tight animate-zoom-in-delay-1" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_pasangan_pertama }}</p>
+                                <p class="text-4xl text-gray-600 mb-0 leading-tight animate-zoom-in-delay-1" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_pasangan_pertama }}</p>
                                 <p class="text-2xl text-gray-600 mb-0 leading-tight animate-zoom-in-delay-2" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->is_english ? 'With' : 'Bersama' }}</p>
-                                <p class="text-5xl text-gray-600 mb-0 leading-tight animate-zoom-in-delay-3" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_pasangan_kedua }}</p>
+                                <p class="text-4xl text-gray-600 mb-0 leading-tight animate-zoom-in-delay-3" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_pasangan_kedua }}</p>
                             </div>
                         @elseif ($kadData->penjemput == 2)
                             <div class="text-center">
@@ -282,14 +298,15 @@
                                     <rect x="16" y="8" width="2" height="2" :class="isPlaying ? 'animate-bar3' : ''" class="transition-all duration-300 ease-in-out" style="transform-origin: bottom;"></rect>
                                 </svg>
 
-                                <p class="text-xs font-sans font-semibold">{{ $bgSong->song_name }}</p>
+                                <p class="text-xs font-sans font-semibold">{{ $bgSongName }}</p>
                             </button>
                             @endif
 
 
                             <!-- Hidden Audio Element -->
+
                             <audio x-ref="audioElement" loop>
-                                <source src="{{ asset($bgSong->song_url) }}" type="audio/mpeg">
+                                <source src="{{ asset($bgSongUrl) }}" type="audio/mpeg">
                                 Your browser does not support the audio element.
                             </audio>
 
@@ -312,9 +329,9 @@
                                         <div class="relative z-10 flex flex-col gap-6 items-center justify-center h-full">
                                             @if ($kadData->dua_pasangan_is_on == true)
                                                 <div class="text-center">
-                                                    <p class="text-5xl text-gray-600 mb-0 leading-tight" data-aos="fade-up" data-aos-duration="1000" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_pasangan_pertama }}</p>
+                                                    <p class="text-4xl text-gray-600 mb-0 leading-tight" data-aos="fade-up" data-aos-duration="1000" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_pasangan_pertama }}</p>
                                                     <p class="text-2xl text-gray-600 mb-0 leading-tight" data-aos="fade-up" data-aos-duration="1000" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->is_english ? 'With' : 'Bersama' }}</p>
-                                                    <p class="text-5xl text-gray-600 mb-0 leading-tight" data-aos="fade-up" data-aos-duration="1000" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_pasangan_kedua }}</p>
+                                                    <p class="text-4xl text-gray-600 mb-0 leading-tight" data-aos="fade-up" data-aos-duration="1000" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_pasangan_kedua }}</p>
                                                 </div>
                                             @elseif ($kadData->penjemput == 2)
                                                 <div class="text-center">

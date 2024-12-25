@@ -9,7 +9,7 @@
     </x-slot>
 
     <div class="py-12">
-        <div x-data="{ selectedPackage: '{{ old('package-id', 2) }}' }" class="max-w-7xl mx-auto lg:flex lg:justify-center gap-3 lg:px-6">
+        <div x-data="{ selectedPackage: '{{ old('package-id', 2) }}', songOption: '1' }" class="max-w-7xl mx-auto lg:flex lg:justify-center gap-3 lg:px-6">
             <!-- Column 1 -->
             <div class="h-full lg:w-[30%] lg:pr-4">
 
@@ -61,7 +61,7 @@
                                     @click="selectedPackage = '1'">
                                     <input type="radio" name="color-choice" value="1" class="sr-only">
                                     <span aria-hidden="true" class="h-8 w-14 rounded-full border border-black border-opacity-10 bg-current flex items-center justify-center">
-                                        <span class="text-sm text-white font-bold">{{ $package1->name }}</span>
+                                        <span class="text-xs text-white font-bold">{{ $package1->name }}</span>
                                     </span>
                                 </label>
                                 <!-- Active and Checked: "ring ring-offset-1" -->
@@ -69,10 +69,10 @@
                                     aria-label="{{ $package2->name }}" 
                                     class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 text-purple-500 ring-current focus:outline-none"
                                     :class="{ 'ring ring-offset-1': selectedPackage == 2}"
-                                    @click="selectedPackage = '2'">
+                                    @click="selectedPackage = '2', songOption = '1'">
                                     <input type="radio" name="color-choice" value="2" class="sr-only">
                                     <span aria-hidden="true" class="h-8 w-14 rounded-full border border-black border-opacity-10 bg-current flex items-center justify-center">
-                                        <span class="text-sm text-white font-bold">{{ $package2->name }}</span>
+                                        <span class="text-xs text-white font-bold">{{ $package2->name }}</span>
                                     </span>
                                 </label>
                                 <!-- Active and Checked: "ring ring-offset-1" -->
@@ -83,7 +83,7 @@
                                     @click="selectedPackage = '3'">
                                     <input type="radio" name="color-choice" value="3" class="sr-only">
                                     <span aria-hidden="true" class="h-8 w-14 rounded-full border border-black border-opacity-10 bg-current flex items-center justify-center">
-                                        <span class="text-sm text-white font-bold">{{ $package3->name }}</span>
+                                        <span class="text-xs text-white font-bold">{{ $package3->name }}</span>
                                     </span>
                                 </label>
                             </div>
@@ -100,13 +100,13 @@
                                 <svg class="h-6 w-5 flex-none text-pink-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
                                 <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
                                 </svg>
-                                Kad jemputan digital
+                                Kad jemputan digital basic
                             </li>
                             <li class="flex gap-x-3">
                                 <svg class="h-6 w-5 flex-none text-pink-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
                                 <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
                                 </svg>
-                                Boleh terus diedarkan kepada tetamu
+                                Boleh terus diedarkan kepada tetamu tanpa sebarang bayaran
                             </li>
                             </ul>
                         </div>
@@ -197,6 +197,12 @@
                                 <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
                                 </svg>
                                 Fungsi Money Gift
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-green-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                                </svg>
+                                Upload muzik latar sendiri 
                             </li>
                             </ul>
                         </div>
@@ -749,16 +755,76 @@
 
                                     <div class="grid lg:grid-cols-2">
                                         <!-- Bg Song Selection -->
-                                        <div class="mt-8 lg:col-span-1">
-                                            <label for="bg-song-id" class="block text-sm font-semibold text-gray-900">Muzik Latar</label>
-                                            <div class="mt-2">
+                                        <div class="mt-14 lg:col-span-1">
+                                            <label class="block text-sm font-semibold text-gray-900">Muzik Latar</label>
+                                            <div x-show="selectedPackage == 3">
+                                                <fieldset>
+                                                    <div class="mt-2 mb-4 space-y-2 lg:flex lg:items-center lg:space-x-10 lg:space-y-0">
+                                                        <div class="flex items-center">
+                                                            <input id="default-song" name="bg-song-option" type="radio" value="1" x-model="songOption" checked class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden">
+                                                            <label for="default-song" class="ml-3 block text-sm/6 font-medium text-gray-900">Pilih Lagu</label>
+                                                        </div>
+                                                        <div class="flex items-center">
+                                                            <input id="own-song" name="bg-song-option" type="radio" value="2" x-model="songOption" class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden">
+                                                            <label for="own-song" class="ml-3 block text-sm/6 font-medium text-gray-900">Upload Lagu</label>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+
+                                            <div x-show="songOption == '1'" class="mt-2">
                                                 @livewire('bg-song-dropdown')
                                             </div>
+                                            <div x-show="songOption == '2'" class="mt-2 lg:pr-14">
+                                                <div class="mt-2">
+                                                    <input type="text" name="uploaded-song-name" id="uploaded-song-name" placeholder="Nama Lagu" value="{{ old('uploaded-song-name') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
+                                                </div>
+                                                <input 
+                                                    class="mt-2 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none" 
+                                                    type="file"
+                                                    name="uploaded-song" 
+                                                    id="uploaded-song" 
+                                                    accept="mp3"
+                                                >
+                                            </div>
+                                            <script>
+                                                // Define allowed file size (e.g., 5MB in bytes)
+                                                const MAX_SONG_FILE_SIZE = 8 * 1024 * 1024; // 8MB
+
+                                                // Function to validate image file
+                                                function validateFileUpload(inputFile) {
+                                                    const file = inputFile.files[0];
+                                                    const allowedTypes = ['mp3']; 
+                                                    const allowedExtensions = ['mp3'];
+
+                                                    if (file) {
+                                                        const fileExtension = file.name.split('.').pop().toLowerCase();
+                                                        if (!allowedTypes.includes(file.type) && !allowedExtensions.includes(fileExtension)) {
+                                                            alert('Invalid file type. Please upload a MP3 file only.');
+                                                            inputFile.value = ''; // Reset the input
+                                                            return false;
+                                                        }
+
+                                                        // Check file size
+                                                        if (file.size > MAX_SONG_FILE_SIZE) {
+                                                            alert('File is too large. Please upload an image smaller than 5MB.');
+                                                            inputFile.value = ''; // Reset the input
+                                                            return false;
+                                                        }
+                                                    }
+                                                    return true;
+                                                }
+
+                                                 // Attach validation to each file input
+                                                document.getElementById('uploaded-song').addEventListener('change', function() {
+                                                    validateFileUpload(this);
+                                                });
+                                            </script>
                                         </div>
                                         <!-- End of Bg Song Selection -->
 
                                         <!-- Account Detail Upload -->
-                                        <div x-show="giftEnabled && selectedPackage == 3" x-cloak class="mt-8 lg:col-span-1">
+                                        <div x-show="giftEnabled && selectedPackage == 3" x-cloak class="mt-14 lg:col-span-1">
                                             <div class="lg:flex lg:justify-between">
                                                 <div>
                                                     <label for="bank-name" class="block text-sm font-semibold text-gray-900">Nama Bank</label>
@@ -777,7 +843,6 @@
                                             <!-- Upload QR Code -->
                                             <div class="mt-2">
                                                 <div class="flex items-center">
-                                                    <img src="" id="qr_img" alt="Photo" class="hidden w-14 h-14 object-cover border border-gray-300 rounded-md" /> 
                                                     <div class="flex-1 relative">
                                                         <input 
                                                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none" 
@@ -786,14 +851,6 @@
                                                             id="qr-image" 
                                                             accept="image/png, image/jpeg"
                                                         >
-                                                        <button 
-                                                            type="button" 
-                                                            class="p-1 mt-1 bg-red-500 text-white rounded-md hidden" 
-                                                            id="qr_img_delete">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
-                                                                <path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z" clip-rule="evenodd" />
-                                                            </svg>
-                                                        </button>
                                                     </div>
                                                 </div>
                                                 
@@ -805,7 +862,7 @@
 
                                     <div class="lg:grid lg:grid-cols-2">
                                     <!-- Info Tambahan -->
-                                    <div class="mt-6 lg:col-span-1">
+                                    <div class="mt-14 lg:col-span-1">
                                         <label for="info-tambahan" class="block text-sm font-semibold text-gray-900">Info Tambahan</label>
                                         <div class="mt-2">
                                             <textarea name="info-tambahan" 
@@ -814,7 +871,7 @@
                                             spellcheck="false" 
                                             placeholder="Parking di tingkat 2
                                     Surau di tingkat 1" 
-                                            class="block text-center w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm lg:w-72">{{ old('info-tambahan') }}</textarea>
+                                            class="block text-center w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm lg:w-80">{{ old('info-tambahan') }}</textarea>
 
                                             <style>
                                             #info-tambahan::placeholder {
@@ -825,7 +882,7 @@
                                     </div>
 
                                     <!-- Gallery upload -->
-                                    <div x-data="{ sliderImage: '1' }" class="mt-8 lg:col-span-1">
+                                    <div x-data="{ sliderImage: '1' }" class="mt-14 lg:col-span-1">
                                         <!--<label class="mb-2 mt-4 block text-sm font-medium text-gray-900">Galeri <span class="text-xs">(Optional)</span></label>-->
                                         <fieldset>
                                             <legend class="text-sm font-semibold text-gray-900">Galeri Slideshow</legend>
@@ -947,7 +1004,7 @@
                                         }
 
                                         // Define allowed file size (e.g., 5MB in bytes)
-										const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+										const MAX_IMAGE_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 
                                         // Function to validate image file
                                         function validateImageUpload(inputFile) {
@@ -965,7 +1022,7 @@
                                                 }
 
                                                 // Check file size
-                                                if (file.size > MAX_FILE_SIZE) {
+                                                if (file.size > MAX_IMAGE_FILE_SIZE) {
                                                     alert('File is too large. Please upload an image smaller than 5MB.');
                                                     inputFile.value = ''; // Reset the input
                                                     return false;
