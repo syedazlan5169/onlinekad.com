@@ -249,9 +249,9 @@
                         <h1 class="px-14 text-2xl text-center text-gray-600 animate-zoom-in" style="font-family: 'Noticia Text', cursive; color: {{ $primaryTextColor }};">{{ $kadData->tajuk_kad }}</h1>
                         @if ($kadData->dua_pasangan_is_on == true)
                             <div class="text-center">
-                                <p class="text-4xl text-gray-600 mb-0 leading-tight animate-zoom-in-delay-1" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_pasangan_pertama }}</p>
+                                <p class="text-5xl text-gray-600 mb-0 leading-tight animate-zoom-in-delay-1" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_pasangan_pertama }}</p>
                                 <p class="text-2xl text-gray-600 mb-0 leading-tight animate-zoom-in-delay-2" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->is_english ? 'With' : 'Bersama' }}</p>
-                                <p class="text-4xl text-gray-600 mb-0 leading-tight animate-zoom-in-delay-3" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_pasangan_kedua }}</p>
+                                <p class="text-5xl text-gray-600 mb-0 leading-tight animate-zoom-in-delay-3" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_pasangan_kedua }}</p>
                             </div>
                         @elseif ($kadData->penjemput == 2)
                             <div class="text-center">
@@ -329,9 +329,9 @@
                                         <div class="relative z-10 flex flex-col gap-6 items-center justify-center h-full">
                                             @if ($kadData->dua_pasangan_is_on == true)
                                                 <div class="text-center">
-                                                    <p class="text-4xl text-gray-600 mb-0 leading-tight" data-aos="fade-up" data-aos-duration="1000" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_pasangan_pertama }}</p>
+                                                    <p class="text-5xl text-gray-600 mb-0 leading-tight" data-aos="fade-up" data-aos-duration="1000" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_pasangan_pertama }}</p>
                                                     <p class="text-2xl text-gray-600 mb-0 leading-tight" data-aos="fade-up" data-aos-duration="1000" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->is_english ? 'With' : 'Bersama' }}</p>
-                                                    <p class="text-4xl text-gray-600 mb-0 leading-tight" data-aos="fade-up" data-aos-duration="1000" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_pasangan_kedua }}</p>
+                                                    <p class="text-5xl text-gray-600 mb-0 leading-tight" data-aos="fade-up" data-aos-duration="1000" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_pasangan_kedua }}</p>
                                                 </div>
                                             @elseif ($kadData->penjemput == 2)
                                                 <div class="text-center">
@@ -701,8 +701,9 @@
                 <!-- Modal Content -->
                 <div class="relative z-10 w-full max-w-md p-6 pb-0 rounded-xl mx-auto" style="background-color: {{ $colorCode }};">
                     <h1 class="text-center font-bold text-xl text-[white] open-sans">RSVP</h1>
-                    <h1 class="text-center pb-4 font-bold text-xl text-[white] open-sans">{{ $kadData['nama_panggilan_lelaki'] }} & {{ $kadData['nama_panggilan_perempuan'] }}</h1>
-                    
+                    @if (!$kadData->dua_pasangan_is_on)
+                        <h1 class="text-center pb-4 font-bold text-xl text-[white] open-sans">{{ $kadData['nama_panggilan_lelaki'] }} & {{ $kadData['nama_panggilan_perempuan'] }}</h1>
+                    @endif
                     <!-- Form -->
                     <div x-data="{ kehadiran: 'Hadir' }" class="md:p-10 p-0 flex flex-col gap-4">
                         
