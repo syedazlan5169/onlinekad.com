@@ -21,7 +21,7 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="{{ $kadData->tajuk_kad }}">
         <meta name="twitter:description" content="Anda dijemput hadir ke {{ $kadData->nama_panggilan_lelaki }} & {{ $kadData->nama_panggilan_perempuan }} pada {{ $dateTime['tarikh_majlis'] }} di {{ $kadData->alamat_majlis }}.">
-        <meta name="twitter:image" content="{{ asset('/images/kad-thumbnail.webp') }}">
+        <meta name="twitter:image" content="{{ asset($design->thumbnail) }}">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
