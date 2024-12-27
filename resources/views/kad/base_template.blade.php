@@ -12,7 +12,7 @@
         <!-- Open Graph Meta Tags -->
         <meta property="og:title" content="{{ $kadData->tajuk_kad }}">
         <meta property="og:description" content="Anda dijemput hadir ke majlis {{ $kadData->nama_panggilan_lelaki }} dan {{ $kadData->nama_panggilan_perempuan }} pada {{ $dateTime['tarikh_majlis'] }} di {{ $kadData->alamat_majlis }}.">
-        <meta property="og:image" content="{{ asset('/images/thumbnails/Thumb-N053.webp') }}">
+        <meta property="og:image" content="{{ asset('/images/kad-thumbnail.webp') }}">
         <meta property="og:url" content="{{ url()->current() }}">
         <meta property="og:type" content="website">
         <meta property="og:locale" content="en_US"> <!-- Change this to your language -->
