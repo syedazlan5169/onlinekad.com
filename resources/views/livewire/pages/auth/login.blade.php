@@ -94,8 +94,6 @@ new #[Layout('layouts.guest')] class extends Component
             </svg>
             <span class="text-sm font-semibold leading-6">Continue With Google</span>
             </a>
-
-
         </div>
     </div>
 
