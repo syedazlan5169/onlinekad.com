@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\GoogleController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 use App\Mail\NewKad;
+use App\Mail\NewPayment;
 use App\Models\Guestbook;
 use App\Models\Rsvp;
 use Illuminate\Support\Facades\Route;
@@ -84,7 +85,7 @@ Route::get('/send-test-email', function () {
     if (app()->environment('local'))
     {
         try {
-            Mail::to('syedazlan5169@gmail.com')->send(new NewKad());
+            Mail::to('syedazlan5169@gmail.com')->send(new NewPayment());
         } catch (\Exception $e) {
             Log::error('Email failed: ' . $e->getMessage());
             return 'Email failed. Check logs for details.';

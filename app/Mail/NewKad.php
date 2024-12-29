@@ -13,12 +13,14 @@ class NewKad extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $kadData;
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($kadData)
     {
-        //
+        $this->kadData = $kadData;
     }
 
     /**
@@ -27,7 +29,7 @@ class NewKad extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Kad',
+            subject: 'New Kad Created',
         );
     }
 
@@ -38,6 +40,9 @@ class NewKad extends Mailable
     {
         return new Content(
             view: 'emails.new-kad',
+            with: [
+                'kadData' => $this->kadData,
+            ],
         );
     }
 

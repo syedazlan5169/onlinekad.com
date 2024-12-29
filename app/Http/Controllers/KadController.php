@@ -477,7 +477,7 @@ class KadController extends Controller
 
         // Send New Kad created email
         try {
-            Mail::to('admin@onlinekad.com')->send(new NewKad());
+            Mail::to('admin@onlinekad.com')->send(new NewKad($kad));
         } catch (\Exception $e) {
             Log::error('Email failed: ' . $e->getMessage());
         }
