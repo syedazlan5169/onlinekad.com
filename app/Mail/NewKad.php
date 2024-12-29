@@ -20,7 +20,7 @@ class NewKad extends Mailable
      */
     public function __construct($kadData)
     {
-        $this->kadData = $kadData;
+        $this->kadData = $kadData->toArray();
     }
 
     /**

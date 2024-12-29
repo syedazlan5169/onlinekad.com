@@ -82,8 +82,8 @@ Route::get('/preview/{slug}', [KadController::class, 'showPreview']);
 
 //Mail testing
 Route::get('/send-test-email', function () {
-    if (app()->environment('local'))
-    {
+    //if (app()->environment('local'))
+    //{
         try {
             Mail::to('syedazlan5169@gmail.com')->send(new NewPayment());
         } catch (\Exception $e) {
@@ -92,9 +92,9 @@ Route::get('/send-test-email', function () {
         }
 
         return 'Test email sent!';
-    }
+    //}
 
-    abort(403, 'Unauthorized action.');
+    //abort(403, 'Unauthorized action.');
 
 });
 
