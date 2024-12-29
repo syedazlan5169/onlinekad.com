@@ -32,7 +32,7 @@
                 <p>Tarikh Majlis: {{ $kadData['tarikh_majlis'] }}</p>
                 <p>Design Id: {{ $kadData['design_id'] }}</p>
                 <p>Pakej: {{ $pakej }}</p>
-                <a href="staging.onlinekad.com/invitation/{{ $kadData->slug }}" style="display: inline-block; padding: 10px 20px; background-color: #007BFF; color: #ffffff; text-decoration: none; border-radius: 4px;">
+                <a href="staging.onlinekad.com/invitation/{{ $kadData['slug'] }}" style="display: inline-block; padding: 10px 20px; background-color: #007BFF; color: #ffffff; text-decoration: none; border-radius: 4px;">
                     Check it out!! 
                 </a>
             </td>
