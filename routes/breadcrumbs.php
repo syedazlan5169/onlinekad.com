@@ -25,6 +25,12 @@ Breadcrumbs::for('katalog', function (BreadcrumbTrail $trail) {
     $trail->push('Katalog', route('katalog.show'));
 });
 
+// Home > Dasar Privasi 
+Breadcrumbs::for('dasar-privasi', function (BreadcrumbTrail $trail) {
+    $trail->parent('/');
+    $trail->push('Dasar Privasi', route('dasar-privasi.show'));
+});
+
 // Home > Pakej 
 Breadcrumbs::for('pakej', function (BreadcrumbTrail $trail) {
     $trail->parent('/');

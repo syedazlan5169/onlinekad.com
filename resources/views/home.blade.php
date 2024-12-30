@@ -755,6 +755,7 @@
                 <p class="mt-1 text-xs leading-5 text-gray-400 md:order-1 md:mt-0">&copy; 2024 onlinekad.com</p>
                 <p class="mt-1 text-xs leading-5 text-gray-400 md:order-2 md:mt-0">Dimiliki oleh: SY Digital Solutions</p>
                 <p class="mt-1 text-xs leading-5 text-gray-400 md:order-3 md:mt-0">BRN: 003369320-V</p>
+                <a href="/dasar-privasi" class="mt-1 text-xs leading-5 text-gray-400 md:order-3 md:mt-0">Dasar Privasi</a>
             </div>
             </div>
         </div>

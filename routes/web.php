@@ -18,19 +18,13 @@ use App\Models\Rsvp;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Response;
 
-Route::get('/robots.txt', function () {
-    $content = app()->environment('production')
-        ? "User-agent: *\nAllow: /"
-        : "User-agent: *\nDisallow: /";
-
-    return Response::make($content, 200, ['Content-Type' => 'text/plain']);
-});
 
 Route::get('/', [HomeController::class, 'index'])->name('/');
 Route::get('pakej', [PakejController::class, 'index'])->name('pakej.show');
 //Route::get('katalog', [KatalogController::class, 'index'])->name('katalog.show');
 Route::view('katalog', 'katalog')->name('katalog.show');
 Route::view('tutorial', 'tutorial')->name('tutorial.show');
+Route::view('dasar-privasi', 'dasar-privasi')->name('dasar-privasi.show');
 Route::post('/tulis-ucapan', [GuestbookController::class, 'create'])->name('tulis-ucapan');
 Route::post('/create-rsvp', [RsvpController::class, 'create'])->name('create-rsvp');
 Route::post('/toyyibpay-callback', [ToyyibpayController::class, 'handleToyyibpayCallback'])->name('toyyibpay-callback');
