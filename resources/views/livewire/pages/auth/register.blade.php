@@ -89,7 +89,7 @@ new #[Layout('layouts.guest')] class extends Component
                 {{ __('Register') }}
             </x-primary-button>
         </div>
-        <div>
+        <!--<div>
             <div class="relative mt-4">
                 <div class="absolute inset-0 flex items-center" aria-hidden="true">
                 <div class="w-full border-t border-gray-200"></div>
@@ -110,7 +110,7 @@ new #[Layout('layouts.guest')] class extends Component
                 <span class="text-sm font-semibold leading-6">Sign Up With Google</span>
                 </a>
             </div>
-        </div>
+        </div>-->
         <div class="mt-4 flex justify-center">
             <a class="underline text-sm text-gray-600  hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}" wire:navigate>
                 {{ __('Already registered?') }}
