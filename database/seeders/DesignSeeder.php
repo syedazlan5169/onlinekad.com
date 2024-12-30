@@ -18,7 +18,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N001-2.webp',
                 'color_code' => '#DAA520',
                 'color_footer' => '#F3DBB5',
-                'category' => 'floral'
+                'category' => 'floral',
+                'thumbnail' => '/images/thumbnails/Thumb-N001.webp',
             ],
             [
                 'id' => 2,
@@ -28,7 +29,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N002-2.webp',
                 'color_code' => '#324B87',
                 'color_footer' => '#7D9AAB',
-                'category' => 'floral'
+                'category' => 'floral',
+                'thumbnail' => '/images/thumbnails/Thumb-N002.webp',
             ],
             [
                 'id' => 3,
@@ -38,7 +40,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N003-2.webp',
                 'color_code' => '#9E5E26',
                 'color_footer' => '#B27E2C',
-                'category' => 'floral'
+                'category' => 'floral',
+                'thumbnail' => '/images/thumbnails/Thumb-N003.webp',
             ],
             [
                 'id' => 4,
@@ -48,7 +51,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N004-2.webp',
                 'color_code' => '#CA2877',
                 'color_footer' => '#DB5E9B',
-                'category' => 'floral'
+                'category' => 'floral',
+                'thumbnail' => '/images/thumbnails/Thumb-N004.webp',
             ],
             [
                 'id' => 5,
@@ -58,7 +62,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N005-2.webp',
                 'color_code' => '#5B967F',
                 'color_footer' => '#91CCB5',
-                'category' => 'floral'
+                'category' => 'floral',
+                'thumbnail' => '/images/thumbnails/Thumb-N005.webp',
             ],
             [
                 'id' => 6,
@@ -68,7 +73,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N006-2.webp',
                 'color_code' => '#CC6579',
                 'color_footer' => '#ED95A6',
-                'category' => 'floral'
+                'category' => 'floral',
+                'thumbnail' => '/images/thumbnails/Thumb-N006.webp',
             ],
             [
                 'id' => 7,
@@ -78,7 +84,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N007-2.webp',
                 'color_code' => '#FF004A',
                 'color_footer' => '#F5648E',
-                'category' => 'floral'
+                'category' => 'floral',
+                'thumbnail' => '/images/thumbnails/Thumb-N007.webp',
             ],
             [
                 'id' => 8,
@@ -88,7 +95,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N008-2.webp',
                 'color_code' => '#15183A',
                 'color_footer' => '4951AD',
-                'category' => 'floral'
+                'category' => 'floral',
+                'thumbnail' => '/images/thumbnails/Thumb-N008.webp',
             ],
             [
                 'id' => 9,
@@ -98,7 +106,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N009-2.webp',
                 'color_code' => '#435796',
                 'color_footer' => '#667FD1',
-                'category' => 'floral'
+                'category' => 'floral',
+                'thumbnail' => '/images/thumbnails/Thumb-N009.webp',
             ],
             [
                 'id' => 10,
@@ -108,7 +117,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N010-2.webp',
                 'color_code' => '#638A65',
                 'color_footer' => '#839B83',
-                'category' => 'floral'
+                'category' => 'floral',
+                'thumbnail' => '/images/thumbnails/Thumb-N010.webp',
             ],
             [
                 'id' => 11,
@@ -118,7 +128,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N011-2.webp',
                 'color_code' => '#B28A50',
                 'color_footer' => '#D3B788',
-                'category' => 'floral'
+                'category' => 'floral',
+                'thumbnail' => '/images/thumbnails/Thumb-N011.webp',
             ],
             [
                 'id' => 12,
@@ -128,7 +139,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N012-2.webp',
                 'color_code' => '#655548',
                 'color_footer' => '#7A695D',
-                'category' => 'floral'
+                'category' => 'floral',
+                'thumbnail' => '/images/thumbnails/Thumb-N012.webp',
             ],
             [
                 'id' => 13,
@@ -138,7 +150,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N013-2.webp',
                 'color_code' => '#9A2C52',
                 'color_footer' => '#C96681',
-                'category' => 'floral'
+                'category' => 'floral',
+                'thumbnail' => '/images/thumbnails/Thumb-N013.webp',
             ],
             [
                 'id' => 14,
@@ -148,7 +161,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N014-2.webp',
                 'color_code' => '#D3414D',
                 'color_footer' => '#F183A0',
-                'category' => 'floral'
+                'category' => 'floral',
+                'thumbnail' => '/images/thumbnails/Thumb-N014.webp',
             ],
             [
                 'id' => 15,
@@ -158,7 +172,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N015-2.webp',
                 'color_code' => '#AA5A6B',
                 'color_footer' => '#D58385',
-                'category' => 'floral'
+                'category' => 'floral',
+                'thumbnail' => '/images/thumbnails/Thumb-N015.webp',
             ],
             [
                 'id' => 16,
@@ -168,7 +183,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N016-2.webp',
                 'color_code' => '#4B746A',
                 'color_footer' => '#8EB5AB',
-                'category' => 'floral'
+                'category' => 'floral',
+                'thumbnail' => '/images/thumbnails/Thumb-N016.webp',
             ],
             [
                 'id' => 17,
@@ -178,7 +194,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N017-2.webp',
                 'color_code' => '#D16E29',
                 'color_footer' => '#E1833B',
-                'category' => 'floral'
+                'category' => 'floral',
+                'thumbnail' => '/images/thumbnails/Thumb-N017.webp',
             ],
             [
                 'id' => 18,
@@ -188,7 +205,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N018-2.webp',
                 'color_code' => '#C9547C',
                 'color_footer' => '#EAB2D3',
-                'category' => 'floral'
+                'category' => 'floral',
+                'thumbnail' => '/images/thumbnails/Thumb-N018.webp',
             ],
             [
                 'id' => 19,
@@ -198,7 +216,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N019-2.webp',
                 'color_code' => '#4A45A8',
                 'color_footer' => '#6A67B7',
-                'category' => 'floral'
+                'category' => 'floral',
+                'thumbnail' => '/images/thumbnails/Thumb-N019.webp',
             ],
             [
                 'id' => 20,
@@ -208,7 +227,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N020-2.webp',
                 'color_code' => '#7F1418',
                 'color_footer' => '#933A41',
-                'category' => 'floral'
+                'category' => 'floral',
+                'thumbnail' => '/images/thumbnails/Thumb-N020.webp',
             ],
             [
                 'id' => 21,
@@ -218,7 +238,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N02i-2.webp',
                 'color_code' => '#8B4871',
                 'color_footer' => '#A66788',
-                'category' => 'floral'
+                'category' => 'floral',
+                'thumbnail' => '/images/thumbnails/Thumb-N021.webp',
             ],
             [
                 'id' => 22,
@@ -228,7 +249,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N022-2.webp',
                 'color_code' => '#BA4D39',
                 'color_footer' => '#CE8953',
-                'category' => 'floral'
+                'category' => 'floral',
+                'thumbnail' => '/images/thumbnails/Thumb-N022.webp',
             ],
             [
                 'id' => 23,
@@ -238,7 +260,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N023-2.webp',
                 'color_code' => '#9A5425',
                 'color_footer' => '#C48053',
-                'category' => 'floral'
+                'category' => 'floral',
+                'thumbnail' => '/images/thumbnails/Thumb-N023.webp',
             ],
             [
                 'id' => 24,
@@ -248,7 +271,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N024-2.webp',
                 'color_code' => '#C03C32',
                 'color_footer' => '#ECA59D',
-                'category' => 'floral'
+                'category' => 'floral',
+                'thumbnail' => '/images/thumbnails/Thumb-N024.webp',
             ],
             [
                 'id' => 25,
@@ -258,7 +282,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N025-2.webp',
                 'color_code' => '#613489',
                 'color_footer' => '#715589',
-                'category' => 'abstract'
+                'category' => 'abstract',
+                'thumbnail' => '/images/thumbnails/Thumb-N025.webp',
             ],
             [
                 'id' => 26,
@@ -268,7 +293,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N026-2.webp',
                 'color_code' => '#435131',
                 'color_footer' => '#B2C190',
-                'category' => 'abstract'
+                'category' => 'abstract',
+                'thumbnail' => '/images/thumbnails/Thumb-N026.webp',
             ],
             [
                 'id' => 27,
@@ -278,7 +304,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N027-2.webp',
                 'color_code' => '#2E6EB7',
                 'color_footer' => '#6EB1E1',
-                'category' => 'abstract'
+                'category' => 'abstract',
+                'thumbnail' => '/images/thumbnails/Thumb-N027.webp',
             ],
             [
                 'id' => 28,
@@ -288,7 +315,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N028-2.webp',
                 'color_code' => '#913636',
                 'color_footer' => '#ED9F9F',
-                'category' => 'abstract'
+                'category' => 'abstract',
+                'thumbnail' => '/images/thumbnails/Thumb-N028.webp',
             ],
             [
                 'id' => 29,
@@ -298,7 +326,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N029-2.webp',
                 'color_code' => '#AF6951',
                 'color_footer' => '#D5967D',
-                'category' => 'abstract'
+                'category' => 'abstract',
+                'thumbnail' => '/images/thumbnails/Thumb-N029.webp',
             ],
             [
                 'id' => 30,
@@ -308,7 +337,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N030-2.webp',
                 'color_code' => '#AA2451',
                 'color_footer' => '#E08FA7',
-                'category' => 'abstract'
+                'category' => 'abstract',
+                'thumbnail' => '/images/thumbnails/Thumb-N030.webp',
             ],
             [
                 'id' => 31,
@@ -318,7 +348,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N031-2.webp',
                 'color_code' => '#6B0C33',
                 'color_footer' => '#895B70',
-                'category' => 'abstract'
+                'category' => 'abstract',
+                'thumbnail' => '/images/thumbnails/Thumb-N031.webp',
             ],
             [
                 'id' => 32,
@@ -328,7 +359,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N032-2.webp',
                 'color_code' => '#A5680F',
                 'color_footer' => '#F4D39D',
-                'category' => 'abstract'
+                'category' => 'abstract',
+                'thumbnail' => '/images/thumbnails/Thumb-N032.webp',
             ],
             [
                 'id' => 33,
@@ -338,7 +370,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N033-2.webp',
                 'color_code' => '#1B6634',
                 'color_footer' => '#4E825F',
-                'category' => 'abstract'
+                'category' => 'abstract',
+                'thumbnail' => '/images/thumbnails/Thumb-N033.webp',
             ],
             [
                 'id' => 34,
@@ -348,7 +381,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N034-2.webp',
                 'color_code' => '#351B68',
                 'color_footer' => '#62537F',
-                'category' => 'abstract'
+                'category' => 'abstract',
+                'thumbnail' => '/images/thumbnails/Thumb-N034.webp',
             ],
             [
                 'id' => 35,
@@ -358,7 +392,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N035-2.webp',
                 'color_code' => '#9B34A3',
                 'color_footer' => '#BA79BF',
-                'category' => 'abstract'
+                'category' => 'abstract',
+                'thumbnail' => '/images/thumbnails/Thumb-N035.webp',
             ],
             [
                 'id' => 36,
@@ -368,7 +403,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N036-2.webp',
                 'color_code' => '#DD743A',
                 'color_footer' => '#EDA983',
-                'category' => 'abstract'
+                'category' => 'abstract',
+                'thumbnail' => '/images/thumbnails/Thumb-N036.webp',
             ],
             [
                 'id' => 49,
@@ -378,7 +414,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N049-2.webp',
                 'color_code' => '#4F5D83',
                 'color_footer' => '#A1AAC2',
-                'category' => 'minimalist'
+                'category' => 'minimalist',
+                'thumbnail' => '/images/thumbnails/Thumb-N049.webp',
             ],
             [
                 'id' => 50,
@@ -388,7 +425,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N050-2.webp',
                 'color_code' => '#EA9632',
                 'color_footer' => '#F2AF5F',
-                'category' => 'minimalist'
+                'category' => 'minimalist',
+                'thumbnail' => '/images/thumbnails/Thumb-N050.webp',
             ],
             [
                 'id' => 51,
@@ -398,7 +436,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N051-2.webp',
                 'color_code' => '#7F5230',
                 'color_footer' => '#C6804B',
-                'category' => 'minimalist'
+                'category' => 'minimalist',
+                'thumbnail' => '/images/thumbnails/Thumb-N051.webp',
             ],
             [
                 'id' => 52,
@@ -408,7 +447,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N052-2.webp',
                 'color_code' => '#9B2C27',
                 'color_footer' => '#AA514D',
-                'category' => 'minimalist'
+                'category' => 'minimalist',
+                'thumbnail' => '/images/thumbnails/Thumb-N052.webp',
             ],
             [
                 'id' => 53,
@@ -419,7 +459,8 @@ class DesignSeeder extends Seeder
                 'color_code' => '#A05A2A',
                 'color_footer' => '#C48C66',
                 'category' => 'minimalist',
-                'primary_text_color' => '#C49A7A'
+                'thumbnail' => '/images/thumbnails/Thumb-N053.webp',
+                'primary_text_color' => '#C49A7A',
             ],
             [
                 'id' => 54,
@@ -429,7 +470,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N054-2.webp',
                 'color_code' => '#826127',
                 'color_footer' => '#A58C5E',
-                'category' => 'minimalist'
+                'category' => 'minimalist',
+                'thumbnail' => '/images/thumbnails/Thumb-N054.webp',
             ],
             [
                 'id' => 55,
@@ -439,7 +481,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N055-2.webp',
                 'color_code' => '#374460',
                 'color_footer' => '#5C6272',
-                'category' => 'minimalist'
+                'category' => 'minimalist',
+                'thumbnail' => '/images/thumbnails/Thumb-N055.webp',
             ],
             [
                 'id' => 56,
@@ -449,7 +492,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N056-2.webp',
                 'color_code' => '#F47199',
                 'color_footer' => '#F2ADC3',
-                'category' => 'minimalist'
+                'category' => 'minimalist',
+                'thumbnail' => '/images/thumbnails/Thumb-N056.webp',
             ],
             [
                 'id' => 57,
@@ -459,7 +503,8 @@ class DesignSeeder extends Seeder
                 'design_url_2' => '/images/designs/N057-2.webp',
                 'color_code' => '#604C40',
                 'color_footer' => '#7D7068',
-                'category' => 'minimalist'
+                'category' => 'minimalist',
+                'thumbnail' => '/images/thumbnails/Thumb-N057.webp',
             ],
 
             // Add more entries as needed
