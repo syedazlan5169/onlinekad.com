@@ -31,6 +31,12 @@ Breadcrumbs::for('dasar-privasi', function (BreadcrumbTrail $trail) {
     $trail->push('Dasar Privasi', route('dasar-privasi.show'));
 });
 
+// Home > Hubungi Kami 
+Breadcrumbs::for('hubungi-kami', function (BreadcrumbTrail $trail) {
+    $trail->parent('/');
+    $trail->push('Hubungi Kami', route('hubungi-kami.show'));
+});
+
 // Home > Pakej 
 Breadcrumbs::for('pakej', function (BreadcrumbTrail $trail) {
     $trail->parent('/');

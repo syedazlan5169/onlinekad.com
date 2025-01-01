@@ -85,7 +85,7 @@ new #[Layout('layouts.guest')] class extends Component
         </div>
 
         <div class="flex items-center justify-center mt-4">
-            <x-primary-button class="w-full">
+            <x-primary-button class="w-full" onclick="gtag_report_conversion();">
                 {{ __('Register') }}
             </x-primary-button>
         </div>
