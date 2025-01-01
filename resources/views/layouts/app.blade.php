@@ -11,6 +11,25 @@
           gtag('config', 'G-1MLQMPS6W2');
           gtag('config', 'AW-11521579076');
         </script>
+        <!-- Event snippet for Kad Created conversion page
+        In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+        <script>
+        function gtag_report_conversion_kad_created(url) {
+        var callback = function () {
+            if (typeof(url) != 'undefined') {
+            window.location = url;
+            }
+        };
+        gtag('event', 'conversion', {
+            'send_to': 'AW-11521579076/gAxcCJCx9f4ZEMSw9fUq',
+            'value': 30.0,
+            'currency': 'MYR',
+            'event_callback': callback
+        });
+        return false;
+        }
+        </script>
+
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">

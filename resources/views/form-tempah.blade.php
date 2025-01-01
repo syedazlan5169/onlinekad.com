@@ -1067,7 +1067,7 @@
 
                         <!-- Submit Button -->
                         <div class="mt-6">
-                            <x-primary-button type="submit">Save</x-primary-button>
+                            <x-primary-button onclick="gtag_report_conversion_kad_created();" type="submit">Save</x-primary-button>
                         </div>
                     </form>
                     <!-- Form ends -->
