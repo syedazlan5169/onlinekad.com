@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Response;
 Route::get('/', [HomeController::class, 'index'])->name('/');
 Route::get('pakej', [PakejController::class, 'index'])->name('pakej.show');
 //Route::get('katalog', [KatalogController::class, 'index'])->name('katalog.show');
+Route::view('hubungi-kami', 'hubungi-kami')->name('hubungi-kami.show');
 Route::view('katalog', 'katalog')->name('katalog.show');
 Route::view('tutorial', 'tutorial')->name('tutorial.show');
 Route::view('dasar-privasi', 'dasar-privasi')->name('dasar-privasi.show');
