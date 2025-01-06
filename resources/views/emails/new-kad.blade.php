@@ -22,7 +22,7 @@
     <table width="100%" style="border-collapse: collapse; background-color: #ffffff; margin: 20px auto; max-width: 600px;">
         <tr>
             <td style="padding: 20px; text-align: center;">
-                <img src="https://yourdomain.com/images/Logo-Header.png" alt="Logo" style="max-width: 100px;">
+                <img src="https://onlinekad.com/images/Logo-Header.png" alt="Logo" style="max-width: 100px;">
             </td>
         </tr>
         <tr>

@@ -99,9 +99,7 @@
                             <div class="flex items-center gap-x-2">
                               <dt class="flex-none">
                                 <span class="sr-only">Email</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48" stroke-width="1.5" stroke="currentColor" class="size-24">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 9v.906a2.25 2.25 0 0 1-1.183 1.981l-6.478 3.488M2.25 9v.906a2.25 2.25 0 0 0 1.183 1.981l6.478 3.488m8.839 2.51-4.66-2.51m0 0-1.023-.55a2.25 2.25 0 0 0-2.134 0l-1.022.55m0 0-4.661 2.51m16.5 1.615a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V8.844a2.25 2.25 0 0 1 1.183-1.981l7.5-4.039a2.25 2.25 0 0 1 2.134 0l7.5 4.039a2.25 2.25 0 0 1 1.183 1.98V19.5Z" />
-                                </svg>
+                                <img width="48" height="48" src="https://img.icons8.com/color/48/circled-envelope.png" alt="circled-envelope"/> 
                               </dt>
                               <dd><a class="hover:text-gray-900" href="mailto:info@onlinekad.com">info@onlinekad.com</a></dd>
                             </div>
@@ -137,7 +135,7 @@
                                 <select name="subjek" id="subjek" class="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600">
                                   <option value="Cadangan">Cadangan</option>
                                   <option value="Maklumbalas">Maklumbalas</option>
-                                  <option value="Laporan">Laporan</option>
+                                  <option value="Aduan">Aduan</option>
                                 </select>
                               </div>
                             </div>
@@ -153,6 +151,9 @@
                           </div>
                         </div>
                       </form>
+                      <div class="flex items-center justify-center p-14" x-show="!showForm">
+                        <p class="text-center flex justify-center text-2xl text-green-900">Terima kasih.<br> Mesej anda telah diterima.</p>
+                      </div>
                     </div>
                   </div>
                   
