@@ -49,11 +49,11 @@ new class extends Component
                         {{ __('Tutorial') }}
                     </x-nav-link>
                 </div>
-                <!--<div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('hubungi-kami.show')" :active="request()->routeIs('hubungi-kami.show')" wire:navigate>
                         {{ __('Hubungi Kami') }}
                     </x-nav-link>
-                </div>-->
+                </div>
                 @auth
                 @if (Auth::user()->is_admin)
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
@@ -150,9 +150,9 @@ new class extends Component
             <x-responsive-nav-link :href="route('tutorial.show')" :active="request()->routeIs('tutorial.show')" wire:navigate>
                 {{ __('Tutorial') }}
             </x-responsive-nav-link>
-            <!--<x-responsive-nav-link :href="route('hubungi-kami.show')" :active="request()->routeIs('hubungi-kami.show')" wire:navigate>
+            <x-responsive-nav-link :href="route('hubungi-kami.show')" :active="request()->routeIs('hubungi-kami.show')" wire:navigate>
                 {{ __('Hubungi Kami') }}
-            </x-responsive-nav-link>-->
+            </x-responsive-nav-link>
             @auth
             @if (Auth::user()->is_admin)
                 <x-responsive-nav-link :href="route('admin.show')" :active="request()->routeIs('admin.show')" wire:navigate>
