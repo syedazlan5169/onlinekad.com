@@ -600,7 +600,11 @@
 
                     <!-- Doa Pengantin -->
                         <div class="items-center w-full h-auto mb-6 rounded-xl p-4">
-                            <p class="mb-5 text-center text-2xl underline" style="font-family: 'EB Garamond'">DOA PENGANTIN</p>
+                            @if ($kadData->is_english)
+                                <p class="mb-5 text-center text-2xl underline" style="font-family: 'EB Garamond'">WEDDING PRAYERS</p>
+                            @else
+                                <p class="mb-5 text-center text-2xl underline" style="font-family: 'EB Garamond'">DOA PENGANTIN</p>
+                            @endif
                             <p class="text-center text-lg" style="font-family: 'EB Garamond'">{{ $kadData->doa_pengantin }}</p>
                         </div>
 
