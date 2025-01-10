@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+
+<url>
+  <loc>https://onlinekad.com/</loc>
+  <lastmod>2025-01-10T02:36:09+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://onlinekad.com/katalog</loc>
+  <lastmod>2025-01-10T02:36:09+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://onlinekad.com/pakej</loc>
+  <lastmod>2025-01-10T02:36:09+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://onlinekad.com/tutorial</loc>
+  <lastmod>2025-01-10T02:36:09+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://onlinekad.com/hubungi-kami</loc>
+  <lastmod>2025-01-10T02:36:09+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+
+</urlset>
