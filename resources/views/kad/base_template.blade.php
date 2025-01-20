@@ -627,7 +627,7 @@
                     </li>
                     <li class="flex justify-center text-center h-8 w-auto">
                         <a href="{{ route('/') }}" wire:navigate>
-                            <x-application-logo class="block !h-10 !w-auto fill-current text-gray-8000" />
+                            <x-application-logo class="block !h-12 !w-auto fill-current text-gray-8000" />
                         </a>
                     </li>
                     <li class="flex justify-center pt-3">
