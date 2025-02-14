@@ -587,6 +587,7 @@
                     </div>
                     
                    <!-- Slider -->
+                        @if ($kadData->slideshow_is_on == 1)
                         <div class="main-slider size-80 w-full max-h-[400px] mx-auto overflow-hidden rounded-xl">
                             @foreach($imageUrls as $url)
                                 @if (!empty($url))  <!-- Check if $url is not null or empty -->
@@ -596,6 +597,7 @@
                                 @endif
                             @endforeach
                         </div>
+                        @endif
                     <!-- End of Slider -->
 
                     <!-- Doa Pengantin -->
@@ -609,9 +611,11 @@
                         </div>
 
                     <!-- Guestbook -->
+                        @if ($kadData->guestbook_is_on == 1)
                         <div class="mt-7 w-full rounded-xl border-[1px] py-6 px-3 mb-16 bg-white bg-opacity-30" id="guestbook-wishes" style="border-color: {{ $colorCode }};">
                             <livewire:guestbook-wishes :kad_id="$kadData->id" />
                         </div>
+                        @endif
                     <!-- End of Guestbook -->
 
                 </div>
