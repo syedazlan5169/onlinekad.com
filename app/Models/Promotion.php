@@ -25,9 +25,9 @@ class Promotion extends Model
     // Scope to get active promotions
     public function scopeActive($query)
     {
-        return $query->where('start_date', '<=', now()->setTimezone('UTC'))
-                 ->where('end_date', '>=', now()->setTimezone('UTC'))
-                 ->latest('start_date');
+        return $query->where('start_date', '<=', now())
+            ->where('end_date', '>=', now())
+            ->latest('start_date');
     }
     
 }
