@@ -93,7 +93,7 @@
                             <p class="mt-8 text-lg line-through text-center leading-6 text-gray-600">RM29</p>
                             <p class="mt-0 flex items-center justify-center gap-x-1">
                             <span class="text-xl font-semibold leading-6 text-gray-600">RM</span>
-                            <span class="text-5xl font-bold tracking-tight text-pink-500">{{ $package1->price }}</span>
+                            <span class="text-5xl font-bold tracking-tight text-pink-500">{{ $package1->final_price }}</span>
                             </p>
                             <ul role="list" class="mt-8 space-y-3 text-sm leading-6 text-gray-600 xl:mt-5">
                             <li class="flex gap-x-3">
@@ -114,7 +114,7 @@
                             <p class="mt-8 text-lg line-through text-center leading-6 text-gray-600">RM69</p>
                             <p class="mt-0 flex items-center justify-center gap-x-1">
                             <span class="text-xl font-semibold leading-6 text-gray-600">RM</span>
-                            <span class="text-5xl font-bold tracking-tight text-purple-500">{{ $package2->price }}</span>
+                            <span class="text-5xl font-bold tracking-tight text-purple-500">{{ $package2->final_price }}</span>
                             </p>
                             <ul role="list" class="mt-8 space-y-3 text-sm leading-6 text-gray-600 xl:mt-5">
                             <li class="flex gap-x-3">
@@ -177,7 +177,7 @@
                             <p class="mt-8 text-lg line-through text-center leading-6 text-gray-600">RM89</p>
                             <p class="flex items-center justify-center gap-x-1">
                             <span class="text-xl font-semibold leading-6 text-gray-600">RM</span>
-                            <span class="text-5xl font-bold tracking-tight text-green-500">{{ $package3->price }}</span>
+                            <span class="text-5xl font-bold tracking-tight text-green-500">{{ $package3->final_price }}</span>
                             </p>
                             <ul role="list" class="mt-8 space-y-3 text-sm leading-6 text-gray-600 xl:mt-5">
                             <li class="flex gap-x-3">

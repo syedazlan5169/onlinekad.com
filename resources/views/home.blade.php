@@ -58,6 +58,23 @@
         </header>
     
         <main>
+
+        <div class="relative">
+            <!-- Alpine.js Popup -->
+            @if($activePromotion)
+            <div x-data="{ showModal: true }" x-show="showModal" x-cloak>
+                <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-4 mr-5">
+                    <div class="bg-white rounded-lg shadow-lg p-4 w-full max-w-[90%] sm:max-w-md relative">
+                        <button @click="showModal = false" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1">
+                            ✖
+                        </button>
+                        <img src="{{ asset('images/promotion/ramadhan-promotion.png') }}" alt="Ramadhan Promotion" class="w-full h-auto rounded">
+                    </div>
+                </div>
+            </div>
+            @endif
+        </div>
+
         <!-- Hero section -->
         <div class="relative isolate pt-14">
             <svg class="absolute inset-0 -z-10 h-full w-full stroke-gray-200 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]" aria-hidden="true">

@@ -79,7 +79,7 @@
                             <dt class="sr-only">Nama Panggilan</dt>
                             <dd class="text-sm text-gray-500">{{ \Carbon\Carbon::parse($kad->tarikh_majlis)->format('d-F-Y') }}</dd>
                             <dt class="sr-only">Tarikh Majlis</dt>
-                            <dd class="text-sm text-gray-500">{{ $kad->package->name }}  RM{{ $kad->package->price }}</dd>
+                            <dd class="text-sm text-gray-500">{{ $kad->package->name }}  RM{{ $kad->package->final_price }}</dd>
                             <dt class="sr-only">Nama Panggilan</dt>
                             <dd class="mt-3">
                                 @if($kad->is_paid)
