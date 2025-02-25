@@ -47,7 +47,7 @@ class ToyyibpayController extends Controller
 
         // Use the package directly from the loaded relationship
         $package = $kad->package;
-        $price = 100 * $package->price;
+        $price = 100 * $package->final_price;
         $orderId = $kad->order_id;
 
         // Create the order
