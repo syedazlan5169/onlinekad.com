@@ -26,7 +26,8 @@ class Promotion extends Model
     public function scopeActive($query)
     {
         return $query->where('start_date', '<=', now())
-            ->where('end_date', '>=', now());
+            ->where('end_date', '>=', now())
+            ->latest('start_date');
     }
     
 }
