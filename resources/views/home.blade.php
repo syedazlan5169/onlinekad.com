@@ -480,7 +480,7 @@
                           <p class="mt-4 text-sm/6 text-gray-600">{{ $package1->description }}</p>
                           <p class="mt-6 flex items-baseline gap-x-1">
                             <!-- Price, update based on frequency toggle state -->
-                            <span class="text-4xl font-semibold tracking-tight text-gray-900">Rm {{ $package1->price }}</span>
+                            <span class="text-4xl font-semibold tracking-tight text-gray-900">Rm {{ $package1->final_price }}</span>
                           </p>
                           <a href="/invitation/{{ $package1->name }}" aria-describedby="tier-startup" class="mt-6 block rounded-md bg-pink-600 px-3 py-2 text-center text-sm/6 font-semibold text-white shadow-sm hover:bg-pink-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-600">Preview</a>
                           <ul role="list" class="mt-8 space-y-3 text-sm/6 text-gray-600 xl:mt-10">
@@ -506,7 +506,7 @@
                             <p class="mt-4 text-sm/6 text-gray-600">{{ $package2->description }}</p>
                             <p class="mt-6 flex items-baseline gap-x-1">
                               <!-- Price, update based on frequency toggle state -->
-                              <span class="text-4xl font-semibold tracking-tight text-gray-900">Rm {{ $package2->price }}</span>
+                              <span class="text-4xl font-semibold tracking-tight text-gray-900">Rm {{ $package2->final_price }}</span>
                             </p>
                             <a href="/invitation/{{ $package2->name }}" aria-describedby="tier-startup" class="mt-6 block rounded-md bg-purple-600 px-3 py-2 text-center text-sm/6 font-semibold text-white shadow-sm hover:bg-purple-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600">Preview</a>
                             <ul role="list" class="mt-8 space-y-3 text-sm/6 text-gray-600 xl:mt-10">
@@ -579,7 +579,7 @@
                             <p class="mt-4 text-sm/6 text-gray-600">{{ $package3->description }}</p>
                             <p class="mt-6 flex items-baseline gap-x-1">
                               <!-- Price, update based on frequency toggle state -->
-                              <span class="text-4xl font-semibold tracking-tight text-gray-900">Rm {{ $package3->price }}</span>
+                              <span class="text-4xl font-semibold tracking-tight text-gray-900">Rm {{ $package3->final_price }}</span>
                             </p>
                             <a href="/invitation/{{ $package3->name }}" aria-describedby="tier-startup" class="mt-6 block rounded-md bg-green-600 px-3 py-2 text-center text-sm/6 font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600">Preview</a>
                             <ul role="list" class="mt-8 space-y-3 text-sm/6 text-gray-600 xl:mt-10">
