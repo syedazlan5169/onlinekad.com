@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Design;
 use App\Models\Package;
+use App\Models\Promotion;
 
 class HomeController extends Controller
 {
@@ -15,7 +16,10 @@ class HomeController extends Controller
         // Fetch products from the database
         $packages = Package::all();
 
-        // Pass products to the view
-        return view('home', compact('products', 'packages'));
+        // Fetch active promotions
+        $activePromotion = Promotion::active()->first();
+
+        // Pass products and active promotions to the view
+        return view('home', compact('products', 'packages', 'activePromotion'));
     }
 }

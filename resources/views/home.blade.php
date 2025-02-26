@@ -58,6 +58,23 @@
         </header>
     
         <main>
+
+        <div class="relative">
+            <!-- Alpine.js Popup -->
+            @if($activePromotion)
+            <div x-data="{ showModal: true }" x-show="showModal" x-cloak>
+                <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-4 mr-5">
+                    <div class="bg-white rounded-lg shadow-lg p-4 w-full max-w-[90%] sm:max-w-md relative">
+                        <button @click="showModal = false" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1">
+                            ✖
+                        </button>
+                        <img src="{{ asset('images/promotion/ramadhan-promotion.png') }}" alt="Ramadhan Promotion" class="w-full h-auto rounded">
+                    </div>
+                </div>
+            </div>
+            @endif
+        </div>
+
         <!-- Hero section -->
         <div class="relative isolate pt-14">
             <svg class="absolute inset-0 -z-10 h-full w-full stroke-gray-200 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]" aria-hidden="true">
@@ -463,7 +480,7 @@
                           <p class="mt-4 text-sm/6 text-gray-600">{{ $package1->description }}</p>
                           <p class="mt-6 flex items-baseline gap-x-1">
                             <!-- Price, update based on frequency toggle state -->
-                            <span class="text-4xl font-semibold tracking-tight text-gray-900">Rm {{ $package1->price }}</span>
+                            <span class="text-4xl font-semibold tracking-tight text-gray-900">Rm {{ $package1->final_price }}</span>
                           </p>
                           <a href="/invitation/{{ $package1->name }}" aria-describedby="tier-startup" class="mt-6 block rounded-md bg-pink-600 px-3 py-2 text-center text-sm/6 font-semibold text-white shadow-sm hover:bg-pink-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-600">Preview</a>
                           <ul role="list" class="mt-8 space-y-3 text-sm/6 text-gray-600 xl:mt-10">
@@ -489,7 +506,7 @@
                             <p class="mt-4 text-sm/6 text-gray-600">{{ $package2->description }}</p>
                             <p class="mt-6 flex items-baseline gap-x-1">
                               <!-- Price, update based on frequency toggle state -->
-                              <span class="text-4xl font-semibold tracking-tight text-gray-900">Rm {{ $package2->price }}</span>
+                              <span class="text-4xl font-semibold tracking-tight text-gray-900">Rm {{ $package2->final_price }}</span>
                             </p>
                             <a href="/invitation/{{ $package2->name }}" aria-describedby="tier-startup" class="mt-6 block rounded-md bg-purple-600 px-3 py-2 text-center text-sm/6 font-semibold text-white shadow-sm hover:bg-purple-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600">Preview</a>
                             <ul role="list" class="mt-8 space-y-3 text-sm/6 text-gray-600 xl:mt-10">
@@ -562,7 +579,7 @@
                             <p class="mt-4 text-sm/6 text-gray-600">{{ $package3->description }}</p>
                             <p class="mt-6 flex items-baseline gap-x-1">
                               <!-- Price, update based on frequency toggle state -->
-                              <span class="text-4xl font-semibold tracking-tight text-gray-900">Rm {{ $package3->price }}</span>
+                              <span class="text-4xl font-semibold tracking-tight text-gray-900">Rm {{ $package3->final_price }}</span>
                             </p>
                             <a href="/invitation/{{ $package3->name }}" aria-describedby="tier-startup" class="mt-6 block rounded-md bg-green-600 px-3 py-2 text-center text-sm/6 font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600">Preview</a>
                             <ul role="list" class="mt-8 space-y-3 text-sm/6 text-gray-600 xl:mt-10">
