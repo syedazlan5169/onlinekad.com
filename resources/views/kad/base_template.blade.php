@@ -373,9 +373,18 @@
                     <!-- End of Custom Audio Player-->
 
                     <div class="mb-28 flex flex-col justify-center gap-2 items-center h-full">
-                        <img data-aos="fade-up" data-aos-duration="1000" data-aos="fade-up" data-aos-duration="1000" class="w-[70%] px-3 py-4 mt-6" src="/images/bismillah.webp" alt="">
+                        @if ($kadData->greeting_image == 0)
+                            <img data-aos="fade-up" data-aos-duration="1000" data-aos-duration="1000" class="w-[70%] px-3 py-4 mt-6" src="/images/greeting-1.webp" alt="">
+                        @elseif ($kadData->greeting_image == 1)
+                            <img data-aos="fade-up" data-aos-duration="1000" data-aos-duration="1000" class="w-[70%] px-3 py-4 mt-6" src="/images/greeting-2.webp" alt="">
+                        @elseif ($kadData->greeting_image == 2)
+                            <img data-aos="fade-up" data-aos-duration="1000" data-aos-duration="1000" class="w-[70%] px-3 py-4 mt-6" src="/images/greeting-3.webp" alt="">
+                        @elseif ($kadData->greeting_image == 3)
+                            <img data-aos="fade-up" data-aos-duration="1000" data-aos-duration="1000" class="w-[70%] px-3 py-4 mt-6" src="/images/greeting-4.webp" alt="">
+                        @endif
+
                         <div data-aos="fade-up" data-aos-duration="1000" class="text-center">
-                            <p class="text-sm text-center px-4 font-serif" style="font-family: 'EB Garamond'; color: {{ $colorCode }}">ASSALAMUALAIKUM W.B.T</p>
+                            <p class="text-sm text-center px-4 font-serif" style="font-family: 'EB Garamond'; color: {{ $colorCode }}">@empty($kadData->greeting_text) ASSALAMUALAIKUM W.B.T @else {{ $kadData->greeting_text }} @endempty</p>
                         </div>
 
 
