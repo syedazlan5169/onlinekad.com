@@ -164,7 +164,9 @@ class KadController extends Controller
             'nama_ibu_pengantin_perempuan' => $request->input('nama-ibu-pengantin-perempuan'),
 
             // Maklumat Majlis
+            'greeting_image' => $request->input('greeting-image'),
             'tajuk_kad' => $request->input('tajuk-kad'),
+            'greeting_text' => $request->input('greeting-text'),
             'ayat_jemputan' => $request->input('ayat-jemputan'),
             'doa_pengantin' => $request->input('doa-pengantin'),
             'tarikh_majlis' => $request->input('tarikh-majlis'),
@@ -389,6 +391,8 @@ class KadController extends Controller
 
             // Maklumat Majlis
             'tajuk_kad' => request('tajuk-kad'),
+            'greeting_image' => request('greeting-image'),
+            'greeting_text' => request('greeting-text'),
             'ayat_jemputan' => request('ayat-jemputan'),
             'doa_pengantin' => request('doa-pengantin'),
             'tarikh_majlis' => request('tarikh-majlis'),
@@ -482,7 +486,7 @@ class KadController extends Controller
             Log::error('Email failed: ' . $e->getMessage());
         }
         
-        return redirect('/senarai-kad');
+        return redirect('/senarai-kad')->with('success', 'Kad created successfully');
     }
 
     private function uploadOwnSong($file)

@@ -549,6 +549,68 @@
                                     </div>
                                 </div>
 
+                                <!-- Greeting Image Selection -->
+                                <div class="lg:col-span-2" x-data="{ selectedGreeting: '{{ old('greeting-image', '0') }}' }">
+                                    <label class="block text-sm font-medium text-gray-900">Gambar Ucapan</label>
+                                    <div class="mt-2 grid grid-cols-1 gap-4 lg:grid-cols-2">
+                                        <!-- Option 1 -->
+                                        <div class="relative">
+                                            <input type="radio" id="greeting-1" name="greeting-image" value="0" 
+                                                x-model="selectedGreeting"
+                                                class="absolute inset-0 w-full h-full opacity-0 z-10 cursor-pointer">
+                                            <label for="greeting-1" class="block">
+                                                <img src="/images/greeting-1.webp" alt="Greeting 1" 
+                                                    class="w-full rounded-lg border-2 transition-all" 
+                                                    :class="selectedGreeting === '0' ? 'border-indigo-600 ring-2 ring-indigo-600' : 'border-gray-200'">
+                                            </label>
+                                        </div>
+
+                                        <!-- Option 2 -->
+                                        <div class="relative">
+                                            <input type="radio" id="greeting-2" name="greeting-image" value="1" 
+                                                x-model="selectedGreeting"
+                                                class="absolute inset-0 w-full h-full opacity-0 z-10 cursor-pointer">
+                                            <label for="greeting-2" class="block">
+                                                <img src="/images/greeting-2.webp" alt="Greeting 2" 
+                                                    class="w-full rounded-lg border-2 transition-all" 
+                                                    :class="selectedGreeting === '1' ? 'border-indigo-600 ring-2 ring-indigo-600' : 'border-gray-200'">
+                                            </label>
+                                        </div>
+
+                                        <!-- Option 3 -->
+                                        <div class="relative">
+                                            <input type="radio" id="greeting-3" name="greeting-image" value="2" 
+                                                x-model="selectedGreeting"
+                                                class="absolute inset-0 w-full h-full opacity-0 z-10 cursor-pointer">
+                                            <label for="greeting-3" class="block">
+                                                <img src="/images/greeting-3.webp" alt="Greeting 3" 
+                                                    class="w-full rounded-lg border-2 transition-all" 
+                                                    :class="selectedGreeting === '2' ? 'border-indigo-600 ring-2 ring-indigo-600' : 'border-gray-200'">
+                                            </label>
+                                        </div>
+
+                                        <!-- Option 4 -->
+                                        <div class="relative">
+                                            <input type="radio" id="greeting-4" name="greeting-image" value="3" 
+                                                x-model="selectedGreeting"
+                                                class="absolute inset-0 w-full h-full opacity-0 z-10 cursor-pointer">
+                                            <label for="greeting-4" class="block">
+                                                <img src="/images/greeting-4.webp" alt="Greeting 4" 
+                                                    class="w-full rounded-lg border-2 transition-all" 
+                                                    :class="selectedGreeting === '3' ? 'border-indigo-600 ring-2 ring-indigo-600' : 'border-gray-200'">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Greeting Text -->
+                                <div class="lg:col-span-2">
+                                    <label for="greeting-text" class="block text-sm font-medium text-gray-900">Ucapan Selamat</label>
+                                    <div class="mt-2">
+                                        <input type="text" name="greeting-text" id="greeting-text" value="{{ old('greeting-text', 'ASSALAMUALAIKUM W.B.T') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 lg:text-sm">
+                                    </div>
+                                </div>
+
                                 <!-- Ayat Jemputan -->
                                 <div class="lg:col-span-1">
                                     <label for="ayat-jemputan" class="block text-sm font-medium text-gray-900">Ayat Jemputan</label>
