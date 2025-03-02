@@ -554,7 +554,7 @@
                             </div>
                             <div class="flex flex-col items-center">
                                 <span id="minutes" class="text-4xl font-semibold text-white" style="font-family: 'EB Garamond'"></span>
-                                <span class="text-sm text-white" style="font-family: 'EB Garamond'">{{ $kadData->is_english ? 'Min' : 'Hari' }}</span>
+                                <span class="text-sm text-white" style="font-family: 'EB Garamond'">{{ $kadData->is_english ? 'Min' : 'Minit' }}</span>
                             </div>
                             <div class="flex flex-col items-center">
                                 <span id="seconds" class="text-4xl font-semibold text-white" style="font-family: 'EB Garamond'"></span>
