@@ -11,17 +11,17 @@ class RsvpTable extends Component
 {
     use WithPagination;
 
-    public $kadId;
+    public $kad_id;
     public $search = '';
     public $perPage = 10;
     public $kehadiran = '';
     public $sortBy = 'created_at';
     public $sortDir = 'DESC';
 
-    // Initialize kadId using the mount method
-    public function mount($kadId)
+    // Initialize kad_id using the mount method
+    public function mount($kad_id)
     {
-        $this->kadId = $kadId;
+        $this->kad_id = $kad_id;
     }
 
     public function setSortBy($sortByField)
@@ -54,7 +54,7 @@ class RsvpTable extends Component
     public function render()
     {
         // Fetch the RSVP records based on the Kad ID
-        $rsvp = Rsvp::where('kad_id', $this->kadId)
+        $rsvp = Rsvp::where('kad_id', $this->kad_id)
                     ->when($this->kehadiran, function ($query)
                     {
                         $query->where('kehadiran', $this->kehadiran);
