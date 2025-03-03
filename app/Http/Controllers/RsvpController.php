@@ -35,8 +35,9 @@ class RsvpController extends Controller
         return back()->with('success', 'Rsvp deleted successfully');
     }
 
-    public function exportToExcel()
+    public function exportToExcel(Request $request)
     {
-        return Excel::download(new RsvpListExport, 'rsvp-list.xlsx');
+        $kad_id = $request->kad_id;
+        return Excel::download(new RsvpListExport($kad_id), 'rsvp-list.xlsx');
     }
 }
