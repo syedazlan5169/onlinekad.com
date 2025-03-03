@@ -84,7 +84,7 @@
         <div class="flex justify-between">
             <div class="mt-4">{{ $rsvp->links() }}</div>
             <div>
-                <x-primary-button class="h-10" href="{{ route('export-rsvp') }}">Download</x-primary-button>
+                <x-primary-button class="h-10" href="{{ route('export-rsvp', ['kad_id' => $rsvp->first()->kad_id]) }}">Download</x-primary-button>
             </div>
         </div>
     </div>
