@@ -744,7 +744,7 @@
 
                         <!-- Kehadiran Field -->
                         <div class="text-[white] flex flex-col gap-2">
-                            <h3>{{ $kadData->is_english ? 'Name' : 'Nama' }} (Required)</h3>
+                            <h3>{{ $kadData->is_english ? 'Attendance' : 'Kehadiran' }} (Required)</h3>
                             <select x-model="kehadiran" class="w-full text-black py-2 px-3 focus:to-blue-600 rounded-[4px]" name="kehadiran" id="kehadiran">
                                 <option value="Hadir">{{ $kadData->is_english ? 'Yes' : 'Hadir' }}</option>
                                 <option value="Tidak Hadir">{{ $kadData->is_english ? 'No' : 'Tidak Hadir' }}</option>
