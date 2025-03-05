@@ -31,10 +31,11 @@
                     <!-- Call-to-Action Buttons -->
                     <div class="flex flex-col items-center space-y-2 pb-4 px-4">
                         <!-- Tempah Button -->
-                        <x-primary-button href="{{ route('form-tempah.show', ['id' => $product->id]) }}" 
+                        <button 
+                            onclick="openInvitationTypeModal('{{ $product->id }}')"
                             class="w-full text-center py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg shadow-md">
                             Tempah
-                        </x-primary-button>
+                        </button>
                         
                         <!-- Live Preview Button -->
                         <x-primary-button href="preview/{{ $product->design_code }}" 
@@ -47,4 +48,41 @@
         </div>
         <div class="mt-4 pb-10">{{ $products->links() }}</div>
     </div>
+
+    <!-- Modals (moved outside the grid) -->
+    @foreach($products as $product)
+        <div id="invitationTypeModal-{{ $product->id }}" 
+             class="fixed inset-0 bg-gray-600 bg-opacity-50 h-full w-full items-center justify-center" 
+             style="z-index: 100; display: none;">
+            <div class="p-5 border w-96 shadow-lg rounded-md bg-white">
+                <div class="text-center">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">Pilih Jenis Jemputan</h3>
+                    <div class="mt-4 flex flex-col space-y-3">
+                        <a href="{{ route('form-tempah.show', ['id' => $product->id, 'invitation_type' => 1]) }}" 
+                           class="w-full py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg">
+                            Jemputan Perkahwinan
+                        </a>
+                        <a href="{{ route('form-tempah.show', ['id' => $product->id, 'invitation_type' => 2]) }}" 
+                           class="w-full py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg">
+                            Jemputan Am
+                        </a>
+                        <button onclick="closeInvitationTypeModal('{{ $product->id }}')"
+                                class="w-full py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg">
+                            Batal
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
 </div>
+
+<script>
+    function openInvitationTypeModal(productId) {
+        document.getElementById('invitationTypeModal-' + productId).style.display = 'flex';
+    }
+    
+    function closeInvitationTypeModal(productId) {
+        document.getElementById('invitationTypeModal-' + productId).style.display = 'none';
+    }
+</script>
