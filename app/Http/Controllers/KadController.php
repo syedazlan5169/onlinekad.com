@@ -42,16 +42,18 @@ class KadController extends Controller
 
     public function showEdit($id)
     {
-        $currentUserId = Auth::id();
-        $kadData = Kad::where('user_id', $currentUserId)->where('id', $id)->with('design')->first();
+        $currentUser = Auth::user();
+        $kadData = Kad::where('id', $id)->with('design')->first();
         $fonts = Font::all();
         $slider = Slider::where('kad_id', $kadData->id)->first();
 
-        if (!$kadData) {
-            return redirect()->back()->withErrors('Kad not found or you do not have permission to view it.');
+        if ($kadData->user_id == $currentUser->id || $currentUser->is_admin == '1') {
+            return view('kad.kad-edit', compact('kadData', 'fonts', 'slider'));
         }
-
-        return view('kad.kad-edit', compact('kadData', 'fonts', 'slider'));
+        else
+        {
+            return redirect('/senarai-kad')->withErrors('Kad not found or you do not have permission to view it.');
+        }
     }
 
     public function showFormTempah($id)

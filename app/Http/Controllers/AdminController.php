@@ -12,13 +12,28 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::paginate(5);
-        $totalUsers = User::count();
+        $search = $request->input('search');
+        
+        $kads = Kad::query()
+            ->when($search, function ($query, $search) {
+                $query->where('id', 'like', "%{$search}%")
+                      ->orWhereHas('user', function ($query) use ($search) {
+                          $query->where('name', 'like', "%{$search}%");
+                      })
+                      ->orWhere('nama_panggilan_pasangan_pertama', 'like', "%{$search}%")
+                      ->orWhere('nama_panggilan_pasangan_kedua', 'like', "%{$search}%")
+                      ->orWhere('nama_panggilan_lelaki', 'like', "%{$search}%")
+                      ->orWhere('nama_panggilan_perempuan', 'like', "%{$search}%")
+                      ->orWhere('slug', 'like', "%{$search}%");
+            })
+            ->paginate(10);
 
-        $kads = Kad::with('design', 'package')->paginate(5);
         $totalKads = Kad::count();
+
+        $users = User::paginate(10);
+        $totalUsers = User::count();
 
         $orders = Order::paginate(5);
         $totalRevenue = Order::where('status', 1)->sum('amount');
