@@ -231,8 +231,14 @@
                         <input class="hidden" name="design-id" id="design-id" value="{{ $design->id }}">
                         <input class="hidden" name="package-id" id="package-id" :value="selectedPackage">
                         <!-- Accordion Section 1: Maklumat Pengantin -->
-                        <div class="border rounded-md p-4 mb-4">
-                            <h2 @click="openSection = openSection === 'maklumatPengantin' ? '' : 'maklumatPengantin'" class="text-lg underline font-bold cursor-pointer flex justify-between items-center">
+                        <div id="maklumatPengantinSection" class="border rounded-md p-4 mb-4">
+                            <h2 @click="openSection = openSection === 'maklumatPengantin' ? '' : 'maklumatPengantin'; 
+                                     if(openSection === 'maklumatPengantin') { 
+                                         $nextTick(() => {
+                                             document.getElementById('maklumatPengantinSection').scrollIntoView({behavior: 'smooth'})
+                                         })
+                                     }" 
+                                class="text-lg underline font-bold cursor-pointer flex justify-between items-center">
                                 Maklumat Pengantin
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" :class="openSection === 'maklumat_pengantin' ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
@@ -508,8 +514,14 @@
                         </div>
 
                         <!-- Accordion Section 2: Maklumat Majlis -->
-                        <div class="border rounded-md p-4 mb-4">
-                            <h2 @click="openSection = openSection === 'maklumatMajlis' ? '' : 'maklumatMajlis'" class="text-lg underline font-bold cursor-pointer flex justify-between items-center">
+                        <div id="maklumatMajlisSection" class="border rounded-md p-4 mb-4">
+                            <h2 @click="openSection = openSection === 'maklumatMajlis' ? '' : 'maklumatMajlis';
+                                     if(openSection === 'maklumatMajlis') {
+                                         $nextTick(() => {
+                                             document.getElementById('maklumatMajlisSection').scrollIntoView({behavior: 'smooth'})
+                                         })
+                                     }"
+                                class="text-lg underline font-bold cursor-pointer flex justify-between items-center">
                                 Maklumat Majlis
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" :class="openSection === 'maklumat_majlis' ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
@@ -694,8 +706,14 @@
                         </div>
 
                         <!-- Accordion Section 3: Lain-lain -->
-                        <div x-show="selectedPackage == 2 || selectedPackage == 3" class="border rounded-md p-4 mb-4">
-                            <h2 @click="openSection = openSection === 'others' ? '' : 'others'" class="text-lg underline font-bold cursor-pointer flex justify-between items-center">
+                        <div id="othersSection" class="border rounded-md p-4 mb-4">
+                            <h2 @click="openSection = openSection === 'others' ? '' : 'others';
+                                     if(openSection === 'others') {
+                                         $nextTick(() => {
+                                             document.getElementById('othersSection').scrollIntoView({behavior: 'smooth'})
+                                         })
+                                     }"
+                                class="text-lg underline font-bold cursor-pointer flex justify-between items-center">
                                 Lain-lain
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" :class="openSection === 'others' ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
@@ -734,6 +752,31 @@
                                                 <span class="font-medium text-gray-900">RSVP</span>
                                             </span>
                                             <input type="hidden" name="rsvp-is-on" :value="enabled ? 1 : 0">
+                                        </div>
+                                        <!-- Doa Pengantin Toggle -->
+                                        <div x-data="{ enabled: true }" class="flex items-center">
+                                            <!-- Button Element -->
+                                            <button 
+                                                @click="enabled = !enabled" 
+                                                :class="enabled ? 'bg-indigo-600' : 'bg-gray-200'" 
+                                                type="button" 
+                                                class="mb-2 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" 
+                                                role="switch" 
+                                                :aria-checked="enabled.toString()" 
+                                            >
+                                                <!-- Toggle Circle -->
+                                                <span 
+                                                    :class="enabled ? 'translate-x-5' : 'translate-x-0'" 
+                                                    class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+                                                    aria-hidden="true"
+                                                ></span>
+                                            </button>
+                                            
+                                            <!-- Label Text -->
+                                            <span class="ml-3 text-sm" id="doa-pengantin-is-on">
+                                                <span class="font-medium text-gray-900">Doa Pengantin</span>
+                                            </span>
+                                            <input type="hidden" name="doa-pengantin-is-on" :value="enabled ? 1 : 0">
                                         </div>
                                         <!-- Guestbook Toggle -->
                                         <div x-data="{ enabled: true }" class="flex items-center">

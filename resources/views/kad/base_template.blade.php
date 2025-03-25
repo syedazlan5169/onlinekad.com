@@ -12,7 +12,7 @@
         </script>
 
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         @if ($kadData->dua_pasangan_is_on)
         <title>{{ $kadData->nama_panggilan_pasangan_pertama}} | {{ $kadData->nama_panggilan_pasangan_kedua}}</title>
         @else
@@ -611,6 +611,7 @@
                     <!-- End of Slider -->
 
                     <!-- Doa Pengantin -->
+                        @if ($kadData->doa_is_on == 1)
                         <div class="items-center w-full h-auto mb-6 rounded-xl p-4">
                             @if ($kadData->is_english)
                                 <p class="mb-5 text-center text-2xl underline" style="font-family: 'EB Garamond'">WEDDING PRAYERS</p>
@@ -619,7 +620,7 @@
                             @endif
                             <p class="text-center text-lg" style="font-family: 'EB Garamond'">{{ $kadData->doa_pengantin }}</p>
                         </div>
-
+                        @endif
                     <!-- Guestbook -->
                         @if ($kadData->guestbook_is_on == 1)
                         <div class="mt-7 w-full rounded-xl border-[1px] py-6 px-3 mb-16 bg-white bg-opacity-30" id="guestbook-wishes" style="border-color: {{ $colorCode }};">
