@@ -23,11 +23,18 @@ class Kad extends Model
     {
         if ($term)
         {
-            return $query->where('nama', 'LIKE', '%' . $term . '%')
-                        ->orWhere('is_paid', 'LIKE', '%' . $term . '%')
-                        ->orWhere('design_id', 'LIKE', '%' . $term . '%')
-                        ->orWhere('package_id', 'LIKE', '%' . $term . '%');
+            return $query->where('slug', 'LIKE', '%' . $term . '%')
+                        ->orWhere('nama_panggilan_lelaki', 'LIKE', '%' . $term . '%')
+                        ->orWhere('nama_panggilan_perempuan', 'LIKE', '%' . $term . '%')
+                        ->orWhereHas('design', function($q) use ($term) {
+                            $q->where('design_code', 'LIKE', '%' . $term . '%');
+                        })
+                        ->orWhereHas('package', function($q) use ($term) {
+                            $q->where('name', 'LIKE', '%' . $term . '%');
+                        });
         }
+        
+        return $query;
     }
 
     public function  kad()
