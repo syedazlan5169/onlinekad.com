@@ -15,6 +15,7 @@ class KadTable extends Component
     public $search = '';
     public $package = '';
     public $paymentStatus = '';
+    public $packageName = '';
     public $perPage = 10;
     public $sortBy = 'created_at';
     public $sortDir = 'DESC';
@@ -39,6 +40,11 @@ class KadTable extends Component
         $this->resetPage();
     }
 
+    public function updatedPerPage()
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
         $query = Kad::query();
@@ -51,6 +57,13 @@ class KadTable extends Component
         // Apply payment status filter if selected
         if ($this->paymentStatus !== '') {
             $query->where('is_paid', $this->paymentStatus);
+        }
+
+        // Apply package name filter if selected
+        if ($this->packageName !== '') {
+            $query->whereHas('package', function($q) {
+                $q->where('name', $this->packageName);
+            });
         }
         
         // Ensure we always have a valid collection, even if empty
