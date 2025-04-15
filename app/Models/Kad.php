@@ -19,6 +19,17 @@ class Kad extends Model
         'masa_tamat_majlis' => 'string',
     ];
 
+    public function scopeSearch($query, $term)
+    {
+        if ($term)
+        {
+            return $query->where('nama', 'LIKE', '%' . $term . '%')
+                        ->orWhere('is_paid', 'LIKE', '%' . $term . '%')
+                        ->orWhere('design_id', 'LIKE', '%' . $term . '%')
+                        ->orWhere('package_id', 'LIKE', '%' . $term . '%');
+        }
+    }
+
     public function  kad()
     {
         return $this->hasMany(Payment::class, 'order_id', 'order_id');
