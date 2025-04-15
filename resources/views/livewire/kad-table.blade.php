@@ -62,19 +62,29 @@
                                                     </button>
                                                 </td>
                                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium border border-l text-gray-900 sm:pl-6">{{ $kad->id }}</td>
-                                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium border border-l text-gray-900 sm:pl-6">{{ $kad->user->name }}</td>
+                                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium border border-l text-gray-900 sm:pl-6">{{ $kad->user ? $kad->user->name : 'N/A' }}</td>
                                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium border border-l text-gray-900 sm:pl-6">
-                                                    @if($kad->package->name == 'Basic')
-                                                        <span class="inline-flex items-center rounded-full bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-600/20">
-                                                            Basic
-                                                        </span>
-                                                    @elseif($kad->package->name == 'Premium')
-                                                        <span class="inline-flex items-center rounded-full bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700 ring-1 ring-inset ring-purple-600/20">
-                                                            Premium
-                                                        </span>
-                                                    @else($kad->package->name == 'Deluxe')
-                                                        <span class="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
-                                                            Deluxe
+                                                    @if($kad->package)
+                                                        @if($kad->package->name == 'Basic')
+                                                            <span class="inline-flex items-center rounded-full bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-600/20">
+                                                                Basic
+                                                            </span>
+                                                        @elseif($kad->package->name == 'Premium')
+                                                            <span class="inline-flex items-center rounded-full bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700 ring-1 ring-inset ring-purple-600/20">
+                                                                Premium
+                                                            </span>
+                                                        @elseif($kad->package->name == 'Deluxe')
+                                                            <span class="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+                                                                Deluxe
+                                                            </span>
+                                                        @else
+                                                            <span class="inline-flex items-center rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-gray-700 ring-1 ring-inset ring-gray-600/20">
+                                                                {{ $kad->package->name }}
+                                                            </span>
+                                                        @endif
+                                                    @else
+                                                        <span class="inline-flex items-center rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-gray-700 ring-1 ring-inset ring-gray-600/20">
+                                                            N/A
                                                         </span>
                                                     @endif
                                                 </td>
