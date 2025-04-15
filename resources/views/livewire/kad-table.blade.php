@@ -18,12 +18,21 @@
                                         </svg>
                                     </div>
                                 </div>
-                                
+                                <!-- Package Name Filter -->
+                                <div class="relative rounded-md shadow-sm mt-3 sm:mt-0 sm:w-40">
+                                    <select wire:model.live="packageName" 
+                                            class="block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                        <option value="">All Packages</option>
+                                        @foreach($packages as $package)
+                                            <option value="{{ $package->name }}">{{ $package->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                                 <!-- Payment Status Filter -->
                                 <div class="relative rounded-md shadow-sm mt-3 sm:mt-0 sm:w-40">
                                     <select wire:model.live="paymentStatus" 
                                             class="block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                        <option value="">All</option>
+                                        <option value="">All Payment Status</option>
                                         <option value="1">Paid</option>
                                         <option value="0">Unpaid</option>
                                     </select>
@@ -119,7 +128,22 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mt-4">{{ $kads->links(data: ['scrollTo' => false]) }}</div>
+                    <div class="mt-4 flex items-center justify-between">
+                        <div class="flex items-center">
+                            <span class="text-sm text-gray-700 mr-2">Show:</span>
+                            <select wire:model.live="perPage" class="rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-sm">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                            <span class="text-sm text-gray-700 ml-2">entries</span>
+                        </div>
+                        <div>
+                            {{ $kads->links(data: ['scrollTo' => false]) }}
+                        </div>
+                    </div>
                 </div>
 
                 <!--Delete Modal-->

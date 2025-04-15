@@ -28,9 +28,6 @@ class Kad extends Model
                         ->orWhere('nama_panggilan_perempuan', 'LIKE', '%' . $term . '%')
                         ->orWhereHas('design', function($q) use ($term) {
                             $q->where('design_code', 'LIKE', '%' . $term . '%');
-                        })
-                        ->orWhereHas('package', function($q) use ($term) {
-                            $q->where('name', 'LIKE', '%' . $term . '%');
                         });
         }
         
