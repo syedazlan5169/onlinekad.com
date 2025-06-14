@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Response;
 use App\Http\Middleware\TrackVisitor;
 
 
-Route::get('/', [HomeController::class, 'index'])->name('/')->middleware('track-visitor');
+Route::get('/', [HomeController::class, 'index'])->name('/')->middleware([TrackVisitor::class]);
 Route::get('pakej', [PakejController::class, 'index'])->name('pakej.show');
 //Route::get('katalog', [KatalogController::class, 'index'])->name('katalog.show');
 Route::view('hubungi-kami', 'hubungi-kami')->name('hubungi-kami.show');
@@ -72,7 +72,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/payment-status', [ToyyibpayController::class, 'handleToyyibpayRedirect'])->name('payment-status');
 
     //Tempah Kad
-    Route::get('/form-tempah/{id}', [KadController::class, 'showFormTempah'])->name('form-tempah.show')->middleware('track-visitor');
+    Route::get('/form-tempah/{id}', [KadController::class, 'showFormTempah'])->name('form-tempah.show')->middleware([TrackVisitor::class]);
     Route::post('/tempah', [KadController::class, 'tempahKad'])->name('tempah');
 
     //Download RSVP
@@ -84,7 +84,7 @@ Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 //Show Kad
-Route::get('/invitation/{slug}', [KadController::class, 'show'])->middleware('track-visitor');
+Route::get('/invitation/{slug}', [KadController::class, 'show'])->middleware([TrackVisitor::class]);
 Route::get('/preview/{slug}', [KadController::class, 'showPreview']);
 
 
