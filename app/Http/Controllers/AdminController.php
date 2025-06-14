@@ -79,10 +79,15 @@ class AdminController extends Controller
         $weekVisitorChange = calculatePercentageChange($thisWeekVisitor, $lastWeekVisitor);
         $dayVisitorChange = calculatePercentageChange($todayVisitor, $yesterdayVisitor);
 
+        $googleVisitor = PageVisit::where('referer', 'like', '%google%')->distinct('ip')->count();
+        $instagramVisitor = PageVisit::where('referer', 'like', '%instagram%')->distinct('ip')->count();
+        $onlinekadVisitor = PageVisit::where('referer', 'like', '%onlinekad.com/invitation/%')->distinct('ip')->count();
+
         return view('admin-dashboard', compact('users',
                                                 'totalUsers', 'kads', 'totalKads', 'orders',
                                                 'totalRevenue', 'thisMonthRevenue','thisWeekRevenue', 'todayRevenue', 'monthChange', 'weekChange', 'dayChange',
-                                                'totalVisitor', 'thisMonthVisitor', 'thisWeekVisitor', 'todayVisitor', 'monthVisitorChange', 'weekVisitorChange', 'dayVisitorChange'));
+                                                'totalVisitor', 'thisMonthVisitor', 'thisWeekVisitor', 'todayVisitor', 'monthVisitorChange', 'weekVisitorChange', 'dayVisitorChange',
+                                                'googleVisitor', 'instagramVisitor', 'onlinekadVisitor'));
     }
 
     public function destroyUser($id)
