@@ -72,7 +72,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/payment-status', [ToyyibpayController::class, 'handleToyyibpayRedirect'])->name('payment-status');
 
     //Tempah Kad
-    Route::get('/form-tempah/{id}', [KadController::class, 'showFormTempah'])->name('form-tempah.show');
+    Route::get('/form-tempah/{id}', [KadController::class, 'showFormTempah'])->name('form-tempah.show')->middleware('track-visitor');
     Route::post('/tempah', [KadController::class, 'tempahKad'])->name('tempah');
 
     //Download RSVP
