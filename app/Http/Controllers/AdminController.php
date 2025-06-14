@@ -7,6 +7,7 @@ use App\Models\Kad;
 use App\Models\Order;
 use App\Models\Design;
 use App\Models\Package;
+use App\Models\PageVisit;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -59,7 +60,29 @@ class AdminController extends Controller
         $weekChange = calculatePercentageChange($thisWeekRevenue, $lastWeekRevenue);
         $dayChange = calculatePercentageChange($todayRevenue, $yesterdayRevenue);
 
-        return view('admin-dashboard', compact('users', 'totalUsers', 'kads', 'totalKads', 'orders', 'totalRevenue', 'thisMonthRevenue','thisWeekRevenue', 'todayRevenue', 'monthChange', 'weekChange', 'dayChange'));
+        // Count Unique Visitor
+        $totalVisitor = PageVisit::distinct('ip')->count();
+        $thisMonthVisitor = PageVisit::whereBetween('created_at', [ Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth() ])->distinct('ip')->count();
+        $thisWeekVisitor = PageVisit::whereBetween('created_at', [ Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek() ])->distinct('ip')->count();
+        $todayVisitor = PageVisit::whereDate('created_at', Carbon::today())->distinct('ip')->count();
+        $lastMonthVisitor = PageVisit::whereBetween('created_at', [
+            Carbon::now()->subMonth()->startOfMonth(),
+            Carbon::now()->subMonth()->endOfMonth(),
+        ])->distinct('ip')->count();
+        $lastWeekVisitor = PageVisit::whereBetween('created_at', [
+            Carbon::now()->subWeek()->startOfWeek(),
+            Carbon::now()->subWeek()->endOfWeek(),
+        ])->distinct('ip')->count();
+        $yesterdayVisitor = PageVisit::whereDate('created_at', Carbon::yesterday())->distinct('ip')->count();
+
+        $monthVisitorChange = calculatePercentageChange($thisMonthVisitor, $lastMonthVisitor);
+        $weekVisitorChange = calculatePercentageChange($thisWeekVisitor, $lastWeekVisitor);
+        $dayVisitorChange = calculatePercentageChange($todayVisitor, $yesterdayVisitor);
+
+        return view('admin-dashboard', compact('users',
+                                                'totalUsers', 'kads', 'totalKads', 'orders',
+                                                'totalRevenue', 'thisMonthRevenue','thisWeekRevenue', 'todayRevenue', 'monthChange', 'weekChange', 'dayChange',
+                                                'totalVisitor', 'thisMonthVisitor', 'thisWeekVisitor', 'todayVisitor', 'monthVisitorChange', 'weekVisitorChange', 'dayVisitorChange'));
     }
 
     public function destroyUser($id)
