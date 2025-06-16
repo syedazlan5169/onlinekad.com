@@ -6,6 +6,8 @@ use Illuminate\Console\Command;
 use App\Models\PageVisit;
 use App\Models\DailyPageStat;
 use App\Models\DailyReferrerStat;
+use App\Notifications\PageVisitSummaryNotification;
+use Illuminate\Support\Facades\Notification;
 
 class SummarizePageVisits extends Command
 {
@@ -51,6 +53,13 @@ class SummarizePageVisits extends Command
 
         // Delete summarized data from PageVisit
         PageVisit::whereDate('created_at', $date)->delete();
+
+        Notification::route('mail', 'admin@onlinekad.com')
+        ->notify(new PageVisitSummaryNotification(
+            $date,
+            $pageSummaries->count(),
+            $referrerSummaries->count()
+        ));
 
         $this->info("Page and referrer visits summarized for {$date}.");
     }
