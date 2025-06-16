@@ -8,6 +8,8 @@ use App\Models\Order;
 use App\Models\Design;
 use App\Models\Package;
 use App\Models\PageVisit;
+use App\Models\DailyPageStat;
+use App\Models\DailyReferrerStat;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -60,28 +62,47 @@ class AdminController extends Controller
         $weekChange = calculatePercentageChange($thisWeekRevenue, $lastWeekRevenue);
         $dayChange = calculatePercentageChange($todayRevenue, $yesterdayRevenue);
 
-        // Count Unique Visitor
-        $totalVisitor = PageVisit::distinct('ip')->count();
-        $thisMonthVisitor = PageVisit::whereBetween('created_at', [ Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth() ])->distinct('ip')->count();
-        $thisWeekVisitor = PageVisit::whereBetween('created_at', [ Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek() ])->distinct('ip')->count();
+        // Visitor stats calculation
+        // Today: from raw logs
         $todayVisitor = PageVisit::whereDate('created_at', Carbon::today())->distinct('ip')->count();
-        $lastMonthVisitor = PageVisit::whereBetween('created_at', [
-            Carbon::now()->subMonth()->startOfMonth(),
-            Carbon::now()->subMonth()->endOfMonth(),
-        ])->distinct('ip')->count();
-        $lastWeekVisitor = PageVisit::whereBetween('created_at', [
+        $yesterdayVisitor = DailyPageStat::where('date', Carbon::yesterday()->toDateString())->sum('unique_ips');
+
+        // Week & Month: from summary
+        $thisWeekVisitor = DailyPageStat::whereBetween('date', [
+            Carbon::now()->startOfWeek(),
+            Carbon::now()->endOfWeek(),
+        ])->sum('unique_ips');
+
+        $lastWeekVisitor = DailyPageStat::whereBetween('date', [
             Carbon::now()->subWeek()->startOfWeek(),
             Carbon::now()->subWeek()->endOfWeek(),
-        ])->distinct('ip')->count();
-        $yesterdayVisitor = PageVisit::whereDate('created_at', Carbon::yesterday())->distinct('ip')->count();
+        ])->sum('unique_ips');
+
+        $thisMonthVisitor = DailyPageStat::whereBetween('date', [
+            Carbon::now()->startOfMonth(),
+            Carbon::now()->endOfMonth(),
+        ])->sum('unique_ips');
+
+        $lastMonthVisitor = DailyPageStat::whereBetween('date', [
+            Carbon::now()->subMonth()->startOfMonth(),
+            Carbon::now()->subMonth()->endOfMonth(),
+        ])->sum('unique_ips');
+
+        $totalVisitor = DailyPageStat::sum('unique_ips') + PageVisit::distinct('ip')->count(); // total from summary + current day
 
         $monthVisitorChange = calculatePercentageChange($thisMonthVisitor, $lastMonthVisitor);
         $weekVisitorChange = calculatePercentageChange($thisWeekVisitor, $lastWeekVisitor);
         $dayVisitorChange = calculatePercentageChange($todayVisitor, $yesterdayVisitor);
 
-        $googleVisitor = PageVisit::where('referer', 'like', '%google%')->distinct('ip')->count();
-        $instagramVisitor = PageVisit::where('referer', 'like', '%instagram%')->distinct('ip')->count();
-        $onlinekadVisitor = PageVisit::where('referer', 'like', '%onlinekad.com/invitation/%')->distinct('ip')->count();
+        // Referrer stats (Google, Instagram, OnlineKad)
+        $googleVisitor = DailyReferrerStat::where('referer', 'like', '%google%')->sum('unique_ips') +
+                        PageVisit::where('referer', 'like', '%google%')->distinct('ip')->count();
+
+        $instagramVisitor = DailyReferrerStat::where('referer', 'like', '%instagram%')->sum('unique_ips') +
+                            PageVisit::where('referer', 'like', '%instagram%')->distinct('ip')->count();
+
+        $onlinekadVisitor = DailyReferrerStat::where('referer', 'like', '%onlinekad.com/invitation/%')->sum('unique_ips') +
+                            PageVisit::where('referer', 'like', '%onlinekad.com/invitation/%')->distinct('ip')->count();
 
         return view('admin-dashboard', compact('users',
                                                 'totalUsers', 'kads', 'totalKads', 'orders',
