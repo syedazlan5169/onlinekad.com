@@ -68,20 +68,22 @@ class AdminController extends Controller
         $yesterdayVisitor = DailyPageStat::where('date', Carbon::yesterday()->toDateString())->sum('unique_ips');
 
         // Week & Month: from summary
-        $thisWeekVisitor = DailyPageStat::whereBetween('date', [
+        $archivedThisWeek = DailyPageStat::whereBetween('date', [
             Carbon::now()->startOfWeek(),
             Carbon::now()->endOfWeek(),
         ])->sum('unique_ips');
+        $thisWeekVisitor = $archivedThisWeek + $todayVisitor;
 
         $lastWeekVisitor = DailyPageStat::whereBetween('date', [
             Carbon::now()->subWeek()->startOfWeek(),
             Carbon::now()->subWeek()->endOfWeek(),
         ])->sum('unique_ips');
 
-        $thisMonthVisitor = DailyPageStat::whereBetween('date', [
+        $archivedThisMonth = DailyPageStat::whereBetween('date', [
             Carbon::now()->startOfMonth(),
             Carbon::now()->endOfMonth(),
         ])->sum('unique_ips');
+        $thisMonthVisitor = $archivedThisMonth + $todayVisitor;
 
         $lastMonthVisitor = DailyPageStat::whereBetween('date', [
             Carbon::now()->subMonth()->startOfMonth(),
@@ -95,14 +97,14 @@ class AdminController extends Controller
         $dayVisitorChange = calculatePercentageChange($todayVisitor, $yesterdayVisitor);
 
         // Referrer stats (Google, Instagram, OnlineKad)
-        $googleVisitor = DailyReferrerStat::where('referer', 'like', '%google%')->sum('unique_ips') +
-                        PageVisit::where('referer', 'like', '%google%')->distinct('ip')->count();
+        $archivedGoogle = DailyReferrerStat::where('referer', 'like', '%google%')->sum('unique_ips');
+        $googleVisitor = $archivedGoogle + PageVisit::where('referer', 'like', '%google%')->distinct('ip')->count();
 
-        $instagramVisitor = DailyReferrerStat::where('referer', 'like', '%instagram%')->sum('unique_ips') +
-                            PageVisit::where('referer', 'like', '%instagram%')->distinct('ip')->count();
+        $archivedInstagram = DailyReferrerStat::where('referer', 'like', '%instagram%')->sum('unique_ips');
+        $instagramVisitor = $archivedInstagram + PageVisit::where('referer', 'like', '%instagram%')->distinct('ip')->count();
 
-        $onlinekadVisitor = DailyReferrerStat::where('referer', 'like', '%onlinekad.com/invitation/%')->sum('unique_ips') +
-                            PageVisit::where('referer', 'like', '%onlinekad.com/invitation/%')->distinct('ip')->count();
+        $archivedOnlinekad = DailyReferrerStat::where('referer', 'like', '%onlinekad.com/invitation/%')->sum('unique_ips');
+        $onlinekadVisitor = $archivedOnlinekad + PageVisit::where('referer', 'like', '%onlinekad.com/invitation/%')->distinct('ip')->count();
 
         return view('admin-dashboard', compact('users',
                                                 'totalUsers', 'kads', 'totalKads', 'orders',
