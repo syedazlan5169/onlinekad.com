@@ -9,10 +9,6 @@
     </x-slot>
 
     <div  x-data="{ selectedTab: 'revenue'}" class="relative isolate mt-12 sm:mt-10 sm:pt-12">
-        <!-- Debug info -->
-        <div class="text-sm text-gray-500 mb-4">
-            Current tab: <span x-text="selectedTab"></span>
-        </div>
         
         <!-- Background Pattern SVG -->
         <svg class="absolute inset-0 -z-10 hidden h-full w-full stroke-gray-200 [mask-image:radial-gradient(64rem_64rem_at_top,white,transparent)] sm:block" aria-hidden="true">
@@ -55,18 +51,18 @@
                     </div>
                     <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 bg-white px-4 py-10 sm:px-6 xl:px-8">
                         <dt class="text-sm/6 font-medium text-gray-500">This Month</dt>
-                        <dd class="text-xs font-medium text-rose-600">{{ $monthVisitorChange }}</dd>
-                        <dd class="w-full flex-none text-3xl/10 font-medium tracking-tight text-gray-900">{{ $thisMonthVisitor }}</dd>
+                        <dd class="text-xs font-medium {{ $monthVisitorChange > 0 ? 'text-green-600' : ($monthVisitorChange < 0 ? 'text-rose-600' : 'text-gray-600') }}">{{ $monthVisitorChange }}</dd>
+                        <dd class="w-full flex-none text-3xl/10 font-medium tracking-tight text-gray-900">{{ number_format($thisMonthVisitor) }}</dd>
                     </div>
                     <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 bg-white px-4 py-10 sm:px-6 xl:px-8">
                         <dt class="text-sm/6 font-medium text-gray-500">This Week</dt>
-                        <dd class="text-xs font-medium text-gray-700">{{ $weekVisitorChange }}</dd>
-                        <dd class="w-full flex-none text-3xl/10 font-medium tracking-tight text-gray-900">{{ $thisWeekVisitor }}</dd>
+                        <dd class="text-xs font-medium {{ $weekVisitorChange > 0 ? 'text-green-600' : ($weekVisitorChange < 0 ? 'text-rose-600' : 'text-gray-600') }}">{{ $weekVisitorChange }}</dd>
+                        <dd class="w-full flex-none text-3xl/10 font-medium tracking-tight text-gray-900">{{ number_format($thisWeekVisitor) }}</dd>
                     </div>
                     <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 bg-white px-4 py-10 sm:px-6 xl:px-8">
                         <dt class="text-sm/6 font-medium text-gray-500">Today</dt>
-                        <dd class="text-xs font-medium text-rose-600">{{ $dayVisitorChange }}</dd>
-                        <dd class="w-full flex-none text-3xl/10 font-medium tracking-tight text-gray-900">{{ $todayVisitor }}</dd>
+                        <dd class="text-xs font-medium {{ $dayVisitorChange > 0 ? 'text-green-600' : ($dayVisitorChange < 0 ? 'text-rose-600' : 'text-gray-600') }}">{{ $dayVisitorChange }}</dd>
+                        <dd class="w-full flex-none text-3xl/10 font-medium tracking-tight text-gray-900">{{ number_format($todayVisitor) }}</dd>
                     </div>
                 </dl>
             </div>
@@ -90,7 +86,7 @@
                                     </svg>
                                     <span class="font-medium text-gray-700">Google</span>
                                 </div>
-                                <span class="text-lg font-semibold text-gray-900">{{ $googleVisitor }}</span>
+                                <span class="text-lg font-semibold text-gray-900">{{ number_format($googleVisitor) }}</span>
                             </div>
                             
                             <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200">
@@ -100,7 +96,7 @@
                                     </svg>
                                     <span class="font-medium text-gray-700">Instagram</span>
                                 </div>
-                                <span class="text-lg font-semibold text-gray-900">{{ $instagramVisitor }}</span>
+                                <span class="text-lg font-semibold text-gray-900">{{ number_format($instagramVisitor) }}</span>
                             </div>
                             
                             <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200">
@@ -110,7 +106,7 @@
                                     </svg>
                                     <span class="font-medium text-gray-700">Onlinekad</span>
                                 </div>
-                                <span class="text-lg font-semibold text-gray-900">{{ $onlinekadVisitor }}</span>
+                                <span class="text-lg font-semibold text-gray-900">{{ number_format($onlinekadVisitor) }}</span>
                             </div>
                         </div>
                     </div>
@@ -125,22 +121,22 @@
                 <dl class="mx-auto grid grid-cols-1 gap-px bg-gray-900/5 sm:grid-cols-2 lg:grid-cols-4">
                     <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 bg-white px-4 py-10 sm:px-6 xl:px-8">
                         <dt class="text-sm/6 font-medium text-gray-500">Total Revenue</dt>
-                        <dd class="w-full flex-none text-3xl/10 font-medium tracking-tight text-gray-900">RM{{ $totalRevenue }}</dd>
+                        <dd class="w-full flex-none text-3xl/10 font-medium tracking-tight text-gray-900">RM{{ number_format($totalRevenue, 2) }}</dd>
                     </div>
                     <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 bg-white px-4 py-10 sm:px-6 xl:px-8">
                         <dt class="text-sm/6 font-medium text-gray-500">This Month</dt>
-                        <dd class="text-xs font-medium text-rose-600">{{ $monthChange }}</dd>
-                        <dd class="w-full flex-none text-3xl/10 font-medium tracking-tight text-gray-900">RM{{ $thisMonthRevenue }}</dd>
+                        <dd class="text-xs font-medium {{ $monthChange > 0 ? 'text-green-600' : ($monthChange < 0 ? 'text-rose-600' : 'text-gray-600') }}">{{ $monthChange }}</dd>
+                        <dd class="w-full flex-none text-3xl/10 font-medium tracking-tight text-gray-900">RM{{ number_format($thisMonthRevenue, 2) }}</dd>
                     </div>
                     <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 bg-white px-4 py-10 sm:px-6 xl:px-8">
                         <dt class="text-sm/6 font-medium text-gray-500">This Week</dt>
-                        <dd class="text-xs font-medium text-gray-700">{{ $weekChange }}</dd>
-                        <dd class="w-full flex-none text-3xl/10 font-medium tracking-tight text-gray-900">RM{{ $thisWeekRevenue }}</dd>
+                        <dd class="text-xs font-medium {{ $weekChange > 0 ? 'text-green-600' : ($weekChange < 0 ? 'text-rose-600' : 'text-gray-600') }}">{{ $weekChange }}</dd>
+                        <dd class="w-full flex-none text-3xl/10 font-medium tracking-tight text-gray-900">RM{{ number_format($thisWeekRevenue, 2) }}</dd>
                     </div>
                     <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 bg-white px-4 py-10 sm:px-6 xl:px-8">
                         <dt class="text-sm/6 font-medium text-gray-500">Today</dt>
-                        <dd class="text-xs font-medium text-rose-600">{{ $dayChange }}</dd>
-                        <dd class="w-full flex-none text-3xl/10 font-medium tracking-tight text-gray-900">RM{{ $todayRevenue }}</dd>
+                        <dd class="text-xs font-medium {{ $dayChange > 0 ? 'text-green-600' : ($dayChange < 0 ? 'text-rose-600' : 'text-gray-600') }}">{{ $dayChange }}</dd>
+                        <dd class="w-full flex-none text-3xl/10 font-medium tracking-tight text-gray-900">RM{{ number_format($todayRevenue, 2) }}</dd>
                     </div>
                 </dl>
             </div>
