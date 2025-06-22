@@ -4,6 +4,7 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class ZohoBooksService
 {
@@ -18,6 +19,9 @@ class ZohoBooksService
             ]);
 
             if ($response->failed()) {
+                Log::error('Failed to refresh Zoho access token.', [
+                    'response' => $response->body(),
+                ]);
                 throw new \Exception('Failed to refresh Zoho access token.');
             }
 
@@ -34,6 +38,14 @@ class ZohoBooksService
             ...$data,
         ]);
 
+        if ($response->failed()) {
+            Log::error('Zoho createCustomer failed', [
+                'request' => $data,
+                'response' => $response->json(),
+            ]);
+            return null;
+        }
+
         return $response->json('customer');
     }
 
@@ -46,6 +58,14 @@ class ZohoBooksService
             ...$data,
         ]);
 
+        if ($response->failed()) {
+            Log::error('Zoho createInvoice failed', [
+                'request' => $data,
+                'response' => $response->json(),
+            ]);
+            return null;
+        }
+
         return $response->json('invoice');
     }
 
@@ -57,6 +77,14 @@ class ZohoBooksService
             'organization_id' => config('services.zoho.org_id'),
             ...$data,
         ]);
+
+        if ($response->failed()) {
+            Log::error('Zoho recordPayment failed', [
+                'request' => $data,
+                'response' => $response->json(),
+            ]);
+            return null;
+        }
 
         return $response->json('payment');
     }
