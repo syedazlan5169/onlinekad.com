@@ -150,7 +150,7 @@ class ToyyibpayController extends Controller
                 $zoho = new ZohoBooksService();
 
                 // Create a new contact in Zoho Books
-                $customer = $zoho->createCustomer([
+                $customer= $zoho->createCustomer([
                     'contact_name' => $user->name,
                 ]);
                 Log::info('Customer Create Response: ', ['customer' => $customer]);

@@ -46,7 +46,7 @@ class ZohoBooksService
             return null;
         }
 
-        return $response->json('customer');
+        return $response->json('contact');
     }
 
     public function createInvoice(array $data)
