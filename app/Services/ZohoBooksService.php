@@ -33,7 +33,7 @@ class ZohoBooksService
     {
         $token = $this->getAccessToken();
 
-        $response = Http::withToken($token)->post("https://books.zoho.com/api/v3/customers", [
+        $response = Http::withToken($token, 'Zoho-oauthtoken')->post('https://books.zoho.com/api/v3/customers', [
             'organization_id' => config('services.zoho.org_id'),
             ...$data,
         ]);
@@ -53,7 +53,7 @@ class ZohoBooksService
     {
         $token = $this->getAccessToken();
 
-        $response = Http::withToken($token)->post("https://books.zoho.com/api/v3/invoices", [
+        $response = Http::withToken($token, 'Zoho-oauthtoken')->post("https://books.zoho.com/api/v3/invoices", [
             'organization_id' => config('services.zoho.org_id'),
             ...$data,
         ]);
@@ -73,7 +73,7 @@ class ZohoBooksService
     {
         $token = $this->getAccessToken();
 
-        $response = Http::withToken($token)->post("https://books.zoho.com/api/v3/customerpayments", [
+        $response = Http::withToken($token, 'Zoho-oauthtoken')->post("https://books.zoho.com/api/v3/customerpayments", [
             'organization_id' => config('services.zoho.org_id'),
             ...$data,
         ]);
