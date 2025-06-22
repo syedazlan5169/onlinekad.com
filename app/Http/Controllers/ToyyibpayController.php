@@ -154,7 +154,7 @@ class ToyyibpayController extends Controller
                     'first_name' => $user->name,
                     'email' => $user->email,
                 ]);
-                Log::info('Customer Create Response: ', $customer);
+                Log::info('Customer Create Response: ', ['customer' => $customer]);
 
                 // Create a new invoice in Zoho Books
                 $invoice = $zoho->createInvoice([
@@ -169,7 +169,7 @@ class ToyyibpayController extends Controller
                     'adjustment' => -1,
                     'adjustment_description' => "ToyyibPay",
                 ]);
-                Log::info('Invoice Create Response: ', $invoice);
+                Log::info('Invoice Create Response: ', ['invoice' => $invoice]);
 
                 // Create a new payment
                 $zoho->recordPayment([
