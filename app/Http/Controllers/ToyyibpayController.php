@@ -172,7 +172,7 @@ class ToyyibpayController extends Controller
 
                 // Create a new payment
                 $zoho->recordPayment([
-                    'customer_id' => $customer['customer_id'],
+                    'customer_id' => $customer['contact_id'],
                     'payment_mode' => "Cash",
                     'amount' => $response['amount'] + $invoice['adjustment'],
                     'date' => today()->format('Y-m-d'),
