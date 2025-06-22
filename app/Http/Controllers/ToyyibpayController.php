@@ -184,7 +184,7 @@ class ToyyibpayController extends Controller
                         ]
                     ],
                     'invoice_id' => $invoice['invoice_id'],
-                    'amount_applied' => $response['amount'] + $invoice['adjusment'],
+                    'amount_applied' => $response['amount'] + $invoice['adjustment'],
                 ]);
                 Log::info('New Payment Created');
 
