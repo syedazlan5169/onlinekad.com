@@ -157,7 +157,7 @@ class ToyyibpayController extends Controller
 
                 // Create a new invoice in Zoho Books
                 $invoice = $zoho->createInvoice([
-                    'customer_id' => $customer['customer_id'],
+                    'customer_id' => $customer['contact_id'],
                     'date' => today()->format('Y-m-d'),
                     'line_items' => [
                         [
