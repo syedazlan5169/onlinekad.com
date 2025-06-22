@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
+use App\Services\ZohoBooksService;
 
 class ToyyibpayController extends Controller
 {
@@ -115,7 +116,15 @@ class ToyyibpayController extends Controller
         // Extract the necessary fields from the callback request
         $response = $request->only(['refno', 'status', 'reason', 'billcode', 'order_id', 'amount', 'transaction_time']);
         $order = Order::where('order_id', $response['order_id'])->firstOrFail();
-        $kad = $order->kad; 
+        $kad = $order->kad;
+        $user = User::where('id', $kad->user_id)->first();
+        if ($kad->package_id == 3) {
+            $item_id = "3074856000000835030";
+        }
+        else
+        {
+            $item_id = "3074856000000835017";
+        }
 
         // Create a new PaymentAttempt entry
         Payment::create([
@@ -137,6 +146,48 @@ class ToyyibpayController extends Controller
             // Update the is_paid field to true using the Kad model
             if ($kad) {
                 $kad->update(['is_paid' => true]);
+
+                $zoho = new ZohoBooksService();
+
+                // Create a new contact in Zoho Books
+                $customer = $zoho->createCustomer([
+                    'customer_name' => $user->name,
+                    'customer_email' => $user->email,
+                ]);
+                Log::info('New Contact Created');
+
+                // Create a new invoice in Zoho Books
+                $invoice = $zoho->createInvoice([
+                    'customer_id' => $customer['customer_id'],
+                    'data' => today()->format('Y-m-d'),
+                    'line_items' => [
+                        [
+                            'item_name' => $item_id,
+                            'quantity' => 1,
+                        ],
+                    ],
+                    'adjustment' => -1,
+                    'adjustment_description' => "ToyyibPay",
+                ]);
+                Log::info('New Invoice Created');
+
+                // Create a new payment
+                $zoho->recordPayment([
+                    'customer_id' => $customer['customer_id'],
+                    'payment_mode' => "Cash",
+                    'amount' => $response['amount'] + $invoice['adjustment'],
+                    'data' => today()->format('Y-m-d'),
+                    'invoices' => [
+                        [
+                            'invoice_id' => $invoice['invoice_id'],
+                            'amount_applied' => $response['amount'] + $invoice['adjusment'],
+                        ]
+                    ],
+                    'invoice_id' => $invoice['invoice_id'],
+                    'amount_applied' => $response['amount'] + $invoice['adjusment'],
+                ]);
+                Log::info('New Payment Created');
+
 
                 // Send payment success email to user
                 try {
