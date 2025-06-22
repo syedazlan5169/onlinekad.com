@@ -151,32 +151,32 @@ class ToyyibpayController extends Controller
 
                 // Create a new contact in Zoho Books
                 $customer = $zoho->createCustomer([
-                    'customer_name' => $user->name,
-                    'customer_email' => $user->email,
+                    'first_name' => $user->name,
+                    'email' => $user->email,
                 ]);
-                Log::info('New Contact Created');
+                Log::info('Customer Create Response: ', $customer);
 
                 // Create a new invoice in Zoho Books
                 $invoice = $zoho->createInvoice([
                     'customer_id' => $customer['customer_id'],
-                    'data' => today()->format('Y-m-d'),
+                    'date' => today()->format('Y-m-d'),
                     'line_items' => [
                         [
-                            'item_name' => $item_id,
+                            'item_id' => $item_id,
                             'quantity' => 1,
                         ],
                     ],
                     'adjustment' => -1,
                     'adjustment_description' => "ToyyibPay",
                 ]);
-                Log::info('New Invoice Created');
+                Log::info('Invoice Create Response: ', $invoice);
 
                 // Create a new payment
                 $zoho->recordPayment([
                     'customer_id' => $customer['customer_id'],
                     'payment_mode' => "Cash",
                     'amount' => $response['amount'] + $invoice['adjustment'],
-                    'data' => today()->format('Y-m-d'),
+                    'date' => today()->format('Y-m-d'),
                     'invoices' => [
                         [
                             'invoice_id' => $invoice['invoice_id'],
@@ -186,8 +186,6 @@ class ToyyibpayController extends Controller
                     'invoice_id' => $invoice['invoice_id'],
                     'amount_applied' => $response['amount'] + $invoice['adjustment'],
                 ]);
-                Log::info('New Payment Created');
-
 
                 // Send payment success email to user
                 try {
