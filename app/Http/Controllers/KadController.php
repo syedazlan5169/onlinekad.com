@@ -37,6 +37,8 @@ class KadController extends Controller
         $kad = Kad::findOrFail($id);
         $kad->delete();
 
+        Log::info('Kad ' . $kad->slug . ' deleted successfully');
+
         return back()->with('success', 'Kad deleted successfully');
     }
 
@@ -272,6 +274,7 @@ class KadController extends Controller
         // Save the updated or new slider
         $slider->save();
 
+        Log::info('Kad ' . $kad->slug . ' updated successfully');
 
         // Redirect with success message
         return redirect('/senarai-kad')->with('success', 'Kad updated successfully');
@@ -489,6 +492,8 @@ class KadController extends Controller
         } catch (\Exception $e) {
             Log::error('Email failed: ' . $e->getMessage());
         }
+
+        Log::info('Kad ' . $slug . ' created successfully');
         
         return redirect('/senarai-kad')->with('success', 'Kad created successfully');
     }
@@ -773,6 +778,7 @@ END:VCALENDAR";
             ];
         }
 
+        Log::info('Kad ' . $kadData->slug . ' being viewed');
 
         return view('kad.base_template', compact('kadData', 'dateTime', 'font', 'imageUrls', 'design', 'bgSong'));
     }
@@ -785,10 +791,7 @@ END:VCALENDAR";
         $font = Font::findOrFail($kadData->font_id);
         $bgSong = BgSong::findOrFail($kadData->bg_song_id);
 
-        Log::info('kadData:', ['kadData' => $kadData]);
-        Log::info('design:', ['design' => $design]);
-        Log::info('font:', ['font' => $font]);
-
+        Log::info('Kad ' . $kadData->slug . ' being previewed');
 
         $dateTime = [
             'hari_tarikh_majlis' => $this->translateToMalay($kadData->tarikh_majlis, 3),
