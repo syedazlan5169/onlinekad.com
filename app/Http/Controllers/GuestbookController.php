@@ -7,6 +7,7 @@ use App\Models\Guestbook;
 use App\Models\Kad;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Log;
 
 class GuestbookController extends Controller
 {
@@ -32,6 +33,8 @@ class GuestbookController extends Controller
     {
         $wish = Guestbook::findOrFail($id);
         $wish->delete();
+
+        Log::info('User deleted a wish for Kad ' . $wish->kad->slug);
 
         return back()->with('success', 'Wish deleted successfully');
     }

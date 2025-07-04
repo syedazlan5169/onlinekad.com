@@ -76,7 +76,7 @@ class ToyyibpayController extends Controller
         ];
 
         // Log the bill data for debugging purposes
-        Log::info('Bill data being sent to ToyyibPay: ', $bill);
+        Log::info('User ' . Auth::user()->name . ' is creating a bill for Kad ' . $kad->slug . ' with price RM' . $price/100);
 
         // Send request to ToyyibPay API
         $url = config('services.toyyibpay.createBillUrl');
@@ -137,9 +137,7 @@ class ToyyibpayController extends Controller
             'transaction_time' => $response['transaction_time'], 
         ]);
 
-        Log::info('Response:', ['response' => $response]);
-        Log::info('Order:', ['order' => $order]);
-        Log::info('Kad:', ['kad' => $kad]);
+        Log::info('Payment attempt for kad ' . $kad->slug . ' with status ' . $response['status']);
 
         // Check if the payment status is successful
         if ($response['status'] === '1') {
@@ -153,7 +151,7 @@ class ToyyibpayController extends Controller
                 $customer= $zoho->createCustomer([
                     'contact_name' => $user->name,
                 ]);
-                Log::info('Customer Create Response: ', ['customer' => $customer]);
+                Log::info('Customer ' . $customer['contact_name'] . ' created successfully');
 
                 // Create a new invoice in Zoho Books
                 $invoice = $zoho->createInvoice([
@@ -168,7 +166,7 @@ class ToyyibpayController extends Controller
                     'adjustment' => -1,
                     'adjustment_description' => "ToyyibPay",
                 ]);
-                Log::info('Invoice Create Response: ', ['invoice' => $invoice]);
+                Log::info('Invoice ' . $invoice['invoice_id'] . ' created successfully');
 
                 // Create a new payment
                 $zoho->recordPayment([

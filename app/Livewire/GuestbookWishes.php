@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Guestbook;
 use App\Models\Kad;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Log;
 
 class GuestbookWishes extends Component
 {
@@ -34,6 +35,8 @@ class GuestbookWishes extends Component
             'author' => $this->author,
             'wish' => $this->wish, 
         ]);
+
+        Log::info('Guest write a wish for Kad ' . $this->kad_id);
 
         $this->resetForm();
         $this->dispatch('close');
