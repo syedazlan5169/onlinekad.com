@@ -36,7 +36,7 @@ class GuestbookWishes extends Component
             'wish' => $this->wish, 
         ]);
 
-        Log::info('Guest write a wish for Kad ' . $this->kad_id);
+        Log::info('Guest write a wish to Kad ' . Kad::findOrFail($this->kad_id)->slug);
 
         $this->resetForm();
         $this->dispatch('close');
