@@ -739,7 +739,7 @@ END:VCALENDAR";
 
     public function show($slug)
     {
-
+        $request = request();
         $kadData = Kad::where('slug', $slug)->firstOrFail();
         $design = Design::findOrFail($kadData->design_id);
         $font = Font::findOrFail($kadData->font_id);
@@ -778,7 +778,7 @@ END:VCALENDAR";
             ];
         }
 
-        Log::info('Kad ' . $kadData->slug . ' being viewed');
+        Log::info('Kad ' . $kadData->slug . ' being viewed by ' . $request->ip());
 
         return view('kad.base_template', compact('kadData', 'dateTime', 'font', 'imageUrls', 'design', 'bgSong'));
     }

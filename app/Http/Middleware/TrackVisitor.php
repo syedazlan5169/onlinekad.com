@@ -23,7 +23,7 @@ class TrackVisitor
             PageVisit::create([
                 'url' => $request->path(),
                 'ip' => $request->ip(),
-                'user_agent' => $request->userAgent(),
+                'user_agent' => $request->userAgent() ?? 'Unknown',
                 'user_id' => Auth::user()?->id ?? null,
                 'referer' => $request->headers->get('referer'),
             ]);

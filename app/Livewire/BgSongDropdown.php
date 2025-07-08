@@ -32,7 +32,6 @@ class BgSongDropdown extends Component
     public function updatedSelectedSong()
     {
         // Update the song URL when selected song changes
-        Log::info('updatedSelectedSong method was called with selectedSong:', ['selectedSong' => $this->selectedSong]);
         $this->updateSelectedSongUrl();
     }
 
