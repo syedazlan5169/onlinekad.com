@@ -354,7 +354,7 @@
 								<div class="sm:col-span-3">
 									<label for="ayat-jemputan" class="block text-sm font-medium text-gray-900">Ayat Jemputan</label>
 									<div class="mt-2">
-										<textarea name="ayat-jemputan" id="ayat-jemputan" rows="4" style="text-transform: uppercase;" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">{{ $kadData->ayat_jemputan }}</textarea>
+										<textarea name="ayat-jemputan" id="ayat-jemputan" rows="4" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">{{ $kadData->ayat_jemputan }}</textarea>
 									</div>
 								</div>
 
