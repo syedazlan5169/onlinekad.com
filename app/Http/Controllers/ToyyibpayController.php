@@ -51,6 +51,10 @@ class ToyyibpayController extends Controller
         $price = 100 * $package->final_price;
         $orderId = $kad->order_id;
 
+        // Sanitize the user phone number
+        $rawPhone = Auth::user()->phone;
+        $sanitizedPhone = preg_replace('/\D/', '', $rawPhone);
+
         // Create the order
         $this->createOrder($kad);
 
@@ -68,7 +72,7 @@ class ToyyibpayController extends Controller
             'billExternalReferenceNo' => $orderId,
             'billTo' => Auth::user()->name,
             'billEmail' => Auth::user()->email,
-            'billPhone' => Auth::user()->phone,
+            'billPhone' => $sanitizedPhone,
             'billSplitPayment' => 0,
             'billSplitPaymentArgs' => '',
             'billPaymentChannel' => '0',
