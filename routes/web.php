@@ -43,6 +43,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin', [AdminController::class, 'index'])->name('admin.show');
         Route::delete('/user/{id}', [AdminController::class, 'destroyUser']);
 
+        // Manual Order
+        Route::view('admin/manual-order', 'manual-order')->name('admin.manual-order.show');
+        Route::post('admin/manual-order', [AdminController::class, 'createFakeOrder'])->name('admin.manual-order.store');
+
         // Promotion Management Dashboard
         Route::get('admin/promotions', [PromotionController::class, 'index'])->name('admin.promotions.index');
         Route::get('admin/promotions/create', [PromotionController::class, 'create'])->name('admin.promotions.create');
