@@ -12,6 +12,8 @@ use App\Models\DailyPageStat;
 use App\Models\DailyReferrerStat;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
@@ -119,5 +121,24 @@ class AdminController extends Controller
         $user->delete();
 
         return back()->with('success', 'User deleted successfully');
+    }
+
+    public function createFakeOrder(Request $request)
+    {
+        $user = Auth::user();
+        $orderId = 'MAN' . rand(100000, 999999) . strtoupper(Str::random(5));
+
+        Order::create([
+            'user_id' => $user->id,
+            'user_email' => $user->email,
+            'amount' => $request->amount,
+            'order_id' => $orderId,
+            'status' => 1,
+            'reason' => 'Manual Order',
+            'created_at' => $request->order_date,
+            'updated_at' => $request->order_date,
+        ]);
+
+        return back()->with('success', 'Manual Order created successfully');
     }
 }
