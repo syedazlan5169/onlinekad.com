@@ -42,18 +42,18 @@ class AdminController extends Controller
 
         $orders = Order::paginate(5);
         $totalRevenue = Order::where('status', 1)->sum('amount');
-        $thisMonthRevenue = Order::where('status', 1)->whereBetween('created_at', [ Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth() ])->sum('amount');
-        $lastMonthRevenue = Order::where('status', 1)->whereBetween('created_at', [
+        $thisMonthRevenue = Order::where('status', 1)->whereBetween('updated_at', [ Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth() ])->sum('amount');
+        $lastMonthRevenue = Order::where('status', 1)->whereBetween('updated_at', [
             Carbon::now()->subMonth()->startOfMonth(),
             Carbon::now()->subMonth()->endOfMonth(),
         ])->sum('amount');
-        $thisWeekRevenue = Order::where('status', 1)->whereBetween('created_at', [ Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek() ])->sum('amount');
-        $lastWeekRevenue = Order::where('status', 1)->whereBetween('created_at', [
+        $thisWeekRevenue = Order::where('status', 1)->whereBetween('updated_at', [ Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek() ])->sum('amount');
+        $lastWeekRevenue = Order::where('status', 1)->whereBetween('updated_at', [
             Carbon::now()->subWeek()->startOfWeek(),
             Carbon::now()->subWeek()->endOfWeek(),
         ])->sum('amount');
-        $todayRevenue = Order::where('status', 1)->whereDate('created_at', Carbon::today())->sum('amount');
-        $yesterdayRevenue = Order::where('status', 1)->whereDate('created_at', Carbon::yesterday())->sum('amount');
+        $todayRevenue = Order::where('status', 1)->whereDate('updated_at', Carbon::today())->sum('amount');
+        $yesterdayRevenue = Order::where('status', 1)->whereDate('updated_at', Carbon::yesterday())->sum('amount');
 
         function calculatePercentageChange($current, $previous)
         {
