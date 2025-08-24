@@ -563,8 +563,16 @@
                         </div>
 
                         <script>
-                            // Set the target date and time
-                            const targetDate = new Date("{{ \Carbon\Carbon::parse($kadData->tarikh_majlis)->format('Y-m-d') }} {{ $kadData->masa_mula_majlis }}").getTime();
+                            // Set the target date and time using ISO format for better browser compatibility
+                            const dateStr = "{{ \Carbon\Carbon::parse($kadData->tarikh_majlis)->format('Y-m-d') }}";
+                            const timeStr = "{{ $kadData->masa_mula_majlis }}";
+                            
+                            // Parse date components
+                            const [year, month, day] = dateStr.split('-').map(Number);
+                            const [hours, minutes] = timeStr.split(':').map(Number);
+                            
+                            // Create date object using components (months are 0-based in JS)
+                            const targetDate = new Date(year, month - 1, day, hours, minutes).getTime();
 
                             // Update the countdown every second
                             const countdown = setInterval(() => {
