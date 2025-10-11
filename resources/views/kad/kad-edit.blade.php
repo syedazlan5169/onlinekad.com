@@ -451,7 +451,8 @@
 						</div>
 
 						<!-- Accordion Section 3: Others Information -->
-						<div x-show="selectedPackage == 2 || selectedPackage == 3" id="othersSection" class="border rounded-md p-4 mb-4">
+						@if ($kadData->package_id == 2 || $kadData->package_id == 3)
+						<div id="othersSection" class="border rounded-md p-4 mb-4">
 							<h2 @click="openSection = openSection === 'others' ? '' : 'others';
 									 if(openSection === 'others') {
 										 $nextTick(() => {
@@ -922,6 +923,7 @@
                                 </div>
                             </div>
 						</div>
+						@endif
 
 						<!-- Displaying all error -->
 						<div class="mt-10">
