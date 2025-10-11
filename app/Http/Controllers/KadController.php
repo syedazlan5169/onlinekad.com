@@ -150,6 +150,7 @@ class KadController extends Controller
             'bg_song_option' => $request->input('bg-song-option'),
             'uploaded_song_name' => $request->input('uploaded-song-name'),
             'uploaded_song_url' => $uploadedSongPath,
+            'hijri_date_is_on' => $request->has('hijri-date-is-on') ? 1 : 0,
 
             // Maklumat Pengantin
             'nama_penuh_lelaki' => $request->input('nama-penuh-lelaki'),
@@ -377,6 +378,7 @@ class KadController extends Controller
             'bg_song_option' => request('bg-song-option'),
             'uploaded_song_name' => request('uploaded-song-name'),
             'uploaded_song_url' => $uploadedSongPath,
+            'hijri_date_is_on' => request('hijri-date-is-on') ? 1 : 0,
             
 
             // Maklumat Pengantin

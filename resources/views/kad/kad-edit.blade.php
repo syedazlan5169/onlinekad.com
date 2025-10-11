@@ -397,6 +397,12 @@
 									<label for="tarikh-majlis" class="block text-sm font-medium text-gray-900">Tarikh Majlis</label>
 									<div class="mt-2">
 										<input type="date" name="tarikh-majlis" id="tarikh-majlis" value="{{ \Carbon\Carbon::parse($kadData->tarikh_majlis)->format('Y-m-d') }}" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+										<div class="flex items-center gap-x-3 mt-3">
+											<input type="checkbox" name="hijri-date-is-on" id="hijri-date-is-on" value="1" {{ $kadData->hijri_date_is_on ? 'checked' : '' }} class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+											<label for="hijri-date-is-on" class="text-sm font-medium leading-6 text-gray-900">
+												Papar Tarikh Hijrah
+											</label>
+										</div>
 									</div>
 								</div>
 
