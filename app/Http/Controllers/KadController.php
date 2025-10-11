@@ -735,6 +735,41 @@ END:VCALENDAR";
                 return $translatedDate; // Return day + date (default)
         }
     }
+
+    /* Convert a Gregorian date to Hijri (Umm al-Qura) with Malay month names.*/
+    public function hijriDateMalay($dateInput, string $timezone = 'Asia/Kuala_Lumpur'): string
+    {
+        if (!class_exists(\IntlCalendar::class)) {
+            throw new \RuntimeException('PHP intl extension is required.');
+        }
+
+        // Normalize input to DateTimeImmutable
+        if ($dateInput instanceof \DateTimeInterface) {
+            $dt = \DateTimeImmutable::createFromInterface($dateInput)
+                ->setTimezone(new \DateTimeZone($timezone));
+        } else {
+            $dt = new \DateTimeImmutable(is_string($dateInput) ? $dateInput : 'now', new \DateTimeZone($timezone));
+        }
+
+        // Create an Islamic (Umm al-Qura) calendar in Malay locale
+        $cal = \IntlCalendar::createInstance($dt->getTimezone(), 'ms@calendar=islamic-umalqura');
+        // setTime expects milliseconds since Unix epoch (UTC)
+        $cal->setTime((int)$dt->format('U') * 1000);
+
+        // Extract Hijri components
+        $year  = $cal->get(\IntlCalendar::FIELD_YEAR);
+        $month = $cal->get(\IntlCalendar::FIELD_MONTH);       // 0-based
+        $day   = $cal->get(\IntlCalendar::FIELD_DAY_OF_MONTH);
+
+        // Malay month names (ICU-style)
+        $bulanMs = [
+            'Muharam', 'Safar', 'Rabiulawal', 'Rabiulakhir',
+            'Jamadilawal', 'Jamadilakhir', 'Rejab', 'Syaaban',
+            'Ramadan', 'Syawal', 'Zulkaedah', 'Zulhijah'
+        ];
+
+        return sprintf('%d %s %d Hijrah', $day, $bulanMs[$month], $year);
+    }
     
 
     public function show($slug)
@@ -754,6 +789,7 @@ END:VCALENDAR";
                 'tarikh_majlis' => $kadData->tarikh_majlis->format('d F Y'), // English date
                 'masa_mula_majlis' => Carbon::createFromFormat('H:i:s', $kadData->masa_mula_majlis)->format('g:i A'),
                 'masa_tamat_majlis' => Carbon::createFromFormat('H:i:s', $kadData->masa_tamat_majlis)->format('g:i A'),
+                'hijri_date_malay' => $this->hijriDateMalay($kadData->tarikh_majlis),
             ];
         } else {
             $dateTime = [
@@ -762,6 +798,7 @@ END:VCALENDAR";
                 'tarikh_majlis' => $this->translateToMalay($kadData->tarikh_majlis, 2), // Malay date
                 'masa_mula_majlis' => Carbon::createFromFormat('H:i:s', $kadData->masa_mula_majlis)->format('g:i A'),
                 'masa_tamat_majlis' => Carbon::createFromFormat('H:i:s', $kadData->masa_tamat_majlis)->format('g:i A'),
+                'hijri_date_malay' => $this->hijriDateMalay($kadData->tarikh_majlis),
             ];
         }
 
@@ -798,7 +835,8 @@ END:VCALENDAR";
             'hari_majlis' => $this->translateToMalay($kadData->tarikh_majlis, 1),
             'tarikh_majlis' => $this->translateToMalay($kadData->tarikh_majlis, 2),
             'masa_mula_majlis' => Carbon::createFromFormat('H:i:s', $kadData->masa_mula_majlis)->format('g:i A'),
-            'masa_tamat_majlis' => Carbon::createFromFormat('H:i:s', $kadData->masa_tamat_majlis)->format('g:i A')
+            'masa_tamat_majlis' => Carbon::createFromFormat('H:i:s', $kadData->masa_tamat_majlis)->format('g:i A'),
+            'hijri_date_malay' => $this->hijriDateMalay($kadData->tarikh_majlis)
         ];
 
         $imageUrls = json_decode('["images/slide1.webp", "images/slide2.webp", "images/slide3.webp"]');

@@ -280,6 +280,7 @@
                         <div class="text-center">
                             <p class="text-2xl text-gray-600 leading-tight animate-zoom-in-delay-4" style="font-family: 'Noticia Text', cursive; color: {{ $primaryTextColor }};">{{ $dateTime['hari_majlis'] }}</p>
                             <p class="text-2xl text-gray-600 leading-tight animate-zoom-in-delay-4" style="font-family: 'Noticia Text', cursive; color: {{ $primaryTextColor }};">{{ $dateTime['tarikh_majlis'] }}</p>
+                            <p class="mt-2 text-sm italic text-gray-600 leading-tight animate-zoom-in-delay-4" style="font-family: 'Noticia Text', cursive; color: {{ $primaryTextColor }};">{{ $dateTime['hijri_date_malay'] }}</p>
                         </div>
                     </div>
                 </div>
