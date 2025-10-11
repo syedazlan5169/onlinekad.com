@@ -451,7 +451,7 @@
 						</div>
 
 						<!-- Accordion Section 3: Others Information -->
-						<div id="othersSection" class="border rounded-md p-4 mb-4">
+						<div x-show="selectedPackage == 2 || selectedPackage == 3" id="othersSection" class="border rounded-md p-4 mb-4">
 							<h2 @click="openSection = openSection === 'others' ? '' : 'others';
 									 if(openSection === 'others') {
 										 $nextTick(() => {
