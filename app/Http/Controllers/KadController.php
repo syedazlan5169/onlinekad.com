@@ -130,26 +130,32 @@ class KadController extends Controller
             $uploadedSongPath = $this->uploadOwnSong(request()->file('uploaded-song'));
         }
 
+        // Update Section 3 if package id is 2 or 3
+        if (in_array($kad->package_id, [2, 3])) {
+            $kad->update([
+                'bg_song_id' => $request->input('bg-song-id'),
+                'rsvp_is_on' => $request->input('rsvp-is-on'),
+                'guestbook_is_on' => $request->input('guestbook-is-on'),
+                'slideshow_is_on' => $request->input('slideshow-is-on'),
+                'gift_is_on' => $request->input('gift-is-on'),
+                'doa_is_on' => $request->input('doa-pengantin-is-on'),
+                'slider_image' => $request->input('slider-image'),
+                'bank_name' => $request->input('bank-name'),
+                'account_number' => $request->input('account-number'),
+                'qr_image' => $qrImagePath,
+                'info_tambahan' => $request->input('info-tambahan'),
+                'bg_song_option' => $request->input('bg-song-option'),
+                'uploaded_song_name' => $request->input('uploaded-song-name'),
+                'uploaded_song_url' => $uploadedSongPath,
+            ]);
+        }
+
         // Update the Kad with the validated data
         $kad->update([
             //Maklumat Kad
             'font_id' => $request->input('font'),
-            'bg_song_id' => $request->input('bg-song-id'),
-            'rsvp_is_on' => $request->input('rsvp-is-on'),
-            'guestbook_is_on' => $request->input('guestbook-is-on'),
-            'slideshow_is_on' => $request->input('slideshow-is-on'),
             'dua_pasangan_is_on' => $request->input('dua-pasangan-is-on'),
-            'gift_is_on' => $request->input('gift-is-on'),
-            'doa_is_on' => $request->input('doa-pengantin-is-on'),
-            'slider_image' => $request->input('slider-image'),
-            'bank_name' => $request->input('bank-name'),
-            'account_number' => $request->input('account-number'),
-            'qr_image' => $qrImagePath,
             'is_english' => $request->input('bahasa'),
-            'info_tambahan' => $request->input('info-tambahan'),
-            'bg_song_option' => $request->input('bg-song-option'),
-            'uploaded_song_name' => $request->input('uploaded-song-name'),
-            'uploaded_song_url' => $uploadedSongPath,
             'hijri_date_is_on' => $request->has('hijri-date-is-on') ? 1 : 0,
 
             // Maklumat Pengantin
