@@ -46,6 +46,10 @@ Route::middleware(['auth'])->group(function () {
         // Manual Order
         Route::view('admin/manual-order', 'manual-order')->name('admin.manual-order.show');
         Route::post('admin/manual-order', [AdminController::class, 'createFakeOrder'])->name('admin.manual-order.store');
+        
+        // Kad Search and Payment Status
+        Route::post('admin/kad/search', [AdminController::class, 'searchKadBySlug'])->name('admin.kad.search');
+        Route::patch('admin/kad/{id}/payment-status', [AdminController::class, 'updateKadPaymentStatus'])->name('admin.kad.update-payment-status');
 
         // Promotion Management Dashboard
         Route::get('admin/promotions', [PromotionController::class, 'index'])->name('admin.promotions.index');
