@@ -27,17 +27,28 @@
             <div class="ml-[-22rem] aspect-[1313/771] w-[82.0625rem] flex-none origin-top-right rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] xl:ml-0 xl:mr-[calc(50%-12rem)]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
         </div>
 
-        <div class="flex justify-center mb-10">
-            <span class="isolate inline-flex rounded-md shadow-sm">
-                <button type="button" @click="selectedTab = 'revenue'"
-                    class="relative inline-flex items-center rounded-l-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
-                    :class="selectedTab === 'revenue' ? 'text-white bg-indigo-500 ring-indigo-500 hover:bg-indigo-500' : 'bg-white text-gray-900 hover:bg-gray-50'"
-                    >Revenue</button>
-                <button type="button" @click="selectedTab = 'visitor'"
-                     class="relative -ml-px inline-flex items-center rounded-r-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
-                     :class="selectedTab === 'visitor' ? 'text-white bg-indigo-500 ring-indigo-500 hover:bg-indigo-500' : 'bg-white text-gray-900 hover:bg-gray-50'"
-                     >Visitor</button>
-            </span>
+        <div class="flex justify-between items-center mb-10 max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="flex-1 flex justify-center">
+                <span class="isolate inline-flex rounded-md shadow-sm">
+                    <button type="button" @click="selectedTab = 'revenue'"
+                        class="relative inline-flex items-center rounded-l-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
+                        :class="selectedTab === 'revenue' ? 'text-white bg-indigo-500 ring-indigo-500 hover:bg-indigo-500' : 'bg-white text-gray-900 hover:bg-gray-50'"
+                        >Revenue</button>
+                    <button type="button" @click="selectedTab = 'visitor'"
+                         class="relative -ml-px inline-flex items-center rounded-r-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
+                         :class="selectedTab === 'visitor' ? 'text-white bg-indigo-500 ring-indigo-500 hover:bg-indigo-500' : 'bg-white text-gray-900 hover:bg-gray-50'"
+                         >Visitor</button>
+                </span>
+            </div>
+            <a 
+                href="{{ route('admin.manual-order.show') }}"
+                class="inline-flex items-center px-4 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-md shadow-sm ring-1 ring-inset ring-indigo-600 hover:ring-indigo-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+                Manual Order
+            </a>
         </div>
 
         <!-- Visitor -->
