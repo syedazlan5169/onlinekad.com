@@ -141,4 +141,33 @@ class AdminController extends Controller
 
         return back()->with('success', 'Manual Order created successfully');
     }
+
+    public function searchKadBySlug(Request $request)
+    {
+        $request->validate([
+            'slug' => 'required|string',
+        ]);
+
+        $kad = Kad::where('slug', $request->slug)->first();
+
+        if (!$kad) {
+            return back()->with('error', 'Kad not found with the provided slug.');
+        }
+
+        return back()->with('kad_search_result', $kad);
+    }
+
+    public function updateKadPaymentStatus(Request $request, $id)
+    {
+        $request->validate([
+            'is_paid' => 'required|boolean',
+        ]);
+
+        $kad = Kad::findOrFail($id);
+        $kad->is_paid = $request->is_paid;
+        $kad->save();
+
+        $status = $request->is_paid ? 'PAID' : 'UNPAID';
+        return back()->with('success', "Payment status updated to {$status} successfully.");
+    }
 }
