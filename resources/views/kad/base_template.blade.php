@@ -19,10 +19,25 @@
         <title>{{ $kadData->nama_panggilan_lelaki}} &#10084; {{ $kadData->nama_panggilan_perempuan}}</title>
         @endif
 
+        @php
+            $metaThumbnail = $design->thumbnail;
+            if (!empty($kadData->is_english)) {
+                $dotPosition = strrpos($metaThumbnail, '.');
+                if ($dotPosition !== false) {
+                    $metaThumbnail = substr($metaThumbnail, 0, $dotPosition) . '-en' . substr($metaThumbnail, $dotPosition);
+                } else {
+                    $metaThumbnail .= '-en';
+                }
+            }
+        @endphp
+        @php
+            dump($metaThumbnail);
+        @endphp
+
         <!-- Open Graph Meta Tags -->
         <meta property="og:title" content="{{ $kadData->tajuk_kad }}">
         <meta property="og:description" content="Anda dijemput hadir ke majlis {{ $kadData->nama_panggilan_lelaki }} dan {{ $kadData->nama_panggilan_perempuan }} pada {{ $dateTime['tarikh_majlis'] }} di {{ $kadData->alamat_majlis }}.">
-        <meta property="og:image" content="{{ asset($design->thumbnail) }}">
+        <meta property="og:image" content="{{ asset($metaThumbnail) }}">
         <meta property="og:url" content="{{ url()->current() }}">
         <meta property="og:type" content="website">
         <meta property="og:locale" content="en_US"> <!-- Change this to your language -->
@@ -31,7 +46,7 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="{{ $kadData->tajuk_kad }}">
         <meta name="twitter:description" content="Anda dijemput hadir ke {{ $kadData->nama_panggilan_lelaki }} & {{ $kadData->nama_panggilan_perempuan }} pada {{ $dateTime['tarikh_majlis'] }} di {{ $kadData->alamat_majlis }}.">
-        <meta name="twitter:image" content="{{ asset($design->thumbnail) }}">
+        <meta name="twitter:image" content="{{ asset($metaThumbnail) }}">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
