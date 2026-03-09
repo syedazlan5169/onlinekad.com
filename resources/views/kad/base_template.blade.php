@@ -30,9 +30,6 @@
                 }
             }
         @endphp
-        @php
-            dump($metaThumbnail);
-        @endphp
 
         <!-- Open Graph Meta Tags -->
         <meta property="og:title" content="{{ $kadData->tajuk_kad }}">
