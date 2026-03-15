@@ -278,9 +278,9 @@
                             </div>
                         @elseif ($kadData->penjemput == 2)
                             <div class="text-center">
-                                <p class="text-7xl text-gray-600 mb-0 leading-tight animate-zoom-in-delay-1" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_perempuan }}</p>
+                                <p class="text-7xl text-gray-600 mb-0 leading-tight animate-zoom-in-delay-1" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }}; padding-right: 0.25em;">{{ $kadData->nama_panggilan_perempuan }}</p>
                                 <p class="text-5xl text-gray-600 mb-0 leading-tight animate-zoom-in-delay-2" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">&</p>
-                                <p class="text-7xl text-gray-600 mb-0 leading-tight animate-zoom-in-delay-3" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_lelaki }}</p>
+                                <p class="text-7xl text-gray-600 mb-0 leading-tight animate-zoom-in-delay-3" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }}; padding-right: 0.25em;">{{ $kadData->nama_panggilan_lelaki }}</p>
                             </div>
                         @else
                             <div class="text-center">
@@ -362,15 +362,15 @@
                                                 </div>
                                             @elseif ($kadData->penjemput == 2)
                                                 <div class="text-center">
-                                                    <p class="text-7xl text-gray-600 mb-0 leading-tight" data-aos="fade-up" data-aos-duration="1000" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_perempuan }}</p>
+                                                    <p class="text-7xl text-gray-600 mb-0 leading-tight" data-aos="fade-up" data-aos-duration="1000" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }}; padding-right: 0.25em;">{{ $kadData->nama_panggilan_perempuan }}</p>
                                                     <p class="text-5xl text-gray-600 mb-0 leading-tight" data-aos="fade-up" data-aos-duration="1000" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">&</p>
-                                                    <p class="text-7xl text-gray-600 mb-0 leading-tight" data-aos="fade-up" data-aos-duration="1000" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_lelaki }}</p>
+                                                    <p class="text-7xl text-gray-600 mb-0 leading-tight" data-aos="fade-up" data-aos-duration="1000" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }}; padding-right: 0.25em;">{{ $kadData->nama_panggilan_lelaki }}</p>
                                                 </div>
                                             @else
                                                 <div class="text-center">
-                                                    <p class="text-7xl text-gray-600 mb-0 leading-tight" data-aos="fade-up" data-aos-duration="1000" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_lelaki }}</p>
+                                                    <p class="text-7xl text-gray-600 mb-0 leading-tight" data-aos="fade-up" data-aos-duration="1000" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }}; padding-right: 0.25em;">{{ $kadData->nama_panggilan_lelaki }}</p>
                                                     <p class="text-5xl text-gray-600 mb-0 leading-tight" data-aos="fade-up" data-aos-duration="1000" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">&</p>
-                                                    <p class="text-7xl text-gray-600 mb-0 leading-tight" data-aos="fade-up" data-aos-duration="1000" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }};">{{ $kadData->nama_panggilan_perempuan }}</p>
+                                                    <p class="text-7xl text-gray-600 mb-0 leading-tight" data-aos="fade-up" data-aos-duration="1000" style="font-family: '{{ $font->font_name }}', cursive; color: {{ $primaryTextColor }}; padding-right: 0.25em;">{{ $kadData->nama_panggilan_perempuan }}</p>
                                                 </div>
                                             @endif
                                             <button
