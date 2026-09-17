@@ -11,6 +11,7 @@ use App\Http\Controllers\ToyyibpayController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\ImpersonationController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 use App\Mail\NewKad;
@@ -51,6 +52,9 @@ Route::middleware(['auth'])->group(function () {
         Route::post('admin/kad/search', [AdminController::class, 'searchKadBySlug'])->name('admin.kad.search');
         Route::patch('admin/kad/{id}/payment-status', [AdminController::class, 'updateKadPaymentStatus'])->name('admin.kad.update-payment-status');
 
+        // Impersonation
+        Route::post('admin/impersonate/{id}', [ImpersonationController::class, 'start'])->name('admin.impersonate.start');
+
         // Promotion Management Dashboard
         Route::get('admin/promotions', [PromotionController::class, 'index'])->name('admin.promotions.index');
         Route::get('admin/promotions/create', [PromotionController::class, 'create'])->name('admin.promotions.create');
@@ -85,6 +89,9 @@ Route::middleware(['auth'])->group(function () {
 
     //Download RSVP
     Route::get('/export-rsvp', [RsvpController::class, 'exportToExcel'])->name('export-rsvp');
+
+    //Impersonation
+    Route::post('/impersonate/stop', [ImpersonationController::class, 'stop'])->name('impersonate.stop');
 });
 
 //GoogleController
