@@ -119,7 +119,16 @@
                                                 @else
                                                     <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium border border-l text-gray-900 sm:pl-6">{{ $kad->nama_panggilan_lelaki }} & {{ $kad->nama_panggilan_perempuan }}</td>
                                                 @endif
-                                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium border border-l sm:pl-6"><a class="text-blue-500" href="/invitation/{{ $kad->slug }}">View</a><a class="ml-2 text-green-500" href="/kad-edit/{{ $kad->id }}">Edit</a></td>
+                                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium border border-l sm:pl-6">
+                                                    <a class="text-blue-500" href="/invitation/{{ $kad->slug }}">View</a>
+                                                    <a class="ml-2 text-green-500" href="/kad-edit/{{ $kad->id }}">Edit</a>
+                                                    @if($kad->user && !$kad->user->is_admin)
+                                                        <form action="{{ route('admin.impersonate.start', $kad->user->id) }}" method="POST" class="inline">
+                                                            @csrf
+                                                            <button type="submit" class="ml-2 text-orange-500">Impersonate</button>
+                                                        </form>
+                                                    @endif
+                                                </td>
                                             </tr>
                                             @endforeach
                                         </tbody>
