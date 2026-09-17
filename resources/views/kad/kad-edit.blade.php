@@ -25,18 +25,18 @@
 			<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 				<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 					<div x-data="{
-						selectedFont: '{{ $kadData->font_id }}', 
+						selectedFont: {{ Illuminate\Support\Js::from((string) $kadData->font_id) }}, 
 						fonts: {
                         @foreach($fonts as $font)
-                            '{{ $font->id }}': '{{ $font->font_name }}',
+                            {{ Illuminate\Support\Js::from((string) $font->id) }}: {{ Illuminate\Support\Js::from($font->font_name) }},
                         @endforeach
                     	},
 						openSection: 'maklumatPengantin',
-						 packageId: '{{ $kadData->package_id }}',
-						 namaLelaki: '{{ $kadData->nama_panggilan_lelaki }}',
-						 namaPerempuan: '{{ $kadData->nama_panggilan_perempuan }}',
-						 namaPasanganPertama: '{{ $kadData->nama_panggilan_pasangan_pertama }}',
-						 namaPasanganKedua: '{{ $kadData->nama_panggilan_pasangan_kedua }}'
+						 packageId: {{ Illuminate\Support\Js::from((string) $kadData->package_id) }},
+						 namaLelaki: {{ Illuminate\Support\Js::from($kadData->nama_panggilan_lelaki) }},
+						 namaPerempuan: {{ Illuminate\Support\Js::from($kadData->nama_panggilan_perempuan) }},
+						 namaPasanganPertama: {{ Illuminate\Support\Js::from($kadData->nama_panggilan_pasangan_pertama) }},
+						 namaPasanganKedua: {{ Illuminate\Support\Js::from($kadData->nama_panggilan_pasangan_kedua) }}
 					}" class="max-w-7xl mx-auto p-8">
 					
 					<!-- Form starts -->
