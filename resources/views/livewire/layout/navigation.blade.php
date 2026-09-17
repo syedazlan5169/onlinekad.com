@@ -17,6 +17,15 @@ new class extends Component
 }; ?>
 
 <nav x-data="{ open: false }" class="bg-white  border-b border-gray-100">
+    @if (session('impersonator_id'))
+        <div class="bg-orange-500 text-white text-sm text-center py-2 px-4 flex items-center justify-center gap-4">
+            <span>Impersonating {{ auth()->user()->name }}</span>
+            <form action="{{ route('impersonate.stop') }}" method="POST">
+                @csrf
+                <button type="submit" class="underline font-semibold">Return to Admin</button>
+            </form>
+        </div>
+    @endif
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-20">
